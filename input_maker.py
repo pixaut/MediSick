@@ -9,14 +9,18 @@ files_size = len(files) # кол-во картинок с буквами
 
 f = open('assets\\lib.txt', 'w') # открываем файл для записи
 
-for k in range(files_size): # проходимся по каждой букве
+for k in range(26): # проходимся по каждой букве
 
-    path = 'assets\\images\\'+'letter'+str(chr(ord('a') + k))+'.png' # путь к букве
-    if (os.path.isfile(path) == True):
+    l = 0
+    
+    path = directory+'\\letter'+str(chr(ord('a') + k)) # путь к букве
+    while(os.path.isfile(path) == True):
 
+        path2 = path + str(l) + '.png'
+        l = l + 1
+        
         img = cv2.imread(path, cv2.IMREAD_GRAYSCALE) # записываем картинку в переменную
-        w = img.shape[0] # ширина
-        h = img.shape[1] # высота
+        w,h = 64# ширина высота
 
         for i in range(w):
             for j in range(h):

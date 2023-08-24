@@ -1,30 +1,22 @@
-from PIL import Image #pillage
-from numpy import asarray
+import cv2
+import os.path
 
-img = Image.open('../../programming/ai alphabet/images/image_1.png')
+f = open('lib.txt', 'w')
 
-path = 'assets\\images\\letter'
+for k in range(25):
+    path = 'assets\\images\\'+'letter'+str(k)+'.png'
+    img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
+    w = img.shape[0]
+    h = img.shape[1]
 
-image = asarray(img)
+    for i in range(w):
+        for j in range(h):
+            a = img[i, j]
+            ans = round((255 - a) / 255, 1)
+            f.write(str(ans))
+            f.write(' ')
+        f.write('\n')
+    f.write('\n')
+f.close()
 
-weight,height = 64
 
-arr = [[0]*weight for i in range(height) ]
-
-print("Сколько будет изображений?")
-
-n = int(input())
-
-for k in range(n):
-
-	img = Image.open(path + str(k) + '.png')
-
-	img.show()
-
-	for i in range(weight):
-		for j in range(height):
-			if(image[i][j][0] != 255 and image[i][j][1] != 255 and image[i][j][2] != 255):
-				arr[i][j] = 1
-
-	img.close()
-print(*arr, sep = '\n')

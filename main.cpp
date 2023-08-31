@@ -17,14 +17,22 @@ public:
 
     int layers;
     int *size;
+    double *percents;
     neuron **neurons;
     double ***weights;
+
 
     void SetLayers(int n, int *p) {
         layers = n;
         size = new int[n];
         neurons = new neuron *[n];
+        percents = new double [p[n-1]];
         weights = new double **[n - 1];
+
+
+        for(int i = 0;i < size[p[n-1]];i++){
+            percents[i] = 0.0;
+        }
 
         for (int i = 0; i < n; i++) {
             size[i] = p[i];
@@ -36,7 +44,7 @@ public:
             for (int j = 0; j < p[i]; j++) {
                 weights[i][j] = new double[p[i + 1]];
                 for (int k = 0; k < p[i + 1]; k++) {
-                    weights[i][j][k] = ((rand() % 100) * 0.01) / p[i];// maybe not work
+                    weights[i][j][k] = ((rand() % 100) * 0.01);// maybe not work
                 }
             }
         }
@@ -64,19 +72,19 @@ public:
         for (int i = 0; i < layers - 1; i++) {
             for (int j = 0; j < size[i]; j++) {
                 for (int k = 0; k < size[i + 1]; k++) {
-                    weights[i][j][k] = (double(rand() % 100) * 0.01) / double(size[i]);
+                    weights[i][j][k] = (double(rand() % 100) * 0.01) ;
                 }
             }
         }
     }
-    int predict() {
+    int  predict() {
         int imax;
         double max;
         imax = 0;
         max = 0.0;
         for (int i = 0; i < size[layers - 1]; i++) {
-            if (neurons[layers - 1][i].value > max) {
-                max = neurons[layers - 1][i].value;
+            if (percents[i] > max) {
+                max = percents[i];
                 imax = i;
             }
         }
@@ -95,6 +103,35 @@ public:
             }
         }
     }
+    void Softmax(){
+
+        double sum;
+        sum = 0.0;
+
+        for(int i = 0;i < size[layers-1];i++){
+            sum += exp(neurons[layers-1][i].value);
+        }
+
+        for(int i = 0;i < size[layers-1];i++){
+            percents[i] = exp(neurons[layers-1][i].value)/sum;
+        }
+
+    }
+    double ErrorCouter(double *ra){
+
+        Softmax();
+
+        double sum;
+        sum = 0.0;
+
+        for(int i = 0;i < size[layers-1];i++){
+            sum += ra[i]*log(percents[i]);
+        }
+
+        return -sum;
+
+    }
+
 
 };
 
@@ -105,21 +142,30 @@ int main() {
     int n = 4, n_of_tests = 28, size[] = {4096, 64, 32, 26};
 
     char c;
-    int ra, ranswer, maxtst = 0;//right answers
+    double mintst = 0;
+
+
     network nn;
     ifstream fin;
+
+    double *rightans = new double [size[n-1]];
 
     nn.SetLayers(n, size);
 
     auto *input = new double[size[0]];
 
-    while (double(ra) / double(n_of_tests) < 0.6) {
+    double s = 3.0;
+
+    while (s > 1.0){
+
+         for(int i = 0;i < size[n-1];i++){
+             rightans[i] = 0.0;
+         }
 
         nn.WeightsUpdater();
 
         fin.open("assets\\lib.txt");
 
-        ra = 0;
         for (int i = 0; i < n_of_tests; i++) {
             for (int j = 0; j < size[0]; j++) {
                 fin >> input[j];
@@ -128,18 +174,21 @@ int main() {
             fin >> c;
             nn.SetInput(input);
             nn.Forward();
-            ranswer = c - 'a';
-            if (nn.predict() == ranswer) ra++;
+
+            rightans[c-'a'] = 1.0;
+
+            s = nn.ErrorCouter(rightans);
+
+            if (s < mintst) {
+                mintst = s;
+                nn.SaveWeights("assets\\perfect_weights.txt");
+            }
+
         }
 
-        cout << double(ra) / double(n_of_tests) * 100.0 << '\n';
-
+        cout << s << '\n';
         fin.close();
 
-        if (ra > maxtst) {
-            maxtst = ra;
-            nn.SaveWeights("assets\\perfect_weights.txt");
-        }
     }
 
     return 0;

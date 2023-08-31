@@ -21,7 +21,6 @@ public:
     neuron **neurons;
     double ***weights;
 
-
     void SetLayers(int n, int *p) {
         layers = n;
         size = new int[n];
@@ -92,13 +91,15 @@ public:
     }
     void Forward() {
         double value;
-        for (int i = 0; i < layers - 1; i++) {
+        for (int i = 0; i < layers - 2; i++) {
+
             for (int k = 0; k < size[i + 1]; k++) {
                 value = 0.0;
                 for (int j = 0; j < size[i]; j++) {
                     value += neurons[i][j].value * weights[i][j][k];
                 }
                 neurons[i + 1][k].value = value;
+                if(i == layers-3)continue;
                 neurons[i + 1][k].activate();
             }
         }
@@ -131,7 +132,6 @@ public:
         return -sum;
 
     }
-
 
 };
 

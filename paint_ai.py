@@ -2,6 +2,7 @@
 import math
 import pathlib
 from pathlib import Path
+import cv2
 
 pygame.init()
 window = pygame.display.set_mode((900, 900))
@@ -44,6 +45,9 @@ clearpic2 = font4.render("CLEAR", False, (WHITE))
 
 letterpic = font2.render("L", False, (WHITE))
 letters = pygame.image.load(r"ls.png")
+video = cv2.VideoCapture("video.avi")
+success, video_image = video.read()
+fps = video.get(cv2.CAP_PROP_FPS)
 
 
 app = True
@@ -81,8 +85,27 @@ flag = False
 flag2 = False
 flag3 = False
 flag4 = False
+screensaver = True
 letternum = 1
 fn = str()
+
+#
+
+while screensaver:
+    clock.tick(fps)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            screensaver = False
+
+    success, video_image = video.read()
+    if success:
+        video_surf = pygame.image.frombuffer(
+            video_image.tobytes(), video_image.shape[1::-1], "BGR"
+        )
+    else:
+        screensaver = False
+    window.blit(video_surf, (0, 0))
+    pygame.display.flip()
 
 
 def drawGrid():

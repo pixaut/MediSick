@@ -3,13 +3,7 @@
 using namespace std;
 
 struct neuron {
-
     double value, error;
-
-    void activate() {
-        value = (1 / (1 + pow(2.71828, -value))); // e = 2.718281828
-    }
-
 };
 
 class network {
@@ -17,20 +11,35 @@ public:
 
     int layers;
     int *size;
-    double *percents;
+    double *z;
     neuron **neurons;
     double ***weights;
 
+    double activation(double x){
+        //if(x >  35.0) return 1.0;
+        //if(x < -35.0) return 0.0;
+        //return 1.0/(1.0+exp(-x));
+        return max(0.0,x);
+    }
+    double activation_proizv(double x){
+        //if(abs(x) > 15.0) return 0.0;
+        //return activation(x)*(1.0-activation(x));
+        if(x > 0) return 1.0;
+        else return 0.0;
+    }
     void SetLayers(int n, int *p) {
+
+        srand(time(nullptr));
+
         layers = n;
         size = new int[n];
         neurons = new neuron *[n];
-        percents = new double [p[n-1]];
+        z = new double [p[n-1]];
         weights = new double **[n - 1];
 
 
         for(int i = 0;i < size[p[n-1]];i++){
-            percents[i] = 0.0;
+            z[i] = 0.0;
         }
 
         for (int i = 0; i < n; i++) {
@@ -43,7 +52,7 @@ public:
             for (int j = 0; j < p[i]; j++) {
                 weights[i][j] = new double[p[i + 1]];
                 for (int k = 0; k < p[i + 1]; k++) {
-                    weights[i][j][k] = ((rand() % 100) * 0.01);// maybe not work
+                    weights[i][j][k] = ((rand() % 100) * 0.01);
                 }
             }
         }
@@ -67,16 +76,7 @@ public:
         }
         fout.close();
     }
-    void WeightsUpdater() {
-        for (int i = 0; i < layers - 1; i++) {
-            for (int j = 0; j < size[i]; j++) {
-                for (int k = 0; k < size[i + 1]; k++) {
-                    weights[i][j][k] = (double(rand() % 100) * 0.01) ;
-                }
-            }
-        }
-    }
-    int  predict() {
+    /*int  predict() {
         int imax;
         double max;
         imax = 0;
@@ -88,19 +88,18 @@ public:
             }
         }
         return imax;
-    }
+    }*/
     void Forward() {
         double value;
         for (int i = 0; i < layers - 2; i++) {
-
             for (int k = 0; k < size[i + 1]; k++) {
                 value = 0.0;
                 for (int j = 0; j < size[i]; j++) {
                     value += neurons[i][j].value * weights[i][j][k];
                 }
-                neurons[i + 1][k].value = value;
-                if(i == layers-3)continue;
-                neurons[i + 1][k].activate();
+                if(i == layers-3)neurons[i + 1][k].value = value;
+                else neurons[i + 1][k].value = activation(value);
+
             }
         }
     }
@@ -114,22 +113,54 @@ public:
         }
 
         for(int i = 0;i < size[layers-1];i++){
-            percents[i] = exp(neurons[layers-1][i].value)/sum;
+            z[i] = exp(neurons[layers-1][i].value)/sum;
         }
 
     }
     double ErrorCouter(double *ra){
 
-        Softmax();
-
         double sum;
         sum = 0.0;
 
         for(int i = 0;i < size[layers-1];i++){
-            sum += ra[i]*log(percents[i]);
+            sum += abs(z[i]-ra[i]);
         }
 
-        return -sum;
+        return sum;
+
+    }
+    void BackPropogation(double *ra,double ls){
+
+        double sum;
+        sum = 0.0;
+
+        for(int i = layers-1;i >= 0;i--){
+            if(i == layers-1){
+                for(int j = 0;j < size[i];j++){
+                    neurons[i][j].error = z[j] - ra[j];
+                }
+                continue;
+            }
+
+            for(int j = 0;j < size[i];j++){
+                sum = 0.0;
+                for(int k = 0;k < size[i+1];k++){
+                    sum += neurons[i+1][k].error * weights[i][j][k];
+                    weights[i][j][k] -= ls*neurons[i+1][k].error * neurons[i][j].value;//bb
+                }
+                neurons[i][j].error = activation_proizv(sum);
+            }
+
+        }
+
+
+    }
+    void OutputErrors(int lay){
+
+        for(int j = 0;j < size[lay];j++){
+            cout << fixed << setprecision(1) << neurons[lay][j].value << ' ';
+        }
+        cout << '\n';
 
     }
 
@@ -138,14 +169,15 @@ public:
 
 int main() {
 
-    srand(time(nullptr));
+
     int n = 4, n_of_tests = 28, size[] = {4096, 64, 32, 26};
 
     char c;
-    double mintst = 0;
+    double mintst = 10000;
 
 
-    network nn;
+    network nn;//NeuronNetwork
+
     ifstream fin;
 
     double *rightans = new double [size[n-1]];
@@ -158,12 +190,6 @@ int main() {
 
     while (s > 1.0){
 
-         for(int i = 0;i < size[n-1];i++){
-             rightans[i] = 0.0;
-         }
-
-        nn.WeightsUpdater();
-
         fin.open("assets\\lib.txt");
 
         for (int i = 0; i < n_of_tests; i++) {
@@ -175,7 +201,25 @@ int main() {
             nn.SetInput(input);
             nn.Forward();
 
+
+
+            fill(rightans,rightans+size[n-1],0.0);
             rightans[c-'a'] = 1.0;
+
+            nn.Softmax();
+            nn.BackPropogation(rightans,0.001);
+            /*for(int j = 0;j < size[n-1];j++){
+                cout << fixed << setprecision(9)<< rightans[j] << ' ';
+            }
+            cout << '\n';
+            for(int j = 0;j < size[n-1];j++){
+                cout << fixed << setprecision(9) << nn.neurons[n-1][j].value << ' ';
+            }
+            cout << '\n';*/
+            if(i == 0){
+                nn.OutputErrors(1);
+                cout << '\n';
+            }
 
             s = nn.ErrorCouter(rightans);
 
@@ -186,7 +230,7 @@ int main() {
 
         }
 
-        cout << s << '\n';
+        cout << mintst << '\n';
         fin.close();
 
     }

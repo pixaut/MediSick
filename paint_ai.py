@@ -246,7 +246,7 @@ while app:
         and (pos[1] > 100 and pos[1] < 700)
     ):
         letternum = math.floor(((pos[1] - 100) / 23.07692307692) + 1)
-        # print(letterset[letternum - 1], "    ", letternum - 1)
+        # print(l  etterset[letternum - 1], "    ", letternum - 1)
         drawletgui()
         rect6 = pygame.Rect((800, (letternum * 23.07692307692) + 75, 50, 25))
         pygame.draw.rect(window, GRAY, rect6, 2)

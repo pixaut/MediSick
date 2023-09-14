@@ -45,7 +45,7 @@ clearpic2 = font4.render("CLEAR", False, (WHITE))
 
 letterpic = font2.render("L", False, (WHITE))
 letters = pygame.image.load(r"ls.png")
-video = cv2.VideoCapture("video.avi")
+video = cv2.VideoCapture("scrsar.avi")
 success, video_image = video.read()
 fps = video.get(cv2.CAP_PROP_FPS)
 
@@ -85,7 +85,7 @@ flag = False
 flag2 = False
 flag3 = False
 flag4 = False
-screensaver = True
+screensaver = False
 letternum = 1
 fn = str()
 

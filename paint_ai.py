@@ -18,6 +18,7 @@ GREEN = (77, 209, 29)
 BLUE = (20, 179, 228)
 PURPLE = (204, 204, 255)
 PURPLE2 = (204, 204, 255)
+PURPLE3 = (204, 204, 255)
 
 
 rect1 = pygame.Rect((80, 780, 300, 100))
@@ -85,7 +86,7 @@ flag = False
 flag2 = False
 flag3 = False
 flag4 = False
-screensaver = False
+screensaver = True
 letternum = 1
 fn = str()
 

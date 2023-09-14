@@ -5,7 +5,7 @@
 #include <cmath>
 #include <algorithm>
 #include <iomanip>
-
+//jkhkhkgkhkjhkhkjh
 using namespace std;
 
 struct neuron {

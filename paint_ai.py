@@ -89,7 +89,6 @@ screensaver = True
 letternum = 1
 fn = str()
 
-#
 
 while screensaver:
     clock.tick(fps)
@@ -169,7 +168,7 @@ def save():
 
 drawgui()
 while app:
-    clock.tick(240)
+    clock.tick(560)
     pressed = pygame.mouse.get_pressed()
     pos = pygame.mouse.get_pos()
     for event in pygame.event.get():

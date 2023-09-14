@@ -179,7 +179,7 @@ while app:
     if (pos[0] > 120 and pos[0] < 755) and (pos[1] > 50 and pos[1] < 685):
         if pressed[0]:
             matrix[round((pos[1] - 50) / 10)][round((pos[0] - 120) / 10)] = 1
-            # print(round((pos[0] - 120) / 10), " ", round((pos[1] - 50) / 10))
+            # pri nt(round((pos[0] - 120) / 10), " ", round((pos[1] - 50) / 10))
             drawsquare(round((pos[0]) / 10), round((pos[1]) / 10))
 
     if (

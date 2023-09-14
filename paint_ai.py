@@ -3,7 +3,7 @@ import math
 import pathlib
 from pathlib import Path
 import cv2
-
+# dd
 pygame.init()
 window = pygame.display.set_mode((900, 900))
 pygame.display.set_caption("Paint/ai v. 1.5")

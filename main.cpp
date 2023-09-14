@@ -1,4 +1,10 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <ctime>
+#include <cmath>
+#include <algorithm>
+#include <iomanip>
 
 using namespace std;
 
@@ -16,16 +22,10 @@ public:
     double ***weights;
 
     double activation(double x){
-        //if(x >  35.0) return 1.0;
-        //if(x < -35.0) return 0.0;
-        //return 1.0/(1.0+exp(-x));
-        return max(0.0,x);
+        return (exp(x)-exp(-x))/(exp(x)+exp(-x));
     }
     double activation_proizv(double x){
-        //if(abs(x) > 15.0) return 0.0;
-        //return activation(x)*(1.0-activation(x));
-        if(x > 0) return 1.0;
-        else return 0.0;
+        return 1 - pow(activation(x),2);
     }
     void SetLayers(int n, int *p) {
 
@@ -76,29 +76,28 @@ public:
         }
         fout.close();
     }
-    /*int  predict() {
-        int imax;
-        double max;
-        imax = 0;
-        max = 0.0;
-        for (int i = 0; i < size[layers - 1]; i++) {
-            if (percents[i] > max) {
-                max = percents[i];
-                imax = i;
+    void ClearNeuronsValues() {
+        for (int i = 1; i < layers; i++) {
+            for (int j = 0; j < size[i]; j++) {
+                neurons[i][j].value = 0.0;
             }
         }
-        return imax;
-    }*/
+    }
+    void ClearNeuronsErrors() {
+        for (int i = 0; i < layers; i++) {
+            for (int j = 0; j < size[i]; j++) {
+                neurons[i][j].error = 0.0;
+            }
+        }
+    }
     void Forward() {
-        double value;
         for (int i = 0; i < layers - 2; i++) {
             for (int k = 0; k < size[i + 1]; k++) {
-                value = 0.0;
                 for (int j = 0; j < size[i]; j++) {
-                    value += neurons[i][j].value * weights[i][j][k];
+                    neurons[i + 1][k].value += neurons[i][j].value * weights[i][j][k];
                 }
-                if(i == layers-3)neurons[i + 1][k].value = value;
-                else neurons[i + 1][k].value = activation(value);
+                if (i == layers - 3)continue;
+                neurons[i + 1][k].value = activation(neurons[i + 1][k].value);
 
             }
         }
@@ -123,16 +122,13 @@ public:
         sum = 0.0;
 
         for(int i = 0;i < size[layers-1];i++){
-            sum += abs(z[i]-ra[i]);
+            sum += ra[i]*log(z[i]);
         }
 
         return sum;
 
     }
     void BackPropogation(double *ra,double ls){
-
-        double sum;
-        sum = 0.0;
 
         for(int i = layers-1;i >= 0;i--){
             if(i == layers-1){
@@ -143,12 +139,11 @@ public:
             }
 
             for(int j = 0;j < size[i];j++){
-                sum = 0.0;
                 for(int k = 0;k < size[i+1];k++){
-                    sum += neurons[i+1][k].error * weights[i][j][k];
-                    weights[i][j][k] -= ls*neurons[i+1][k].error * neurons[i][j].value;//bb
+                    neurons[i][j].error += neurons[i+1][k].error * weights[i][j][k];
+                    weights[i][j][k] -= ls*neurons[i+1][k].error* neurons[i][j].value;//bb
                 }
-                neurons[i][j].error = activation_proizv(sum);
+                neurons[i][j].error = activation_proizv(neurons[i][j].error);
             }
 
         }
@@ -157,8 +152,16 @@ public:
     }
     void OutputErrors(int lay){
 
+        /*for(int i = 0;i < size[lay-1];i++){
+            for(int j = 0;j < size[lay];j++){
+                cout << fixed << setprecision(1) <<  weights[lay-1][i][j] << ' ';
+            }
+            //cout << '\n';
+        }*/
+
+
         for(int j = 0;j < size[lay];j++){
-            cout << fixed << setprecision(1) << neurons[lay][j].value << ' ';
+            cout << fixed << setprecision(1) << neurons[lay][j].error << ' ';
         }
         cout << '\n';
 
@@ -169,6 +172,9 @@ public:
 
 int main() {
 
+    ios_base::sync_with_stdio(false);
+    cout.tie();
+
 
     int n = 4, n_of_tests = 28, size[] = {4096, 64, 32, 26};
 
@@ -176,7 +182,7 @@ int main() {
     double mintst = 10000;
 
 
-    network nn;//NeuronNetwork
+    network nn;//Neuron Network
 
     ifstream fin;
 
@@ -184,11 +190,12 @@ int main() {
 
     nn.SetLayers(n, size);
 
-    auto *input = new double[size[0]];
+    double *input;
+    input = new double[size[0]];
 
     double s = 3.0;
 
-    while (s > 1.0){
+    while (abs(s) > 0.1){
 
         fin.open("assets\\lib.txt");
 
@@ -199,6 +206,8 @@ int main() {
 
             fin >> c;
             nn.SetInput(input);
+
+            nn.ClearNeuronsValues();
             nn.Forward();
 
 
@@ -207,7 +216,15 @@ int main() {
             rightans[c-'a'] = 1.0;
 
             nn.Softmax();
-            nn.BackPropogation(rightans,0.001);
+            nn.BackPropogation(rightans,0.1);
+
+            if (i == 0) {
+                nn.OutputErrors(2);
+                cout << '\n';
+            }
+
+            s = nn.ErrorCouter(rightans);
+            nn.ClearNeuronsErrors();
             /*for(int j = 0;j < size[n-1];j++){
                 cout << fixed << setprecision(9)<< rightans[j] << ' ';
             }
@@ -216,12 +233,8 @@ int main() {
                 cout << fixed << setprecision(9) << nn.neurons[n-1][j].value << ' ';
             }
             cout << '\n';*/
-            if(i == 0){
-                nn.OutputErrors(1);
-                cout << '\n';
-            }
+            
 
-            s = nn.ErrorCouter(rightans);
 
             if (s < mintst) {
                 mintst = s;

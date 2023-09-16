@@ -111,6 +111,25 @@ public:
         }
 
     }
+    char Predict(){
+        
+        double MaximalPercent;
+        int MaxIndex;
+
+        MaximalPercent = -1000;
+        MaxIndex = 0;
+
+        for(int i = 0;i < size[layers-1];i++){
+            if(MaximalPercent < neurons[layers-1][i].ActiveValue){
+                MaximalPercent = neurons[layers-1][i].ActiveValue;
+                MaxIndex = i;
+            }
+        }
+
+        return char(MaxIndex +'a');
+
+    }
+    
     double ErrorCouter(double *ra){
 
         double sum;
@@ -165,9 +184,11 @@ public:
         cout << '\n';
 
     }
-    void SaveWeights(string filename) {
+    
+    void SaveWeights(string filename,double MaxPredict) {
             ofstream fout;
             fout.open(filename);
+            fout << fixed << setprecision(2) << MaxPredict << ' ';
             for (int i = 0; i < layers - 1; i++) {
                 for (int j = 0; j < size[i]; j++) {
                     for (int k = 0; k < size[i + 1]; k++) {
@@ -176,7 +197,27 @@ public:
                 }
             }
             fout.close();
+    }
+    double LoadWeights(string filename){
+
+        ifstream fin;
+        fin.open(filename);
+        double percents;
+        fin >> percents; // first-percents of true - is trash value
+
+        for (int i = 0; i < layers - 1; i++) {
+            for (int j = 0; j < size[i]; j++) {
+                for (int k = 0; k < size[i + 1]; k++) {
+                    fin >> weights[i][j][k];
+                }
+            }
         }
+        fin.close();
+
+        return percents;
+    }
+
+
 };
 
 
@@ -184,26 +225,43 @@ int main() {
 
     srand(time(nullptr));
 
+    bool WantLearn = false;
+
     int n = 4, n_of_tests = 28, size[] = {4096, 64, 32, 26};
-
     char c;
-    double mintst = 10000;
-
-
-    network nn;//Neuron Network
-
-    ifstream fin;
-
+    double MaxPredict,s = 3.0,vv = 0.0;
     double *rightans = new double [size[n-1]];
+    double *input = new double[size[0]];
+    ifstream fin;
+    network nn;//Neuron Network
 
     nn.SetLayers(n, size);
 
-    double *input;
-    input = new double[size[0]];
+    if(!WantLearn){
+        
+        MaxPredict = nn.LoadWeights("assets\\perfect_weights.txt");
+        
+        string answer;
+        answer = "";
 
-    double s = 3.0;
+        while(answer != "close"){
+            fin.open("assets\\test.txt");
 
-    while (abs(s) > 0.1){
+            nn.Forward();
+
+            cout << nn.Predict() << '\n';
+
+            cin >> answer;
+        }
+        return 0;
+        
+    }
+
+    fin.open("assets\\perfect_weights.txt");
+    fin >> MaxPredict;
+    fin.close();
+
+    while (s < 90.0){
         
         fin.open("assets\\lib.txt");
 
@@ -215,33 +273,31 @@ int main() {
             fin >> c;
             nn.SetInput(input);
 
-            nn.ClearNeuronsValues();
+            //nn.ClearNeuronsValues();
             nn.Forward();
-
-
 
             fill(rightans,rightans+size[n-1],0.0);
             rightans[c-'a'] = 1.0;
+            
+            nn.BackPropogation(rightans,10);
 
+            // if (i == 0) {
+            //     nn.OutputErrors(4);
+            //     cout << '\n';
+            // }
 
+            s = (1.0 - (nn.ErrorCouter(rightans)/26.0) ) * 100.0;
 
-            nn.BackPropogation(rightans,1);
+            vv = max(s,vv);
 
-            if (i == 0) {
-                nn.OutputErrors(4);
-                cout << '\n';
-            }
-
-            s = nn.ErrorCouter(rightans);
-
-            if (s < mintst) {
-                mintst = s;
-                nn.SaveWeights("assets\\perfect_weights.txt");
+            if (s > MaxPredict) {
+                MaxPredict = s;
+                nn.SaveWeights("assets\\perfect_weights.txt",MaxPredict);
             }
 
         }
 
-        cout << mintst << '\n';
+        std::cout << fixed << setprecision(2) << vv << '\n';
         fin.close();
 
     }

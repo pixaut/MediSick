@@ -246,7 +246,7 @@ def cleansquare(x, y, t):
         pygame.draw.rect(window, WHITE, rect, 5)
         matrix[round((pos[1] - 50) / 10)][round((pos[0] - 120) / 10)] = 0
 
-    if (t == 2):
+    if (t == 2 and (x*10)-10 < 740 and (y*10)-10 < 670):
         rect = pygame.Rect((x * 10), (y * 10), 20, 20)
         pygame.draw.rect(window, WHITE, rect, 10)
         matrix[round((pos[1] - 50) / 10)][round((pos[0] - 120) / 10)] = 0
@@ -254,7 +254,7 @@ def cleansquare(x, y, t):
         matrix[round((pos[1] - 50) / 10)+1][round((pos[0] - 120) / 10)+1] = 0
         matrix[round((pos[1] - 50) / 10)][round((pos[0] - 120) / 10)+1] = 0
 
-    if (t == 3):
+    if (t == 3 and (x*10)-10 < 730 and (y*10)-10 < 660):
         rect = pygame.Rect((x * 10)+10, (y * 10)+10, 10, 10)
         pygame.draw.rect(window, WHITE, rect, 5)
         rect = pygame.Rect((x * 10)+10, (y * 10), 10, 10)

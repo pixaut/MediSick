@@ -53,7 +53,7 @@ font5 = pygame.font.SysFont("Verdana", 18)
 resh = font5.render(str(windll.user32.GetSystemMetrics(1)), False, (TEXTGRAY))
 resw = font5.render(
     str(windll.user32.GetSystemMetrics(0))+"x", False, (TEXTGRAY))
-versiont = font4.render("Stable ver. 1.7.3", False, (TEXTGRAY))
+versiont = font4.render("Stable ver. 1.8.5", False, (TEXTGRAY))
 
 
 savepic1 = pygame.image.load(Path("files4paint", "save1.png"))

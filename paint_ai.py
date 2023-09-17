@@ -143,6 +143,9 @@ showlog = False
 FPS_MAX = 0
 filesall = 0
 filesletter = 0
+count = 0
+count1 = 0
+countfps = 0
 fpst = font5.render(str(FPS_MAX), False, (TEXTGRAY))
 while screensaver:
     clock.tick(fps)
@@ -190,20 +193,25 @@ def drawgui():
 
 
 def showloggui():
-    pygame.draw.rect(window, DARKBLUE, rect2, 10000)
-    pygame.draw.rect(window, DARKBLUE, rect4, 10000)
-    window.blit(logpic, (30, 700))
-    window.blit(resw, (170, 718))
-    window.blit(resh, (224, 718))
-    window.blit(fpst, (145, 699))
-    folder = Path("letterspictures")
-    folderl = Path("letterspictures", letterset[letternum - 1])
-    filestotal = font5.render(
-        str(len(list(folder.rglob("*")))-26), False, (TEXTGRAY))
-    filesletter = font5.render(
-        letterset[letternum - 1]+": "+str(len(list(folderl.rglob("*")))), False, (TEXTGRAY))
-    window.blit(filestotal, (400, 699))
-    window.blit(filesletter, (380, 717))
+    global count
+    if (count >= 100):
+        pygame.draw.rect(window, DARKBLUE, rect2, 10000)
+        pygame.draw.rect(window, DARKBLUE, rect4, 10000)
+        window.blit(logpic, (30, 700))
+        window.blit(resw, (170, 718))
+        window.blit(resh, (224, 718))
+        window.blit(fpst, (145, 699))
+        folder = Path("letterspictures")
+        folderl = Path("letterspictures", letterset[letternum - 1])
+        filestotal = font5.render(
+            str(len(list(folder.rglob("*")))-26), False, (TEXTGRAY))
+        filesletter = font5.render(
+            letterset[letternum - 1]+": "+str(len(list(folderl.rglob("*")))), False, (TEXTGRAY))
+        window.blit(filestotal, (400, 699))
+        window.blit(filesletter, (380, 717))
+        count = 0
+    else:
+        count += 1
 
 
 def drawletgui():
@@ -367,19 +375,25 @@ drawletgui()
 while app:
     if showlog:
         showloggui()
+    countfps += clock.get_fps()
 
     if showfps:
-        pygame.draw.rect(window, DARKBLUE, rect11, 50)
-        fps_c = font3.render(
-            "FPS: " + str(round(clock.get_fps())), False, (RED))
-        window.blit(fps_c, (840, 3))
+        if (count1 >= 200):
+
+            pygame.draw.rect(window, DARKBLUE, rect11, 50)
+            fps_c = font3.render(
+                "FPS: " + str(round(countfps/200)), False, (RED))
+            window.blit(fps_c, (840, 3))
+            count1 = 0
+            countfps = 0
+        else:
+            count1 += 1
 
     clock.tick(FPS_MAX)
     pressed = pygame.mouse.get_pressed()
     pos = pygame.mouse.get_pos()
     ctrls_pressed = (event.type == pygame.KEYDOWN) and (
         event.key == pygame.K_s) and (event.mod & pygame.KMOD_CTRL)
-    print(pos)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

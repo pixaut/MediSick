@@ -87,7 +87,7 @@ showlogpic = pygame.image.load(r"showlog.png")
 logpic = pygame.image.load(r"log.png")
 
 
-video = cv2.VideoCapture("scrsar.avi")
+video = cv2.VideoCapture("scrsar2.avi")
 success, video_image = video.read()
 fps = video.get(cv2.CAP_PROP_FPS)
 
@@ -126,7 +126,7 @@ penset = True
 thikpos = 1
 flag = False
 flag2 = False
-screensaver = False
+screensaver = True
 letternum = 1
 fn = str()
 xls = 0

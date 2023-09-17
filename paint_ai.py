@@ -9,7 +9,7 @@ from ctypes import *
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(u"my.app.id.01")
 pygame.init()
 
-icon = pg.image.load('icon.png')
+icon = pg.image.load(Path("files4paint", "icon.png"))
 
 window = pygame.display.set_mode((900, 750))
 pygame.display.set_caption("Create test's for learning AI")
@@ -56,38 +56,39 @@ resw = font5.render(
 versiont = font4.render("Stable ver. 1.7.3", False, (TEXTGRAY))
 
 
-savepic1 = pygame.image.load(r"save1.png")
-savepic2 = pygame.image.load(r"save2.png")
+savepic1 = pygame.image.load(Path("files4paint", "save1.png"))
+savepic2 = pygame.image.load(Path("files4paint", "save2.png"))
 
-clearpic1 = pygame.image.load(r"clear1.png")
-clearpic2 = pygame.image.load(r"clear2.png")
+clearpic1 = pygame.image.load(Path("files4paint", "clear1.png"))
+clearpic2 = pygame.image.load(Path("files4paint", "clear2.png"))
 
-penpic1 = pygame.image.load(r"pen1.png")
-penpic2 = pygame.image.load(r"pen2.png")
+penpic1 = pygame.image.load(Path("files4paint", "pen1.png"))
+penpic2 = pygame.image.load(Path("files4paint", "pen2.png"))
 
-erasepic1 = pygame.image.load(r"erase1.png")
-erasepic2 = pygame.image.load(r"erase2.png")
+erasepic1 = pygame.image.load(Path("files4paint", "erase1.png"))
+erasepic2 = pygame.image.load(Path("files4paint", "erase2.png"))
 
-pickpic1 = pygame.image.load(r"pick1.png")
-pickpic2 = pygame.image.load(r"pick2.png")
-
-
-thicknesspic1l = pygame.image.load(r"thickness1l.png")
-thicknesspic2l = pygame.image.load(r"thickness2l.png")
-thicknesspic3l = pygame.image.load(r"thickness3l.png")
-thicknesspic1d = pygame.image.load(r"thickness1d.png")
-thicknesspic2d = pygame.image.load(r"thickness2d.png")
-thicknesspic3d = pygame.image.load(r"thickness3d.png")
-
-letterspic = pygame.image.load(r"ls.png")
-cleanaftersavepic = pygame.image.load(r"cleanaftersave.png")
-showgridpic = pygame.image.load(r"showgrid.png")
-showfpspic = pygame.image.load(r"showfps.png")
-showlogpic = pygame.image.load(r"showlog.png")
-logpic = pygame.image.load(r"log.png")
+pickpic1 = pygame.image.load(Path("files4paint", "pick1.png"))
+pickpic2 = pygame.image.load(Path("files4paint", "pick2.png"))
 
 
-video = cv2.VideoCapture("scrsar2.avi")
+thicknesspic1l = pygame.image.load(Path("files4paint", "thickness1l.png"))
+thicknesspic2l = pygame.image.load(Path("files4paint", "thickness2l.png"))
+thicknesspic3l = pygame.image.load(Path("files4paint", "thickness3l.png"))
+thicknesspic1d = pygame.image.load(Path("files4paint", "thickness1d.png"))
+thicknesspic2d = pygame.image.load(Path("files4paint", "thickness2d.png"))
+thicknesspic3d = pygame.image.load(Path("files4paint", "thickness3d.png"))
+
+letterspic = pygame.image.load(Path("files4paint", "ls.png"))
+cleanaftersavepic = pygame.image.load(
+    Path("files4paint", "cleanaftersave.png"))
+showgridpic = pygame.image.load(Path("files4paint", "showgrid.png"))
+showfpspic = pygame.image.load(Path("files4paint", "showfps.png"))
+showlogpic = pygame.image.load(Path("files4paint", "showlog.png"))
+logpic = pygame.image.load(Path("files4paint", "log.png"))
+
+
+video = cv2.VideoCapture("files4paint\scrsar2.avi")
 success, video_image = video.read()
 fps = video.get(cv2.CAP_PROP_FPS)
 
@@ -126,6 +127,7 @@ penset = True
 thikpos = 1
 flag = False
 flag2 = False
+flag_ctrls = False
 screensaver = True
 letternum = 1
 fn = str()
@@ -375,6 +377,8 @@ while app:
     clock.tick(FPS_MAX)
     pressed = pygame.mouse.get_pressed()
     pos = pygame.mouse.get_pos()
+    ctrls_pressed = (event.type == pygame.KEYDOWN) and (
+        event.key == pygame.K_s) and (event.mod & pygame.KMOD_CTRL)
     print(pos)
 
     for event in pygame.event.get():
@@ -397,6 +401,12 @@ while app:
         flag2 = True
     if pressed[0] == False:
         flag2 = False
+
+    if (ctrls_pressed and not flag_ctrls):
+        save()
+        flag_ctrls = True
+    if (not ctrls_pressed):
+        flag_ctrls = False
 
     if (
         (pressed[0])

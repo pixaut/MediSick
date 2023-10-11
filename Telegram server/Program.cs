@@ -1,86 +1,131 @@
-﻿using System;
-using Telegram.Bot;
+﻿using Telegram.Bot;
 using Telegram.Bot.Types;
-using System.IO;
 using Telegram.Bot.Types.ReplyMarkups;
-using System.Threading;
-using System.ComponentModel;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata.Internal;
 using Telegram.Bot.Types.Enums;
 
 namespace TelegramBot
 {
     class Program
     {
+        private static string? reference;
+        private static string? welcome;
+        private static string? symptoms;
+        private static string? lastmessage;
+        private static bool flagmessage = false;
+        private static bool symptommenu = false;
+        private static bool mainmenu = true;
+
         static void Main(string[] args)
         {
-            String line;
-            String about = "";
-            int i = 0;
+            StreamReader sr1 = new StreamReader(@"Telegramassets/reference.txt");
+            StreamReader sr2 = new StreamReader(@"Telegramassets/welcome.txt");
+            StreamReader sr3 = new StreamReader(@"Telegramassets/symptoms.txt");
+            reference = sr1.ReadToEnd();
+            welcome = sr2.ReadToEnd();
+            symptoms = sr3.ReadToEnd();
+            sr1.Close();
+            sr2.Close();
+            sr3.Close();
+            //Console.WriteLine(symptoms);
             var client = new TelegramBotClient("6497653264:AAFruV6L5WFBy3DudYPt-WyhQgWsXJQlFqY");
             client.StartReceiving(Update, Error);
-
-            StreamReader sr = new StreamReader(@"Textdata4bot.txt");
-            line = sr.ReadToEnd();
-            sr.Close();
-
-            while (line[i] == '1')
-            {
-                char[] charStr = about.ToCharArray();
-                charStr[i] = line[i];
-                about = new string(charStr);
-                Console.WriteLine(line[i]);
-                i++;
-            }
-            Console.WriteLine(about);
             Console.ReadLine();
-
         }
+
 
 
 
 
         async static Task Update(ITelegramBotClient botclient, Update update, CancellationToken token)
         {
-
+            //обработка входных данных
             var message = update.Message;
-
-            if (message == null || message.Type != MessageType.Text) return;
             string TextMessage = message.Text.ToLower();
+            if (message == null || message.Type != MessageType.Text) return;
 
-            ReplyKeyboardMarkup replyKeyboardMarkup = new(new[]
+            //отрисовка клавиатур
+            ReplyKeyboardMarkup welcomkeyboard = new(new[]
             {
-                new KeyboardButton[] { "😷Определение заболевания😷","💊Поиск лекарств💊"},
-                new KeyboardButton[] { "🔖Справка⁉️" },
+                new KeyboardButton[] { "Определение заболевания","Справка"},
+            })
+            {
+                ResizeKeyboard = true
+            };
+            ReplyKeyboardMarkup symptomkeyboard = new(new[]
+            {
+                new KeyboardButton[] { "Назад в главное меню"},
             })
             {
                 ResizeKeyboard = true
             };
 
 
-            switch (TextMessage)
+
+
+            if (mainmenu)
             {
-                case "/start":
+
+                switch (TextMessage)
+                {
+                    case "/start":
+                        {
+                            await botclient.SendTextMessageAsync(message.Chat.Id, welcome, replyMarkup: welcomkeyboard);
+                            await botclient.SendTextMessageAsync(message.Chat.Id, "Что вам нужно?Выбирайте:", replyMarkup: welcomkeyboard);
+                            break;
+                        }
+                    case "определение заболевания":
+                        {
+                            mainmenu = false;
+                            symptommenu = true;
+                            await botclient.SendTextMessageAsync(message.Chat.Id, "Вам предстоит выбрать подходящие симптопы для определения заболевания:", replyMarkup: symptomkeyboard);
+                            await botclient.SendTextMessageAsync(message.Chat.Id, symptoms);
+                            TextMessage = "";
+                            break;
+                        }
+
+                    case "справка":
+                        {
+                            await botclient.SendTextMessageAsync(message.Chat.Id, reference, replyMarkup: welcomkeyboard);
+                            break;
+                        }
+                    default: break;
+                }
+                //await botclient.SendTextMessageAsync(message.Chat.Id, " ", replyMarkup: welcomkeyboard);
+            }
+            if (symptommenu)
+            {
+
+                switch (TextMessage)
+                {
+                    case "назад в главное меню":
+                        {
+                            await botclient.SendTextMessageAsync(message.Chat.Id, "Что вам нужно?Выбирайте:", replyMarkup: welcomkeyboard);
+                            mainmenu = true;
+                            symptommenu = false;
+
+                            break;
+                        }
+                    default: break;
+                }
+
+
+
+                if (TextMessage != "")
+                {
+                    await botclient.SendTextMessageAsync(message.Chat.Id, "Проверка значений....");
+                    if (TextMessage == "cock")
                     {
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "Привет! Добро пожаловать в MediSick - твоего личного помощника в мире медицины и определения болезней. Я здесь, чтобы помочь тебе разобраться в твоих симптомах и предложить возможные диагнозы. Просто расскажи мне о своих проблемах, и я постараюсь дать тебе наилучшую рекомендацию. Не забывай, что я не заменяю визит к врачу, но могу быть полезным и информативным источником для начала.Начнем?", replyMarkup: replyKeyboardMarkup);
-                        break;
+                        await botclient.SendTextMessageAsync(message.Chat.Id, "Успех!");
                     }
-                case "😷определение заболевания😷":
+                    else
                     {
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "Поздравляю,у вас СПИД!", replyMarkup: replyKeyboardMarkup);
-                        break;
+                        await botclient.SendTextMessageAsync(message.Chat.Id, "Неправильные данные!");
                     }
-                case "💊поиск лекарств💊":
-                    {
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "Зачем?", replyMarkup: replyKeyboardMarkup);
-                        break;
-                    }
-                case "🔖справка⁉️":
-                    {
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "MediSick является личным помощником в мире медицины, который доступен для вас в любое время. Он готов ответить на ваши вопросы и предложить рекомендации на основе введенных симптомов.\n   -Определение болезней: Бот обладает базой данных, содержащей информацию о различных заболеваниях и связанных с ними симптомах. Он анализирует введенные вами симптомы и сравнивает их с базой данных, чтобы предложить возможные диагнозы.\n    -Поиск лекарств: Бот позволяет пользователям искать информацию о конкретных лекарствах. Пользователь может ввести название препарата, и бот предоставит подробную информацию о нем, включая инструкцию по применению, побочные эффекты, дозировку и другую важную информацию.\n   -Направление к врачу: Бот всегда подчеркивает, что он не заменяет визит к врачу, но может служить полезным и информативным источником для начальной оценки состояния. Он рекомендует обратиться к специалисту для более точного диагноза и лечения.\n\nС уважением: C.O.C.K. inc.", replyMarkup: replyKeyboardMarkup);
-                        break;
-                    }
-                default: break;
+
+
+                }
+
+
             }
 
 
@@ -88,14 +133,16 @@ namespace TelegramBot
 
 
 
-
-
-
-
-
-
-            //Message sentMessage =  await botclient.SendTextMessageAsync(message.Chat.Id, "cock", replyMarkup: replyKeyboardMarkup, cancellationToken: token);
-
+            if (lastmessage != TextMessage && flagmessage == false)
+            {
+                flagmessage = true;
+                lastmessage = TextMessage;
+            }
+            else
+            {
+                flagmessage = false;
+            }
+            Console.WriteLine(TextMessage + "  " + lastmessage);
 
         }
 

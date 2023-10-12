@@ -5,15 +5,20 @@ using Telegram.Bot.Types.Enums;
 
 namespace TelegramBot
 {
+
     class Program
     {
+
         private static string? reference;
         private static string? welcome;
         private static string? symptoms;
-        private static string? lastmessage;
+        private static string? lastuserid;
+        private static long userid;
         private static bool flagmessage = false;
         private static bool symptommenu = false;
         private static bool mainmenu = true;
+        private static Dictionary<long, bool> user = new Dictionary<long, bool>();
+
 
         static void Main(string[] args)
         {
@@ -27,8 +32,10 @@ namespace TelegramBot
             sr2.Close();
             sr3.Close();
             //Console.WriteLine(symptoms);
-            var client = new TelegramBotClient("6497653264:AAFruV6L5WFBy3DudYPt-WyhQgWsXJQlFqY");
+            var client = new TelegramBotClient("1193084625:AAHy5_yuKBsqcllgwSn4JCE3x6yS0UoHycA");
             client.StartReceiving(Update, Error);
+
+
             Console.ReadLine();
         }
 
@@ -38,11 +45,36 @@ namespace TelegramBot
 
         async static Task Update(ITelegramBotClient botclient, Update update, CancellationToken token)
         {
+
             //обработка входных данных
             var message = update.Message;
             string TextMessage = message.Text.ToLower();
             if (message == null || message.Type != MessageType.Text) return;
 
+
+            //обработка юзеров
+            userid = message.Chat.Id;
+            if (user.ContainsKey(userid) == false)
+            {
+                Console.WriteLine("новый пользователь:   " + message.Chat.FirstName);
+                mainmenu = true;
+                symptommenu = false;
+                user.Add(userid, true);
+            }
+            if (user[userid])
+            {
+                mainmenu = true;
+                symptommenu = false;
+            }
+            if (!user[userid])
+            {
+                mainmenu = false;
+                symptommenu = true;
+            }
+            //обработка юзеров
+
+
+            Console.WriteLine(message.Chat.FirstName + " " + user[userid] + " " + message.Text);
             //отрисовка клавиатур
             ReplyKeyboardMarkup welcomkeyboard = new(new[]
             {
@@ -77,6 +109,7 @@ namespace TelegramBot
                         {
                             mainmenu = false;
                             symptommenu = true;
+                            user[userid] = false;
                             await botclient.SendTextMessageAsync(message.Chat.Id, "Вам предстоит выбрать подходящие симптопы для определения заболевания:", replyMarkup: symptomkeyboard);
                             await botclient.SendTextMessageAsync(message.Chat.Id, symptoms);
                             TextMessage = "";
@@ -102,6 +135,7 @@ namespace TelegramBot
                             await botclient.SendTextMessageAsync(message.Chat.Id, "Что вам нужно?Выбирайте:", replyMarkup: welcomkeyboard);
                             mainmenu = true;
                             symptommenu = false;
+                            user[userid] = true;
 
                             break;
                         }
@@ -110,7 +144,7 @@ namespace TelegramBot
 
 
 
-                if (TextMessage != "")
+                if (TextMessage != "" && mainmenu == false)
                 {
                     await botclient.SendTextMessageAsync(message.Chat.Id, "Проверка значений....");
                     if (TextMessage == "cock")
@@ -132,17 +166,19 @@ namespace TelegramBot
 
 
 
-
-            if (lastmessage != TextMessage && flagmessage == false)
+            /*
+            if (lastusername != username && flagmessage == false)
             {
                 flagmessage = true;
-                lastmessage = TextMessage;
+                lastusername = username;
             }
             else
             {
                 flagmessage = false;
             }
-            Console.WriteLine(TextMessage + "  " + lastmessage);
+            Console.WriteLine(username + "  " + lastusername);
+            */
+
 
         }
 

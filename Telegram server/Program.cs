@@ -9,12 +9,11 @@ namespace TelegramBot
     class Program
     {
 
-        private static string? reference;
-        private static string? welcome;
-        private static string? symptoms;
-        private static string? lastuserid;
+        private static string? reference = "no information";
+        private static string? welcome = "no information";
+        private static string? symptoms = "no information";
+        //private static string? lastuserid = "no information";
         private static long userid;
-        private static bool flagmessage = false;
         private static bool symptommenu = false;
         private static bool mainmenu = true;
         private static Dictionary<long, bool> user = new Dictionary<long, bool>();
@@ -49,10 +48,11 @@ namespace TelegramBot
             int[] symptomsarray = new int[countsymptoms];
             string buf = "";//буфер строк
 
+
             //обработка входных данных
             var message = update.Message;
-            string TextMessage = message.Text.ToLower();
             if (message == null || message.Type != MessageType.Text) return;
+            string TextMessage = message.Text.ToLower();
 
 
             //обработка юзеров
@@ -121,7 +121,7 @@ namespace TelegramBot
 
                     case "справка":
                         {
-                            await botclient.SendTextMessageAsync(message.Chat.Id, reference, replyMarkup: welcomkeyboard);
+                            await botclient.SendTextMessageAsync(message.Chat.Id, reference ??= "no information", replyMarkup: welcomkeyboard);
                             break;
                         }
                     default: break;
@@ -129,7 +129,6 @@ namespace TelegramBot
             }
             if (symptommenu)
             {
-
                 switch (TextMessage)
                 {
                     case "назад в главное меню":
@@ -143,52 +142,45 @@ namespace TelegramBot
                         }
                     default: break;
                 }
-
-
-
                 if (TextMessage != "" && mainmenu == false)
                 {
-                    await botclient.SendTextMessageAsync(message.Chat.Id, "Проверка значений....");
+                    //await botclient.SendTextMessageAsync(message.Chat.Id, "Проверка значений....");
                     for (int i = 0, j = 0; i < TextMessage.Length; i++)
                     {
-
-
                         if (TextMessage[i] == ' ')
                         {
-                            Console.WriteLine(i + " " + TextMessage.Length);
                             symptomsarray[j] = Int32.Parse(buf);
+                            if (Int32.Parse(buf) > countsymptoms)
+                            {
+                                await botclient.SendTextMessageAsync(message.Chat.Id, "Неправильные данные!Перепешите пожалуйста!");
+                                return;
+                            }
                             j++;
                             buf = "";
                         }
                         else buf += TextMessage[i];
                     }
-                    symptomsarray[^1] += Int32.Parse(buf);
+                    if (Int32.Parse(buf) > countsymptoms)
+                    {
+                        await botclient.SendTextMessageAsync(message.Chat.Id, "Неправильные данные!Перепешите пожалуйста!");
+                        return;
+                    }
+                    else symptomsarray[^1] += Int32.Parse(buf);
+
                     Array.Sort(symptomsarray);
 
-                    for (int i = 0; i < countsymptoms; i++)
+                    for (int i = 1; i < countsymptoms; i++)
                     {
-                        if (symptomsarray[i] == symptomsarray[i + 1] && symptomsarray[i] != 0)
+                        if (symptomsarray[i] == symptomsarray[i - 1] && symptomsarray[i] != 0)
                         {
-                            Console.WriteLine("Неправильные данные!Перепешите пожалуйста!");
                             await botclient.SendTextMessageAsync(message.Chat.Id, "Неправильные данные!Перепешите пожалуйста!");
-
                             return;
                         }
-                        Console.WriteLine("1");
                     }
-                    await botclient.SendTextMessageAsync(message.Chat.Id, "Успех!");
-
-
-
+                    await botclient.SendTextMessageAsync(message.Chat.Id, "Успех!Обработка симптомов в нейросети....");
+                    Console.WriteLine(message.Chat.Id + " " + TextMessage);
                 }
-
-
             }
-
-
-
-
-
             /*
             if (lastusername != username && flagmessage == false)
             {
@@ -201,8 +193,6 @@ namespace TelegramBot
             }
             Console.WriteLine(username + "  " + lastusername);
             */
-
-
         }
 
         private static Task Error(ITelegramBotClient client, Exception exception, CancellationToken token)

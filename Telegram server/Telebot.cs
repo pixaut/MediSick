@@ -2,6 +2,7 @@
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 using Telegram.Bot.Types.Enums;
+using Microsoft.VisualBasic;
 
 namespace TelegramBot
 {
@@ -17,7 +18,7 @@ namespace TelegramBot
         private static bool symptommenu = false;
         private static bool mainmenu = true;
         private static Dictionary<long, bool> user = new Dictionary<long, bool>();
-
+        private static int air;
 
         static void Main(string[] args)
         {
@@ -144,21 +145,36 @@ namespace TelegramBot
                 }
                 if (TextMessage != "" && mainmenu == false)
                 {
-                    //await botclient.SendTextMessageAsync(message.Chat.Id, "Проверка значений....");
+                    await botclient.SendTextMessageAsync(message.Chat.Id, "Проверка значений....");
+                    Console.WriteLine(int.TryParse(TextMessage, out air) + " cock");
                     for (int i = 0, j = 0; i < TextMessage.Length; i++)
                     {
+                        Console.WriteLine(int.TryParse(TextMessage, out air) + " cock2");
+
                         if (TextMessage[i] == ' ')
                         {
-                            symptomsarray[j] = Int32.Parse(buf);
+                            Console.WriteLine(int.TryParse(TextMessage, out air) + " cock3");
+
+                            if (!int.TryParse(buf, out air))
+                            {
+                                await botclient.SendTextMessageAsync(message.Chat.Id, "Неправильные данные!Перепешите пожалуйста!");
+                                return;
+                            }
                             if (Int32.Parse(buf) > countsymptoms)
                             {
                                 await botclient.SendTextMessageAsync(message.Chat.Id, "Неправильные данные!Перепешите пожалуйста!");
                                 return;
                             }
+                            symptomsarray[j] = Int32.Parse(buf);
                             j++;
                             buf = "";
                         }
                         else buf += TextMessage[i];
+                    }
+                    if (!int.TryParse(buf, out air))
+                    {
+                        await botclient.SendTextMessageAsync(message.Chat.Id, "Неправильные данные!Перепешите пожалуйста!");
+                        return;
                     }
                     if (Int32.Parse(buf) > countsymptoms)
                     {

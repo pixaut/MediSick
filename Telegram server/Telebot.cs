@@ -2,10 +2,7 @@
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 using Telegram.Bot.Types.Enums;
-using Microsoft.VisualBasic;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 using Telegram.Bot.Exceptions;
-using Npgsql.Replication.PgOutput.Messages;
 
 namespace Program
 {
@@ -50,7 +47,7 @@ namespace Program
             sr3.Close();
             sr4.Close();
             //Console.WriteLine(symptoms);
-            var client = new TelegramBotClient("1193084625:AAHy5_yuKBsqcllgwSn4JCE3x6yS0UoHycA");
+            var client = new TelegramBotClient("6525101854:AAFlyWBSUlLEAr_bL0ni4chPMyYwlz4nQF8");
             client.StartReceiving(Update, Error);
 
 

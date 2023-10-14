@@ -3,6 +3,16 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Exceptions;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
+using System.Collections;
+using System.Numerics;
+using System.Collections.Generic;
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Runtime.CompilerServices;
 
 namespace Program
 {
@@ -29,11 +39,17 @@ namespace Program
         private static bool symptommenu = false;
         private static bool mainmenu = true;
         private static Dictionary<long, bool> user = new Dictionary<long, bool>();
+        private static Dictionary<long, List<int>> inlinebuttonstouser = new Dictionary<long, List<int>>();
         private static int countsymptoms = 13; //количество симптомов
+        private static int cock = 0;
+        private static int asd = 0;
+
+
 
 
         static void Main(string[] args)
         {
+
             StreamReader sr1 = new StreamReader(@"Telegramassets/reference.txt");
             StreamReader sr2 = new StreamReader(@"Telegramassets/welcome.txt");
             StreamReader sr3 = new StreamReader(@"Telegramassets/symptoms.txt");
@@ -58,25 +74,78 @@ namespace Program
 
 
 
+
+
         async static Task Update(ITelegramBotClient botclient, Update update, CancellationToken token)
         {
             int countinputsymptoms = 1; //количество симптомов
             int air;//заглушка
             int[] symptomsarray = new int[countsymptoms];//введеные симптомы
             string buf = "";//буфер строк
-            bool wrongmessage = false;//неправильные данные
-
-
-            //обработка входных данных
+            bool wrongmessage = false;//неправильные данных
             var message = update.Message;
+
+
+
+
+
+            if (update.Type == UpdateType.CallbackQuery && userid > 0 && symptommenu)
+            {
+                //Console.WriteLine(userid);
+                CallbackQuery callbackQuery = update!.CallbackQuery!;
+                await botclient.AnswerCallbackQueryAsync(callbackQuery!.Id, $"Выбрано {callbackQuery.Data}");
+
+                if (callbackQuery.Data != "send")
+                {
+                    inlinebuttonstouser.TryAdd(userid, new List<int>(int.Parse(callbackQuery.Data)));
+                    inlinebuttonstouser[userid].Add(int.Parse(callbackQuery.Data));
+                }
+                else if (callbackQuery.Data != "51" && inlinebuttonstouser.ContainsKey(userid))
+                {
+                    inlinebuttonstouser[userid].Sort();
+                    for (int i = 1; i < inlinebuttonstouser[userid].Count; i++)
+                    {
+                        if (inlinebuttonstouser[userid][i - 1] == inlinebuttonstouser[userid][i])
+                        {
+                            inlinebuttonstouser[userid].RemoveAt(i - 1);
+                        }
+                    }
+                    Console.WriteLine("Выбранные симптомы для: " + userid);
+                    for (int i = 0; i < inlinebuttonstouser[userid].Count; i++)
+                    {
+                        Console.WriteLine(inlinebuttonstouser[userid][i]);
+                    }
+                    await botclient.SendTextMessageAsync(callbackQuery!.Message.Chat.Id, symptomhandler(inlinebuttonstouser[userid], textsymptoms), parseMode: ParseMode.Html);
+
+                }
+                //await botclient.AnswerCallbackQueryAsync(callbackQuery!.Id, $"Received {callbackQuery.Data}");
+                //await botclient.SendTextMessageAsync(callbackQuery!.Message.Chat.Id, $"Received {callbackQuery.Data}");
+                //Console.WriteLine(callbackQuery.Data);
+
+            }
+
+
+
+
+            //Console.WriteLine(userid);
+            //обработка входных данных
+
             if (message == null || message.Type != MessageType.Text) return;
-            string TextMessage = message!.Text!.ToLower();
+            string TextMessage = message.Text.ToLower();
+            userid = update.Message.Chat.Id;
+
+            //userid = message.Chat.Id;
+
+            //Console.WriteLine(update.Type + "  " + userid);
+
+
 
             //обработка входных данных
+
 
             //обработка юзеров
 
-            userid = message.Chat.Id;
+
 
             if (user.ContainsKey(userid) == false)
             {
@@ -120,35 +189,39 @@ namespace Program
                 // first row
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: "Голова", callbackData: "11"),
-                    InlineKeyboardButton.WithCallbackData(text: "Нос", callbackData: "12"),
-                    InlineKeyboardButton.WithCallbackData(text: "Уши", callbackData: "13"),
-                    InlineKeyboardButton.WithCallbackData(text: "Глаза", callbackData: "14"),
+                    InlineKeyboardButton.WithCallbackData(text: "Симптомы общего состояния", callbackData: "0"),
                 },
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: "Рот", callbackData: "21"),
-                    InlineKeyboardButton.WithCallbackData(text: "Грудь", callbackData: "22"),
-                    InlineKeyboardButton.WithCallbackData(text: "Спина", callbackData: "23"),
-                    InlineKeyboardButton.WithCallbackData(text: "Сердце", callbackData: "24"),
+                    InlineKeyboardButton.WithCallbackData(text: "Голова", callbackData: "1"),
+                    InlineKeyboardButton.WithCallbackData(text: "Нос", callbackData: "2"),
+                    InlineKeyboardButton.WithCallbackData(text: "Уши", callbackData: "3"),
+                    InlineKeyboardButton.WithCallbackData(text: "Глаза", callbackData: "4"),
                 },
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: "Почки", callbackData: "31"),
-                    InlineKeyboardButton.WithCallbackData(text: "Печень", callbackData: "32"),
-                    InlineKeyboardButton.WithCallbackData(text: "Легкие", callbackData: "33"),
-                    InlineKeyboardButton.WithCallbackData(text: "Кожа", callbackData: "34"),
+                    InlineKeyboardButton.WithCallbackData(text: "Рот", callbackData: "5"),
+                    InlineKeyboardButton.WithCallbackData(text: "Грудь", callbackData: "6"),
+                    InlineKeyboardButton.WithCallbackData(text: "Спина", callbackData: "7"),
+                    InlineKeyboardButton.WithCallbackData(text: "Сердце", callbackData: "8"),
                 },
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: "Ноги", callbackData: "41"),
-                    InlineKeyboardButton.WithCallbackData(text: "Живот", callbackData: "42"),
-                    InlineKeyboardButton.WithCallbackData(text: "Руки", callbackData: "43"),
-                    InlineKeyboardButton.WithCallbackData(text: "М-П.сист", callbackData: "44"),
+                    InlineKeyboardButton.WithCallbackData(text: "Почки", callbackData: "9"),
+                    InlineKeyboardButton.WithCallbackData(text: "Печень", callbackData: "10"),
+                    InlineKeyboardButton.WithCallbackData(text: "Легкие", callbackData: "11"),
+                    InlineKeyboardButton.WithCallbackData(text: "Кожа", callbackData: "12"),
                 },
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: "Общее состояние", callbackData: "51"),          
+                    InlineKeyboardButton.WithCallbackData(text: "Ноги", callbackData: "13"),
+                    InlineKeyboardButton.WithCallbackData(text: "Живот", callbackData: "14"),
+                    InlineKeyboardButton.WithCallbackData(text: "Руки", callbackData: "15"),
+                    InlineKeyboardButton.WithCallbackData(text: "М-П.сист", callbackData: "16"),
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData(text: "Получить симптомы для выбора", callbackData: "send"),
                 },
             });
             //отрисовка клавиатур
@@ -159,6 +232,7 @@ namespace Program
                 user.Remove(userid);
                 await botclient.SendTextMessageAsync(message.Chat.Id, "<b>Выбирайте что вам необходимо:</b>", parseMode: ParseMode.Html, disableNotification: true, replyMarkup: welcomkeyboard);
             }
+            //Console.WriteLine(update?.CallbackQuery?.Data ?? "null");
 
 
 
@@ -186,7 +260,9 @@ namespace Program
 
 
                             await botclient.SendTextMessageAsync(message.Chat.Id, "Ввод симптомов:", replyMarkup: symptomkeyboard, disableNotification: true);
-                            await botclient.SendTextMessageAsync(message.Chat.Id, textinputformat,replyMarkup: inlineKeyboard, parseMode: ParseMode.Html, disableNotification: true);
+                            await botclient.SendTextMessageAsync(message.Chat.Id, textinputformat, replyMarkup: inlineKeyboard, parseMode: ParseMode.Html, disableNotification: true);
+
+
 
                             TextMessage = "";
                             break;
@@ -216,6 +292,10 @@ namespace Program
                         }
                     default: break;
                 }
+
+
+
+
                 if (TextMessage != "" && mainmenu == false)
                 {
                     //await botclient.SendTextMessageAsync(message.Chat.Id, "Проверка значений....");
@@ -330,6 +410,22 @@ namespace Program
             Console.WriteLine(username + "  " + lastusername);
             */
         }
+
+
+        private static string symptomhandler(List<int> select, string symptoms)
+        {
+            string symptomsselected = ""; //= symptoms.Substring(symptoms.IndexOf("0-"), symptoms.IndexOf("-0") - symptoms.IndexOf("0-")).Remove(0, 3);
+
+            for (int i = 0; i < select.Count; i++)
+            {
+                symptomsselected += symptoms.Substring(symptoms.IndexOf(select[i] + "-"), symptoms.IndexOf("-" + select[i]) - symptoms.IndexOf(select[i] + "-")).Remove(0, 3);
+            }
+            Console.WriteLine(symptomsselected);
+            return symptomsselected;
+
+
+        }
+
 
         private static Task Error(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {

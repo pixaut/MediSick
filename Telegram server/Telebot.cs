@@ -115,6 +115,42 @@ namespace Program
             {
                 ResizeKeyboard = true
             };
+            InlineKeyboardMarkup inlineKeyboard = new(new[]
+            {
+                // first row
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData(text: "Голова", callbackData: "11"),
+                    InlineKeyboardButton.WithCallbackData(text: "Нос", callbackData: "12"),
+                    InlineKeyboardButton.WithCallbackData(text: "Уши", callbackData: "13"),
+                    InlineKeyboardButton.WithCallbackData(text: "Глаза", callbackData: "14"),
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData(text: "Рот", callbackData: "21"),
+                    InlineKeyboardButton.WithCallbackData(text: "Грудь", callbackData: "22"),
+                    InlineKeyboardButton.WithCallbackData(text: "Спина", callbackData: "23"),
+                    InlineKeyboardButton.WithCallbackData(text: "Сердце", callbackData: "24"),
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData(text: "Почки", callbackData: "31"),
+                    InlineKeyboardButton.WithCallbackData(text: "Печень", callbackData: "32"),
+                    InlineKeyboardButton.WithCallbackData(text: "Легкие", callbackData: "33"),
+                    InlineKeyboardButton.WithCallbackData(text: "Кожа", callbackData: "34"),
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData(text: "Ноги", callbackData: "41"),
+                    InlineKeyboardButton.WithCallbackData(text: "Живот", callbackData: "42"),
+                    InlineKeyboardButton.WithCallbackData(text: "Руки", callbackData: "43"),
+                    InlineKeyboardButton.WithCallbackData(text: "М-П.сист", callbackData: "44"),
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData(text: "Общее состояние", callbackData: "51"),          
+                },
+            });
             //отрисовка клавиатур
             if (TextMessage == "/restart")
             {
@@ -149,8 +185,8 @@ namespace Program
                             user[userid] = false;
 
 
-                            await botclient.SendTextMessageAsync(message.Chat.Id, textsymptoms, replyMarkup: symptomkeyboard, disableNotification: true);
-                            await botclient.SendTextMessageAsync(message.Chat.Id, textinputformat, parseMode: ParseMode.Html, disableNotification: true);
+                            await botclient.SendTextMessageAsync(message.Chat.Id, "Ввод симптомов:", replyMarkup: symptomkeyboard, disableNotification: true);
+                            await botclient.SendTextMessageAsync(message.Chat.Id, textinputformat,replyMarkup: inlineKeyboard, parseMode: ParseMode.Html, disableNotification: true);
 
                             TextMessage = "";
                             break;

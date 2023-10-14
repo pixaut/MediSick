@@ -74,3 +74,41 @@ G:\iTanks\A.A.R.O.N-1\Telegram server\obj\Debug\net7.0\refint\Telegram server.dl
 G:\iTanks\A.A.R.O.N-1\Telegram server\obj\Debug\net7.0\Telegram server.pdb
 G:\iTanks\A.A.R.O.N-1\Telegram server\obj\Debug\net7.0\Telegram server.genruntimeconfig.cache
 G:\iTanks\A.A.R.O.N-1\Telegram server\obj\Debug\net7.0\ref\Telegram server.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Telegram server.exe
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Telegram server.deps.json
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Telegram server.runtimeconfig.json
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Telegram server.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Telegram server.pdb
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Humanizer.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Microsoft.Extensions.Caching.Memory.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Microsoft.Extensions.Logging.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Mono.TextTemplating.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Newtonsoft.Json.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Npgsql.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\System.CodeDom.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Telegram.Bot.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\bin\Debug\net7.0\Telegram.Bot.Extensions.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\obj\Debug\net7.0\Telegram server.csproj.AssemblyReference.cache
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\obj\Debug\net7.0\Telegram server.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\obj\Debug\net7.0\Telegram server.AssemblyInfoInputs.cache
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\obj\Debug\net7.0\Telegram server.AssemblyInfo.cs
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\obj\Debug\net7.0\Telegram server.csproj.CoreCompileInputs.cache
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\obj\Debug\net7.0\Telegram server.csproj.CopyComplete
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\obj\Debug\net7.0\Telegram server.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\obj\Debug\net7.0\refint\Telegram server.dll
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\obj\Debug\net7.0\Telegram server.pdb
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\obj\Debug\net7.0\Telegram server.genruntimeconfig.cache
+D:\Projects\GIT works\A.A.R.O.N\Telegram server\obj\Debug\net7.0\ref\Telegram server.dll

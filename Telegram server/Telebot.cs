@@ -41,8 +41,7 @@ namespace Program
         private static Dictionary<long, bool> user = new Dictionary<long, bool>();
         private static Dictionary<long, List<int>> inlinebuttonstouser = new Dictionary<long, List<int>>();
         private static int countsymptoms = 13; //количество симптомов
-        private static int cock = 0;
-        private static int asd = 0;
+
 
 
 
@@ -97,8 +96,8 @@ namespace Program
 
                 if (callbackQuery.Data != "send")
                 {
-                    inlinebuttonstouser.TryAdd(userid, new List<int>(int.Parse(callbackQuery.Data)));
-                    inlinebuttonstouser[userid].Add(int.Parse(callbackQuery.Data));
+                    _ = inlinebuttonstouser.TryAdd(userid, new List<int>(int.Parse(callbackQuery?.Data ?? "")));
+                    inlinebuttonstouser[userid].Add(int.Parse(callbackQuery?.Data ?? ""));
                 }
                 else if (callbackQuery.Data != "51" && inlinebuttonstouser.ContainsKey(userid))
                 {
@@ -115,7 +114,7 @@ namespace Program
                     {
                         Console.WriteLine(inlinebuttonstouser[userid][i]);
                     }
-                    await botclient.SendTextMessageAsync(callbackQuery!.Message.Chat.Id, symptomhandler(inlinebuttonstouser[userid], textsymptoms), parseMode: ParseMode.Html);
+                    await botclient.SendTextMessageAsync(callbackQuery!.Message!.Chat!.Id, symptomhandler(inlinebuttonstouser[userid], textsymptoms), parseMode: ParseMode.Html);
 
                 }
                 //await botclient.AnswerCallbackQueryAsync(callbackQuery!.Id, $"Received {callbackQuery.Data}");
@@ -131,8 +130,8 @@ namespace Program
             //обработка входных данных
 
             if (message == null || message.Type != MessageType.Text) return;
-            string TextMessage = message.Text.ToLower();
-            userid = update.Message.Chat.Id;
+            string TextMessage = message!.Text!.ToLower();
+            userid = update!.Message!.Chat!.Id;
 
             //userid = message.Chat.Id;
 

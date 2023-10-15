@@ -20,11 +20,8 @@ int main(){
     }                                                                       //
     fin.close();                                                            //
                                                                             
-    NeuronNetwork nn;                                                       //
-    nn.SetLayers(layers,size);                                              //
-    nn.LoadWeights("..\\NetworkDescription\\weights.txt");                  //
-    
-
+    NeuronNetwork nn(layers,size);                                          //                                            
+    nn.LoadNetwork("..\\NetworkDescription\\weights.txt");                  //
 
     fin.open("input.txt");                                                  //
 

@@ -21,8 +21,8 @@ int main(){
     NeuronNetwork nn(layers,size);                          //
     nn.SetRandom();                                         //
 
-    char PathToTests[] = "..\\TrainingTests\\Test.txt";
-    char WeightsPath[] = "..\\NetworkDescription\\weights.txt";
+    char PathToTests[] = "..\\TrainingTests\\RandomTests.txt";
+    char NetworkPath[] = "..\\NetworkDescription\\Network.txt";
     double s = 0.0,SpeedOfLearning = 1.0,e = 0.0;
     double *input = new double[size[0]];
     double *rightanswer = new double[size[layers-1]];
@@ -67,7 +67,7 @@ int main(){
 
     }
 
-    nn.SaveWeights(WeightsPath);
+    nn.SaveNetwork(NetworkPath);
 
     return 0;
 }

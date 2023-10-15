@@ -137,7 +137,7 @@ public:
 
     }
     
-    void SaveWeights(std::string filename) {
+    void SaveNetwork(std::string filename) {
             std::ofstream fout;
             fout.open(filename);
             for (int i = 0; i < layers - 1; i++) {
@@ -149,7 +149,7 @@ public:
             }
             fout.close();
     }
-    double LoadWeights(std::string filename){
+    double LoadNetwork(std::string filename){
 
         std::ifstream fin;
         fin.open(filename);

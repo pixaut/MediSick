@@ -109,7 +109,7 @@ public:
                 neurons[i][j].error = 0.0;
                 for(int k = 0;k < size[i+1];k++){
                     neurons[i][j].error +=    (neurons[i+1][k].error) * (neurons[i+1][k].proiz()) * (weights[i][j][k])   ;
-                    weights[i][j][k]    -= ls * (neurons[i+1][k].error) * (neurons[i+1][k].proiz()) * (neurons[i][j].ActiveValue) ;
+                    weights[i][j][k]    -= ls * (neurons[i+1][k].error) * (neurons[i+1][k].proiz()) * (neurons[i][j].value) ;
                     //std::cout << i << ' ' << j << ' ' << k << '\n';
                     neurons[i][k].bias -= ls * (neurons[i+1][k].error) * (neurons[i+1][k].proiz());
                 }
@@ -138,23 +138,29 @@ public:
     }
     
     void SaveNetwork(std::string filename) {
-            std::ofstream fout;
-            fout.open(filename);
+
+            std::ofstream fout(filename);
             for (int i = 0; i < layers - 1; i++) {
                 for (int j = 0; j < size[i]; j++) {
                     for (int k = 0; k < size[i + 1]; k++) {
-                        fout << weights[i][j][k] << ' ';
+                        fout << std::fixed << std::setprecision(8) << weights[i][j][k] << ' ';
                     }
+                    fout << '\n';
                 }
             }
+
+            for(int i = 1;i < layers;i++){
+                for(int j = 0;j < size[j];j++){
+                    fout << neurons[i][j].bias << ' ';
+                }
+            }
+
+
             fout.close();
     }
-    double LoadNetwork(std::string filename){
+    void LoadNetwork(std::string filename){
 
-        std::ifstream fin;
-        fin.open(filename);
-        double percents;
-        fin >> percents; // first-percents of true - is trash value
+        std::ifstream fin(filename);
 
         for (int i = 0; i < layers - 1; i++) {
             for (int j = 0; j < size[i]; j++) {
@@ -163,9 +169,14 @@ public:
                 }
             }
         }
+
+        for(int i = 1;i < layers;i++){
+            for(int j = 0;j < size[j];j++){
+                fin >> neurons[i][j].bias;
+            }
+        }
         fin.close();
 
-        return percents;
     }
 
 };

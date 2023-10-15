@@ -23,7 +23,7 @@ int main(){
 
     char PathToTests[] = "..\\TrainingTests\\RandomTests.txt";
     char NetworkPath[] = "..\\NetworkDescription\\Network.txt";
-    double s = 0.0,SpeedOfLearning = 1.0,e = 0.0;
+    double s = 0.0,SpeedOfLearning = 0,e = 0.0;
     double *input = new double[size[0]];
     double *rightanswer = new double[size[layers-1]];
 
@@ -36,6 +36,8 @@ int main(){
 
         int N;
         fin.open(PathToTests);
+
+        //std::cout << bool(fin) << ' ';
         fin >> N;
 
         for(int k = 0;k < N;k++){
@@ -53,13 +55,16 @@ int main(){
             nn.BackPropogation(rightanswer,SpeedOfLearning);
             e += nn.ErrorCouter(rightanswer);
 
+            //if(k == N-1) nn.SaveNetwork(NetworkPath);
 
             rightanswer[c-1] = 1.0;
             if(nn.Predict() == c-1){
                 s += 1.0;
             }
         }
-        
+
+        fin.close();
+
         s = s/N*100.0;
         e /= N;
 
@@ -69,5 +74,6 @@ int main(){
 
     nn.SaveNetwork(NetworkPath);
 
+    delete[] input,rightanswer,size;
     return 0;
 }

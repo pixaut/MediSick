@@ -33,6 +33,8 @@ int main(){
 
     srand(time(nullptr));
 
+
+    bool ConsoleOut = true;
     int n;
     std::ifstream fin("DescriptionOfDeseas.txt");
     std::ofstream fout("RandomTests.txt");
@@ -63,16 +65,16 @@ int main(){
 
         RV = GenerateRandomVector(j,m);
 
-        fout << m << '\t';
+        if(ConsoleOut) std::cout << m << '\t';
+        else fout << m << '\t';
         
         for(int k = 0;k < RV.size();k++){
-            //std::cout << RV[k] << ' ';
-            fout << RV[k] << ' ';
+            if(ConsoleOut)std::cout << RV[k] << ' ';
+            else fout << RV[k] << ' ';
         }
 
-        //std::cout << "\n\n";
-
-        fout << j << '\n'; 
+        if(ConsoleOut)std::cout << j << '\n';
+        else fout << j << '\n'; 
 
     }
 

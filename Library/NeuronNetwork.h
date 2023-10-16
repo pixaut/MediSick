@@ -142,7 +142,7 @@ public:
 
             fout.close();
     }
-    void LoadNetwork(char filename[]){
+    void LoadNetwork(char *filename){
 
         std::ifstream fin(filename);
 

@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace Program
 {
-    public class First2
+    public class SymptomsList
     {
-        public Second2[] Symptoms { get; set; }
+        public required Symptoms[] Symptoms { get; set; }
 
     }
-    public class Second2
+    public class Symptoms
     {
-        public string Сategory { get; set; }
-        public string List { get; set; }
+        public required string Сategory { get; set; }
+        public required string List { get; set; }
     }
 }

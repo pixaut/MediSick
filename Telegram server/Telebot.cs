@@ -14,64 +14,32 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
+using System.Net;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Program
 {
 
     class TelegramBot
     {
-        //текстовые переменные вывода
-        private static string textwronginput = "Неправильный формат данных!";
-        private static string textcorrectinput = "Отправка симптомов на обработку....";
-        private static string textreference = "no information";
-        private static string textwelcome = "no information";
-        private static string textsymptoms = "no information";
-        private static string textinputformat = "no information";
-        //текстовые переменные вывода
-
-        //текстовые названия кнопок(обязательно с маленькой буквы весь текст иначе работать не будет)📑🧾🔖📔
-        private const string buttondefinitionofdisease = "🤧определение болезни😷";
-        private const string buttonreference = "🤔справка⁉️";
-        private const string buttonbacktomainmenu = "главное меню";
-        //текстовые названия кнопок
-
-
+        private static Dictionary<string, string> botword = new Dictionary<string, string>();
+        private static Dictionary<string, string> database = new Dictionary<string, string>();
         private static long userid;
         private static bool symptommenu = false;
         private static bool mainmenu = true;
         private static Dictionary<long, bool> user = new Dictionary<long, bool>();
         private static Dictionary<long, List<int>> inlinebuttonstouser = new Dictionary<long, List<int>>();
         private static int countsymptoms = 97; //количество симптомов
-        private static First TextBot = JsonConvert.DeserializeObject<First>(System.IO.File.ReadAllText(@"Telegramassets/Textfrombot.json"));
-        private static First2 SymptomsList = JsonConvert.DeserializeObject<First2>(System.IO.File.ReadAllText(@"Telegramassets/SymptomsList.json"));
-
-
-
+        private static Textbot? Textbot = JsonConvert.DeserializeObject<Textbot>(System.IO.File.ReadAllText(@"Telegramassets/Textforbot.json"));
+        private static SymptomsList? SymptomsList = JsonConvert.DeserializeObject<SymptomsList>(System.IO.File.ReadAllText(@"Telegramassets/SymptomsList.json"));
 
         static void Main(string[] args)
         {
+            botword = Dictionarypreparer.BotwordDictpreparer(botword, Textbot);
 
-            StreamReader sr1 = new StreamReader(@"Telegramassets/reference.txt");
-            StreamReader sr2 = new StreamReader(@"Telegramassets/welcome.txt");
-            StreamReader sr3 = new StreamReader(@"Telegramassets/symptoms.txt");
-            StreamReader sr4 = new StreamReader(@"Telegramassets/inputformat.txt");
-            textreference = sr1.ReadToEnd();
-            textwelcome = sr2.ReadToEnd();
-            textsymptoms = sr3.ReadToEnd();
-            textinputformat = sr4.ReadToEnd();
-            sr1.Close();
-            sr2.Close();
-            sr3.Close();
-            sr4.Close();
-
-
-
-
-            Console.WriteLine(SymptomsList.Symptoms[0].List);
+            Console.WriteLine(botword["textwelcome"]);
             var client = new TelegramBotClient("6525101854:AAFlyWBSUlLEAr_bL0ni4chPMyYwlz4nQF8");
             client.StartReceiving(Update, Error);
-
-
             Console.ReadLine();
         }
 
@@ -120,7 +88,7 @@ namespace Program
                     {
                         Console.WriteLine(inlinebuttonstouser[userid][i]);
                     }
-                    await botclient.SendTextMessageAsync(callbackQuery!.Message!.Chat!.Id, symptomhandler(inlinebuttonstouser[userid], SymptomsList), parseMode: ParseMode.Html);
+                    //await botclient.SendTextMessageAsync(callbackQuery!.Message!.Chat!.Id, symptomhandler(inlinebuttonstouser[userid], SymptomsList), parseMode: ParseMode.Html);
 
                 }
                 //await botclient.AnswerCallbackQueryAsync(callbackQuery!.Id, $"Received {callbackQuery.Data}");
@@ -177,14 +145,14 @@ namespace Program
             //отрисовка клавиатур
             ReplyKeyboardMarkup welcomkeyboard = new(new[]
             {
-                new KeyboardButton[] { buttondefinitionofdisease,buttonreference},
+                new KeyboardButton[] { botword["textbuttondefinitionofdisease"],botword["textbuttonreference"]},
             })
             {
                 ResizeKeyboard = true
             };
             ReplyKeyboardMarkup symptomkeyboard = new(new[]
             {
-                new KeyboardButton[] {buttonbacktomainmenu},
+                new KeyboardButton[] {botword["textbuttonbacktomainmenu"]},
             })
             {
                 ResizeKeyboard = true
@@ -194,47 +162,48 @@ namespace Program
                 // first row
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: "Симптомы общего состояния", callbackData: "0"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["textsosinline"], callbackData: "0"),
                 },
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: "Голова", callbackData: "1"),
-                    InlineKeyboardButton.WithCallbackData(text: "Нос", callbackData: "2"),
-                    InlineKeyboardButton.WithCallbackData(text: "Уши", callbackData: "3"),
-                    InlineKeyboardButton.WithCallbackData(text: "Глаза", callbackData: "4"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["textheadinline"], callbackData: "1"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["textnoseinline"], callbackData: "2"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["texthearinline"], callbackData: "3"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["texteyesinline"], callbackData: "4"),
                 },
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: "Рот", callbackData: "5"),
-                    InlineKeyboardButton.WithCallbackData(text: "Грудь", callbackData: "6"),
-                    InlineKeyboardButton.WithCallbackData(text: "Спина", callbackData: "7"),
-                    InlineKeyboardButton.WithCallbackData(text: "Сердце", callbackData: "8"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["textmouthinline"], callbackData: "5"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["textchestinline"], callbackData: "6"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["textbackinline"], callbackData: "7"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["textheartinline"], callbackData: "8"),
                 },
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: "Почки", callbackData: "9"),
-                    InlineKeyboardButton.WithCallbackData(text: "Печень", callbackData: "10"),
-                    InlineKeyboardButton.WithCallbackData(text: "Легкие", callbackData: "11"),
-                    InlineKeyboardButton.WithCallbackData(text: "Кожа", callbackData: "12"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["textkidneysinline"], callbackData: "9"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["textliverinline"], callbackData: "10"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["textlungsinline"], callbackData: "11"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["textskininline"], callbackData: "12"),
                 },
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: "Ноги", callbackData: "13"),
-                    InlineKeyboardButton.WithCallbackData(text: "Живот", callbackData: "14"),
-                    InlineKeyboardButton.WithCallbackData(text: "Руки", callbackData: "15"),
-                    InlineKeyboardButton.WithCallbackData(text: "М-П.сист", callbackData: "16"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["textlegsinline"], callbackData: "13"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["textstomachinline"], callbackData: "14"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["textarmsinline"], callbackData: "15"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["textgenitourinarysysteminline"], callbackData: "16"),
                 },
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: "Получить симптомы для выбора", callbackData: "send"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["textgetsymptomsinline"], callbackData: "send"),
                 },
             });
             InlineKeyboardMarkup inlinelinkes = new(new[]
             {
-                InlineKeyboardButton.WithUrl(text: "Creator",url: "https://github.com/DrgNBoN"),
-                InlineKeyboardButton.WithUrl(text: "TeamLid",url: "https://github.com/pixaut"),
-                InlineKeyboardButton.WithUrl(text: "Helper",url: "https://github.com/epkorq"),
-                InlineKeyboardButton.WithUrl(text: "GitHub",url: "https://github.com/pixaut/A.A.R.O.N")
+                InlineKeyboardButton.WithUrl(text: "Creator",url: botword["creatorlinklinline"]),
+                InlineKeyboardButton.WithUrl(text: "TeamLid",url: botword["teamlidlinklinline"]),
+                InlineKeyboardButton.WithUrl(text: "Helper",url: botword["helperlinklinline"]),
+                InlineKeyboardButton.WithUrl(text: "Helper2",url: botword["helper2linklinline"]),
+                InlineKeyboardButton.WithUrl(text: "GitHub",url: botword["githublinklinline"])
             });
             //отрисовка клавиатур
             if (TextMessage == "/restart")
@@ -252,58 +221,37 @@ namespace Program
 
             if (mainmenu)
             {
-
-
-                switch (TextMessage)
+                if (TextMessage == "/start")
                 {
-                    case "/start":
-                        {
-                            await botclient.SendTextMessageAsync(message.Chat.Id, textwelcome, parseMode: ParseMode.Html, replyMarkup: welcomkeyboard);
-                            await botclient.SendTextMessageAsync(message.Chat.Id, "<b>Выбирайте что вам необходимо:</b>", parseMode: ParseMode.Html, disableNotification: true, replyMarkup: welcomkeyboard);
-
-
-                            break;
-                        }
-                    case buttondefinitionofdisease:
-                        {
-                            mainmenu = false;
-                            symptommenu = true;
-                            user[userid] = false;
-
-
-                            await botclient.SendTextMessageAsync(message.Chat.Id, "Ввод симптомов:", replyMarkup: symptomkeyboard, disableNotification: true);
-                            await botclient.SendTextMessageAsync(message.Chat.Id, TextBot.Textfrombot[2].Text, replyMarkup: inlineKeyboard, parseMode: ParseMode.Html, disableNotification: true);
-
-
-
-                            TextMessage = "";
-                            break;
-                        }
-                    case buttonreference:
-                        {
-                            await botclient.SendTextMessageAsync(message.Chat.Id, textreference, replyMarkup: inlinelinkes, disableNotification: true);
-
-                            break;
-                        }
-                    default: break;
+                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["textwelcome"], parseMode: ParseMode.Html, replyMarkup: welcomkeyboard);
+                    await botclient.SendTextMessageAsync(message.Chat.Id, "<b>Выбирайте что вам необходимо:</b>", parseMode: ParseMode.Html, disableNotification: true, replyMarkup: welcomkeyboard);
                 }
+                else if (TextMessage == botword["textbuttondefinitionofdisease"])
+                {
+                    mainmenu = false;
+                    symptommenu = true;
+                    user[userid] = false;
+                    await botclient.SendTextMessageAsync(message.Chat.Id, "Ввод симптомов:", replyMarkup: symptomkeyboard, disableNotification: true);
+                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat"], replyMarkup: inlineKeyboard, parseMode: ParseMode.Html, disableNotification: true);
+                    TextMessage = "";
+                }
+                else if (TextMessage == botword["textbuttonreference"])
+                {
+                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["textreference"], replyMarkup: inlinelinkes, disableNotification: true);
+                }
+                else return;
             }
             if (symptommenu)
             {
-                switch (TextMessage)
+                if (TextMessage == botword["textbuttonbacktomainmenu"])
                 {
-                    case buttonbacktomainmenu:
-                        {
-
-                            await botclient.SendTextMessageAsync(message.Chat.Id, "<b>Выбирайте что вам необходимо:</b>", parseMode: ParseMode.Html, replyMarkup: welcomkeyboard, disableNotification: true);
-                            mainmenu = true;
-                            symptommenu = false;
-                            user[userid] = true;
-
-                            break;
-                        }
-                    default: break;
+                    await botclient.SendTextMessageAsync(message.Chat.Id, "<b>Выбирайте что вам необходимо:</b>", parseMode: ParseMode.Html, replyMarkup: welcomkeyboard, disableNotification: true);
+                    mainmenu = true;
+                    symptommenu = false;
+                    user[userid] = true;
+                    return;
                 }
+
 
 
 
@@ -326,7 +274,7 @@ namespace Program
                     //исключение проблем 
                     if (wrongmessage)
                     {
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + textwronginput + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId);
+                        await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textwronginput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId);
                         return;
                     }
                     //исключение проблем 
@@ -381,32 +329,19 @@ namespace Program
                     //отправка на обработку нейросети
                     if (wrongmessage)
                     {
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + textwronginput + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId);
+                        await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textwronginput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId);
                         return;
                     }
                     else
                     {
 
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + textcorrectinput + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId);
+                        await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textcorrectinput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId);
                         for (int i = 0; i < countinputsymptoms; i++)
                         {
                             Console.WriteLine(symptomsarray[i]);
                         }
                     }
                     //отправка на обработку нейросети
-
-
-
-
-
-
-
-
-
-
-
-
-
                 }
             }
             /*
@@ -424,7 +359,7 @@ namespace Program
         }
 
 
-        private static string symptomhandler(List<int> select, First2 symptoms)
+        private static string symptomhandler(List<int> select, SymptomsList symptoms)
         {
             string symptomsselected = ""; //= symptoms.Substring(symptoms.IndexOf("0-"), symptoms.IndexOf("-0") - symptoms.IndexOf("0-")).Remove(0, 3);
 

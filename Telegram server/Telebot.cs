@@ -13,6 +13,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
 
 namespace Program
 {
@@ -40,8 +41,9 @@ namespace Program
         private static bool mainmenu = true;
         private static Dictionary<long, bool> user = new Dictionary<long, bool>();
         private static Dictionary<long, List<int>> inlinebuttonstouser = new Dictionary<long, List<int>>();
-        private static int countsymptoms = 13; //количество симптомов
-
+        private static int countsymptoms = 97; //количество симптомов
+        private static First TextBot = JsonConvert.DeserializeObject<First>(System.IO.File.ReadAllText(@"Telegramassets/Textfrombot.json"));
+        private static First2 SymptomsList = JsonConvert.DeserializeObject<First2>(System.IO.File.ReadAllText(@"Telegramassets/SymptomsList.json"));
 
 
 
@@ -61,7 +63,11 @@ namespace Program
             sr2.Close();
             sr3.Close();
             sr4.Close();
-            //Console.WriteLine(symptoms);
+
+
+
+
+            Console.WriteLine(SymptomsList.Symptoms[0].List);
             var client = new TelegramBotClient("6525101854:AAFlyWBSUlLEAr_bL0ni4chPMyYwlz4nQF8");
             client.StartReceiving(Update, Error);
 
@@ -114,7 +120,7 @@ namespace Program
                     {
                         Console.WriteLine(inlinebuttonstouser[userid][i]);
                     }
-                    await botclient.SendTextMessageAsync(callbackQuery!.Message!.Chat!.Id, symptomhandler(inlinebuttonstouser[userid], textsymptoms), parseMode: ParseMode.Html);
+                    await botclient.SendTextMessageAsync(callbackQuery!.Message!.Chat!.Id, symptomhandler(inlinebuttonstouser[userid], SymptomsList), parseMode: ParseMode.Html);
 
                 }
                 //await botclient.AnswerCallbackQueryAsync(callbackQuery!.Id, $"Received {callbackQuery.Data}");
@@ -266,7 +272,7 @@ namespace Program
 
 
                             await botclient.SendTextMessageAsync(message.Chat.Id, "Ввод симптомов:", replyMarkup: symptomkeyboard, disableNotification: true);
-                            await botclient.SendTextMessageAsync(message.Chat.Id, textinputformat, replyMarkup: inlineKeyboard, parseMode: ParseMode.Html, disableNotification: true);
+                            await botclient.SendTextMessageAsync(message.Chat.Id, TextBot.Textfrombot[2].Text, replyMarkup: inlineKeyboard, parseMode: ParseMode.Html, disableNotification: true);
 
 
 
@@ -418,13 +424,13 @@ namespace Program
         }
 
 
-        private static string symptomhandler(List<int> select, string symptoms)
+        private static string symptomhandler(List<int> select, First2 symptoms)
         {
             string symptomsselected = ""; //= symptoms.Substring(symptoms.IndexOf("0-"), symptoms.IndexOf("-0") - symptoms.IndexOf("0-")).Remove(0, 3);
 
             for (int i = 0; i < select.Count; i++)
             {
-                symptomsselected += symptoms.Substring(symptoms.IndexOf(select[i] + "-"), symptoms.IndexOf("-" + select[i]) - symptoms.IndexOf(select[i] + "-")).Remove(0, 3);
+                symptomsselected += symptoms.Symptoms[i].List;
             }
             Console.WriteLine(symptomsselected);
             return symptomsselected;

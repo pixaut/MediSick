@@ -7,10 +7,14 @@ int main(){
 
     std::ifstream fin;
 
-    int layers;
+    int layers,N,n,c;
+    char PathToTests[] = "..\\TrainingTests\\RandomTests.txt";
+    char NetworkPath[] = "..\\NetworkDescription\\Network.txt";
+    char NetworkSizePath[] = "..\\NetworkDescription\\NetworkSize.txt";
+    double s = 0.0,e = 0.0,SpeedOfLearning = 0.1;
 
-    fin.open("..\\NetworkDescription\\NetworkSize.txt");
 
+    fin.open(NetworkSizePath);
     fin >> layers;                                          //
     int* size = new int[layers];                         
     for(int i = 0;i < layers;i++){                          //      
@@ -21,46 +25,45 @@ int main(){
     NeuronNetwork nn(layers,size);                          //
     nn.SetRandom();                                         //
 
-    char PathToTests[] = "..\\TrainingTests\\RandomTests.txt";
-    char NetworkPath[] = "..\\NetworkDescription\\Network.txt";
-    double s = 0.0,SpeedOfLearning = 0,e = 0.0;
+    
     double *input = new double[size[0]];
-    double *rightanswer = new double[size[layers-1]];
+    std::fill(input,input+size[0],0.0);
 
+    double *rightanswer = new double[size[layers-1]];
     std::fill(rightanswer,rightanswer+size[layers-1],0.0);
-    std::fill(input,input+size[layers-1],0.0);
+    
 
     while(s < 90.0){
         
         s = 0.0,e = 0.0;
 
-        int N;
         fin.open(PathToTests);
 
-        //std::cout << bool(fin) << ' ';
         fin >> N;
 
         for(int k = 0;k < N;k++){
-            int n,c,answer;
+            std::fill(input,input+size[0],0.0);
+
             fin >> n;
             for(int i = 0;i < n;i++){
                 fin >> c;
-                input[c-1] = 1.0;
+                input[c] = 1.0;
             }
             fin >> c;
-            rightanswer[c-1] = 1.0;
+            rightanswer[c] = 1.0;
 
             nn.SetInput(input);
             nn.ForwardFeed();
             nn.BackPropogation(rightanswer,SpeedOfLearning);
             e += nn.ErrorCouter(rightanswer);
 
-            //if(k == N-1) nn.SaveNetwork(NetworkPath);
-
-            rightanswer[c-1] = 1.0;
-            if(nn.Predict() == c-1){
+            rightanswer[c] = 0.0;
+            
+            if(nn.Predict() == c){
+                //std::cout << nn.Predict() << ' ';
                 s += 1.0;
             }
+
         }
 
         fin.close();

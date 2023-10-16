@@ -58,10 +58,11 @@ public:
 
         for(int i = 1;i < layers;i++){
             for(int j = 0;j < size[i];j++){
-                neurons[i][j].value = neurons[i][j].bias;
+                neurons[i][j].value = 0.0;
                 for(int k = 0;k < size[i-1];k++){
                     neurons[i][j].value += neurons[i-1][k].ActiveValue*weights[i-1][k][j];
                 }
+                neurons[i][j].value +=  neurons[i][j].bias;
                 neurons[i][j].Activate();
             }
         }
@@ -101,17 +102,17 @@ public:
     void BackPropogation(double *ra,double ls){//add threads
 
         for(int i = 0;i < size[layers-1];i++){
-            neurons[layers-1][i].error = neurons[layers-1][i].ActiveValue - ra[i];
+            neurons[layers-1][i].error = 2*(neurons[layers-1][i].ActiveValue - ra[i]);
         }
 
         for(int i = layers-2;i >= 0;i--){
             for(int j = 0;j < size[i];j++){
                 neurons[i][j].error = 0.0;
                 for(int k = 0;k < size[i+1];k++){
-                    neurons[i][j].error +=    (neurons[i+1][k].error) * (neurons[i+1][k].proiz()) * (weights[i][j][k])   ;
-                    weights[i][j][k]    -= ls * (neurons[i+1][k].error) * (neurons[i+1][k].proiz()) * (neurons[i][j].value) ;
+                    neurons[i][j].error +=      (neurons[i+1][k].error) * (neurons[i+1][k].proiz()) * (weights[i][j][k])   ;
+                    weights[i][j][k]    -= ls * (neurons[i+1][k].error) * (neurons[i+1][k].proiz()) * (neurons[i][j].ActiveValue) ;
                     //std::cout << i << ' ' << j << ' ' << k << '\n';
-                    neurons[i][k].bias -= ls * (neurons[i+1][k].error) * (neurons[i+1][k].proiz());
+                    neurons[i][k].bias  -= ls * (neurons[i+1][k].error) * (neurons[i+1][k].proiz());
                 }
             }
 
@@ -120,24 +121,7 @@ public:
 
     }
     
-    void OutputErrors(int lay){
-
-        // for(int i = 0;i < size[lay-1];i++){
-        //     for(int j = 0;j < size[lay];j++){
-        //         cout << fixed << setprecision(1) <<  weights[lay-1][i][j] << ' ';
-        //     }
-        //     //cout << '\n';
-        // }
-
-
-        for(int j = 0;j < size[lay];j++){
-            std::cout << std::fixed << std::setprecision(1) << neurons[lay][j].ActiveValue << ' ';
-        }
-        std::cout << '\n';
-
-    }
-    
-    void SaveNetwork(std::string filename) {
+    void SaveNetwork(char filename[]) {
 
             std::ofstream fout(filename);
             for (int i = 0; i < layers - 1; i++) {
@@ -158,7 +142,7 @@ public:
 
             fout.close();
     }
-    void LoadNetwork(std::string filename){
+    void LoadNetwork(char filename[]){
 
         std::ifstream fin(filename);
 

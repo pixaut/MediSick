@@ -4,15 +4,15 @@
 #include <iomanip>
 
 int main(){
-
     std::ifstream fin;
 
     int layers,N,n,c;
+    char ExitPath[] = "..\\NetworkDescription\\ExitNetworkDescription.txt";
     char PathToTests[] = "..\\TrainingTests\\RandomTests.txt";
     char NetworkPath[] = "..\\NetworkDescription\\Network.txt";
     char NetworkSizePath[] = "..\\NetworkDescription\\NetworkSize.txt";
-    double s = 0.0,e = 0.0,SpeedOfLearning = 0.05;
-
+    double s = 0.0,e = 0.0,SpeedOfLearning = 1;
+    bool SaveHiddenWeights;
 
     fin.open(NetworkSizePath);
     fin >> layers;                                          //
@@ -22,7 +22,7 @@ int main(){
     }                                                       //  Descript Network
     fin.close();                                            //
     
-    NeuronNetwork nn(layers,size);                          //
+    NeuronNetwork nn(layers,size,ExitPath);                          //
     nn.SetRandom();                                         //
 
     
@@ -67,6 +67,14 @@ int main(){
         }
 
         fin.close();
+
+        fin.open("HiddenWeightsConfiguration.txt");
+        fin >> SaveHiddenWeights;
+        fin.close();
+
+        if(SaveHiddenWeights){
+            nn.SaveNetwork(NetworkPath);
+        }
 
         s = s/N*100.0;
         e /= N;

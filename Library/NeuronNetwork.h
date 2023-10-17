@@ -10,9 +10,11 @@ public:
     int *size;
     Neuron **neurons;
     double ***weights;
+    char *ExitNetworkPath;
     
-    NeuronNetwork(int n, int *p) {
+    NeuronNetwork(int n, int *p,char *ExitPath) {
 
+        ExitNetworkPath = ExitPath;
         layers = n;
         size = new int[n];
         neurons = new Neuron *[n];
@@ -33,7 +35,14 @@ public:
         }
 
     }
-    
+    ~NeuronNetwork(){
+
+        SaveNetwork(ExitNetworkPath);
+        std::cout << "\nExit code. Weights was saved!\n";
+        delete[] weights,neurons,size;
+
+    }
+
     void SetInput(double *p) {
         for (int i = 0; i < size[0]; i++) {
             neurons[0][i].ActiveValue = p[i];

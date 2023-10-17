@@ -34,7 +34,7 @@ int main(){
     srand(time(nullptr));
 
 
-    bool ConsoleOut = true;
+    bool ConsoleOut = false;
     int n;
     std::ifstream fin("DescriptionOfDeseas.txt");
     std::ofstream fout("RandomTests.txt");

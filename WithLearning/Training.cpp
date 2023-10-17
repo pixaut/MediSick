@@ -11,7 +11,7 @@ int main(){
     char PathToTests[] = "..\\TrainingTests\\RandomTests.txt";
     char NetworkPath[] = "..\\NetworkDescription\\Network.txt";
     char NetworkSizePath[] = "..\\NetworkDescription\\NetworkSize.txt";
-    double s = 0.0,e = 0.0,SpeedOfLearning = 0.1;
+    double s = 0.0,e = 0.0,SpeedOfLearning = 0.05;
 
 
     fin.open(NetworkSizePath);
@@ -33,7 +33,7 @@ int main(){
     std::fill(rightanswer,rightanswer+size[layers-1],0.0);
     
 
-    while(s < 90.0){
+    while(s < 98.0){
         
         s = 0.0,e = 0.0;
 

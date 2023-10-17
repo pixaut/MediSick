@@ -111,7 +111,6 @@ public:
                 for(int k = 0;k < size[i+1];k++){
                     neurons[i][j].error +=      (neurons[i+1][k].error) * (neurons[i+1][k].proiz()) * (weights[i][j][k])   ;
                     weights[i][j][k]    -= ls * (neurons[i+1][k].error) * (neurons[i+1][k].proiz()) * (neurons[i][j].ActiveValue) ;
-                    //std::cout << i << ' ' << j << ' ' << k << '\n';
                     neurons[i][k].bias  -= ls * (neurons[i+1][k].error) * (neurons[i+1][k].proiz());
                 }
             }

@@ -17,6 +17,7 @@ using Newtonsoft.Json;
 using System.Net;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices.Marshalling;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Program
 {
@@ -24,31 +25,46 @@ namespace Program
     class TelegramBot
     {
         private static Dictionary<string, string> botword = new Dictionary<string, string>();
-        private static Dictionary<string, string> database = new Dictionary<string, string>();
+        private static Dictionary<long, User> database = new Dictionary<long, User>();
         private static long userid;
         private static bool symptommenu = false;
         private static bool mainmenu = true;
         private static Dictionary<long, bool> user = new Dictionary<long, bool>();
         private static Dictionary<long, List<int>> inlinebuttonstouser = new Dictionary<long, List<int>>();
         private static int countsymptoms = 97; //количество симптомов
+
         private static Textbot? Textbot = JsonConvert.DeserializeObject<Textbot>(System.IO.File.ReadAllText(@"Telegramassets/Textforbot.json"));
         private static SymptomsList? SymptomsList = JsonConvert.DeserializeObject<SymptomsList>(System.IO.File.ReadAllText(@"Telegramassets/SymptomsList.json"));
 
+        private static string pathdatabasejson = "Telegramassets/Database.json";
+
         static void Main(string[] args)
         {
+            User user = new User
+            {
+                mainmenu = true,
+                symptommenu = true
+            };
+
+
             botword = Dictionarypreparer.BotwordDictpreparer(botword, Textbot);
 
-            DataBase DB = new DataBase();
-            User cock = new User();
-            cock.mainmenu = false;
-            cock.symptommenu = false;
+            database = Dictionarypreparer.DatabaseDictFillFromJSON(database, pathdatabasejson);
 
-            DB.users.TryAdd(12,cock);
-            DB.users.TryAdd(13,cock);
-            DB.users.TryAdd(14,cock);
-            DB.users.TryAdd(15,cock);
-            Console.WriteLine(JsonConvert.SerializeObject(DB));
-            
+            database.TryAdd(117, user);
+
+            Dictionarypreparer.DatabaseDictSaverToJSON(database, pathdatabasejson);
+
+
+
+
+
+
+
+
+
+            //Console.WriteLine(JsonConvert.SerializeObject(database));
+
 
             //Console.WriteLine(botword["textwelcome"]);
             var client = new TelegramBotClient("6525101854:AAFlyWBSUlLEAr_bL0ni4chPMyYwlz4nQF8");
@@ -71,15 +87,15 @@ namespace Program
             bool wrongmessage = false;//неправильные данных
             var message = update.Message;
 
-            
-            
-
-            
-
-            
 
 
-            
+
+
+
+
+
+
+
 
 
 

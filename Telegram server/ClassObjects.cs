@@ -28,26 +28,19 @@ namespace Program
         public required string Text { get; set; }
     }
 
-    public class DataBase
-    {
-        public Dictionary<long, User> users;
 
-        public DataBase()
-        {
-            users = new Dictionary<long, User>();      
-        }
-    }
+
 
     public class User
     {
-        public  bool symptommenu {get;set;}
-        public bool mainmenu {get;set;}
+        public bool symptommenu { get; set; }
+        public bool mainmenu { get; set; }
         public User()
         {
             mainmenu = mainmenu;
             symptommenu = symptommenu;
         }
 
-       
+
     }
 }

@@ -16,6 +16,7 @@ using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 using System.Net;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace Program
 {
@@ -37,7 +38,19 @@ namespace Program
         {
             botword = Dictionarypreparer.BotwordDictpreparer(botword, Textbot);
 
-            Console.WriteLine(botword["textwelcome"]);
+            DataBase DB = new DataBase();
+            User cock = new User();
+            cock.mainmenu = false;
+            cock.symptommenu = false;
+
+            DB.users.TryAdd(12,cock);
+            DB.users.TryAdd(13,cock);
+            DB.users.TryAdd(14,cock);
+            DB.users.TryAdd(15,cock);
+            Console.WriteLine(JsonConvert.SerializeObject(DB));
+            
+
+            //Console.WriteLine(botword["textwelcome"]);
             var client = new TelegramBotClient("6525101854:AAFlyWBSUlLEAr_bL0ni4chPMyYwlz4nQF8");
             client.StartReceiving(Update, Error);
             Console.ReadLine();
@@ -57,6 +70,16 @@ namespace Program
             string buf = "";//буфер строк
             bool wrongmessage = false;//неправильные данных
             var message = update.Message;
+
+            
+            
+
+            
+
+            
+
+
+            
 
 
 

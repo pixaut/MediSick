@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Program
@@ -14,5 +15,39 @@ namespace Program
     {
         public required string Сategory { get; set; }
         public required string List { get; set; }
+    }
+
+    public class Textbot
+    {
+        public required Textarray[] Textforbot { get; set; }
+
+    }
+    public class Textarray
+    {
+        public required string TextName { get; set; }
+        public required string Text { get; set; }
+    }
+
+    public class DataBase
+    {
+        public Dictionary<long, User> users;
+
+        public DataBase()
+        {
+            users = new Dictionary<long, User>();      
+        }
+    }
+
+    public class User
+    {
+        public  bool symptommenu {get;set;}
+        public bool mainmenu {get;set;}
+        public User()
+        {
+            mainmenu = mainmenu;
+            symptommenu = symptommenu;
+        }
+
+       
     }
 }

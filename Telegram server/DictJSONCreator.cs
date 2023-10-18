@@ -29,6 +29,20 @@ namespace Program
             File.WriteAllText(@path, JsonConvert.SerializeObject(database, Formatting.Indented));
         }
 
+        public static string symptomhandler(List<int> select, SymptomsList symptoms)
+        {
+            string symptomsselected = ""; //= symptoms.Substring(symptoms.IndexOf("0-"), symptoms.IndexOf("-0") - symptoms.IndexOf("0-")).Remove(0, 3);
+
+            for (int i = 0; i < select.Count; i++)
+            {
+                symptomsselected += symptoms.Symptoms[i].List;
+            }
+            Console.WriteLine(symptomsselected);
+            return symptomsselected;
+
+
+        }
+
 
     }
 }

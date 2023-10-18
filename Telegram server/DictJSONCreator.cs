@@ -8,18 +8,18 @@ namespace Program
         public static Dictionary<string, string> BotwordDictpreparer(Dictionary<string, string> botword, string path)
         {
             Textbot? textbot = JsonConvert.DeserializeObject<Textbot>(System.IO.File.ReadAllText(@path));
-            for (int i = 0; i < textbot.Textforbot.Length; i++)
+            for (int i = 0; i < textbot!.Textforbot!.Length; i++)
             {
                 botword.TryAdd(textbot.Textforbot[i].TextName, textbot.Textforbot[i].Text);
             }
             return botword;
         }
 
-        public static Dictionary<long, User> DatabaseDictFillFromJSON(Dictionary<long, User> database, string path)
+        public static Dictionary<long, User> DatabaseDictFillFromJSON(string path)
         {
-            Dictionary<long, User> data = JsonConvert.DeserializeObject<Dictionary<long, User>>(File.ReadAllText(@path));
+            Dictionary<long, User>? data = JsonConvert.DeserializeObject<Dictionary<long, User>>(File.ReadAllText(@path));
 
-            return data;
+            return data!;
         }
 
 

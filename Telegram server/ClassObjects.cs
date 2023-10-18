@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-
 namespace Program
 {
 
@@ -33,7 +27,7 @@ namespace Program
     public class Settings
     {
         public int countsymptoms { get; set; } = 0;
-        public string token { get; set; } = "6525101854:AAFlyWBSUlLEAr_bL0ni4chPMyYwlz4nQF8";
+        public string token { get; set; } = "";
         public string pathdatabasejson { get; set; } = "";
         public string pathtextforbotjson { get; set; } = "";
         public string pathsymptomslistjson { get; set; } = "";
@@ -52,10 +46,12 @@ namespace Program
     {
         public bool symptommenu { get; set; } = false;
         public bool mainmenu { get; set; } = true;
+        public string name { get; set; } = "no name";
         public User()
         {
             mainmenu = mainmenu;
             symptommenu = symptommenu;
+            name = name;
         }
     }
 }

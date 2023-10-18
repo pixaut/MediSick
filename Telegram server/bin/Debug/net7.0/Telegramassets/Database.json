@@ -1,6 +1,6 @@
 {
   "855228246": {
-    "symptommenu": true,
-    "mainmenu": false
+    "symptommenu": false,
+    "mainmenu": true
   }
 }

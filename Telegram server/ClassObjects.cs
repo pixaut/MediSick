@@ -33,6 +33,7 @@ namespace Program
     public class Settings
     {
         public int countsymptoms { get; set; } = 0;
+        public string token { get; set; } = "6525101854:AAFlyWBSUlLEAr_bL0ni4chPMyYwlz4nQF8";
         public string pathdatabasejson { get; set; } = "";
         public string pathtextforbotjson { get; set; } = "";
         public string pathsymptomslistjson { get; set; } = "";
@@ -42,6 +43,7 @@ namespace Program
             pathdatabasejson = pathdatabasejson;
             pathtextforbotjson = pathtextforbotjson;
             pathsymptomslistjson = pathsymptomslistjson;
+            countsymptoms = countsymptoms;
         }
     }
 

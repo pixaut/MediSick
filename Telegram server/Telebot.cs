@@ -212,10 +212,6 @@ namespace Program
             Dictionarypreparer.DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
         }
 
-
-
-
-
         private static Task Error(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {
             var ErrorMessage = exception switch
@@ -224,12 +220,8 @@ namespace Program
                     => $"Telegram API Error:\n[{apiRequestException.ErrorCode}]\n{apiRequestException.Message}",
                 _ => exception.ToString()
             };
-
             Console.WriteLine(ErrorMessage);
             return Task.CompletedTask;
         }
-
-
-
     }
 }

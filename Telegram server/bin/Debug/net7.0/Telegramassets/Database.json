@@ -1,12 +1,18 @@
 {
-  "855228246": {
-    "symptommenu": true,
-    "mainmenu": false,
-    "name": "DrgNBoNツ"
-  },
   "2069754483": {
+    "inlinebuttpressed": [],
+    "lastmessagebeforeinline": 5347,
     "symptommenu": true,
     "mainmenu": false,
+    "inlinesymptomkey": true,
     "name": "tortik122421"
+  },
+  "855228246": {
+    "inlinebuttpressed": [],
+    "lastmessagebeforeinline": 5490,
+    "symptommenu": true,
+    "mainmenu": false,
+    "inlinesymptomkey": false,
+    "name": "DrgNBoNツ"
   }
 }

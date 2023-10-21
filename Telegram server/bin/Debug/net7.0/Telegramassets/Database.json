@@ -8,8 +8,10 @@
     "name": "tortik122421"
   },
   "855228246": {
-    "inlinebuttpressed": [],
-    "lastmessagebeforeinline": 5490,
+    "inlinebuttpressed": [
+      7
+    ],
+    "lastmessagebeforeinline": 6161,
     "symptommenu": true,
     "mainmenu": false,
     "inlinesymptomkey": false,
@@ -17,10 +19,10 @@
   },
   "1699534382": {
     "inlinebuttpressed": [],
-    "lastmessagebeforeinline": 5504,
-    "symptommenu": false,
-    "mainmenu": true,
-    "inlinesymptomkey": false,
+    "lastmessagebeforeinline": 6155,
+    "symptommenu": true,
+    "mainmenu": false,
+    "inlinesymptomkey": true,
     "name": "Андрей"
   }
 }

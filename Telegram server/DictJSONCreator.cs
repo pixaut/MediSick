@@ -36,6 +36,7 @@ namespace Program
 
             for (int i = 0; i < select.Count; i++)
             {
+                symptomsselected += TelegramBot.botword[i.ToString()];
                 symptomsselected += symptoms.Symptoms[TelegramBot.database[TelegramBot.userid].inlinebuttpressed[i]].List;
             }
             Console.WriteLine(symptomsselected);

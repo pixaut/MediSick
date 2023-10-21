@@ -20,45 +20,46 @@ namespace Program
         };
         public static InlineKeyboardMarkup inlineKeyboard = new(new[]
         {
-                // first row
-                new []
-                {
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textsosinline"], callbackData: "0"),
-                },
-                new []
-                {
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textheadinline"], callbackData: "1"),
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textnoseinline"], callbackData: "2"),
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["texthearinline"], callbackData: "3"),
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["texteyesinline"], callbackData: "4"),
-                },
-                new []
-                {
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textmouthinline"], callbackData: "5"),
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textchestinline"], callbackData: "6"),
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textbackinline"], callbackData: "7"),
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textheartinline"], callbackData: "8"),
-                },
-                new []
-                {
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textkidneysinline"], callbackData: "9"),
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textliverinline"], callbackData: "10"),
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textlungsinline"], callbackData: "11"),
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textskininline"], callbackData: "12"),
-                },
-                new []
-                {
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textlegsinline"], callbackData: "13"),
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textstomachinline"], callbackData: "14"),
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textarmsinline"], callbackData: "15"),
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textgenitourinarysysteminline"], callbackData: "16"),
-                },
-                new []
-                {
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textgetsymptomsinline"], callbackData: "send"),
-                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textcancelinline"], callbackData: "cancel"),
-                },
-            });
+            // first row
+            
+            new []
+            {
+                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textskinandhairinline1"], callbackData: "1"),
+                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textrespiratorysysteminline5"], callbackData: "5"),
+            },
+            new []
+            {
+                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["texteyesymptomsinline6"], callbackData: "6"),
+                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textrespiratoryinline7"], callbackData: "7"),
+            },
+            new []
+            {
+                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textlimbsinline8"], callbackData: "8"),
+                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textgeneralstateinline9"], callbackData: "9"),
+            },
+            new []
+            {
+                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textcardiovascularsysteminline0"], callbackData: "0"),
+            },
+            new []
+            {
+                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textgastrointestinaltractinline2"], callbackData: "2"),
+            },
+            new []
+            {
+                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textreproductiveandurinarysysteminline3"], callbackData: "3"),
+            },
+
+            new []
+            {
+                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textrneurologicalinline4"], callbackData: "4"),
+            },
+            new []
+            {
+                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textgetsymptomsinline"], callbackData: "send"),
+                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textcancelinline"], callbackData: "cancel"),
+            },
+        });
         public static InlineKeyboardMarkup inlinelinkes = new(new[]
         {
             InlineKeyboardButton.WithUrl(text: "Creator",url: TelegramBot.botword["creatorlinklinline"]),

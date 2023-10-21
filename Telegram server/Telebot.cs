@@ -99,6 +99,7 @@ namespace Program
                 else if (TextMessage == botword["textbuttonreference"])
                 {
                     await botclient.SendTextMessageAsync(message.Chat.Id, botword["textreference"], replyMarkup: Keyboard.inlinelinkes, disableNotification: true);
+                    await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["refstik"]));
                 }
                 else return;
             }
@@ -139,7 +140,7 @@ namespace Program
                     //исключение проблем 
                     if (wrongmessage)
                     {
-                        await botclient.SendAnimationAsync(message.Chat.Id, InputFile.FromUri(botword["errorstik"]));
+                        await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["errorstik"]));
                         await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textwronginput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId);
                         return;
                     }
@@ -188,12 +189,13 @@ namespace Program
                     //отправка на обработку нейросети
                     if (wrongmessage)
                     {
+                        await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["errorstik"]));
                         await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textwronginput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId);
 
                     }
                     else
                     {
-
+                        await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["waitstik"]));
                         await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textcorrectinput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId);
                         for (int i = 0; i < countinputsymptoms; i++)
                         {

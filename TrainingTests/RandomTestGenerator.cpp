@@ -5,75 +5,64 @@
 #include <unordered_set>
 #include <utility>
 
-std::vector<std::pair<int,std::pair<int,int> > > deseas;
-std::vector <int> ans;
-std::unordered_set <int> Set;
+int n,m,c;
+std::string ans;
+std::vector< std::vector<int> > v;
+std::unordered_set<int> st;
 
-std::vector<int> GenerateRandomVector(int j,int n){
+std::string GetTest(){
 
     ans.clear();
-    Set.clear();
+    st.clear();
+    int k = rand()%m;
+    int t = rand()%(v[k].size()/2)+v[k].size()/2;
 
-    int Max,Min;
+    ans += std::to_string(t) + '\t';
 
-    std::tie(Min,Max) = deseas[j].second;
-
-    while(Set.size() < n){
-        Set.insert(rand()%Max+Min);
+    while(st.size() < t){
+        st.insert(rand()%v[k].size());
     }
 
-    for(auto i:Set){
-        ans.push_back(i);
+    for(auto i:st){
+        ans += std::to_string(i) + ' ';
     }
+
+    ans += '\t' + std::to_string(k);
 
     return ans;
 }
 
 int main(){
 
-    srand(time(nullptr));
+    srand(time(NULL));
 
-    int n;
-    std::ifstream fin("DescriptionOfDeseas.txt");
+    std::ifstream fin("DescriptionOfSimphtones.txt");
     std::ofstream fout("RandomTests.txt");
 
-    char s[256];
+    fin >> n >> m;
 
-    while(fin >> s >> n){
-        static int j = 1;
-        deseas.push_back({n,{j,j+n-1} });
-        j++;
+    v.resize(m);
+
+    for(int i = 0;i < n;i++){
+        for(int j = 0;j < m;j++){
+            fin >> c;
+            if(c)v[j].push_back(i+1); 
+        }
     }
     fin.close();
 
-    std::cout << "Number of tests: ";
-    std::cin >> n;
-    std::vector<int> RV;
-    int j,m;
+    int N;
 
-    fout << n << '\n';
-    for(int i = 0;i < n;i++){
+    std::cout << "Enter number of tests: ";
+    std::cin >> N;
 
-        j = rand()%(deseas.size());
-        m = rand()%(deseas[j].first)+1;
 
-        //std::cout << j << ' ' << m << '\n';
-
-       // std::cout << j << ' ' << m << '\n';
-
-        RV = GenerateRandomVector(j,m);
-
-        fout << m << '\t';
-        
-        for(int k = 0;k < RV.size();k++){
-            //std::cout << RV[k] << ' ';
-            fout << RV[k] << ' ';
-        }
-
-        //std::cout << "\n\n";
-
-        fout << j << '\n'; 
-
+    fout << N << '\n';
+    for(int i = 0;i < N;i++){
+        fout << GetTest() << '\n';
     }
+
+    fout.close();
+
 
 }

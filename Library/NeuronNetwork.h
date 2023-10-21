@@ -33,7 +33,10 @@ public:
         }
 
     }
-    
+    ~NeuronNetwork(){
+        delete[] size,neurons,weights;
+    }
+
     void SetInput(double *p) {
         for (int i = 0; i < size[0]; i++) {
             neurons[0][i].ActiveValue = p[i];

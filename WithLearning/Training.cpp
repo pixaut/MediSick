@@ -31,16 +31,15 @@ int main(){
 
     double *rightanswer = new double[size[layers-1]];
     std::fill(rightanswer,rightanswer+size[layers-1],0.0);
-    
 
     while(s < 90.0){
         
         s = 0.0,e = 0.0;
 
         fin.open(PathToTests);
-
+        
         fin >> N;
-
+        
         for(int k = 0;k < N;k++){
             std::fill(input,input+size[0],0.0);
 

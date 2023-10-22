@@ -11,7 +11,7 @@ int main(){
     char PathToTests[] = "..\\TrainingTests\\RandomTests.txt";
     char NetworkPath[] = "..\\NetworkDescription\\Network.txt";
     char NetworkSizePath[] = "..\\NetworkDescription\\NetworkSize.txt";
-    double s = 0.0,e = 0.0,SpeedOfLearning = 0.01;
+    double s = 0.0,e = 0.0,SpeedOfLearning = 0.4;
 
 
     fin.open(NetworkSizePath);
@@ -32,11 +32,21 @@ int main(){
     double *rightanswer = new double[size[layers-1]];
     std::fill(rightanswer,rightanswer+size[layers-1],0.0);
 
+    bool Svt = false;
 
+    while(s < 95.0){
 
-    while(s < 99.5){
-        
         s = 0.0,e = 0.0;
+
+        fin.open("Button.txt");
+
+        fin >> Svt;
+
+        fin.close();
+
+        if(Svt){
+            nn.SaveNetwork(NetworkPath);
+        }
 
         fin.open(PathToTests);
         

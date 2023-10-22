@@ -5,3 +5,6 @@ NetworkDescription/CorrectNetworkSize.exe
 .vscode/settings.json
 Library/NeuronNetwork.exe
 WithOutLearning/ProcessTest.exe
+Library/Test.exe
+Library/Test.h
+WithLearning/Test.cpp

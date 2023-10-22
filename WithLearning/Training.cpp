@@ -11,7 +11,7 @@ int main(){
     char PathToTests[] = "..\\TrainingTests\\RandomTests.txt";
     char NetworkPath[] = "..\\NetworkDescription\\Network.txt";
     char NetworkSizePath[] = "..\\NetworkDescription\\NetworkSize.txt";
-    double s = 0.0,e = 0.0,SpeedOfLearning = 0.1;
+    double s = 0.0,e = 0.0,SpeedOfLearning = 0.01;
 
 
     fin.open(NetworkSizePath);
@@ -32,12 +32,16 @@ int main(){
     double *rightanswer = new double[size[layers-1]];
     std::fill(rightanswer,rightanswer+size[layers-1],0.0);
 
-    while(s < 90.0){
+
+
+    while(s < 99.5){
         
         s = 0.0,e = 0.0;
 
         fin.open(PathToTests);
         
+        //std::cout << bool(fin);
+
         fin >> N;
         
         for(int k = 0;k < N;k++){
@@ -46,20 +50,19 @@ int main(){
             fin >> n;
             for(int i = 0;i < n;i++){
                 fin >> c;
-                input[c] = 1.0;
+                input[c-1] = 1.0;
             }
             fin >> c;
             rightanswer[c] = 1.0;
-
+            
             nn.SetInput(input);
             nn.ForwardFeed();
-            nn.BackPropogation(rightanswer,SpeedOfLearning);
+            nn.BackPropagation(rightanswer,SpeedOfLearning);
+
             e += nn.ErrorCouter(rightanswer);
 
             rightanswer[c] = 0.0;
-            
             if(nn.Predict() == c){
-                //std::cout << nn.Predict() << ' ';
                 s += 1.0;
             }
 

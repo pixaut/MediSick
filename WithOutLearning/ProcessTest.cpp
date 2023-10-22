@@ -6,9 +6,9 @@ int main(){
 
     std::ifstream fin;
 
-    char UserId[30];                                                        // userid
+    char UserId[256];                                                        // userid
     int n,c;                                                                // quantity of simphtones, c - number of symphtone
-    double input[50];                                                       // 50 - number of input values
+                                                        // 50 - number of input values
 
     int layers;
 
@@ -19,11 +19,15 @@ int main(){
         fin >> size[i];                                                     //
     }                                                                       //
     fin.close();                                                            //
-                                                                            
+
+    double input[size[0]];   
+
     NeuronNetwork nn(layers,size);                                          //                                            
-    nn.LoadNetwork("..\\NetworkDescription\\weights.txt");                  //
+    nn.LoadNetwork("..\\NetworkDescription\\Network.txt");                  //
 
     fin.open("input.txt");                                                  //
+    
+    std::fill(input,input+size[0],0.0);
 
     fin >> UserId;                                                          //
     fin >> n;                                                               //
@@ -39,7 +43,7 @@ int main(){
 
     nn.ForwardFeed();                                                       //
     std::ofstream fout("output.txt");                                       //
-    fout << UserId << ' ' << nn.Predict();                                  // do output
+    fout << UserId << ' ' << nn.Predict()+1;                                  // do output
     fout.close();                                                           //
 
     return 0;

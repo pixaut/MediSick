@@ -50,6 +50,18 @@ int main(){
         }
     }
     fin.close();
+    
+    int k = 0;
+
+    for(auto i:v){
+        fout << i.size() << '\t';
+        for(auto j:i){
+            fout << j << ' ';
+        }
+        fout << k++ << '\n';
+    }
+    fout.close();
+    return 0;
 
     int N;
 

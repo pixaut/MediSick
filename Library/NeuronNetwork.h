@@ -65,7 +65,7 @@ public:
                 for(int k = 0;k < size[i-1];k++){
                     neurons[i][j].value += neurons[i-1][k].ActiveValue*weights[i-1][k][j];
                 }
-                neurons[i][j].value +=  neurons[i][j].bias;
+                //neurons[i][j].value +=  neurons[i][j].bias;
                 neurons[i][j].Activate();
             }
         }
@@ -102,26 +102,22 @@ public:
         return sum;
 
     }
-    void BackPropogation(double *ra,double ls){//add threads
+    void BackPropagation(double *ra, double ls) {
 
-        for(int i = 0;i < size[layers-1];i++){
-            neurons[layers-1][i].error = 2*(neurons[layers-1][i].ActiveValue - ra[i]);
+        for (int i = 0; i < size[layers - 1]; i++) {
+            neurons[layers - 1][i].error = 2 * (neurons[layers - 1][i].ActiveValue - ra[i]);
         }
 
-        for(int i = layers-2;i >= 0;i--){
-            for(int j = 0;j < size[i];j++){
+        for (int i = layers - 2; i >= 0; i--) {
+            for (int j = 0; j < size[i]; j++) {
                 neurons[i][j].error = 0.0;
-                for(int k = 0;k < size[i+1];k++){
-                    neurons[i][j].error +=      (neurons[i+1][k].error) * (neurons[i+1][k].proiz()) * (weights[i][j][k])   ;
-                    weights[i][j][k]    -= ls * (neurons[i+1][k].error) * (neurons[i+1][k].proiz()) * (neurons[i][j].ActiveValue) ;
-                    //std::cout << i << ' ' << j << ' ' << k << '\n';
-                    neurons[i][k].bias  -= ls * (neurons[i+1][k].error) * (neurons[i+1][k].proiz());
+                for (int k = 0; k < size[i + 1]; k++) {
+                    neurons[i][j].error += (neurons[i + 1][k].error) * (neurons[i + 1][k].proiz()) * (weights[i][j][k]);
+                    weights[i][j][k] -= ls * (neurons[i + 1][k].error) * (neurons[i + 1][k].proiz()) * (neurons[i][j].ActiveValue);
+                    //neurons[i][j].bias -= ls * (neurons[i + 1][k].error) * (neurons[i + 1][k].proiz());
                 }
             }
-
         }
-
-
     }
     
     void SaveNetwork(char filename[]) {
@@ -145,25 +141,28 @@ public:
 
             fout.close();
     }
-    void LoadNetwork(char filename[]){
-
+    void LoadNetwork(char filename[]) {
         std::ifstream fin(filename);
 
         for (int i = 0; i < layers - 1; i++) {
             for (int j = 0; j < size[i]; j++) {
                 for (int k = 0; k < size[i + 1]; k++) {
-                    fin >> weights[i][j][k];
+                    if (fin >> weights[i][j][k]) {
+                        // Read a weight value from the file
+                    }
                 }
             }
         }
 
-        for(int i = 1;i < layers;i++){
-            for(int j = 0;j < size[j];j++){
-                fin >> neurons[i][j].bias;
+        for (int i = 1; i < layers; i++) {
+            for (int j = 0; j < size[i]; j++) {
+                if (fin >> neurons[i][j].bias) {
+                    // Read a bias value from the file
+                }
             }
         }
-        fin.close();
 
+        fin.close();
     }
 
 };

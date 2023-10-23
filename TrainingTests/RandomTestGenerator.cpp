@@ -1,81 +1,72 @@
+#include <fstream>
 #include <vector>
 #include <iostream>
-#include <fstream>
-#include <ctime>
 #include <unordered_set>
-#include <utility>
+#include <string>
 
-std::vector<std::pair<int,std::pair<int,int> > > deseas;
-std::vector <int> ans;
-std::unordered_set <int> Set;
+int N, n, c;
+std::string ans;
+std::unordered_set<int> s;
+std::vector < std::vector<int> > v;
 
-std::vector<int> GenerateRandomVector(int j,int n){
+std::string GetTest() {
 
-    ans.clear();
-    Set.clear();
+	s.clear();
+	ans.clear();
 
-    int Max,Min;
+	int i = rand() % v.size();
+	int k = v[i].size() / 2 + rand() % (v[i].size() / 2) + 1;
 
-    std::tie(Min,Max) = deseas[j].second;
+	while (s.size() < k) {
+		s.insert(v[i][rand()%v[i].size()]);
+	}
 
-    while(Set.size() < n){
-        Set.insert(rand()%Max+Min);
-    }
+	ans += std::to_string(k) + '\t';
 
-    for(auto i:Set){
-        ans.push_back(i);
-    }
+	for (auto j : s) {
+		ans += std::to_string(j+1) + ' ';
+	}
 
-    return ans;
+	ans += std::to_string(i + 1);
+
+	return ans;
+
 }
 
-int main(){
 
-    srand(time(nullptr));
+int main() {
 
+	srand(time(0));
 
-    bool ConsoleOut = false;
-    int n;
-    std::ifstream fin("DescriptionOfDeseas.txt");
-    std::ofstream fout("RandomTests.txt");
+	std::ifstream fin("DescriptionOfSimphtones.txt");
+	std::ofstream fout("RandomTests.txt");
 
-    char s[256];
+	fin >> N;
 
-    while(fin >> s >> n){
-        static int j = 1;
-        deseas.push_back({n,{j,j+n-1} });
-        j++;
-    }
-    fin.close();
+	v.resize(N);
 
-    std::cout << "Number of tests: ";
-    std::cin >> n;
-    std::vector<int> RV;
-    int j,m;
+	for (int i = 0; i < N; i++) {
 
-    fout << n << '\n';
-    for(int i = 0;i < n;i++){
+		fin >> n;
 
-        j = rand()%(deseas.size());
-        m = rand()%(deseas[j].first)+1;
+		for (int j = 0; j < n; j++) {
+			fin >> c;
+			v[i].push_back(c-1); //чтобы было от нуля
+		}
+		fin >> c;
+	}
 
-        //std::cout << j << ' ' << m << '\n';
+	int m;
 
-       // std::cout << j << ' ' << m << '\n';
+	std::cout << "Number of tests: ";
+	std::cin >> m;
 
-        RV = GenerateRandomVector(j,m);
+	fout << m << '\n';
 
-        if(ConsoleOut) std::cout << m << '\t';
-        else fout << m << '\t';
-        
-        for(int k = 0;k < RV.size();k++){
-            if(ConsoleOut)std::cout << RV[k] << ' ';
-            else fout << RV[k] << ' ';
-        }
+	for (int i = 0; i < m; i++) {
+		fout << GetTest() << '\n';
+	}
 
-        if(ConsoleOut)std::cout << j << '\n';
-        else fout << j << '\n'; 
-
-    }
-
+	fin.close();
+	fout.close();
 }

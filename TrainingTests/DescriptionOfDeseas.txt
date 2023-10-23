@@ -1,16 +1,97 @@
-Head 5
-Nose 8
-Ears 3
-Eyes 8
-Mouth 11
-Breast 2
-Back 8
-Heart 2
-Kidneys 2
-Lungs 6
-Leather 7
-Legs 5
-Stomach 5
-Hands 5
-Genitourinary system 5
-General state 17
+Adenoviral infection
+Allergic rhinitis
+Tonsillitis
+Angioedema
+Arrhythmia
+Arterial hypertension
+Asthma
+Bipolar affective disorder
+Joint diseases
+Varicose veins
+Chickenpox
+Viral conjunctivitis
+Gastritis
+Gastroenteritis
+Hemorrhagic stroke
+Hemorrhoids
+Hepatitis
+Hepatocellular carcinoma
+Herpes
+Hyperthyroidism
+Hypertension
+Hypothyroidism
+Glaucoma
+Fungal skin infections
+Fungal urinary tract infections
+Fungus
+Influenza
+Depression
+Dermatitis
+Diabetes
+Diarrhea
+Dysbiosis
+Diphtheria
+Thyroid diseases
+Insomnia
+Stroke
+Myocardial infarction
+Urinary tract infection
+Ischemic heart disease
+Kidney stones
+Cataract
+Pertussis (whooping cough)
+Colitis
+Conjunctivitis
+Coronary insufficiency
+Measles
+Rubella
+Leukemia
+Leptospirosis
+Lymphoma
+Dengue fever
+Malaria
+Mastopathy
+Migraine
+Mycosis (fungal infection)
+Neuritis
+Nephritis
+Nephropathy
+Obesity
+Acute respiratory viral infection (ARVI)
+Osteoarthritis
+Osteomyelitis
+Osteoporosis
+Osteochondrosis
+Otitis media (ear infection)
+Pancreatitis
+Mumps (parotitis)
+Liver failure
+Pyelonephritis (kidney infection)
+Pneumonia
+Polio (poliomyelitis)
+Prostatitis
+Common cold
+Psoriasis
+Cancer
+Rheumatism
+Rheumatoid arthritis
+CVD (cardiovascular disease)
+Sepsis
+Heart failure
+Sinusitis
+Scarlet fever
+Typhoid fever
+Toxoplasmosis
+Tuberculosis
+Urethritis
+Cholera
+Cerebrovascular disease
+Liver cirrhosis
+Cystitis
+Schizophrenia
+Eczema
+Endometriosis
+Encephalitis
+Epilepsy
+Echinococcosis
+Peptic ulcer disease

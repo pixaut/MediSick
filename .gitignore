@@ -1,0 +1,10 @@
+TrainingTests/RandomTestGenerator.exe
+WithLearning/Training.exe
+NetworkDescription/CorrectNetworkSize.exe
+.vscode/tasks.json
+.vscode/settings.json
+Library/NeuronNetwork.exe
+WithOutLearning/ProcessTest.exe
+Library/Test.exe
+Library/Test.h
+WithLearning/Test.cpp

@@ -5,13 +5,12 @@
 int main(){
 
     std::ifstream fin;
-    std::ofstream fout;
 
-    char UserId[30],PathToNetwork[] = "..\\NetworkDescription\\Network.txt";                                                        // userid
-    int n,c,layers;                                                                // quantity of simphtones, c - number of symphtone
-    double input[50];                                                       // 50 - number of input values
+    char UserId[256];                                                        // userid
+    int n,c;                                                                // quantity of simphtones, c - number of symphtone
+                                                        // 50 - number of input values
 
-    std::fill(input,input+50,0.0);
+    int layers;
 
     fin.open("..\\NetworkDescription\\NetworkSize.txt");                    //
     fin >> layers;                                                          //
@@ -20,11 +19,15 @@ int main(){
         fin >> size[i];                                                     //
     }                                                                       //
     fin.close();                                                            //
-                                                                            
+
+    double input[size[0]];   
+
     NeuronNetwork nn(layers,size);                                          //                                            
-    nn.LoadNetwork(PathToNetwork);                  
+    nn.LoadNetwork("..\\NetworkDescription\\Network.txt");                  //
 
     fin.open("input.txt");                                                  //
+    
+    std::fill(input,input+size[0],0.0);
 
     fin >> UserId;                                                          //
     fin >> n;                                                               //
@@ -35,10 +38,11 @@ int main(){
     fin.close();                                                            //
     nn.SetInput(input);
 
-    nn.ForwardFeed();
-                                                           
-    fout.open("output.txt");                                       
-    fout << UserId << ' ' << nn.Predict()+1;                                // do output
+
+
+    nn.ForwardFeed();                                                       //
+    std::ofstream fout("output.txt");                                       //
+    fout << UserId << ' ' << nn.Predict()+1;                                  // do output
     fout.close();                                                           //
 
     return 0;

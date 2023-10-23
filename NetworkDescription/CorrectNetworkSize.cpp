@@ -3,29 +3,20 @@
 
 int main(){
 
-    std::ifstream fin;
+    std::ifstream fin("..\\TrainingTests\\DescriptionOfSimphtones.txt");
     std::ofstream fout("NetworkSize.txt");
    
     char s[256];
-    int n = 0,m = 0,N,c;
+    int n,m,N,c;
 
-    fin.open("..\\TrainingTests\\DescriptionOfDeseas.txt");
-    while(fin >> s){
-        if(s[0] >= 'A' && s[0] <= 'Z') n++;
-    }
-    fin.close();
-
-    fin.open("..\\TrainingTests\\DescriptionOfSimphtones.txt");
-    while(fin >> s){
-        if(s[0] >= 'A' && s[0] <= 'Z') m++;
-    }
+    fin >> n >> m;
     fin.close();
 
     std::cout << "Number of layers: ";
     std::cin >> N;
 
     fout << N << '\n';
-    fout << m << ' ';
+    fout << n << ' ';
 
     for(int i = 0;i < N-2;i++){
         std::cout << "Number of neurons in hidden layer " << i+1 << " : ";
@@ -33,7 +24,7 @@ int main(){
         fout << c << ' ';
     }
 
-    fout << n;
+    fout << m;
 
     std::cout << "Thanks!";
 

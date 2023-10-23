@@ -1,0 +1,1 @@
+nn.ErrorCouter(rightanswer)

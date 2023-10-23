@@ -18,7 +18,7 @@
         },
         {
             "TextName": "textinputformat2",
-            "Text": "<b>Правила входных данных:</b> \n 1) Номер симптомов в <ins>диапазоне [1-97]</ins>\n 2) <ins>1 пробел</ins> между номерами\n 3) <ins>Только номера симптомов и пробелы</ins> \n \n <i>Пример: 11 12 3 1 5 97</i>"
+            "Text": "<b>Правила входных данных:</b> \n 1) Номер симптомов в <ins>диапазоне [1-110]</ins>\n 2) <ins>1 пробел</ins> между номерами\n 3) <ins>Только номера симптомов и пробелы</ins> \n \n <i>Пример: 11 97 3 61 5 110</i>"
         },
         {
             "TextName": "textwronginput",
@@ -41,72 +41,44 @@
             "Text": "главное меню"
         },
         {
-            "TextName": "textsosinline",
-            "Text": "Симптомы общего состояния"
+            "TextName": "textcardiovascularsysteminline0",
+            "Text": "Сердечно-сосудистая система"
         },
         {
-            "TextName": "textheadinline",
-            "Text": "Голова"
+            "TextName": "textgastrointestinaltractinline2",
+            "Text": "Желудочно-кишечный тракт"
         },
         {
-            "TextName": "textnoseinline",
-            "Text": "Нос"
+            "TextName": "textreproductiveandurinarysysteminline3",
+            "Text": "Половая и мочевыделительная система"
         },
         {
-            "TextName": "texthearinline",
-            "Text": "Уши"
+            "TextName": "textrneurologicalinline4",
+            "Text": "Неврологические симптомы"
         },
         {
-            "TextName": "texteyesinline",
-            "Text": "Глаза"
+            "TextName": "textskinandhairinline1",
+            "Text": "Кожа и волосы"
         },
         {
-            "TextName": "textmouthinline",
-            "Text": "Рот"
+            "TextName": "textrespiratorysysteminline5",
+            "Text": "Дыхание"
         },
         {
-            "TextName": "textchestinline",
-            "Text": "Грудь"
+            "TextName": "texteyesymptomsinline6",
+            "Text": "Зрение"
         },
         {
-            "TextName": "textbackinline",
-            "Text": "Спина"
+            "TextName": "textrespiratoryinline7",
+            "Text": "Респираторные"
         },
         {
-            "TextName": "textheartinline",
-            "Text": "Сердце"
+            "TextName": "textlimbsinline8",
+            "Text": "Конечности"
         },
         {
-            "TextName": "textkidneysinline",
-            "Text": "Почки"
-        },
-        {
-            "TextName": "textliverinline",
-            "Text": "Печень"
-        },
-        {
-            "TextName": "textlungsinline",
-            "Text": "Легкие"
-        },
-        {
-            "TextName": "textskininline",
-            "Text": "Кожа"
-        },
-        {
-            "TextName": "textlegsinline",
-            "Text": "Ноги"
-        },
-        {
-            "TextName": "textstomachinline",
-            "Text": "Живот"
-        },
-        {
-            "TextName": "textarmsinline",
-            "Text": "Руки"
-        },
-        {
-            "TextName": "textgenitourinarysysteminline",
-            "Text": "М-П.сист"
+            "TextName": "textgeneralstateinline9",
+            "Text": "Общее состояние"
         },
         {
             "TextName": "textgetsymptomsinline",
@@ -135,6 +107,54 @@
         {
             "TextName": "helper2linklinline",
             "Text": "https://t.me/Mason_tl"
+        },
+        {
+            "TextName": "hallostik",
+            "Text": "https://cdn.tlgrm.app/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/1.webp"
+        },
+        {
+            "TextName": "errorstik",
+            "Text": "https://tgram.ru/wiki/stickers/img/TrickyFox/gif/6.gif"
+        },
+        {
+            "TextName": "0",
+            "Text": "<b><ins>Сердечно-сосудистая система:⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "1",
+            "Text": "<b><ins>Кожа и волосы:⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "2",
+            "Text": "<b><ins>Желудочно-кишечный тракт:⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "3",
+            "Text": "<b><ins>Половая и мочевыделительная система:⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "4",
+            "Text": "<b><ins>Неврологические симптомы:⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "5",
+            "Text": "<b><ins>Дыхательная система:⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "6",
+            "Text": "<b><ins>Проблемы зрения:⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "7",
+            "Text": "<b><ins>Респираторные симптомы:⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "8",
+            "Text": "<b><ins>Симптомы конечностей:⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "9",
+            "Text": "<b><ins>Симптомы общего состояния:⬇️</ins></b>\n"
         }
     ]
 }

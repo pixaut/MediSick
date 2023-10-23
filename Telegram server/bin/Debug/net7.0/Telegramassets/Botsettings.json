@@ -1,5 +1,5 @@
 {
-    "countsymptoms": 97,
+    "countsymptoms": 110,
     "pathdatabasejson": "Telegramassets/Database.json",
     "pathtextforbotjson": "Telegramassets/Textforbot.json",
     "pathsymptomslistjson": "Telegramassets/SymptomsList.json",

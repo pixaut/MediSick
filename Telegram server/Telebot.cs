@@ -80,7 +80,7 @@ namespace Program
             {
                 database[userid].mainmenu = true;
                 database[userid].symptommenu = false;
-                await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri("https://cdn.tlgrm.app/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/1.webp"));
+                await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["hallostik"]));
                 await botclient.SendTextMessageAsync(message.Chat.Id, database[userid].name + " " + botword["textwelcome"], parseMode: ParseMode.Html, replyMarkup: Keyboard.welcomkeyboard);
             }
 
@@ -130,14 +130,16 @@ namespace Program
                         if (i != TextMessage.Length - 1)
                         {
                             if (TextMessage[i] == ' ' && TextMessage[i + 1] == ' ') wrongmessage = true;
+                            continue;
                         }
-                        else if (TextMessage[i] == ' ' && TextMessage[i - 1] == ' ') wrongmessage = true;
+                        if (TextMessage[i] == ' ' && TextMessage[i - 1] == ' ') wrongmessage = true;
                     }
                     //проверка формата строки
 
                     //исключение проблем 
                     if (wrongmessage)
                     {
+                        await botclient.SendAnimationAsync(message.Chat.Id, InputFile.FromUri(botword["errorstik"]));
                         await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textwronginput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId);
                         return;
                     }
@@ -152,8 +154,9 @@ namespace Program
                             buf = "";
                             j++;
                             countinputsymptoms++;
+                            continue;
                         }
-                        else buf += TextMessage[i];
+                        buf += TextMessage[i];
                     }
                     symptomsarray[countinputsymptoms - 1] = int.Parse(buf);
                     Array.Resize(ref symptomsarray, countinputsymptoms);
@@ -169,23 +172,15 @@ namespace Program
                             wrongmessage = true;
                             break;
                         }
-
-                        if (i == countinputsymptoms - 1)
+                        if (i == countinputsymptoms - 1 && symptomsarray[i] > settings.countsymptoms)
                         {
-                            if (symptomsarray[i] > settings.countsymptoms)
-                            {
-                                wrongmessage = true;
-                                break;
-                            }
-
+                            wrongmessage = true;
+                            break;
                         }
-                        else
+                        if (symptomsarray[i - 1] > settings.countsymptoms)
                         {
-                            if (symptomsarray[i - 1] > settings.countsymptoms)
-                            {
-                                wrongmessage = true;
-                                break;
-                            }
+                            wrongmessage = true;
+                            break;
                         }
                     }
                     //проверка массива
@@ -212,6 +207,10 @@ namespace Program
             Dictionarypreparer.DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
         }
 
+
+
+
+
         private static Task Error(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {
             var ErrorMessage = exception switch
@@ -220,8 +219,12 @@ namespace Program
                     => $"Telegram API Error:\n[{apiRequestException.ErrorCode}]\n{apiRequestException.Message}",
                 _ => exception.ToString()
             };
+
             Console.WriteLine(ErrorMessage);
             return Task.CompletedTask;
         }
+
+
+
     }
 }

@@ -4,7 +4,6 @@ namespace Program
     public class SymptomsList
     {
         public required Symptoms[] Symptoms { get; set; }
-
     }
     public class Symptoms
     {
@@ -15,12 +14,12 @@ namespace Program
     public class Textbot
     {
         public required Textarray[] Textforbot { get; set; }
-
     }
     public class Textarray
     {
         public required string TextName { get; set; }
         public required string Text { get; set; }
+        public required int Number { get; set; }
     }
 
 

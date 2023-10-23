@@ -1,3 +1,4 @@
 {
-    "dotnet.defaultSolution": "Telegram server.sln"
+    "dotnet.defaultSolution": "Telegram server.sln",
+    "C_Cpp.errorSquiggles": "disabled"
 }

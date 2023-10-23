@@ -9,12 +9,11 @@ namespace Program
 
     class TelegramBot
     {
-        private static Dictionary<long, List<int>> inlinebuttonstouser = new Dictionary<long, List<int>>();
         public static Dictionary<string, string> botword = new Dictionary<string, string>();
-        private static Dictionary<long, User> database = new Dictionary<long, User>();
+        public static Dictionary<long, User> database = new Dictionary<long, User>();
         private static Settings? settings = JsonConvert.DeserializeObject<Settings>(System.IO.File.ReadAllText(@"Telegramassets/Botsettings.json"));
         private static SymptomsList? SymptomsList = JsonConvert.DeserializeObject<SymptomsList>(System.IO.File.ReadAllText(settings!.pathsymptomslistjson));
-        private static long userid = 0;
+        public static long userid = 0;
         static void Main()
         {
             botword = Dictionarypreparer.BotwordDictpreparer(botword, settings!.pathtextforbotjson);
@@ -26,53 +25,41 @@ namespace Program
         }
 
 
+
         async static Task Update(ITelegramBotClient botclient, Update update, CancellationToken token)
         {
             var message = update.Message;
+            var callback = update.CallbackQuery;
 
-
-            if (update.Type == UpdateType.CallbackQuery && userid > 0 && database[userid].symptommenu)
+            if (update.Type == UpdateType.CallbackQuery && userid != 0 && database[userid].symptommenu)
             {
-                CallbackQuery callbackQuery = update!.CallbackQuery!;
-                await botclient.AnswerCallbackQueryAsync(callbackQuery!.Id, $"Выбрано {callbackQuery.Data}");
-                if (callbackQuery.Data != "send")
+                await botclient.AnswerCallbackQueryAsync(callback!.Id, $"Выбрано {callback.Data}");
+                if (int.TryParse(callback.Data, out _) && !database[userid]!.inlinebuttpressed!.Contains(int.Parse(callback.Data)))
                 {
-                    inlinebuttonstouser.TryAdd(userid, new List<int>(int.Parse(callbackQuery?.Data ?? "")));
-                    inlinebuttonstouser[userid].Add(int.Parse(callbackQuery?.Data ?? ""));
+                    database[userid]!.inlinebuttpressed!.Add(int.Parse(callback?.Data ?? ""));
                 }
-                else if (callbackQuery.Data == "send" && inlinebuttonstouser.ContainsKey(userid))
+                else if (callback.Data == "send" && database[userid]!.inlinebuttpressed!.Count != 0)
                 {
-                    inlinebuttonstouser[userid].Sort();
-                    for (int i = 1; i < inlinebuttonstouser[userid].Count; i++)
-                    {
-                        if (inlinebuttonstouser[userid][i - 1] == inlinebuttonstouser[userid][i])
-                        {
-                            inlinebuttonstouser[userid].RemoveAt(i - 1);
-                        }
-                    }
-                    Console.WriteLine("Picked symptoms for: " + userid);
-                    for (int i = 0; i < inlinebuttonstouser[userid].Count; i++)
-                    {
-                        Console.WriteLine(inlinebuttonstouser[userid][i]);
-                    }
-                    await botclient.SendTextMessageAsync(callbackQuery!.Message!.Chat!.Id, Dictionarypreparer.symptomhandler(inlinebuttonstouser[userid], SymptomsList!), parseMode: ParseMode.Html);
-
+                    database[userid]!.inlinebuttpressed!.Sort();
+                    await botclient.SendTextMessageAsync(callback!.Message!.Chat!.Id, Dictionarypreparer.symptomhandler(database[userid]!.inlinebuttpressed!, SymptomsList!), parseMode: ParseMode.Html);
+                    database[userid]!.inlinebuttpressed!.Clear();
+                    database[userid].inlinesymptomkey = false;
+                    await botclient.EditMessageReplyMarkupAsync(userid, database[userid].lastmessagebeforeinline + 2);
                 }
-                //await botclient.AnswerCallbackQueryAsync(callbackQuery!.Id, $"Received {callbackQuery.Data}");
-                //await botclient.SendTextMessageAsync(callbackQuery!.Message.Chat.Id, $"Received {callbackQuery.Data}");
-                //Console.WriteLine(callbackQuery.Data);
+                else if (callback.Data == "cancel" && database[userid]!.inlinebuttpressed!.Count != 0)
+                {
+                    database[userid]!.inlinebuttpressed!.Clear();
+                }
+                Dictionarypreparer.DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
             }
 
 
             if (message == null || message.Type != MessageType.Text) return;
             string TextMessage = message!.Text!.ToLower();
             userid = message.Chat.Id;
+            if (TextMessage == botword["textbuttondefinitionofdisease"]) { database[userid].lastmessagebeforeinline = message.MessageId; }
 
 
-            Console.WriteLine(message.Chat.LinkedChatId);
-            Console.WriteLine(message.Chat.Location);
-            Console.WriteLine(message.Chat.Title);
-            Console.WriteLine(message.Chat.InviteLink);
             User user = new User
             {
                 name = message!.Chat.FirstName ?? "no name"
@@ -84,8 +71,9 @@ namespace Program
             }
 
 
+
             Console.WriteLine("maintmenu: " + database[userid].mainmenu + " symptommenu: " + database[userid].symptommenu);
-            Console.WriteLine("Username: " + message.Chat.FirstName +/* " " + "Mainmenu: " + !user[userid] +*/ " Message: " + message.Text + " Data: " + message.Date.ToLocalTime());
+            Console.WriteLine("Username: " + message.Chat.FirstName + " Message: " + message.Text + " Data: " + message.Date.ToLocalTime());
 
 
             if (TextMessage == "/start")
@@ -94,8 +82,6 @@ namespace Program
                 database[userid].symptommenu = false;
                 await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri("https://cdn.tlgrm.app/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/1.webp"));
                 await botclient.SendTextMessageAsync(message.Chat.Id, database[userid].name + " " + botword["textwelcome"], parseMode: ParseMode.Html, replyMarkup: Keyboard.welcomkeyboard);
-                //await botclient.SendTextMessageAsync(message.Chat.Id, botword["textwelcome2"], parseMode: ParseMode.Html, disableNotification: true, replyMarkup: Keyboard.welcomkeyboard);
-
             }
 
             if (database[userid].mainmenu)
@@ -106,7 +92,8 @@ namespace Program
                     database[userid].symptommenu = true;
                     await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat"], replyMarkup: Keyboard.symptomkeyboard, disableNotification: true);
                     await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat2"], replyMarkup: Keyboard.inlineKeyboard, parseMode: ParseMode.Html, disableNotification: true);
-                    inlinebuttonstouser.Remove(userid);
+                    database[userid].inlinesymptomkey = true;
+                    database[userid]!.inlinebuttpressed!.Clear();
                     TextMessage = "";
                 }
                 else if (TextMessage == botword["textbuttonreference"])
@@ -129,15 +116,13 @@ namespace Program
 
 
 
-                if (TextMessage != "" && database[userid].mainmenu == false) //проверка правильности входных ванных
+                if (database[userid].mainmenu == false && database[userid].inlinesymptomkey == false) //проверка правильности входных ванных
                 {
                     bool wrongmessage = false;//неправильные данных
                     string buf = "";//буфер строк
                     int countinputsymptoms = 1;//для расчетов
                     int[] symptomsarray = new int[settings!.countsymptoms];//введеные симптомы
 
-
-                    //await botclient.SendTextMessageAsync(message.Chat.Id, "Проверка значений....");
                     //проверка формата строки
                     for (int i = 0; i < TextMessage.Length; i++)
                     {
@@ -154,7 +139,7 @@ namespace Program
                     if (wrongmessage)
                     {
                         await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textwronginput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId);
-
+                        return;
                     }
                     //исключение проблем 
 
@@ -243,6 +228,7 @@ namespace Program
             Console.WriteLine(ErrorMessage);
             return Task.CompletedTask;
         }
+
 
 
     }

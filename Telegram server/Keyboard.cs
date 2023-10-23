@@ -56,6 +56,7 @@ namespace Program
                 new []
                 {
                     InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textgetsymptomsinline"], callbackData: "send"),
+                    InlineKeyboardButton.WithCallbackData(text: TelegramBot.botword["textcancelinline"], callbackData: "cancel"),
                 },
             });
         public static InlineKeyboardMarkup inlinelinkes = new(new[]

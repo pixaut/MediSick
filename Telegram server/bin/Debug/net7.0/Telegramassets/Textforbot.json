@@ -110,7 +110,11 @@
         },
         {
             "TextName": "textgetsymptomsinline",
-            "Text": "Получить симптомы для выбора"
+            "Text": "Получить список"
+        },
+        {
+            "TextName": "textcancelinline",
+            "Text": "Отмена ввода"
         },
         {
             "TextName": "creatorlinklinline",

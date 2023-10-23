@@ -44,14 +44,19 @@ namespace Program
 
     public class User
     {
+        public int lastmessagebeforeinline { get; set; } = 0;
         public bool symptommenu { get; set; } = false;
         public bool mainmenu { get; set; } = true;
+        public bool inlinesymptomkey { get; set; } = false;
         public string name { get; set; } = "no name";
+        public List<int>? inlinebuttpressed = new List<int>();
+
         public User()
         {
             mainmenu = mainmenu;
             symptommenu = symptommenu;
             name = name;
+            inlinesymptomkey = inlinesymptomkey;
         }
     }
 }

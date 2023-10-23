@@ -45,6 +45,9 @@ namespace TelegramBot
 
         async static Task Update(ITelegramBotClient botclient, Update update, CancellationToken token)
         {
+            int countsymptoms = 13; //количество симптомов
+            int[] symptomsarray = new int[countsymptoms];
+            string buf = "";//буфер строк
 
             //обработка входных данных
             var message = update.Message;
@@ -123,7 +126,6 @@ namespace TelegramBot
                         }
                     default: break;
                 }
-                //await botclient.SendTextMessageAsync(message.Chat.Id, " ", replyMarkup: welcomkeyboard);
             }
             if (symptommenu)
             {
@@ -147,14 +149,35 @@ namespace TelegramBot
                 if (TextMessage != "" && mainmenu == false)
                 {
                     await botclient.SendTextMessageAsync(message.Chat.Id, "Проверка значений....");
-                    if (TextMessage == "cock")
+                    for (int i = 0, j = 0; i < TextMessage.Length; i++)
                     {
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "Успех!");
+
+
+                        if (TextMessage[i] == ' ')
+                        {
+                            Console.WriteLine(i + " " + TextMessage.Length);
+                            symptomsarray[j] = Int32.Parse(buf);
+                            j++;
+                            buf = "";
+                        }
+                        else buf += TextMessage[i];
                     }
-                    else
+                    symptomsarray[^1] += Int32.Parse(buf);
+                    Array.Sort(symptomsarray);
+
+                    for (int i = 0; i < countsymptoms; i++)
                     {
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "Неправильные данные!");
+                        if (symptomsarray[i] == symptomsarray[i + 1] && symptomsarray[i] != 0)
+                        {
+                            Console.WriteLine("Неправильные данные!Перепешите пожалуйста!");
+                            await botclient.SendTextMessageAsync(message.Chat.Id, "Неправильные данные!Перепешите пожалуйста!");
+
+                            return;
+                        }
+                        Console.WriteLine("1");
                     }
+                    await botclient.SendTextMessageAsync(message.Chat.Id, "Успех!");
+
 
 
                 }

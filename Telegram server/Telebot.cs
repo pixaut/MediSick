@@ -223,6 +223,13 @@ namespace Program
                     InlineKeyboardButton.WithCallbackData(text: "Получить симптомы для выбора", callbackData: "send"),
                 },
             });
+            InlineKeyboardMarkup inlinelinkes = new(new[]
+            {
+                InlineKeyboardButton.WithUrl(text: "Creator",url: "https://github.com/DrgNBoN"),
+                InlineKeyboardButton.WithUrl(text: "TeamLid",url: "https://github.com/pixaut"),
+                InlineKeyboardButton.WithUrl(text: "Helper",url: "https://github.com/epkorq"),
+                InlineKeyboardButton.WithUrl(text: "GitHub",url: "https://github.com/pixaut/A.A.R.O.N")
+            });
             //отрисовка клавиатур
             if (TextMessage == "/restart")
             {
@@ -268,7 +275,7 @@ namespace Program
                         }
                     case buttonreference:
                         {
-                            await botclient.SendTextMessageAsync(message.Chat.Id, textreference, replyMarkup: welcomkeyboard, disableNotification: true);
+                            await botclient.SendTextMessageAsync(message.Chat.Id, textreference, replyMarkup: inlinelinkes, disableNotification: true);
 
                             break;
                         }

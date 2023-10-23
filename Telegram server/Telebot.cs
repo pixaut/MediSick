@@ -3,21 +3,7 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Exceptions;
-using Microsoft.EntityFrameworkCore.Migrations.Operations;
-using System.Collections;
-using System.Numerics;
-using System.Collections.Generic;
-
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
-using System.Net;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.InteropServices.Marshalling;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Program
 {
@@ -26,34 +12,24 @@ namespace Program
     {
         private static Dictionary<string, string> botword = new Dictionary<string, string>();
         private static Dictionary<long, User> database = new Dictionary<long, User>();
+        private static Settings settings = JsonConvert.DeserializeObject<Settings>(System.IO.File.ReadAllText(@"Telegramassets/Botsettings.json"));
         private static long userid;
-        private static bool symptommenu = false;
-        private static bool mainmenu = true;
-        private static Dictionary<long, bool> user = new Dictionary<long, bool>();
+
         private static Dictionary<long, List<int>> inlinebuttonstouser = new Dictionary<long, List<int>>();
-        private static int countsymptoms = 97; //количество симптомов
+
 
         private static Textbot? Textbot = JsonConvert.DeserializeObject<Textbot>(System.IO.File.ReadAllText(@"Telegramassets/Textforbot.json"));
         private static SymptomsList? SymptomsList = JsonConvert.DeserializeObject<SymptomsList>(System.IO.File.ReadAllText(@"Telegramassets/SymptomsList.json"));
 
-        private static string pathdatabasejson = "Telegramassets/Database.json";
 
         static void Main(string[] args)
         {
-            User user = new User
-            {
-                mainmenu = true,
-                symptommenu = true
-            };
 
+            Console.WriteLine(settings.countsymptoms);
 
             botword = Dictionarypreparer.BotwordDictpreparer(botword, Textbot);
 
-            database = Dictionarypreparer.DatabaseDictFillFromJSON(database, pathdatabasejson);
-
-            database.TryAdd(117, user);
-
-            Dictionarypreparer.DatabaseDictSaverToJSON(database, pathdatabasejson);
+            database = Dictionarypreparer.DatabaseDictFillFromJSON(database, settings.pathdatabasejson);
 
 
 
@@ -61,9 +37,6 @@ namespace Program
 
 
 
-
-
-            //Console.WriteLine(JsonConvert.SerializeObject(database));
 
 
             //Console.WriteLine(botword["textwelcome"]);
@@ -82,7 +55,7 @@ namespace Program
         {
             int countinputsymptoms = 1; //количество симптомов
             int air;//заглушка
-            int[] symptomsarray = new int[countsymptoms];//введеные симптомы
+            int[] symptomsarray = new int[settings.countsymptoms];//введеные симптомы
             string buf = "";//буфер строк
             bool wrongmessage = false;//неправильные данных
             var message = update.Message;
@@ -101,7 +74,7 @@ namespace Program
 
 
 
-            if (update.Type == UpdateType.CallbackQuery && userid > 0 && symptommenu)
+            if (update.Type == UpdateType.CallbackQuery && userid > 0 && database[userid].symptommenu)
             {
                 //Console.WriteLine(userid);
                 CallbackQuery callbackQuery = update!.CallbackQuery!;
@@ -127,7 +100,7 @@ namespace Program
                     {
                         Console.WriteLine(inlinebuttonstouser[userid][i]);
                     }
-                    //await botclient.SendTextMessageAsync(callbackQuery!.Message!.Chat!.Id, symptomhandler(inlinebuttonstouser[userid], SymptomsList), parseMode: ParseMode.Html);
+                    await botclient.SendTextMessageAsync(callbackQuery!.Message!.Chat!.Id, Dictionarypreparer.symptomhandler(inlinebuttonstouser[userid], SymptomsList), parseMode: ParseMode.Html);
 
                 }
                 //await botclient.AnswerCallbackQueryAsync(callbackQuery!.Id, $"Received {callbackQuery.Data}");
@@ -137,49 +110,31 @@ namespace Program
             }
 
 
-
-
-            //Console.WriteLine(userid);
-            //обработка входных данных
-
             if (message == null || message.Type != MessageType.Text) return;
             string TextMessage = message!.Text!.ToLower();
             userid = update!.Message!.Chat!.Id;
 
-            //userid = message.Chat.Id;
-
-            //Console.WriteLine(update.Type + "  " + userid);
 
 
 
-            //обработка входных данных
-
-
-            //обработка юзеров
 
 
 
-            if (user.ContainsKey(userid) == false)
+            User user = new User();
+
+            if (database.ContainsKey(userid) == false)
             {
                 Console.WriteLine("новый пользователь:   " + message.Chat.FirstName);
-                mainmenu = true;
-                symptommenu = false;
-                user.Add(userid, true);
+                database.TryAdd(userid, user);
             }
-            if (user[userid])
-            {
-                mainmenu = true;
-                symptommenu = false;
-            }
-            if (!user[userid])
-            {
-                mainmenu = false;
-                symptommenu = true;
-            }
-            //обработка юзеров
+
+
+            Console.WriteLine("maintmenu: " + database[userid].mainmenu + " symptommenu: " + database[userid].symptommenu);
 
 
             Console.WriteLine("Username: " + message.Chat.FirstName +/* " " + "Mainmenu: " + !user[userid] +*/ " Message: " + message.Text + " Data: " + message.Date.ToLocalTime());
+
+
 
             //отрисовка клавиатур
             ReplyKeyboardMarkup welcomkeyboard = new(new[]
@@ -244,21 +199,24 @@ namespace Program
                 InlineKeyboardButton.WithUrl(text: "Helper2",url: botword["helper2linklinline"]),
                 InlineKeyboardButton.WithUrl(text: "GitHub",url: botword["githublinklinline"])
             });
-            //отрисовка клавиатур
-            if (TextMessage == "/restart")
+            //обработка клавиатур
+
+
+
+
+            if (TextMessage == "/start")
             {
-                mainmenu = true;
-                symptommenu = false;
-                user.Remove(userid);
+                database[userid].mainmenu = true;
+                database[userid].symptommenu = false;
                 await botclient.SendTextMessageAsync(message.Chat.Id, "<b>Выбирайте что вам необходимо:</b>", parseMode: ParseMode.Html, disableNotification: true, replyMarkup: welcomkeyboard);
             }
-            //Console.WriteLine(update?.CallbackQuery?.Data ?? "null");
 
 
 
 
 
-            if (mainmenu)
+
+            if (database[userid].mainmenu)
             {
                 if (TextMessage == "/start")
                 {
@@ -267,9 +225,8 @@ namespace Program
                 }
                 else if (TextMessage == botword["textbuttondefinitionofdisease"])
                 {
-                    mainmenu = false;
-                    symptommenu = true;
-                    user[userid] = false;
+                    database[userid].mainmenu = false;
+                    database[userid].symptommenu = true;
                     await botclient.SendTextMessageAsync(message.Chat.Id, "Ввод симптомов:", replyMarkup: symptomkeyboard, disableNotification: true);
                     await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat"], replyMarkup: inlineKeyboard, parseMode: ParseMode.Html, disableNotification: true);
                     TextMessage = "";
@@ -280,22 +237,21 @@ namespace Program
                 }
                 else return;
             }
-            if (symptommenu)
+
+            if (database[userid].symptommenu)
             {
                 if (TextMessage == botword["textbuttonbacktomainmenu"])
                 {
                     await botclient.SendTextMessageAsync(message.Chat.Id, "<b>Выбирайте что вам необходимо:</b>", parseMode: ParseMode.Html, replyMarkup: welcomkeyboard, disableNotification: true);
-                    mainmenu = true;
-                    symptommenu = false;
-                    user[userid] = true;
-                    return;
+                    database[userid].mainmenu = true;
+                    database[userid].symptommenu = false;
                 }
 
 
 
 
 
-                if (TextMessage != "" && mainmenu == false)
+                if (TextMessage != "" && database[userid].mainmenu == false)
                 {
                     //await botclient.SendTextMessageAsync(message.Chat.Id, "Проверка значений....");
                     //проверка формата строки
@@ -336,7 +292,7 @@ namespace Program
                     //подготовка массива
 
                     //проверка массива
-                    if (symptomsarray[0] > countsymptoms || symptomsarray[0] == 0) wrongmessage = true;
+                    if (symptomsarray[0] > settings.countsymptoms || symptomsarray[0] == 0) wrongmessage = true;
                     for (int i = 1; i < countinputsymptoms; i++)
                     {
                         if (symptomsarray[i - 1] == symptomsarray[i])
@@ -347,7 +303,7 @@ namespace Program
 
                         if (i == countinputsymptoms - 1)
                         {
-                            if (symptomsarray[i] > countsymptoms)
+                            if (symptomsarray[i] > settings.countsymptoms)
                             {
                                 wrongmessage = true;
                                 break;
@@ -356,7 +312,7 @@ namespace Program
                         }
                         else
                         {
-                            if (symptomsarray[i - 1] > countsymptoms)
+                            if (symptomsarray[i - 1] > settings.countsymptoms)
                             {
                                 wrongmessage = true;
                                 break;
@@ -383,34 +339,12 @@ namespace Program
                     //отправка на обработку нейросети
                 }
             }
-            /*
-            if (lastusername != username && flagmessage == false)
-            {
-                flagmessage = true;
-                lastusername = username;
-            }
-            else
-            {
-                flagmessage = false;
-            }
-            Console.WriteLine(username + "  " + lastusername);
-            */
+            Console.WriteLine("data updated");
+            Dictionarypreparer.DatabaseDictSaverToJSON(database, settings.pathdatabasejson);
         }
 
 
-        private static string symptomhandler(List<int> select, SymptomsList symptoms)
-        {
-            string symptomsselected = ""; //= symptoms.Substring(symptoms.IndexOf("0-"), symptoms.IndexOf("-0") - symptoms.IndexOf("0-")).Remove(0, 3);
 
-            for (int i = 0; i < select.Count; i++)
-            {
-                symptomsselected += symptoms.Symptoms[i].List;
-            }
-            Console.WriteLine(symptomsselected);
-            return symptomsselected;
-
-
-        }
 
 
         private static Task Error(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
@@ -425,5 +359,7 @@ namespace Program
             Console.WriteLine(ErrorMessage);
             return Task.CompletedTask;
         }
+
+
     }
 }

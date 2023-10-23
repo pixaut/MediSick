@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Program
 {
+
     public class SymptomsList
     {
         public required Symptoms[] Symptoms { get; set; }
@@ -29,18 +30,30 @@ namespace Program
     }
 
 
+    public class Settings
+    {
+        public int countsymptoms { get; set; } = 0;
+        public string pathdatabasejson { get; set; } = "";
+        public string pathtextforbotjson { get; set; } = "";
+        public string pathsymptomslistjson { get; set; } = "";
+        public Settings()
+        {
+            countsymptoms = countsymptoms;
+            pathdatabasejson = pathdatabasejson;
+            pathtextforbotjson = pathtextforbotjson;
+            pathsymptomslistjson = pathsymptomslistjson;
+        }
+    }
 
 
     public class User
     {
-        public bool symptommenu { get; set; }
-        public bool mainmenu { get; set; }
+        public bool symptommenu { get; set; } = false;
+        public bool mainmenu { get; set; } = true;
         public User()
         {
             mainmenu = mainmenu;
             symptommenu = symptommenu;
         }
-
-
     }
 }

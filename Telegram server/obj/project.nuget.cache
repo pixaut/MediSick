@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "p2V5H69AHySl7HVyWCEwlQjc1/8AtBaZnFq753+0meRLfdZMdIY7k2zkFBq9KzPIvrT61umKTPAHc1G/LSwlDA==",
+  "dgSpecHash": "U869oHx8G6mt3F4FdSEmNI5ajild02nMMxuMLIycF1GuZzf3plUyzMYOA4QMgDjjlTk+FkPqwDh7aXcQU+xOpg==",
   "success": true,
-  "projectFilePath": "G:\\A.A.R.O.N\\Telegram server\\Telegram server.csproj",
+  "projectFilePath": "G:\\iTanks\\A.A.R.O.N-1\\Telegram server\\Telegram server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DrgNBoN\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\DrgNBoN\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.11\\microsoft.entityframeworkcore.7.0.11.nupkg.sha512",

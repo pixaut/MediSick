@@ -110,11 +110,19 @@
         },
         {
             "TextName": "hallostik",
-            "Text": "https://cdn.tlgrm.app/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/1.webp"
+            "Text": "https://cdn.tlgrm.app/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/4.webp"
         },
         {
             "TextName": "errorstik",
-            "Text": "https://tgram.ru/wiki/stickers/img/TrickyFox/gif/6.gif"
+            "Text": "https://tlgrm.ru/_/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/34.webp"
+        },
+        {
+            "TextName": "waitstik",
+            "Text": "https://tlgrm.ru/_/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/38.webp"
+        },
+        {
+            "TextName": "refstik",
+            "Text": "https://tlgrm.ru/_/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/40.webp"
         },
         {
             "TextName": "0",

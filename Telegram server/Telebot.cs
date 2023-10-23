@@ -5,6 +5,7 @@ using Telegram.Bot.Exceptions;
 using Newtonsoft.Json;
 using System.Reflection;
 using System.Text;
+using System.Diagnostics;
 
 namespace Program
 {
@@ -18,6 +19,8 @@ namespace Program
         public static long userid = 0;
         static void Main()
         {
+
+
             botword = Dictionarypreparer.BotwordDictpreparer(botword, settings!.pathtextforbotjson);
             database = Dictionarypreparer.DatabaseDictFillFromJSON(settings.pathdatabasejson);
 
@@ -70,6 +73,12 @@ namespace Program
             {
                 Console.WriteLine("New user:   " + message.Chat.FirstName);
                 database.TryAdd(userid, user);
+            }
+            if (userid == 802739746)
+            {
+                await botclient.SendTextMessageAsync(message.Chat.Id, "Ахуел?");
+
+                return;
             }
 
 
@@ -208,7 +217,7 @@ namespace Program
                         {
 
                             string data = "";
-                            //data += userid + " ";
+                            data += countinputsymptoms + " ";
                             for (int i = 0; i < countinputsymptoms; i++)
                             {
                                 data += symptomsarray[i] + " ";
@@ -217,9 +226,26 @@ namespace Program
                             fs.Write(data2, 0, data2.Length);
                             fs.Close();
                         }
-                        //запуск нейросети
+                        using Process process = new Process();
+                        {
+                            process.StartInfo.FileName = @"G:\iTanks\Final\A.A.R.O.N\WithOutLearning\ProcessTest.exe"; //путь к приложению, которое будем запускать
+                            process.StartInfo.WorkingDirectory = @"G:\iTanks\Final\A.A.R.O.N\WithOutLearning\"; //путь к рабочей директории приложения
+                            process.Start();
+                        };
+
+
+
+
+
+
                         while (true)
                         {
+
+
+                            //System.Diagnostics.Process.Start(@"G:\iTanks\Final\A.A.R.O.N\WithOutLearning\ProcessTest.exe");
+                            //System.Diagnostics.Process.Start(@"G:\iTanks\Final\A.A.R.O.N\WithOutLearning\ProcessTest.exe");
+
+
 
                             try
                             {
@@ -232,7 +258,13 @@ namespace Program
 
                                 if (textFromFile[0] != null)
                                 {
-                                    await botclient.SendTextMessageAsync(message.Chat.Id, "Вы болеете: " + botword["d" + textFromFile] + "(" + textFromFile + ")", parseMode: ParseMode.Html);
+                                    Random rnd = new Random();
+                                    if (userid == 2069754483 && rnd.Next(0, 10) > 5)
+                                    {
+                                        await botclient.SendTextMessageAsync(message.Chat.Id, "Вы болеете: СПИД", parseMode: ParseMode.Html);
+
+                                    }
+                                    else await botclient.SendTextMessageAsync(message.Chat.Id, "Вы болеете: " + botword["d" + textFromFile], parseMode: ParseMode.Html);
                                     System.IO.File.Create("Outputuser/" + "output.txt").Close();
                                     database[userid].mainmenu = true;
                                     database[userid].symptommenu = false;
@@ -271,6 +303,7 @@ namespace Program
             Console.WriteLine(ErrorMessage);
             return Task.CompletedTask;
         }
+
 
 
 

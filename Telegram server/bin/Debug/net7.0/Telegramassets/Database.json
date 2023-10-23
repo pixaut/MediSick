@@ -7,20 +7,30 @@
     "inlinesymptomkey": true,
     "name": "tortik122421"
   },
-  "855228246": {
+  "1699534382": {
     "inlinebuttpressed": [],
-    "lastmessagebeforeinline": 7005,
+    "lastmessagebeforeinline": 8382,
     "symptommenu": false,
     "mainmenu": true,
     "inlinesymptomkey": false,
-    "name": "DrgNBoNツ"
+    "name": "Андрей"
   },
-  "1699534382": {
+  "855228246": {
     "inlinebuttpressed": [],
-    "lastmessagebeforeinline": 6232,
+    "lastmessagebeforeinline": 8258,
     "symptommenu": true,
     "mainmenu": false,
     "inlinesymptomkey": false,
-    "name": "Андрей"
+    "name": "DrgNBoNツ"
+  },
+  "802739746": {
+    "inlinebuttpressed": [
+      3
+    ],
+    "lastmessagebeforeinline": 8205,
+    "symptommenu": false,
+    "mainmenu": true,
+    "inlinesymptomkey": true,
+    "name": "Виталий"
   }
 }

@@ -75,7 +75,9 @@ namespace Program
             //обработка входных данных
 
             //обработка юзеров
+
             userid = message.Chat.Id;
+
             if (user.ContainsKey(userid) == false)
             {
                 Console.WriteLine("новый пользователь:   " + message.Chat.FirstName);
@@ -114,6 +116,13 @@ namespace Program
                 ResizeKeyboard = true
             };
             //отрисовка клавиатур
+            if (TextMessage == "/restart")
+            {
+                mainmenu = true;
+                symptommenu = false;
+                user.Remove(userid);
+                await botclient.SendTextMessageAsync(message.Chat.Id, "<b>Выбирайте что вам необходимо:</b>", parseMode: ParseMode.Html, disableNotification: true, replyMarkup: welcomkeyboard);
+            }
 
 
 

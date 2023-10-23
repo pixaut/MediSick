@@ -1,6 +1,12 @@
 {
   "855228246": {
-    "symptommenu": false,
-    "mainmenu": true
+    "symptommenu": true,
+    "mainmenu": false,
+    "name": "DrgNBoNツ"
+  },
+  "2069754483": {
+    "symptommenu": true,
+    "mainmenu": false,
+    "name": "tortik122421"
   }
 }

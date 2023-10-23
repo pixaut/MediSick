@@ -2,5 +2,6 @@
     "countsymptoms": 97,
     "pathdatabasejson": "Telegramassets/Database.json",
     "pathtextforbotjson": "Telegramassets/Textforbot.json",
-    "pathsymptomslistjson": "Telegramassets/SymptomsList.json"
+    "pathsymptomslistjson": "Telegramassets/SymptomsList.json",
+    "token": "6525101854:AAFlyWBSUlLEAr_bL0ni4chPMyYwlz4nQF8"
 }

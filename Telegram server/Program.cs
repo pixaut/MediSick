@@ -77,7 +77,7 @@ namespace TelegramBot
             //обработка юзеров
 
 
-            Console.WriteLine(message.Chat.FirstName + " " + user[userid] + " " + message.Text);
+            Console.WriteLine("Username: " + message.Chat.FirstName + " " + "Mainmenu: " + !user[userid] + " Message: " + message.Text);
             //отрисовка клавиатур
             ReplyKeyboardMarkup welcomkeyboard = new(new[]
             {

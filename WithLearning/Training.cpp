@@ -11,7 +11,7 @@ int main(){
     char PathToTests[] = "..\\TrainingTests\\RandomTests.txt";
     char NetworkPath[] = "..\\NetworkDescription\\Network.txt";
     char NetworkSizePath[] = "..\\NetworkDescription\\NetworkSize.txt";
-    double s = 0.0,e = 0.0,SpeedOfLearning = 0.4;
+    double s = 0.0,e = 0.0,SpeedOfLearning = 0.3;
 
 
     fin.open(NetworkSizePath);
@@ -63,7 +63,7 @@ int main(){
                 input[c-1] = 1.0;
             }
             fin >> c;
-            rightanswer[c] = 1.0;
+            rightanswer[c-1] = 1.0;
             
             nn.SetInput(input);
             nn.ForwardFeed();
@@ -71,7 +71,7 @@ int main(){
 
             e += nn.ErrorCouter(rightanswer);
 
-            rightanswer[c] = 0.0;
+            rightanswer[c-1] = 0.0;
             if(nn.Predict() == c){
                 s += 1.0;
             }

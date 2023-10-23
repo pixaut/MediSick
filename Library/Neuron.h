@@ -4,13 +4,13 @@
 class Neuron
 {
 public:
-	double value, error, ActiveValue, bias;
+	double value, error, ActiveValue;
 
-	void Activate(){
-		ActiveValue = 1.0 / (1.0 + exp(-value)); 
+	void Activate() {
+		ActiveValue = 1.0 / (1.0 + exp(-value));
 	}
-	double proiz(){
-		return ActiveValue * (1.0 - ActiveValue); 
+	double proiz() {
+		return ActiveValue * (1.0 - ActiveValue);
 	}
 
 };

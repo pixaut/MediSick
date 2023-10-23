@@ -1,80 +1,72 @@
+#include <fstream>
 #include <vector>
 #include <iostream>
-#include <fstream>
-#include <ctime>
 #include <unordered_set>
-#include <utility>
+#include <string>
 
-int n,m,c;
+int N, n, c;
 std::string ans;
-std::vector< std::vector<int> > v;
-std::unordered_set<int> st;
+std::unordered_set<int> s;
+std::vector < std::vector<int> > v;
 
-std::string GetTest(){
+std::string GetTest() {
 
-    ans.clear();
-    st.clear();
-    int k = rand()%m;
-    int t = rand()%(v[k].size()/2)+v[k].size()/2;
+	s.clear();
+	ans.clear();
 
-    ans += std::to_string(t) + '\t';
+	int i = rand() % v.size();
+	int k = v[i].size() / 2 + rand() % (v[i].size() / 2) + 1;
 
-    while(st.size() < t){
-        st.insert(rand()%v[k].size());
-    }
+	while (s.size() < k) {
+		s.insert(v[i][rand()%v[i].size()]);
+	}
 
-    for(auto i:st){
-        ans += std::to_string(i) + ' ';
-    }
+	ans += std::to_string(k) + '\t';
 
-    ans += '\t' + std::to_string(k);
+	for (auto j : s) {
+		ans += std::to_string(j+1) + ' ';
+	}
 
-    return ans;
+	ans += std::to_string(i + 1);
+
+	return ans;
+
 }
 
-int main(){
 
-    srand(time(NULL));
+int main() {
 
-    std::ifstream fin("DescriptionOfSimphtones.txt");
-    std::ofstream fout("RandomTests.txt");
+	srand(time(0));
 
-    fin >> n >> m;
+	std::ifstream fin("DescriptionOfSimphtones.txt");
+	std::ofstream fout("RandomTests.txt");
 
-    v.resize(m);
+	fin >> N;
 
-    for(int i = 0;i < n;i++){
-        for(int j = 0;j < m;j++){
-            fin >> c;
-            if(c)v[j].push_back(i+1); 
-        }
-    }
-    fin.close();
-    
-    int k = 0;
+	v.resize(N);
 
-    for(auto i:v){
-        fout << i.size() << '\t';
-        for(auto j:i){
-            fout << j << ' ';
-        }
-        fout << k++ << '\n';
-    }
-    fout.close();
-    return 0;
+	for (int i = 0; i < N; i++) {
 
-    int N;
+		fin >> n;
 
-    std::cout << "Enter number of tests: ";
-    std::cin >> N;
+		for (int j = 0; j < n; j++) {
+			fin >> c;
+			v[i].push_back(c-1); //чтобы было от нуля
+		}
+		fin >> c;
+	}
 
+	int m;
 
-    fout << N << '\n';
-    for(int i = 0;i < N;i++){
-        fout << GetTest() << '\n';
-    }
+	std::cout << "Number of tests: ";
+	std::cin >> m;
 
-    fout.close();
+	fout << m << '\n';
 
+	for (int i = 0; i < m; i++) {
+		fout << GetTest() << '\n';
+	}
 
+	fin.close();
+	fout.close();
 }

@@ -3,6 +3,8 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Exceptions;
 using Newtonsoft.Json;
+using System.Reflection;
+using System.Text;
 
 namespace Program
 {
@@ -200,6 +202,50 @@ namespace Program
                         for (int i = 0; i < countinputsymptoms; i++)
                         {
                             Console.WriteLine(symptomsarray[i]);
+                        }
+                        System.IO.File.Create("Inputuser/" + "input.txt").Close();
+                        using (FileStream fs = new FileStream("Inputuser/" + "input.txt", FileMode.OpenOrCreate))
+                        {
+
+                            string data = "";
+                            //data += userid + " ";
+                            for (int i = 0; i < countinputsymptoms; i++)
+                            {
+                                data += symptomsarray[i] + " ";
+                            }
+                            byte[] data2 = Encoding.ASCII.GetBytes(data);
+                            fs.Write(data2, 0, data2.Length);
+                            fs.Close();
+                        }
+                        //запуск нейросети
+                        while (true)
+                        {
+
+                            try
+                            {
+                                FileStream fs = new FileStream("Outputuser/" + "output.txt", FileMode.Open);
+                                byte[] bfs = new byte[fs.Length];
+                                fs.Read(bfs, 0, bfs.Length);
+
+                                fs.Close();
+                                string textFromFile = Encoding.Default.GetString(bfs);
+
+                                if (textFromFile[0] != null)
+                                {
+                                    await botclient.SendTextMessageAsync(message.Chat.Id, "Вы болеете: " + botword["d" + textFromFile] + "(" + textFromFile + ")", parseMode: ParseMode.Html);
+                                    System.IO.File.Create("Outputuser/" + "output.txt").Close();
+                                    database[userid].mainmenu = true;
+                                    database[userid].symptommenu = false;
+                                    await botclient.SendTextMessageAsync(message.Chat.Id, database[userid].name + " " + botword["textwelcome2"], parseMode: ParseMode.Html, replyMarkup: Keyboard.welcomkeyboard, disableNotification: true);
+                                    break;
+                                }
+                            }
+                            catch (Exception en)
+                            {
+
+                            }
+
+
                         }
                     }
                     //отправка на обработку нейросети

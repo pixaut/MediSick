@@ -1,46 +1,34 @@
 {
   "5892162910": {
     "inlinebuttpressed": [],
-    "lastmessagebeforeinline": 9787,
+    "symptommenu": true,
+    "mainmenu": false,
+    "inlinesymptomkey": false,
+    "name": "Mason",
+    "lastmessage": ""
+  },
+  "2069754483": {
+    "inlinebuttpressed": [],
     "symptommenu": true,
     "mainmenu": false,
     "inlinesymptomkey": true,
-    "name": "Mason"
+    "name": "tortik122421",
+    "lastmessage": ""
+  },
+  "1699534382": {
+    "inlinebuttpressed": [],
+    "symptommenu": true,
+    "mainmenu": false,
+    "inlinesymptomkey": false,
+    "name": "Андрей",
+    "lastmessage": ""
   },
   "855228246": {
     "inlinebuttpressed": [],
-    "lastmessagebeforeinline": 9880,
-    "symptommenu": true,
-    "mainmenu": false,
-    "inlinesymptomkey": true,
-    "name": "DrgNBoNツ"
-  },
-  "2069754483": {
-    "inlinebuttpressed": [
-      9,
-      0,
-      2,
-      8,
-      7
-    ],
-    "lastmessagebeforeinline": 9868,
-    "symptommenu": true,
-    "mainmenu": false,
-    "inlinesymptomkey": true,
-    "name": "tortik122421"
-  },
-  "1699534382": {
-    "inlinebuttpressed": [
-      0,
-      8,
-      6,
-      2,
-      7
-    ],
-    "lastmessagebeforeinline": 9874,
-    "symptommenu": true,
-    "mainmenu": false,
-    "inlinesymptomkey": true,
-    "name": "Андрей"
+    "symptommenu": false,
+    "mainmenu": true,
+    "inlinesymptomkey": false,
+    "name": "DrgNBoNツ",
+    "lastmessage": "77 88 99"
   }
 }

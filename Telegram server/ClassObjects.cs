@@ -30,26 +30,35 @@ namespace Program
         public string pathdatabasejson { get; set; } = "";
         public string pathtextforbotjson { get; set; } = "";
         public string pathsymptomslistjson { get; set; } = "";
+        public string pathaiexe { get; set; } = "";
+        public string pathinputuser { get; set; } = "";
+        public string pathoutputuser { get; set; } = "";
+        public bool enablelogging { get; set; } = false;
         public Settings()
         {
+            pathaiexe = pathaiexe;
+            pathinputuser = pathinputuser;
+            pathoutputuser = pathoutputuser;
             countsymptoms = countsymptoms;
             pathdatabasejson = pathdatabasejson;
             pathtextforbotjson = pathtextforbotjson;
             pathsymptomslistjson = pathsymptomslistjson;
             countsymptoms = countsymptoms;
+            enablelogging = enablelogging;
         }
     }
 
 
     public class User
     {
-        public int lastmessagebeforeinline { get; set; } = 0;
+
         public bool symptommenu { get; set; } = false;
         public bool mainmenu { get; set; } = true;
         public bool inlinesymptomkey { get; set; } = false;
         public string name { get; set; } = "no name";
         public List<int>? inlinebuttpressed = new List<int>();
-        
+        public string lastmessage { get; set; } = "";
+
 
         public User()
         {
@@ -57,6 +66,7 @@ namespace Program
             symptommenu = symptommenu;
             name = name;
             inlinesymptomkey = inlinesymptomkey;
+            lastmessage = lastmessage;
         }
     }
 }

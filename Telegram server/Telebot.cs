@@ -33,9 +33,9 @@ namespace Program
             var message = update.Message;
             var callback = update.CallbackQuery;
 
-            if (update.Type == UpdateType.CallbackQuery && userid != 0 && database[userid].symptommenu)
+            if (update.Type == UpdateType.CallbackQuery && userid != 0 && database[userid].symptommenu && database[userid].inlinesymptomkey)
             {
-                await botclient.AnswerCallbackQueryAsync(callback!.Id, $"Выбрано {callback.Data}");
+                await botclient.AnswerCallbackQueryAsync(callback!.Id, $"Выбрано {callback.Data}",cancellationToken: token);
                 if (int.TryParse(callback.Data, out _) && !database[userid]!.inlinebuttpressed!.Contains(int.Parse(callback.Data)))
                 {
                     database[userid]!.inlinebuttpressed!.Add(int.Parse(callback?.Data ?? ""));
@@ -43,19 +43,20 @@ namespace Program
                 else if (callback.Data == "send" && database[userid]!.inlinebuttpressed!.Count != 0)
                 {
                     database[userid]!.inlinebuttpressed!.Sort();
-                    await botclient.SendTextMessageAsync(callback!.Message!.Chat!.Id, Dictionarypreparer.symptomhandler(database[userid]!.inlinebuttpressed!, SymptomsList!), parseMode: ParseMode.Html);
+                    await botclient.SendTextMessageAsync(callback!.Message!.Chat!.Id, Dictionarypreparer.symptomhandler(database[userid]!.inlinebuttpressed!, SymptomsList!), parseMode: ParseMode.Html,cancellationToken: token);
                     database[userid]!.inlinebuttpressed!.Clear();
                     database[userid].inlinesymptomkey = false;
-                    await botclient.EditMessageReplyMarkupAsync(userid, database[userid].lastmessagebeforeinline + 2);
+                    //await botclient.EditMessageReplyMarkupAsync(userid, database[userid].lastmessagebeforeinline + 2);
                 }
                 else if (callback.Data == "cancel" && database[userid]!.inlinebuttpressed!.Count != 0)
                 {
                     database[userid]!.inlinebuttpressed!.Clear();
                 }
+                Console.WriteLine(callback.ChatInstance);
                 Dictionarypreparer.DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
             }
 
-
+            
             if (message == null || message.Type != MessageType.Text) return;
             string TextMessage = message!.Text!.ToLower();
             userid = message.Chat.Id;
@@ -82,46 +83,49 @@ namespace Program
             {
                 database[userid].mainmenu = true;
                 database[userid].symptommenu = false;
-                await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["hallostik"]));
-                await botclient.SendTextMessageAsync(message.Chat.Id, database[userid].name + " " + botword["textwelcome"], parseMode: ParseMode.Html, replyMarkup: Keyboard.welcomkeyboard);
+                database[userid].inlinesymptomkey = false;
+                await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["hallostik"]),cancellationToken: token);
+                await botclient.SendTextMessageAsync(message.Chat.Id, database[userid].name + " " + botword["textwelcome"], parseMode: ParseMode.Html, replyMarkup: Keyboard.welcomkeyboard,cancellationToken: token);
             }
 
-            if (database[userid].mainmenu)
+            if (database[userid].mainmenu && !database[userid].symptommenu && !database[userid].inlinesymptomkey)
             {
                 if (TextMessage == botword["textbuttondefinitionofdisease"])
                 {
                     database[userid].mainmenu = false;
                     database[userid].symptommenu = true;
-                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat"], replyMarkup: Keyboard.symptomkeyboard, disableNotification: true);
-                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat2"], replyMarkup: Keyboard.inlineKeyboard, parseMode: ParseMode.Html, disableNotification: true);
+                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat"], replyMarkup: Keyboard.symptomkeyboard, disableNotification: true,cancellationToken: token);
+                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat2"], replyMarkup: Keyboard.inlineKeyboard, parseMode: ParseMode.Html, disableNotification: true,cancellationToken: token);
                     database[userid].inlinesymptomkey = true;
                     database[userid]!.inlinebuttpressed!.Clear();
                     TextMessage = "";
                 }
                 else if (TextMessage == botword["textbuttonreference"])
                 {
-                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["textreference"], replyMarkup: Keyboard.inlinelinkes, disableNotification: true);
-                    await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["refstik"]));
+                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["textreference"], replyMarkup: Keyboard.inlinelinkes, disableNotification: true,cancellationToken: token);
+                    await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["refstik"]),cancellationToken: token);
                 }
                 else return;
             }
 
-            if (database[userid].symptommenu)
+            if (database[userid].mainmenu == false && database[userid].symptommenu == true)
             {
                 if (TextMessage == botword["textbuttonbacktomainmenu"])
                 {
-                    await botclient.SendTextMessageAsync(message.Chat.Id, database[userid].name + " " + botword["textwelcome2"], parseMode: ParseMode.Html, replyMarkup: Keyboard.welcomkeyboard, disableNotification: true);
+                    await botclient.SendTextMessageAsync(message.Chat.Id, database[userid].name + " " + botword["textwelcome2"], parseMode: ParseMode.Html, replyMarkup: Keyboard.welcomkeyboard, disableNotification: true,cancellationToken: token);
                     database[userid].mainmenu = true;
                     database[userid].symptommenu = false;
+                    database[userid].inlinesymptomkey = false;
                 }
 
 
 
 
 
-                if (database[userid].mainmenu == false && database[userid].inlinesymptomkey == false) //проверка правильности входных ванных
+                if (!database[userid].mainmenu && !database[userid].inlinesymptomkey && database[userid].symptommenu) //проверка правильности входных ванных
                 {
                     bool wrongmessage = false;//неправильные данных
+                    
                     string buf = "";//буфер строк
                     int countinputsymptoms = 1;//для расчетов
                     int[] symptomsarray = new int[settings!.countsymptoms];//введеные симптомы
@@ -142,8 +146,8 @@ namespace Program
                     //исключение проблем 
                     if (wrongmessage)
                     {
-                        await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["errorstik"]));
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textwronginput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId);
+                        await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["errorstik"]),cancellationToken: token);
+                        await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textwronginput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId,cancellationToken: token);
                         return;
                     }
                     //исключение проблем 
@@ -191,64 +195,54 @@ namespace Program
                     //отправка на обработку нейросети
                     if (wrongmessage)
                     {
-                        await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["errorstik"]));
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textwronginput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId);
+                        await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["errorstik"]),cancellationToken: token);
+                        await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textwronginput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId,cancellationToken: token);
 
                     }
                     else
                     {
-                        await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["waitstik"]));
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textcorrectinput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId);
+                        await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["waitstik"]),cancellationToken: token);
+                        await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textcorrectinput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId,cancellationToken: token);
                         for (int i = 0; i < countinputsymptoms; i++)
                         {
                             Console.WriteLine(symptomsarray[i]);
                         }
-                        System.IO.File.Create("Inputuser/" + "input.txt").Close();
-                        using (FileStream fs = new FileStream("Inputuser/" + "input.txt", FileMode.OpenOrCreate))
-                        {
 
-                            string data = "";
-                            //data += userid + " ";
-                            for (int i = 0; i < countinputsymptoms; i++)
-                            {
-                                data += symptomsarray[i] + " ";
-                            }
-                            byte[] data2 = Encoding.ASCII.GetBytes(data);
-                            fs.Write(data2, 0, data2.Length);
+                        //пересоздание файла и запись
+                        using (FileStream fs = new FileStream("Inputuser/" + "input.txt", FileMode.Truncate))
+                        {
+                            byte[] inpiutfile = Encoding.ASCII.GetBytes(countinputsymptoms + " " + String.Join(" ", symptomsarray));
+                            fs.Write(inpiutfile, 0, inpiutfile.Length);
                             fs.Close();
                         }
+                        //пересоздание файла и запись
                         //запуск нейросети
+                        /////////////////////////////////
+                        //запуск нейросети
+                        
+                        
                         while (true)
                         {
-
                             try
                             {
                                 FileStream fs = new FileStream("Outputuser/" + "output.txt", FileMode.Open);
-                                byte[] bfs = new byte[fs.Length];
-                                fs.Read(bfs, 0, bfs.Length);
-
+                                byte[] buffer = new byte[fs.Length];
+                                fs.Read(buffer, 0, buffer.Length);
+                                string textFromFile = Encoding.Default.GetString(buffer);
                                 fs.Close();
-                                string textFromFile = Encoding.Default.GetString(bfs);
-
-                                if (textFromFile[0] != null)
+                                if (textFromFile != "")
                                 {
-                                    await botclient.SendTextMessageAsync(message.Chat.Id, "Вы болеете: " + botword["d" + textFromFile] + "(" + textFromFile + ")", parseMode: ParseMode.Html);
+                                    await botclient.SendTextMessageAsync(message.Chat.Id, "Вы болеете: " + botword["d" + textFromFile], parseMode: ParseMode.Html,cancellationToken: token);
                                     System.IO.File.Create("Outputuser/" + "output.txt").Close();
                                     database[userid].mainmenu = true;
                                     database[userid].symptommenu = false;
-                                    await botclient.SendTextMessageAsync(message.Chat.Id, database[userid].name + " " + botword["textwelcome2"], parseMode: ParseMode.Html, replyMarkup: Keyboard.welcomkeyboard, disableNotification: true);
+                                    await botclient.SendTextMessageAsync(message.Chat.Id, database[userid].name + " " + botword["textwelcome2"], parseMode: ParseMode.Html, replyMarkup: Keyboard.welcomkeyboard, disableNotification: true,cancellationToken: token);
                                     break;
                                 }
                             }
-                            catch (Exception en)
-                            {
-
-                            }
-
-
+                            catch (Exception){}
                         }
                     }
-                    //отправка на обработку нейросети
                 }
             }
             Console.WriteLine("Data JSON updated:");

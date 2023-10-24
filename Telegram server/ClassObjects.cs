@@ -49,6 +49,7 @@ namespace Program
         public bool inlinesymptomkey { get; set; } = false;
         public string name { get; set; } = "no name";
         public List<int>? inlinebuttpressed = new List<int>();
+        
 
         public User()
         {

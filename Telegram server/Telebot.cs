@@ -82,7 +82,7 @@ namespace Program
             database[userid].lastmessage = TextMessage;
 
             //Logging:
-            if (settings!.enablelogging) Console.WriteLine("------------------------------------------------------\nNewMessage⬇️\n" + $"Userid: {userid}\n" + $"Username: {message.Chat.FirstName}\n" + $"Message: {message.Text}\n" + $"Data: {message.Date.ToLocalTime()}\n" + "------------------------------------------------------\n");
+            if (settings!.enablelogging) Console.WriteLine("------------------------------------------------------\nNew Message⬇️\n" + $"Userid: {userid}\n" + $"Username: {message.Chat.FirstName}\n" + $"Message: {message.Text}\n" + $"Data: {message.Date.ToLocalTime()}\n" + "------------------------------------------------------\n");
 
             //Check for "/start":
             if (TextMessage == "/start")

@@ -24,24 +24,19 @@ int main(){
     
     NeuronNetwork nn(layers,size);                          //
     nn.SetRandom();                                         //
-
     
     double *input = new double[size[0]];
-    std::fill(input,input+size[0],0.0);
-
     double *rightanswer = new double[size[layers-1]];
     std::fill(rightanswer,rightanswer+size[layers-1],0.0);
 
     bool Svt = false;
 
-    while(s < 95.0){
+    while(s < 98.0){
 
         s = 0.0,e = 0.0;
 
         fin.open("Button.txt");
-
         fin >> Svt;
-
         fin.close();
 
         if(Svt){
@@ -72,7 +67,7 @@ int main(){
             e += nn.ErrorCouter(rightanswer);
 
             rightanswer[c-1] = 0.0;
-            if(nn.Predict() == c){
+            if(nn.Predict() == c-1){
                 s += 1.0;
             }
 

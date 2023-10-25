@@ -29,9 +29,9 @@ public:
 
             neurons[i][p[i]].ActiveValue = 1.0;
 
-            if (i == n - 1)break;
-            weights[i] = new double* [p[i]];
-            for (int j = 0; j < p[i]; j++) {
+            if(i == n-1)break;
+            weights[i] = new double* [p[i]+1];
+            for (int j = 0; j <= p[i]; j++) {
                 weights[i][j] = new double[p[i + 1]];
             }
 
@@ -62,7 +62,7 @@ public:
         for (int i = 1; i < layers; i++) {
             for (int j = 0; j < size[i]; j++) {
                 neurons[i][j].value = 0.0;
-                for (int k = 0; k < size[i - 1]; k++) {
+                for (int k = 0; k <= size[i - 1]; k++) {
                     neurons[i][j].value += neurons[i - 1][k].ActiveValue * weights[i - 1][k][j];
                 }
                 neurons[i][j].Activate();
@@ -121,16 +121,18 @@ public:
         }
 
         for (int i = layers - 2; i >= 0; i--) {
+            
+            Backward(i,0,size[i]+1,ls);
 
-            std::thread th1([this, i, ls]() { Backward(i, 0, size[i]/4 , ls); });
-            std::thread th2([this, i, ls]() { Backward(i, size[i] / 4 + 1, size[i] / 2, ls); });
-            std::thread th3([this, i, ls]() { Backward(i, size[i] / 2 + 1, size[i] * 3 / 4, ls); });
-            std::thread th4([this, i, ls]() { Backward(i, size[i] * 3 / 4 + 1, size[i] , ls); });
+            // std::thread th1([this, i, ls]() { Backward(i, 0, size[i]/4 , ls); });
+            // std::thread th2([this, i, ls]() { Backward(i, size[i] / 4 + 1, size[i] / 2, ls); });
+            // std::thread th3([this, i, ls]() { Backward(i, size[i] / 2 + 1, size[i] * 3 / 4, ls); });
+            // std::thread th4([this, i, ls]() { Backward(i, size[i] * 3 / 4 + 1, size[i] , ls); });
 
-            th1.join();
-            th2.join();
-            th3.join();
-            th4.join();
+            // th1.join();
+            // th2.join();
+            // th3.join();
+            // th4.join();
 
         }
     }
@@ -146,6 +148,13 @@ public:
                 fout << '\n';
             }
         }
+        fout << '\n';
+        for(int i = 0;i < layers-1;i++){
+            for(int j = 0;j < size[i+1];j++){
+                fout << weights[i][size[i]][j] << ' ';
+            }
+        }
+
 
         fout.close();
     }
@@ -158,6 +167,14 @@ public:
                     if (fin >> weights[i][j][k]) {
                         // Read a weight value from the file
                     }
+                }
+            }
+        }
+
+        for(int i = 0;i < layers-1;i++){
+            for(int j = 0;j < size[i+1];j++){
+                if(fin >> weights[i][size[i]][j] ){
+
                 }
             }
         }

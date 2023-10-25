@@ -5,14 +5,13 @@
 int main(){
 
    std::ifstream fin;
-
-    char UserId[256];                                                        // userid
+                                                 // userid
     int n,c;                                                                // quantity of simphtones, c - number of symphtone
                                                         // 50 - number of input values
 
     int layers;
 
-    fin.open("..\\NetworkDescription\\NetworkSize.txt");                    //
+    fin.open("..\\Network\\NetworkSize.txt");                    //
     fin >> layers;                                                          //
     int* size = new int[layers];                                            //
     for(int i = 0;i < layers;i++){                                          //          Descript Network
@@ -23,13 +22,12 @@ int main(){
    double input[size[0]];   
 
     NeuronNetwork nn(layers,size);                                          //                                            
-    nn.LoadNetwork("..\\NetworkDescription\\Network.txt");                  //
+    nn.LoadNetwork("..\\Network\\Network.txt");                  //
 
-    fin.open("input.txt");                                                  //
+    fin.open("..\\Telegram server\\bin\\Debug\\net7.0\\InOutUser\\input.txt");                                                  //
     
     std::fill(input,input+size[0],0.0);
 
-    fin >> UserId;                                                          //
     fin >> n;                                                               //
     for(int i = 0;i < n;i++){                                               //
         fin >> c;                                                           //  Input simphtones
@@ -41,8 +39,8 @@ int main(){
 
 
     nn.ForwardFeed();                                                       //
-    std::ofstream fout("output.txt");                                       //
-    fout << UserId << ' ' << nn.Predict()+1;                                  // do output
+    std::ofstream fout("..\\Telegram server\\bin\\Debug\\net7.0\\InOutUser\\output.txt");                                       //
+    fout << nn.Predict()+1;                                  // do output
     fout.close();                                                           //
 
    return 0;

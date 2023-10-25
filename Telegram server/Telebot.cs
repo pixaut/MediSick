@@ -212,8 +212,8 @@ namespace Program
                         {
                             Console.WriteLine(symptomsarray[i]);
                         }
-                        System.IO.File.Create("Inputuser/" + "input.txt").Close();
-                        using (FileStream fs = new FileStream("Inputuser/" + "input.txt", FileMode.OpenOrCreate))
+                        System.IO.File.Create("InOutUser/" + "input.txt").Close();
+                        using (FileStream fs = new FileStream("InOutUser/" + "input.txt", FileMode.OpenOrCreate))
                         {
 
                             string data = "";
@@ -228,8 +228,8 @@ namespace Program
                         }
                         using Process process = new Process();
                         {
-                            process.StartInfo.FileName = @"G:\iTanks\Final\A.A.R.O.N\WithOutLearning\ProcessTest.exe"; //путь к приложению, которое будем запускать
-                            process.StartInfo.WorkingDirectory = @"G:\iTanks\Final\A.A.R.O.N\WithOutLearning\"; //путь к рабочей директории приложения
+                            process.StartInfo.FileName = @"..\..\..\..\WithOutLearning\ProcessTest.exe"; //путь к приложению, которое будем запускать
+                            process.StartInfo.WorkingDirectory = @"..\..\..\..\WithOutLearning\"; //путь к рабочей директории приложения
                             process.Start();
                         };
 
@@ -249,7 +249,7 @@ namespace Program
 
                             try
                             {
-                                FileStream fs = new FileStream("Outputuser/" + "output.txt", FileMode.Open);
+                                FileStream fs = new FileStream("InOutUser/" + "output.txt", FileMode.Open);
                                 byte[] bfs = new byte[fs.Length];
                                 fs.Read(bfs, 0, bfs.Length);
 
@@ -265,7 +265,7 @@ namespace Program
 
                                     }
                                     else await botclient.SendTextMessageAsync(message.Chat.Id, "Вы болеете: " + botword["d" + textFromFile], parseMode: ParseMode.Html);
-                                    System.IO.File.Create("Outputuser/" + "output.txt").Close();
+                                    System.IO.File.Create("InOutUser/" + "output.txt").Close();
                                     database[userid].mainmenu = true;
                                     database[userid].symptommenu = false;
                                     await botclient.SendTextMessageAsync(message.Chat.Id, database[userid].name + " " + botword["textwelcome2"], parseMode: ParseMode.Html, replyMarkup: Keyboard.welcomkeyboard, disableNotification: true);

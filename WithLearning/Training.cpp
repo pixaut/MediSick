@@ -9,9 +9,9 @@ int main(){
 
     int layers,N,n,c;
     char PathToTests[] = "..\\TrainingTests\\RandomTests.txt";
-    char NetworkPath[] = "..\\NetworkDescription\\Network.txt";
-    char NetworkSizePath[] = "..\\NetworkDescription\\NetworkSize.txt";
-    double s = 0.0,e = 0.0,SpeedOfLearning = 0.3;
+    char NetworkPath[] = "..\\Network\\Network.txt";
+    char NetworkSizePath[] = "..\\Network\\NetworkSize.txt";
+    double s = 0.0,e = 0.0,SpeedOfLearning = 0.03;
 
 
     fin.open(NetworkSizePath);

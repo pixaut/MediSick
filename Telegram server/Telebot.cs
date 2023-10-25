@@ -109,8 +109,7 @@ namespace Program
                 }
                 else if (TextMessage == botword["textbuttonreference"])
                 {
-                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["textreference"], replyMarkup: Keyboard.inlinelinkes, disableNotification: true);
-                    await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["refstik"]));
+
                 }
                 else return;
             }
@@ -256,15 +255,9 @@ namespace Program
                                 fs.Close();
                                 string textFromFile = Encoding.Default.GetString(bfs);
 
-                                if (textFromFile[0] != null)
+                                if (textFromFile != "")
                                 {
-                                    Random rnd = new Random();
-                                    if (userid == 2069754483 && rnd.Next(0, 10) > 5)
-                                    {
-                                        await botclient.SendTextMessageAsync(message.Chat.Id, "Вы болеете: СПИД", parseMode: ParseMode.Html);
-
-                                    }
-                                    else await botclient.SendTextMessageAsync(message.Chat.Id, "Вы болеете: " + botword["d" + textFromFile], parseMode: ParseMode.Html);
+                                    await botclient.SendTextMessageAsync(message.Chat.Id, "Вы болеете: " + botword["d" + textFromFile], parseMode: ParseMode.Html);
                                     System.IO.File.Create("InOutUser/" + "output.txt").Close();
                                     database[userid].mainmenu = true;
                                     database[userid].symptommenu = false;

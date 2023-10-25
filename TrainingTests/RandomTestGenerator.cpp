@@ -4,21 +4,59 @@
 #include <unordered_set>
 #include <string>
 
+struct Bindings
+{
+	int SimInd;
+	char* Gender;
+	std::vector<int> Sicks;
+
+	int size(){
+		return Sicks.size();
+	}
+
+	void push_back(int value){
+		Sicks.push_back(value);
+	}
+
+	int operator[](int index){
+		return Sicks[index];
+	} 
+};
+
 int N, n, c;
 std::string ans;
 std::unordered_set<int> s;
-std::vector < std::vector<int> > v;
+std::vector < Bindings > v;
+
 
 std::string GetTest() {
 
 	s.clear();
 	ans.clear();
 
-	int i = rand() % v.size();
+	char* gender;
+	int i;
+
+	if(rand()%2 == 0){
+		gender = "man";
+	}else{
+		gender = "woman";
+	}
+
+	
+
+	if(v[i].Gender != "none"){
+		while(v[i].Gender != gender){
+			i = rand() % v.size();
+		}
+	}
+
+
 	int k = v[i].size() / 2 + rand() % (v[i].size() / 2) + 1;
+	int RandomIndex;
 
 	while (s.size() < k) {
-		s.insert(v[i][rand()%v[i].size()]);
+		s.insert(v[i][RandomIndex]);
 	}
 
 	ans += std::to_string(k) + '\t';
@@ -36,10 +74,12 @@ std::string GetTest() {
 
 int main() {
 
-	srand(time(0));
+	srand(time(NULL));
 
 	std::ifstream fin("DescriptionOfSimphtones.txt");
 	std::ofstream fout("RandomTests.txt");
+
+	char gender[10];
 
 	fin >> N;
 
@@ -47,8 +87,10 @@ int main() {
 
 	for (int i = 0; i < N; i++) {
 
+		fin >> gender;
 		fin >> n;
 
+		v[i].Gender = gender;
 		for (int j = 0; j < n; j++) {
 			fin >> c;
 			v[i].push_back(c-1); //чтобы было от нуля

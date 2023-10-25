@@ -188,7 +188,7 @@ public:
         double* ans = new double[size[layers-1]];
 
         for(int i = 0;i < size[layers-1];i++){
-            ans[i] = exp(neurons[layers-1][i].ActiveValue);
+            ans[i] = exp(neurons[layers-1][i].value);
             SE += ans[i];
         }
 

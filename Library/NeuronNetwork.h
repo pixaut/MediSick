@@ -165,4 +165,22 @@ public:
         fin.close();
     }
 
+    double* SoftMax(){
+
+        double SE = 0;
+        double* ans = new double[size[layers-1]];
+
+        for(int i = 0;i < size[layers-1];i++){
+            ans[i] = exp(neurons[layers-1][i].ActiveValue);
+            SE += ans[i];
+        }
+
+        for(int i = 0;i < size[layers-1];i++){
+            ans[i] = ans[i]/SE*100.0;
+        }
+
+        return ans;
+
+    }
+
 };

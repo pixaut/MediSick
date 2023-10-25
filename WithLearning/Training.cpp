@@ -11,7 +11,7 @@ int main(){
     char PathToTests[] = "..\\TrainingTests\\RandomTests.txt";
     char NetworkPath[] = "..\\Network\\Network.txt";
     char NetworkSizePath[] = "..\\Network\\NetworkSize.txt";
-    double s = 0.0,e = 0.0,SpeedOfLearning = 0.03;
+    double s = 0.0,e = 0.0,SpeedOfLearning = 0.3;
 
 
     fin.open(NetworkSizePath);

@@ -1,11 +1,13 @@
 {
   "5892162910": {
     "inlinebuttpressed": [],
-    "symptommenu": true,
-    "mainmenu": false,
+    "symptommenu": false,
+    "mainmenu": true,
     "inlinesymptomkey": false,
     "name": "Mason",
-    "lastmessage": ""
+    "lastmessage": "/start",
+    "gender": "man",
+    "language": "no set"
   },
   "2069754483": {
     "inlinebuttpressed": [],
@@ -13,22 +15,30 @@
     "mainmenu": false,
     "inlinesymptomkey": true,
     "name": "tortik122421",
-    "lastmessage": ""
+    "lastmessage": "",
+    "gender": "non",
+    "language": "no set"
   },
   "1699534382": {
-    "inlinebuttpressed": [],
-    "symptommenu": true,
-    "mainmenu": false,
-    "inlinesymptomkey": false,
-    "name": "Андрей",
-    "lastmessage": ""
-  },
-  "855228246": {
     "inlinebuttpressed": [],
     "symptommenu": false,
     "mainmenu": true,
     "inlinesymptomkey": false,
+    "name": "Андрей",
+    "lastmessage": "/start",
+    "gender": "non",
+    "language": "no set"
+  },
+  "855228246": {
+    "inlinebuttpressed": [
+      2
+    ],
+    "symptommenu": false,
+    "mainmenu": true,
+    "inlinesymptomkey": false,
     "name": "DrgNBoNツ",
-    "lastmessage": "77 88 99"
+    "lastmessage": "/start",
+    "gender": "man",
+    "language": "EN"
   }
 }

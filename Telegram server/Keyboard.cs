@@ -69,6 +69,22 @@ namespace Program
             InlineKeyboardButton.WithUrl(text: "Helper2",url: TelegramBot.botword["helper2linklinline"]),
             InlineKeyboardButton.WithUrl(text: "GitHub",url: TelegramBot.botword["githublinklinline"])
         });
+        public static InlineKeyboardMarkup inlinegenderkeyboard= new(new[]
+        {
+            new []
+            {
+                InlineKeyboardButton.WithCallbackData(text: "Мужчина", callbackData: "man"),
+                InlineKeyboardButton.WithCallbackData(text: "Женщина", callbackData: "woman"),
+            }
+        });
+        public static InlineKeyboardMarkup inlinelanguagekeyboard = new(new[]
+        {
+            new []
+            {
+                InlineKeyboardButton.WithCallbackData(text: "English", callbackData: "en"),
+                InlineKeyboardButton.WithCallbackData(text: "Russian", callbackData: "ru"),
+            }
+        });
 
     }
 }

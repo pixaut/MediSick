@@ -25,13 +25,13 @@ int main(){
    NeuronNetwork nn(layers,size);                                                                                    
    nn.LoadNetwork("..\\NetworkDescription\\Network.txt");                  
 
-   fin.open("..\\Telegram server\\bin\\Debug\\net7.0\\Inputuser\\input.txt");                                                  
+   fin.open("..\\Telegram server\\bin\\Debug\\net7.0\\InOutUser\\input.txt");                                                  
    
    std::fill(input,input+size[0],0.0);
 
     /*Input question*/
 
-   fin >> UserId;                                                          
+   //fin >> UserId;                                                          
    fin >> n;                                                               
    for(int i = 0;i < n;i++){                                               
        fin >> c;                                                           
@@ -42,8 +42,8 @@ int main(){
 
     /*Answer question*/
    nn.ForwardFeed();                                                       
-   std::ofstream fout("..\\Telegram server\\bin\\Debug\\net7.0\\Outputuser\\output.txt");                                       
-   fout << UserId << ' ' << nn.Predict()+1;       
+   std::ofstream fout("..\\Telegram server\\bin\\Debug\\net7.0\\InOutUser\\output.txt");                                       
+   fout << nn.Predict()+1;       
    fout.close();                                                           
 
    return 0;

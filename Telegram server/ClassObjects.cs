@@ -58,6 +58,8 @@ namespace Program
         public string name { get; set; } = "no name";
         public List<int>? inlinebuttpressed = new List<int>();
         public string lastmessage { get; set; } = "";
+        public string gender { get; set; } = "non";
+        public string language { get; set; } = "non";
 
 
         public User()
@@ -67,6 +69,8 @@ namespace Program
             name = name;
             inlinesymptomkey = inlinesymptomkey;
             lastmessage = lastmessage;
+            gender = gender;
+            language = language;
         }
     }
 }

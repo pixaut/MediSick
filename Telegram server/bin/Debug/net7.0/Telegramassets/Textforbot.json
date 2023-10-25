@@ -1,560 +1,560 @@
 {
-    "Textforbot": [
-        {
-            "TextName": "textwelcome2",
-            "Text": "<b>выбирайте что вам необходимо:</b>"
-        },
-        {
-            "TextName": "textwelcome",
-            "Text": "<b>-Привет!🙌</b>\n\n<b>MediSick</b>  <i>- твой личный помощник в мире медицины и определения болезней💚  \n   -Я здесь, чтобы помочь тебе разобраться в твоих симптомах и предложить возможные диагнозы😎</i>\n \n<b><ins>‼️Не забывай, что я не заменяю визит к врачу, но могу быть информативным источником для начала‼️</ins></b>"
-        },
-        {
-            "TextName": "textreference",
-            "Text": "MediSick является личным помощником в мире медицины, который доступен для вас в любое время. Он готов ответить на ваши вопросы и предложить рекомендации на основе введенных симптомов.\n -Определение болезней: Бот обладает базой данных, содержащей информацию о различных заболеваниях и связанных с ними симптомах. Он анализирует введенные вами симптомы и сравнивает их с базой данных, чтобы предложить возможные диагнозы. \n -Поиск лекарств: Бот позволяет пользователям искать информацию о конкретных лекарствах. Пользователь может ввести название препарата, и бот предоставит подробную информацию о нем, включая инструкцию по применению, побочные эффекты, дозировку и другую важную информацию.\n  -Направление к врачу: Бот всегда подчеркивает, что он не заменяет визит к врачу, но может служить полезным и информативным источником для начальной оценки состояния. Он рекомендует обратиться к специалисту для более точного диагноза и лечения.\n \n По вопросам: https://github.com/DrgNBoN"
-        },
-        {
-            "TextName": "textinputformat",
-            "Text": "Ввод симптомов:"
-        },
-        {
-            "TextName": "textinputformat2",
-            "Text": "<b>Правила входных данных:</b> \n 1) Номер симптомов в <ins>диапазоне [1-110]</ins>\n 2) <ins>1 пробел</ins> между номерами\n 3) <ins>Только номера симптомов и пробелы</ins> \n \n <i>Пример: 11 97 3 61 5 110</i>"
-        },
-        {
-            "TextName": "textwronginput",
-            "Text": "Неправильный формат данных!"
-        },
-        {
-            "TextName": "textcorrectinput",
-            "Text": "Отправка симптомов на обработку...."
-        },
-        {
-            "TextName": "textbuttondefinitionofdisease",
-            "Text": "🤧определение болезни😷"
-        },
-        {
-            "TextName": "textbuttonreference",
-            "Text": "🤔справка⁉️"
-        },
-        {
-            "TextName": "textbuttonbacktomainmenu",
-            "Text": "главное меню"
-        },
-        {
-            "TextName": "textcardiovascularsysteminline0",
-            "Text": "Сердечно-сосудистая система"
-        },
-        {
-            "TextName": "textgastrointestinaltractinline2",
-            "Text": "Желудочно-кишечный тракт"
-        },
-        {
-            "TextName": "textreproductiveandurinarysysteminline3",
-            "Text": "Половая и мочевыделительная система"
-        },
-        {
-            "TextName": "textrneurologicalinline4",
-            "Text": "Неврологические симптомы"
-        },
-        {
-            "TextName": "textskinandhairinline1",
-            "Text": "Кожа и волосы"
-        },
-        {
-            "TextName": "textrespiratorysysteminline5",
-            "Text": "Дыхание"
-        },
-        {
-            "TextName": "texteyesymptomsinline6",
-            "Text": "Зрение"
-        },
-        {
-            "TextName": "textrespiratoryinline7",
-            "Text": "Респираторные"
-        },
-        {
-            "TextName": "textlimbsinline8",
-            "Text": "Конечности"
-        },
-        {
-            "TextName": "textgeneralstateinline9",
-            "Text": "Общее состояние"
-        },
-        {
-            "TextName": "textgetsymptomsinline",
-            "Text": "Получить список"
-        },
-        {
-            "TextName": "textcancelinline",
-            "Text": "Отмена ввода"
-        },
-        {
-            "TextName": "creatorlinklinline",
-            "Text": "https://github.com/DrgNBoN"
-        },
-        {
-            "TextName": "teamlidlinklinline",
-            "Text": "https://github.com/pixaut"
-        },
-        {
-            "TextName": "helperlinklinline",
-            "Text": "https://github.com/epkorq"
-        },
-        {
-            "TextName": "githublinklinline",
-            "Text": "https://github.com/pixaut/A.A.R.O.N"
-        },
-        {
-            "TextName": "helper2linklinline",
-            "Text": "https://t.me/Mason_tl"
-        },
-        {
-            "TextName": "hallostik",
-            "Text": "https://cdn.tlgrm.app/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/4.webp"
-        },
-        {
-            "TextName": "errorstik",
-            "Text": "https://tlgrm.ru/_/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/34.webp"
-        },
-        {
-            "TextName": "waitstik",
-            "Text": "https://tlgrm.ru/_/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/38.webp"
-        },
-        {
-            "TextName": "refstik",
-            "Text": "https://tlgrm.ru/_/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/40.webp"
-        },
-        {
-            "TextName": "0",
-            "Text": "<b><ins>Сердечно-сосудистая система:⬇️</ins></b>\n"
-        },
-        {
-            "TextName": "1",
-            "Text": "<b><ins>Кожа и волосы:⬇️</ins></b>\n"
-        },
-        {
-            "TextName": "2",
-            "Text": "<b><ins>Желудочно-кишечный тракт:⬇️</ins></b>\n"
-        },
-        {
-            "TextName": "3",
-            "Text": "<b><ins>Половая и мочевыделительная система:⬇️</ins></b>\n"
-        },
-        {
-            "TextName": "4",
-            "Text": "<b><ins>Неврологические симптомы:⬇️</ins></b>\n"
-        },
-        {
-            "TextName": "5",
-            "Text": "<b><ins>Дыхательная система:⬇️</ins></b>\n"
-        },
-        {
-            "TextName": "6",
-            "Text": "<b><ins>Проблемы зрения:⬇️</ins></b>\n"
-        },
-        {
-            "TextName": "7",
-            "Text": "<b><ins>Респираторные симптомы:⬇️</ins></b>\n"
-        },
-        {
-            "TextName": "8",
-            "Text": "<b><ins>Симптомы конечностей:⬇️</ins></b>\n"
-        },
-        {
-            "TextName": "9",
-            "Text": "<b><ins>Симптомы общего состояния:⬇️</ins></b>\n"
-        },
-        {
-            "TextName": "d1",
-            "Text": "<b>Аденовирусная инфекция</b>"
-        },
-        {
-            "TextName": "d2",
-            "Text": "<b>Аллергический ринит</b>"
-        },
-        {
-            "TextName": "d3",
-            "Text": "<b>Ангина</b>"
-        },
-        {
-            "TextName": "d4",
-            "Text": "<b>Ангионевротический отек</b>"
-        },
-        {
-            "TextName": "d5",
-            "Text": "<b>Аритмия</b>"
-        },
-        {
-            "TextName": "d6",
-            "Text": "<b>Артериальная гипертензия</b>"
-        },
-        {
-            "TextName": "d7",
-            "Text": "<b>Астма</b>"
-        },
-        {
-            "TextName": "d8",
-            "Text": "<b>Биполярное аффективное расстройство</b>"
-        },
-        {
-            "TextName": "d9",
-            "Text": "<b>Болезни суставов</b>"
-        },
-        {
-            "TextName": "d10",
-            "Text": "<b>Варикозное расширение вен</b>"
-        },
-        {
-            "TextName": "d11",
-            "Text": "<b>Ветряная оспа</b>"
-        },
-        {
-            "TextName": "d12",
-            "Text": "<b>Вирусный конъюнктивит</b>"
-        },
-        {
-            "TextName": "d13",
-            "Text": "<b>Гастрит</b>"
-        },
-        {
-            "TextName": "d14",
-            "Text": "<b>Гастроэнтерит</b>"
-        },
-        {
-            "TextName": "d15",
-            "Text": "<b>Геморрагический инсульт</b>"
-        },
-        {
-            "TextName": "d16",
-            "Text": "<b>Геморрой</b>"
-        },
-        {
-            "TextName": "d17",
-            "Text": "<b>Гепатит</b>"
-        },
-        {
-            "TextName": "d18",
-            "Text": "<b>Гепатоцеллюлярная карцинома</b>"
-        },
-        {
-            "TextName": "d19",
-            "Text": "<b>Герпес</b>"
-        },
-        {
-            "TextName": "d20",
-            "Text": "<b>Гипертиреоз</b>"
-        },
-        {
-            "TextName": "d21",
-            "Text": "<b>Гипертоническая болезнь</b>"
-        },
-        {
-            "TextName": "d22",
-            "Text": "<b>Гипотиреоз</b>"
-        },
-        {
-            "TextName": "d23",
-            "Text": "<b>Глаукома</b>"
-        },
-        {
-            "TextName": "d24",
-            "Text": "<b>Грибковые инфекции кожи</b>"
-        },
-        {
-            "TextName": "d25",
-            "Text": "<b>Грибковые инфекции мочевых путей</b>"
-        },
-        {
-            "TextName": "d26",
-            "Text": "<b>Грибок</b>"
-        },
-        {
-            "TextName": "d27",
-            "Text": "<b>Грибок</b>"
-        },
-        {
-            "TextName": "d28",
-            "Text": "<b>Депрессия</b>"
-        },
-        {
-            "TextName": "d29",
-            "Text": "<b>Дерматит</b>"
-        },
-        {
-            "TextName": "d30",
-            "Text": "<b>Диабет</b>"
-        },
-        {
-            "TextName": "d31",
-            "Text": "<b>Диарея</b>"
-        },
-        {
-            "TextName": "d32",
-            "Text": "<b>Дисбактериоз</b>"
-        },
-        {
-            "TextName": "d33",
-            "Text": "<b>Дифтерия</b>"
-        },
-        {
-            "TextName": "d34",
-            "Text": "<b>Заболевания щитовидной железы</b>"
-        },
-        {
-            "TextName": "d35",
-            "Text": "<b>Инсомния</b>"
-        },
-        {
-            "TextName": "d36",
-            "Text": "<b>Инсульт</b>"
-        },
-        {
-            "TextName": "d37",
-            "Text": "<b>Инфаркт миокарда</b>"
-        },
-        {
-            "TextName": "d38",
-            "Text": "<b>Инфекция мочевыводящих путей</b>"
-        },
-        {
-            "TextName": "d39",
-            "Text": "<b>Ишемическая болезнь сердца</b>"
-        },
-        {
-            "TextName": "d40",
-            "Text": "<b>Камни в почках</b>"
-        },
-        {
-            "TextName": "d41",
-            "Text": "<b>Катаракта</b>"
-        },
-        {
-            "TextName": "d42",
-            "Text": "<b>Коклюш</b>"
-        },
-        {
-            "TextName": "d43",
-            "Text": "<b>Колит</b>"
-        },
-        {
-            "TextName": "d44",
-            "Text": "<b>Конъюнктивит</b>"
-        },
-        {
-            "TextName": "d45",
-            "Text": "<b>Коронарная недостаточность</b>"
-        },
-        {
-            "TextName": "d46",
-            "Text": "<b>Корь</b>"
-        },
-        {
-            "TextName": "d47",
-            "Text": "<b>Краснуха</b>"
-        },
-        {
-            "TextName": "d48",
-            "Text": "<b>Лейкемия</b>"
-        },
-        {
-            "TextName": "d49",
-            "Text": "<b>Лептоспироз</b>"
-        },
-        {
-            "TextName": "d50",
-            "Text": "<b>Лимфома</b>"
-        },
-        {
-            "TextName": "d51",
-            "Text": "<b>Лихорадка денге</b>"
-        },
-        {
-            "TextName": "d52",
-            "Text": "<b>Малярия</b>"
-        },
-        {
-            "TextName": "d53",
-            "Text": "<b>Мастопатия</b>"
-        },
-        {
-            "TextName": "d54",
-            "Text": "<b>Мигрень</b>"
-        },
-        {
-            "TextName": "d55",
-            "Text": "<b>Микоз</b>"
-        },
-        {
-            "TextName": "d56",
-            "Text": "<b>Неврит</b>"
-        },
-        {
-            "TextName": "d57",
-            "Text": "<b>Нефрит</b>"
-        },
-        {
-            "TextName": "d58",
-            "Text": "<b>Нефропатия</b>"
-        },
-        {
-            "TextName": "d59",
-            "Text": "<b>Ожирение</b>"
-        },
-        {
-            "TextName": "d60",
-            "Text": "<b>ОРВИ</b>"
-        },
-        {
-            "TextName": "d61",
-            "Text": "<b>Остеоартрит</b>"
-        },
-        {
-            "TextName": "d62",
-            "Text": "<b>Остеомиелит</b>"
-        },
-        {
-            "TextName": "d63",
-            "Text": "<b>Остеопороз</b>"
-        },
-        {
-            "TextName": "d64",
-            "Text": "<b>Остеохондроз</b>"
-        },
-        {
-            "TextName": "d65",
-            "Text": "<b>Остеохондроз</b>"
-        },
-        {
-            "TextName": "d66",
-            "Text": "<b>Панкреатит</b>"
-        },
-        {
-            "TextName": "d67",
-            "Text": "<b>Паротит</b>"
-        },
-        {
-            "TextName": "d68",
-            "Text": "<b>Печеночная недостаточность</b>"
-        },
-        {
-            "TextName": "d69",
-            "Text": "<b>Пиелонефрит</b>"
-        },
-        {
-            "TextName": "d70",
-            "Text": "<b>Пневмония</b>"
-        },
-        {
-            "TextName": "d71",
-            "Text": "<b>Полиомиелит</b>"
-        },
-        {
-            "TextName": "d72",
-            "Text": "<b>Простатит</b>"
-        },
-        {
-            "TextName": "d73",
-            "Text": "<b>Простуда</b>"
-        },
-        {
-            "TextName": "d74",
-            "Text": "<b>Псориаз</b>"
-        },
-        {
-            "TextName": "d75",
-            "Text": "<b>Рак</b>"
-        },
-        {
-            "TextName": "d76",
-            "Text": "<b>Ревматизм</b>"
-        },
-        {
-            "TextName": "d77",
-            "Text": "<b>Ревматоидный артрит</b>"
-        },
-        {
-            "TextName": "d78",
-            "Text": "<b>СДВГ</b>"
-        },
-        {
-            "TextName": "d79",
-            "Text": "<b>Сепсис</b>"
-        },
-        {
-            "TextName": "d80",
-            "Text": "<b>Сердечная недостаточность</b>"
-        },
-        {
-            "TextName": "d81",
-            "Text": "<b>Синусит</b>"
-        },
-        {
-            "TextName": "d82",
-            "Text": "<b>Скарлатина</b>"
-        },
-        {
-            "TextName": "d83",
-            "Text": "<b>Тиф</b>"
-        },
-        {
-            "TextName": "d84",
-            "Text": "<b>Токсоплазмоз</b>"
-        },
-        {
-            "TextName": "d85",
-            "Text": "<b>Туберкулез</b>"
-        },
-        {
-            "TextName": "d86",
-            "Text": "<b>Уретрит</b>"
-        },
-        {
-            "TextName": "d87",
-            "Text": "<b>Холера</b>"
-        },
-        {
-            "TextName": "d88",
-            "Text": "<b>Цереброваскулярная болезнь</b>"
-        },
-        {
-            "TextName": "d89",
-            "Text": "<b>Цирроз печени</b>"
-        },
-        {
-            "TextName": "d90",
-            "Text": "<b>Цистит</b>"
-        },
-        {
-            "TextName": "d91",
-            "Text": "<b>Шизофрения</b>"
-        },
-        {
-            "TextName": "d92",
-            "Text": "<b>Экзема</b>"
-        },
-        {
-            "TextName": "d93",
-            "Text": "<b>Эндометриоз</b>"
-        },
-        {
-            "TextName": "d94",
-            "Text": "<b>Энцефалит</b>"
-        },
-        {
-            "TextName": "d95",
-            "Text": "<b>Эпилепсия</b>"
-        },
-        {
-            "TextName": "d96",
-            "Text": "<b>Эхинококкоз</b>"
-        },
-        {
-            "TextName": "d97",
-            "Text": "<b>Язва желудка и двенадцатиперстной кишки</b>"
-        },
-        {
-            "TextName": "d98",
-            "Text": "<b>Язвенный колит</b>"
-        }
-    ]
+  "Textforbot": [
+    {
+      "TextName": "textwelcome2",
+      "Text": "<b>choose what you need:</b>"
+    },
+    {
+      "TextName": "textwelcome",
+      "Text": "<b>-Hi!🙌</b>\n\n<b>MediSick</b><i> is your personal assistant in the world of medicine and disease detection💚\n -I am here to help you understand your symptoms and suggest possible diagnoses😎</i>\n\n<b><ins> ‼️ Don't forget that I'm not replacing a visit to the doctor, but I can be an informative source to start with ‼️ </ins></b>"
+    },
+    {
+      "TextName": "textreference",
+      "Text": "MediSick is a personal assistant in the world of medicine that is available to you at any time. He is ready to answer your questions and offer recommendations based on the symptoms introduced.\n -Definition of diseases: The bot has a database containing information about various diseases and related symptoms. It analyzes the symptoms you have entered and compares them with a database to suggest possible diagnoses. \n -Drug Search: The bot allows users to search for information about specific medications. The user can enter the name of the drug, and the bot will provide detailed information about it, including instructions for use, side effects, dosage and other important information.\n -Referral to the doctor: The bot always emphasizes that it does not replace a visit to the doctor, but can serve as a useful and informative source for an initial assessment of the condition. He recommends contacting a specialist for a more accurate diagnosis and treatment.\n\n For questions: https://github.com/DrgNBoN "
+    },
+    {
+      "TextName": "textinputformat",
+      "Text": "Entering symptoms:"
+    },
+    {
+      "TextName": "textinputformat2",
+      "Text": "<b>Input Data rules:</b> \n 1) The number of symptoms in the <ins>range [1-110]</ins>\n 2) <ins>1 space</ins> between the numbers\n 3)<ins>Only symptom numbers and spaces</ins> \n\n <i>Example: 11 97 3 61 5 110</i>"
+    },
+    {
+      "TextName": "textwronginput",
+      "Text": "Incorrect data format!"
+    },
+    {
+      "TextName": "textcorrectinput",
+      "Text": "Sending symptoms for processing...."
+    },
+    {
+      "TextName": "textbuttondefinitionofdisease",
+      "Text": "🤧disease definition😷"
+    },
+    {
+      "TextName": "textbuttonreference",
+      "Text": "🤔help⁉️"
+    },
+    {
+      "TextName": "textbuttonbacktomainmenu",
+      "Text": "main menu"
+    },
+    {
+      "textname": "textcardiovascularsysteminline0",
+      "Text": "Cardiovascular system"
+    },
+    {
+      "textname": "textgastrointestinaltractinline2",
+      "Text": "Gastrointestinal tract"
+    },
+    {
+      "Textname": "textreproductiveandurinarysysteminline3",
+      "Text": "Sexual and urinary system"
+    },
+    {
+      "TextName": "textrneurologicalinline4",
+      "Text": "Neurological symptoms"
+    },
+    {
+      "TextName": "textskinandhairinline1",
+      "Text": "Skin and hair"
+    },
+    {
+      "TextName": "textrespiratorysysteminline5",
+      "Text": "Breath"
+    },
+    {
+      "TextName": "texteyesymptomsinline6",
+      "Text": "Vision"
+    },
+    {
+      "TextName": "textrespiratoryinline7",
+      "Text": "Respiratory"
+    },
+    {
+      "TextName": "textlimbsinline8",
+      "Text": "Limbs"
+    },
+    {
+      "textname": "textgeneralstateinline9",
+      "Text": "General state"
+    },
+    {
+      "TextName": "textgetsymptomsinline",
+      "Text": "Get a list"
+    },
+    {
+      "TextName": "textcancelinline",
+      "Text": "Cancel input"
+    },
+    {
+      "TextName": "creatorlinklinline",
+      "Text": "https://github.com/DrgNBoN"
+    },
+    {
+      "TextName": "teamlidlinklinline",
+      "Text": "https://github.com/pixaut"
+    },
+    {
+      "TextName": "helperlinklinline",
+      "Text": "https://github.com/epkorq"
+    },
+    {
+      "TextName": "githublinklinline",
+      "Text": "https://github.com/pixaut/A.A.R.O.N"
+    },
+    {
+      "TextName": "helper2linklinline",
+      "Text": "https://t.me/Mason_tl"
+    },
+    {
+      "TextName": "hallostik",
+      "Text": "https://cdn.tlgrm.app/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/4.webp"
+    },
+    {
+      "TextName": "errorstik",
+      "Text": "https://tlgrm.ru/_/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/34.webp"
+    },
+    {
+      "TextName": "waitstik",
+      "Text": "https://tlgrm.ru/_/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/38.webp"
+    },
+    {
+      "TextName": "refstik",
+      "Text": "https://tlgrm.ru/_/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/40.webp"
+    },
+    {
+      "TextName": "0",
+      "Text": "<b><ins>Cardiovascular system:⬇️</ins></b>\n"
+    },
+    {
+      "TextName": "1",
+      "Text": "<b><ins>Skin and hair:⬇️</ins></b>\n"
+    },
+    {
+      "TextName": "2",
+      "Text": "<b><ins>Gastrointestinal tract:⬇️</ins></b>\n"
+    },
+    {
+      "TextName": "3",
+      "Text": "<b><ins>Sexual and urinary system:⬇️</ins></b>\n"
+    },
+    {
+      "TextName": "4",
+      "Text": "<b><ins>Neurological symptoms:⬇️</ins></b>\n"
+    },
+    {
+      "TextName": "5",
+      "Text": "<b><ins>Respiratory system:⬇️</ins></b>\n"
+    },
+    {
+      "TextName": "6",
+      "Text": "<b><ins>Vision problems:⬇️</ins></b>\n"
+    },
+    {
+      "TextName": "7",
+      "Text": "<b><ins>Respiratory symptoms:⬇️</ins></b>\n"
+    },
+    {
+      "TextName": "8",
+      "Text": "<b><ins>Limb Symptoms:⬇️</ins></b>\n"
+    },
+    {
+      "TextName": "9",
+      "Text": "<b><ins>Symptoms of the general condition:⬇️</ins></b>\n"
+    },
+    {
+      "TextName": "d1",
+      "Text": "<b>Adenovirus infection</b>"
+    },
+    {
+      "TextName": "d2",
+      "Text": "<b>Allergic rhinitis</b>"
+    },
+    {
+      "TextName": "d3",
+      "Text": "<b>Angina</b>"
+    },
+    {
+      "TextName": "d4",
+      "Text": "<b>Angioedema</b>"
+    },
+    {
+      "TextName": "d5",
+      "Text": "<b>Arrhythmia</b>"
+    },
+    {
+      "TextName": "d6",
+      "Text": "<b>Arterial hypertension</b>"
+    },
+    {
+      "TextName": "d7",
+      "Text": "<b>Asthma</b>"
+    },
+    {
+      "TextName": "d8",
+      "Text": "<b>Bipolar affective disorder</b>"
+    },
+    {
+      "TextName": "d9",
+      "Text": "<b>Joint diseases</b>"
+    },
+    {
+      "TextName": "d10",
+      "Text": "<b>Varicose veins</b>"
+    },
+    {
+      "TextName": "d11",
+      "Text": "<b>Chicken pox</b>"
+    },
+    {
+      "TextName": "d12",
+      "Text": "<b>Viral conjunctivitis</b>"
+    },
+    {
+      "TextName": "d13",
+      "Text": "<b>Gastritis</b>"
+    },
+    {
+      "TextName": "d14",
+      "Text": "<b>Gastroenteritis</b>"
+    },
+    {
+      "TextName": "d15",
+      "Text": "<b>Hemorrhagic stroke</b>"
+    },
+    {
+      "TextName": "d16",
+      "Text": "<b>Hemorrhoids</b>"
+    },
+    {
+      "TextName": "d17",
+      "Text": "<b>Hepatitis</b>"
+    },
+    {
+      "TextName": "d18",
+      "Text": "<b>Hepatocellular carcinoma</b>"
+    },
+    {
+      "TextName": "d19",
+      "Text": "<b>Herpes</b>"
+    },
+    {
+      "TextName": "d20",
+      "Text": "<b>Hyperthyroidism</b>"
+    },
+    {
+      "TextName": "d21",
+      "Text": "<b>Hypertension</b>"
+    },
+    {
+      "TextName": "d22",
+      "Text": "<b>Hypothyroidism</b>"
+    },
+    {
+      "TextName": "d23",
+      "Text": "<b>Glaucoma</b>"
+    },
+    {
+      "TextName": "d24",
+      "Text": "<b>Fungal infections of the skin</b>"
+    },
+    {
+      "TextName": "d25",
+      "Text": "<b>Fungal infections of the urinary tract</b>"
+    },
+    {
+      "TextName": "d26",
+      "Text": "<b>Fungus</b>"
+    },
+    {
+      "TextName": "d27",
+      "Text": "<b>Fungus</b>"
+    },
+    {
+      "TextName": "d28",
+      "Text": "<b>Depression</b>"
+    },
+    {
+      "TextName": "d29",
+      "Text": "<b>Dermatitis</b>"
+    },
+    {
+      "TextName": "d30",
+      "Text": "<b>Diabetes</b>"
+    },
+    {
+      "TextName": "d31",
+      "Text": "<b>Diarrhea</b>"
+    },
+    {
+      "TextName": "d32",
+      "Text": "<b>Dysbiosis</b>"
+    },
+    {
+      "TextName": "d33",
+      "Text": "<b>Diphtheria</b>"
+    },
+    {
+      "TextName": "d34",
+      "Text": "<b>Thyroid diseases</b>"
+    },
+    {
+      "TextName": "d35",
+      "Text": "<b>Insomnia</b>"
+    },
+    {
+      "TextName": "d36",
+      "Text": "<b>Stroke</b>"
+    },
+    {
+      "TextName": "d37",
+      "Text": "<b>Myocardial infarction</b>"
+    },
+    {
+      "TextName": "d38",
+      "Text": "<b>Urinary tract infection</b>"
+    },
+    {
+      "TextName": "d39",
+      "Text": "<b>Coronary heart disease</b>"
+    },
+    {
+      "TextName": "d40",
+      "Text": "<b>Kidney stones</b>"
+    },
+    {
+      "TextName": "d41",
+      "Text": "<b>Cataract</b>"
+    },
+    {
+      "TextName": "d42",
+      "Text": "<b>Whooping cough</b>"
+    },
+    {
+      "TextName": "d43",
+      "Text": "<b>Colitis</b>"
+    },
+    {
+      "TextName": "d44",
+      "Text": "<b>Conjunctivitis</b>"
+    },
+    {
+      "TextName": "d45",
+      "Text": "<b>Coronary insufficiency</b>"
+    },
+    {
+      "TextName": "d46",
+      "Text": "<b>Measles</b>"
+    },
+    {
+      "TextName": "d47",
+      "Text": "<b>Rubella</b>"
+    },
+    {
+      "TextName": "d48",
+      "Text": "<b>Leukemia</b>"
+    },
+    {
+      "TextName": "d49",
+      "Text": "<b>Leptospirosis</b>"
+    },
+    {
+      "TextName": "d50",
+      "Text": "<b>Lymphoma</b>"
+    },
+    {
+      "TextName": "d51",
+      "Text": "<b>Dengue fever</b>"
+    },
+    {
+      "TextName": "d52",
+      "Text": "<b>Malaria</b>"
+    },
+    {
+      "TextName": "d53",
+      "Text": "<b>Mastopathy</b>"
+    },
+    {
+      "TextName": "d54",
+      "Text": "<b>Migraine</b>"
+    },
+    {
+      "TextName": "d55",
+      "Text": "<b>Mycosis</b>"
+    },
+    {
+      "TextName": "d56",
+      "Text": "<b>Neuritis</b>"
+    },
+    {
+      "TextName": "d57",
+      "Text": "<b>Jade</b>"
+    },
+    {
+      "TextName": "d58",
+      "Text": "<b>Nephropathy</b>"
+    },
+    {
+      "TextName": "d59",
+      "Text": "<b>Obesity</b>"
+    },
+    {
+      "TextName": "d60",
+      "Text": "<b>SARS</b>"
+    },
+    {
+      "TextName": "d61",
+      "Text": "<b>Osteoarthritis</b>"
+    },
+    {
+      "TextName": "d62",
+      "Text": "<b>Osteomyelitis</b>"
+    },
+    {
+      "TextName": "d63",
+      "Text": "<b>Osteoporosis</b>"
+    },
+    {
+      "TextName": "d64",
+      "Text": "<b>Osteochondrosis</b>"
+    },
+    {
+      "TextName": "d65",
+      "Text": "<b>Osteochondrosis</b>"
+    },
+    {
+      "TextName": "d66",
+      "Text": "<b>Pancreatitis</b>"
+    },
+    {
+      "TextName": "d67",
+      "Text": "<b>Mumps</b>"
+    },
+    {
+      "TextName": "d68",
+      "Text": "<b>Liver failure</b>"
+    },
+    {
+      "TextName": "d69",
+      "Text": "<b>Pyelonephritis</b>"
+    },
+    {
+      "TextName": "d70",
+      "Text": "<b>Pneumonia</b>"
+    },
+    {
+      "TextName": "d71",
+      "Text": "<b>Polio</b>"
+    },
+    {
+      "TextName": "d72",
+      "Text": "<b>Prostatitis</b>"
+    },
+    {
+      "TextName": "d73",
+      "Text": "<b>Cold</b>"
+    },
+    {
+      "TextName": "d74",
+      "Text": "<b>Psoriasis</b>"
+    },
+    {
+      "TextName": "d75",
+      "Text": "<b>Cancer</b>"
+    },
+    {
+      "TextName": "d76",
+      "Text": "<b>Rheumatism</b>"
+    },
+    {
+      "TextName": "d77",
+      "Text": "<b>Rheumatoid arthritis</b>"
+    },
+    {
+      "TextName": "d78",
+      "Text": "<b>ADHD</b>"
+    },
+    {
+      "TextName": "d79",
+      "Text": "<b>Sepsis</b>"
+    },
+    {
+      "TextName": "d80",
+      "Text": "<b>Heart failure</b>"
+    },
+    {
+      "TextName": "d81",
+      "Text": "<b>Sinusitis</b>"
+    },
+    {
+      "TextName": "d82",
+      "Text": "<b>Scarlet fever</b>"
+    },
+    {
+      "TextName": "d83",
+      "Text": "<b>Typhus</b>"
+    },
+    {
+      "TextName": "d84",
+      "Text": "<b>Toxoplasmosis</b>"
+    },
+    {
+      "TextName": "d85",
+      "Text": "<b>Tuberculosis</b>"
+    },
+    {
+      "TextName": "d86",
+      "Text": "<b>Urethritis</b>"
+    },
+    {
+      "TextName": "d87",
+      "Text": "<b>Cholera</b>"
+    },
+    {
+      "TextName": "d88",
+      "Text": "<b>Cerebrovascular disease</b>"
+    },
+    {
+      "TextName": "d89",
+      "Text": "<b>Cirrhosis of the liver</b>"
+    },
+    {
+      "TextName": "d90",
+      "Text": "<b>Cystitis</b>"
+    },
+    {
+      "TextName": "d91",
+      "Text": "<b>Schizophrenia</b>"
+    },
+    {
+      "TextName": "d92",
+      "Text": "<b>Eczema</b>"
+    },
+    {
+      "TextName": "d93",
+      "Text": "<b>Endometriosis</b>"
+    },
+    {
+      "TextName": "d94",
+      "Text": "<b>Encephalitis</b>"
+    },
+    {
+      "TextName": "d95",
+      "Text": "<b>Epilepsy</b>"
+    },
+    {
+      "TextName": "d96",
+      "Text": "<b>Echinococcosis</b>"
+    },
+    {
+      "TextName": "d97",
+      "Text": "<b>Stomach and duodenal ulcer</b>"
+    },
+    {
+      "TextName": "d98",
+      "Text": "<b>Ulcerative colitis</b>"
+    }
+  ]
 }

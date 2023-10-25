@@ -11,13 +11,13 @@
   },
   "2069754483": {
     "inlinebuttpressed": [],
-    "symptommenu": true,
-    "mainmenu": false,
-    "inlinesymptomkey": true,
+    "symptommenu": false,
+    "mainmenu": true,
+    "inlinesymptomkey": false,
     "name": "tortik122421",
-    "lastmessage": "",
-    "gender": "non",
-    "language": "no set"
+    "lastmessage": "главное меню",
+    "gender": "man",
+    "language": "en"
   },
   "1699534382": {
     "inlinebuttpressed": [],
@@ -30,15 +30,13 @@
     "language": "no set"
   },
   "855228246": {
-    "inlinebuttpressed": [
-      2
-    ],
+    "inlinebuttpressed": [],
     "symptommenu": false,
     "mainmenu": true,
     "inlinesymptomkey": false,
     "name": "DrgNBoNツ",
-    "lastmessage": "/start",
+    "lastmessage": "7 10 13 14",
     "gender": "man",
-    "language": "EN"
+    "language": "ru"
   }
 }

@@ -123,7 +123,8 @@ namespace Program
                 //TelegramBot.botword["textcancelinline"]
             },
         });
-        public static InlineKeyboardMarkup inlinelinkes = new(new[]
+        public static InlineKeyboardMarkup inlinelinkes = new(
+            new[]
         {
             InlineKeyboardButton.WithUrl(text: "Creator",url: TelegramBot.botword["creatorlinklinline"]),
             InlineKeyboardButton.WithUrl(text: "TeamLid",url: TelegramBot.botword["teamlidlinklinline"]),

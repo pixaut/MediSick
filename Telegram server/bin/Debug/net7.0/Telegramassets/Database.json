@@ -1,12 +1,12 @@
 {
   "855228246": {
     "inlinebuttpressed": [],
-    "symptommenu": false,
-    "mainmenu": true,
+    "symptommenu": true,
+    "mainmenu": false,
     "inlinesymptomkey": false,
     "name": "DrgNBoNツ",
-    "lastmessage": "📋справка⁉️",
+    "lastmessage": "🌡️определить заболевание🧬",
     "gender": "man",
-    "language": "ru"
+    "language": "en"
   }
 }

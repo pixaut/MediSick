@@ -49,8 +49,9 @@ namespace Program
 
             //Creating a user object and processing new users:
             User user = new User();
+            Console.WriteLine(userid);
 
-            if (database.ContainsKey(userid) == false)
+            if (database.ContainsKey(userid) == false && update.Type == UpdateType.Message)
             {
                 Console.WriteLine("New user:   " + message!.Chat.FirstName);
                 database.TryAdd(userid, user);
@@ -115,11 +116,11 @@ namespace Program
                 }
                 else if (callback.Data == "send" && database[userid]!.inlinebuttpressed!.Count != 0)
                 {
+                    await botclient.DeleteMessageAsync(userid, callback!.Message!.MessageId, cancellationToken: token);
                     database[userid]!.inlinebuttpressed!.Sort();
                     await botclient.SendTextMessageAsync(userid, symptomhandler(database[userid]!.inlinebuttpressed!), parseMode: ParseMode.Html, cancellationToken: token);
                     database[userid]!.inlinebuttpressed!.Clear();
                     database[userid].inlinesymptomkey = false;
-                    await botclient.EditMessageReplyMarkupAsync(userid, callback!.Message!.MessageId);
                 }
                 else if (callback.Data == "cancel" && database[userid]!.inlinebuttpressed!.Count != 0)
                 {
@@ -136,14 +137,16 @@ namespace Program
 
             //Logging:
             if (settings!.enablelogging) Console.WriteLine("------------------------------------------------------\nNew Message⬇️\n" + $"Userid: {userid}\n" + $"Username: {message.Chat.FirstName}\n" + $"Message: {message.Text}\n" + $"Data: {message.Date.ToLocalTime()}\n" + "------------------------------------------------------\n");
-
+            
             //Check for "/start":
             if (TextMessage == "/start")
             {
+                
                 database[userid].language = "non";
                 database[userid].gender = "non";
-                ////////if(replyMarkup == true)
-                /////////await botclient.SendTextMessageAsync(userid, "", parseMode: ParseMode.Html, replyMarkup: new ReplyKeyboardRemove(), cancellationToken: token);
+                
+                
+                await botclient.SendTextMessageAsync(userid, text:"Let's start....", replyMarkup: new ReplyKeyboardRemove(), cancellationToken: token);
                 await botclient.SendTextMessageAsync(userid, botword["textchoicelanguage"], parseMode: ParseMode.Html, replyMarkup: inlinelanguagekeyboard, cancellationToken: token);
 
             }
@@ -166,7 +169,7 @@ namespace Program
 
 
                     await botclient.SendVideoAsync(userid, video: InputFile.FromStream(stream), replyMarkup: symptomkeyboard, thumbnail: InputFile.FromUri("https://raw.githubusercontent.com/TelegramBots/book/master/src/2/docs/thumb-clock.jpg"), supportsStreaming: true, cancellationToken: token);
-                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat2"], replyMarkup: inlineKeyboard, parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
+                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat2"], replyMarkup: inlineKeyboarden , parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
                     //await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat"], replyMarkup: inlineKeyboard, disableNotification: true, cancellationToken: token);
                     database[userid].inlinesymptomkey = true;
                     database[userid]!.inlinebuttpressed!.Clear();

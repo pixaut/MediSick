@@ -1127,23 +1127,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DrgNBoN\\.nuget\\packages\\": {},
+    "C:\\Users\\evgen\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\A.A.R.O.N-1\\Telegram server\\Telegram server.csproj",
+      "projectUniqueName": "D:\\Projects\\GIT works\\TelegramMediSick\\A.A.R.O.N\\Telegram server\\Telegram server.csproj",
       "projectName": "Telegram server",
-      "projectPath": "D:\\A.A.R.O.N-1\\Telegram server\\Telegram server.csproj",
-      "packagesPath": "C:\\Users\\DrgNBoN\\.nuget\\packages\\",
-      "outputPath": "D:\\A.A.R.O.N-1\\Telegram server\\obj\\",
+      "projectPath": "D:\\Projects\\GIT works\\TelegramMediSick\\A.A.R.O.N\\Telegram server\\Telegram server.csproj",
+      "packagesPath": "C:\\Users\\evgen\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\GIT works\\TelegramMediSick\\A.A.R.O.N\\Telegram server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\DrgNBoN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\evgen\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1152,6 +1152,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

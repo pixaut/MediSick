@@ -1,5 +1,8 @@
+using Telegram.Bot;
+
 namespace Program
 {
+
 
     public class SymptomsList
     {

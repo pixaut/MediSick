@@ -67,12 +67,12 @@ namespace Program
                 await botclient.AnswerCallbackQueryAsync(callback!.Id, callback.Data, cancellationToken: token);
                 if (callback.Data == "en" && database[userid].language == "non")
                 {
-                    await botclient.SendTextMessageAsync(userid, "You pick english language.", parseMode: ParseMode.Html, cancellationToken: token);
+                    await botclient.SendTextMessageAsync(userid, "You pick english language.🇬🇧", parseMode: ParseMode.Html, cancellationToken: token);
                     database[userid].language = "en";
                 }
                 else if (callback.Data == "ru" && database[userid].language == "non")
                 {
-                    await botclient.SendTextMessageAsync(userid, "Вы выбрали русский язык.", parseMode: ParseMode.Html, cancellationToken: token);
+                    await botclient.SendTextMessageAsync(userid, "Вы выбрали русский язык.🇷🇺", parseMode: ParseMode.Html, cancellationToken: token);
                     database[userid].language = "ru";
                 }
 

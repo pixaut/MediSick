@@ -136,27 +136,27 @@ namespace Program
         {
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: "Мужчина", callbackData: "man"),
-                InlineKeyboardButton.WithCallbackData(text: "Женщина", callbackData: "woman"),
+                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botwordru["textmaninline"], callbackData: "man"),
+                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botwordru["textwomaninline"], callbackData: "woman"),
             }
         });
         public static InlineKeyboardMarkup inlinegenderkeyboarden = new(new[]
         {
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: "Мужчина", callbackData: "man"),
-                InlineKeyboardButton.WithCallbackData(text: "Женщина", callbackData: "woman"),
+                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botworden["textmaninline"], callbackData: "man"),
+                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botworden["textwomaninline"], callbackData: "woman"),
             }
         });
         public static InlineKeyboardMarkup inlinelanguagekeyboard = new(new[]
         {
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: "English", callbackData: "en"),
-                InlineKeyboardButton.WithCallbackData(text: "Русский", callbackData: "ru"),
+                InlineKeyboardButton.WithCallbackData(text: "🇬🇧English🇺🇲", callbackData: "en"),
+                InlineKeyboardButton.WithCallbackData(text: "🇷🇺Русский🇧🇾", callbackData: "ru"),
             }
         });
 
 
     }
-}📫
+}

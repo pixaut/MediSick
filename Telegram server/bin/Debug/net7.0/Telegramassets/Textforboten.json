@@ -558,19 +558,27 @@
     },
     {
       "TextName": "textchoicegender",
-      "Text": "Для дальнейшего прогнозирования болезней,необходимо выбрать ваш пол:"
+      "Text": "Для дальнейшего прогнозирования болезней,необходимо выбрать ваш пол(♂️/♀️):"
     },
     {
       "TextName": "textwoman",
-      "Text": "Вы выбрали женский пол."
+      "Text": "Вы выбрали женский(♀️) пол."
     },
     {
       "TextName": "textman",
-      "Text": "Вы выбрали мужской пол."
+      "Text": "Вы выбрали мужской(♂️) пол."
+    },
+    {
+      "TextName": "textmaninline",
+      "Text": "♀️Женщина♀️"
+    },
+    {
+      "TextName": "textwomaninline",
+      "Text": "♂️Мужчина♂️"
     },
     {
       "TextName": "textchoicelanguage",
-      "Text": "To start working with the bot, select the interface language / Для начала работы с ботом выберите язык интерфейса"
+      "Text": "To start working with the bot, select the interface language / Для начала работы с ботом выберите язык интерфейса:"
     },
     {
       "TextName": "0categoryofdiseases",

@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.Text;
 using static Program.Secondaryfunctions;
 using static Program.Keyboard;
+using Telegram.Bot.Types.ReplyMarkups;
 namespace Program
 {
     class TelegramBot
@@ -36,7 +37,6 @@ namespace Program
 
         async static Task Update(ITelegramBotClient botclient, Update update, CancellationToken token)
         {
-
             //Declaring important variables:
             var message = update.Message;
             var callback = update.CallbackQuery;
@@ -142,12 +142,16 @@ namespace Program
             {
                 database[userid].language = "non";
                 database[userid].gender = "non";
-                await botclient.SendTextMessageAsync(message.Chat.Id, botword["textchoicelanguage"], parseMode: ParseMode.Html, replyMarkup: inlinelanguagekeyboard, cancellationToken: token);
+                ////////if(replyMarkup == true)
+                /////////await botclient.SendTextMessageAsync(userid, "", parseMode: ParseMode.Html, replyMarkup: new ReplyKeyboardRemove(), cancellationToken: token);
+                await botclient.SendTextMessageAsync(userid, botword["textchoicelanguage"], parseMode: ParseMode.Html, replyMarkup: inlinelanguagekeyboard, cancellationToken: token);
+
             }
-            if (database[userid].language == "non")
+            if (database[userid].language == "non" || database[userid].gender == "non")
             {
                 database[userid].mainmenu = false;
                 database[userid].symptommenu = false;
+                return;
             }
 
 

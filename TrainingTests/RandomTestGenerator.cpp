@@ -7,7 +7,7 @@
 struct Bindings
 {
 	int SimInd;
-	char* Gender;
+	std::string Gender;
 	std::vector<int> Sicks;
 
 	int size(){
@@ -34,8 +34,8 @@ std::string GetTest() {
 	s.clear();
 	ans.clear();
 
-	char* gender;
-	int i;
+	std::string gender;
+	int i = rand() % v.size();
 
 	if(rand()%2 == 0){
 		gender = "man";
@@ -46,20 +46,22 @@ std::string GetTest() {
 	
 
 	if(v[i].Gender != "none"){
-		while(v[i].Gender != gender){
+		while(v[i].Gender != "none" && v[i].Gender != gender){
 			i = rand() % v.size();
+			//std::cout << v[i].Gender << '\n';
 		}
 	}
 
 
 	int k = v[i].size() / 2 + rand() % (v[i].size() / 2) + 1;
-	int RandomIndex;
 
 	while (s.size() < k) {
-		s.insert(v[i][RandomIndex]);
+		s.insert(v[i][rand()%v[i].size()]);
 	}
 
-	ans += std::to_string(k) + '\t';
+	ans += gender[0];
+
+	ans += ' ' + std::to_string(k) + '\t';
 
 	for (auto j : s) {
 		ans += std::to_string(j+1) + ' ';

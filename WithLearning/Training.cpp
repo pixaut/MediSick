@@ -11,6 +11,7 @@ int main(){
     char PathToTests[] = "..\\TrainingTests\\RandomTests.txt";
     char NetworkPath[] = "..\\Network\\Network.txt";
     char NetworkSizePath[] = "..\\Network\\NetworkSize.txt";
+    char gender;
     double s = 0.0,e = 0.0,SpeedOfLearning = 0.3;
 
 
@@ -22,6 +23,13 @@ int main(){
     }                                                       //  Descript Network
     fin.close();                                            //
     
+    
+
+    int WomanIndex = size[0];
+    int ManIndex = size[0]+1;
+    int NoneIndex = size[0]+1;
+
+    size[0] += 3;
     NeuronNetwork nn(layers,size);                          //
     nn.SetRandom();                                         //
     
@@ -52,6 +60,7 @@ int main(){
         for(int k = 0;k < N;k++){
             std::fill(input,input+size[0],0.0);
 
+            fin >> gender;
             fin >> n;
             for(int i = 0;i < n;i++){
                 fin >> c;
@@ -60,6 +69,17 @@ int main(){
             fin >> c;
             rightanswer[c-1] = 1.0;
             
+            input[WomanIndex] = (double)(gender == 'w');
+            input[ManIndex] = (double)(gender == 'm');
+
+            if(gender == 'n'){
+                if(rand()%2 == 0){
+                    input[WomanIndex] = 1.0;
+                }else{
+                    input[ManIndex] = 1.0;
+                }
+            }
+
             nn.SetInput(input);
             nn.ForwardFeed();
             nn.BackPropagation(rightanswer,SpeedOfLearning);

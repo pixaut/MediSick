@@ -38,7 +38,7 @@ int main(){
 
     bool Svt = false;
 
-    while(s < 100){
+    while(s < 98){
 
         s = 0.0,e = 0.0;
 

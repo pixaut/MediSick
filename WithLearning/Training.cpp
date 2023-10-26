@@ -38,7 +38,7 @@ int main(){
 
     bool Svt = false;
 
-    while(s < 98){
+    while(s < 100){
 
         s = 0.0,e = 0.0;
 
@@ -69,7 +69,7 @@ int main(){
             rightanswer[c-1] = 1.0;
             
             input[WomanIndex] = (double)(gender == 'w');
-            input[ManIndex] = (double)(gender == 'm');
+            input[ManIndex]   = (double)(gender == 'm');
 
             if(gender == 'n'){
                 if(rand()%2 == 0){

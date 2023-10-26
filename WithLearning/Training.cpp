@@ -29,7 +29,7 @@ int main(){
     int ManIndex = size[0]+1;
     int NoneIndex = size[0]+1;
 
-    size[0] += 3;
+    //size[0] += 3;
     NeuronNetwork nn(layers,size);                          //
     nn.SetRandom();                                         //
     
@@ -60,7 +60,7 @@ int main(){
         for(int k = 0;k < N;k++){
             std::fill(input,input+size[0],0.0);
 
-            fin >> gender;
+            //fin >> gender;
             fin >> n;
             for(int i = 0;i < n;i++){
                 fin >> c;
@@ -69,16 +69,16 @@ int main(){
             fin >> c;
             rightanswer[c-1] = 1.0;
             
-            input[WomanIndex] = (double)(gender == 'w');
-            input[ManIndex] = (double)(gender == 'm');
+            // input[WomanIndex] = (double)(gender == 'w');
+            // input[ManIndex] = (double)(gender == 'm');
 
-            if(gender == 'n'){
-                if(rand()%2 == 0){
-                    input[WomanIndex] = 1.0;
-                }else{
-                    input[ManIndex] = 1.0;
-                }
-            }
+            // if(gender == 'n'){
+            //     if(rand()%2 == 0){
+            //         input[WomanIndex] = 1.0;
+            //     }else{
+            //         input[ManIndex] = 1.0;
+            //     }
+            // }
 
             nn.SetInput(input);
             nn.ForwardFeed();

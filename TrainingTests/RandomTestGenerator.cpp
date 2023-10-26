@@ -59,7 +59,7 @@ std::string GetTest() {
 		s.insert(v[i][rand()%v[i].size()]);
 	}
 
-	//ans += gender[0];
+	ans += gender[0];
 
 	ans += ' ' + std::to_string(k) + '\t';
 

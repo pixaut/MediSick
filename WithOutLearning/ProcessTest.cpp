@@ -7,8 +7,7 @@ int main(){
 
     std::ifstream fin;                         
     int n,c,layers;                                                         // quantity of simphtones, c - number of symphtone
-    char wm[16];
-    bool IsMan = true;
+    char gender;
 
 
     fin.open("..\\Network\\NetworkSize.txt");                    
@@ -19,19 +18,31 @@ int main(){
     }                                                                       //
     fin.close();                                                            //
 
-    // size[0]++;
+    size[0] += 2;
 
-    double input[size[0]];   
+    double input[size[0]];
+
+    int WomanIndex = size[0];
+    int ManIndex = size[0]+1;   
 
     NeuronNetwork nn(layers,size);                                                                                      
     nn.LoadNetwork("..\\Network\\Network.txt");                  
 
     fin.open("..\\Telegram server\\bin\\Debug\\net7.0\\InOutUser\\input.txt");                                                  
     
-    //fin >> wm;
+    fin >> gender;
 
-    // IsMan = (wm == "m");
-    // input[size[0]] = double(int(IsMan));
+
+    input[WomanIndex] = (double)(gender == 'w');
+    input[ManIndex]   = (double)(gender == 'm');
+
+    if(gender == 'n'){
+        if(rand()%2 == 0){
+            input[WomanIndex] = 1.0;
+        }else{
+                input[ManIndex] = 1.0;
+        }
+    }
 
     std::fill(input,input+size[0],0.0);
 
@@ -46,8 +57,14 @@ int main(){
 
 
     nn.ForwardFeed();                                                       
-    std::ofstream fout("..\\Telegram server\\bin\\Debug\\net7.0\\InOutUser\\output.txt");                                       
-    fout << nn.Predict()+1;// << '\n';
+    std::ofstream fout("..\\Telegram server\\bin\\Debug\\net7.0\\InOutUser\\output.txt");  
+
+    if(nn.Predict()+1 == 72){
+        fout << 73;
+    }else{
+        fout << nn.Predict()+1;// << '\n';
+    }
+    
     
     // double* SF = nn.SoftMax();
     // std::pair<double,int> ans[size[layers-1]];

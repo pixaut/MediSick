@@ -7,6 +7,26 @@
     "name": "DrgNBoNツ",
     "lastmessage": "🌡️определить заболевание🧬",
     "gender": "man",
-    "language": "en"
+    "language": "ru"
+  },
+  "5892162910": {
+    "inlinebuttpressed": [],
+    "symptommenu": true,
+    "mainmenu": false,
+    "inlinesymptomkey": true,
+    "name": "Mason",
+    "lastmessage": "🌡️определить заболевание🧬",
+    "gender": "man",
+    "language": "ru"
+  },
+  "2069754483": {
+    "inlinebuttpressed": [],
+    "symptommenu": false,
+    "mainmenu": false,
+    "inlinesymptomkey": false,
+    "name": "tortik122421",
+    "lastmessage": "/start",
+    "gender": "non",
+    "language": "non"
   }
 }

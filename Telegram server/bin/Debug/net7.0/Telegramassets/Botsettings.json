@@ -6,6 +6,6 @@
     "token": "6525101854:AAFlyWBSUlLEAr_bL0ni4chPMyYwlz4nQF8",
     "enablelogging": true,
     "pathaiexe": "",
-    "pathoutputuser": "Outputuser/output.txt",
-    "pathinputuser": "Inputuser/input.txt"
+    "pathoutputuser": "InOutUser/output.txt",
+    "pathinputuser": "InOutUser/input.txt"
 }

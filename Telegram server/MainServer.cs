@@ -7,6 +7,7 @@ using System.Text;
 using static Program.Secondaryfunctions;
 using static Program.Keyboard;
 using Telegram.Bot.Types.ReplyMarkups;
+using System.Diagnostics;
 namespace Program
 {
     class TelegramBot
@@ -24,6 +25,7 @@ namespace Program
             //Data collection from JSON:
             botwordru = BotwordDictpreparer(botwordru, "Telegramassets/Textforbotru.json");
             botworden = BotwordDictpreparer(botworden, "Telegramassets/Textforboten.json");
+            database = DatabaseDictFillFromJSON(settings!.pathdatabasejson);
 
             //Launching a telegram bot:
             var client = new TelegramBotClient(settings!.token!);
@@ -83,7 +85,7 @@ namespace Program
                 database[userid].symptommenu = false;
                 database[userid].inlinesymptomkey = false;
                 await botclient.SendStickerAsync(userid, sticker: InputFile.FromUri(botword["hallostik"]), cancellationToken: token);
-                await botclient.SendTextMessageAsync(userid, database[userid].name + " " + botword["textwelcome"], replyMarkup: welcomkeyboard, parseMode: ParseMode.Html, cancellationToken: token);
+                await botclient.SendTextMessageAsync(userid, database[userid].name + " " + botword["textwelcome"], parseMode: ParseMode.Html, cancellationToken: token);
                 await botclient.SendTextMessageAsync(userid, botword["textchoicegender"], parseMode: ParseMode.Html, replyMarkup: inlinegenderkeyboard, cancellationToken: token);
                 DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
                 return;
@@ -95,14 +97,15 @@ namespace Program
                 await botclient.AnswerCallbackQueryAsync(callback!.Id, callback.Data, cancellationToken: token);
                 if (callback.Data == "man" && database[userid].gender == "non")
                 {
-                    await botclient.SendTextMessageAsync(userid, botword["textman"], parseMode: ParseMode.Html, cancellationToken: token);
+                    await botclient.SendTextMessageAsync(userid, botword["textman"], replyMarkup: welcomkeyboard, parseMode: ParseMode.Html, cancellationToken: token);
                     database[userid].gender = "man";
                 }
                 else if (callback.Data == "woman" && database[userid].gender == "non")
                 {
-                    await botclient.SendTextMessageAsync(userid, botword["textwoman"], parseMode: ParseMode.Html, cancellationToken: token);
+                    await botclient.SendTextMessageAsync(userid, botword["textwoman"], replyMarkup: welcomkeyboard, parseMode: ParseMode.Html, cancellationToken: token);
                     database[userid].gender = "woman";
                 }
+                
                 DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
                 return;
             }
@@ -280,13 +283,13 @@ namespace Program
 
                         //Launching a neural network to calculate tests
 
-                        // using Process process = new Process();
-                        // {
-                        //     process.StartInfo.FileName = @"G:\iTanks\Final\A.A.R.O.N\WithOutLearning\ProcessTest.exe"; //путь к приложению, которое будем запускать
-                        //     process.StartInfo.WorkingDirectory = @"G:\iTanks\Final\A.A.R.O.N\WithOutLearning\"; //путь к рабочей директории приложения
-                        //     process.Start();
-                        // };
-
+                       using Process process = new Process();
+                        {
+                            process.StartInfo.FileName = @"..\..\..\..\WithOutLearning\ProcessTest.exe"; //путь к приложению, которое будем запускать
+                            process.StartInfo.WorkingDirectory = @"..\..\..\..\WithOutLearning\"; //путь к рабочей директории приложения
+                            process.Start();
+                            process.WaitForExit();
+                        };
 
 
                         //Reading the output file and cleaning
@@ -299,7 +302,7 @@ namespace Program
                                 fs.Read(buffer, 0, buffer.Length);
                                 string textFromFile = Encoding.Default.GetString(buffer);
                                 fs.Close();
-                                textFromFile = "1";
+                                
                                 if (textFromFile != "")
                                 {
                                     await botclient.SendTextMessageAsync(message.Chat.Id, "Вы болеете: " + botword["d" + textFromFile], parseMode: ParseMode.Html, cancellationToken: token);

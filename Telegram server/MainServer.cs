@@ -8,6 +8,7 @@ using static Program.Secondaryfunctions;
 using static Program.Keyboard;
 using Telegram.Bot.Types.ReplyMarkups;
 using System.Diagnostics;
+using System.Formats.Tar;
 namespace Program
 {
     class TelegramBot
@@ -105,7 +106,7 @@ namespace Program
                     await botclient.SendTextMessageAsync(userid, botword["textwoman"], replyMarkup: welcomkeyboard, parseMode: ParseMode.Html, cancellationToken: token);
                     database[userid].gender = "woman";
                 }
-                
+
                 DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
                 return;
             }
@@ -140,16 +141,16 @@ namespace Program
 
             //Logging:
             if (settings!.enablelogging) Console.WriteLine("------------------------------------------------------\nNew Message⬇️\n" + $"Userid: {userid}\n" + $"Username: {message.Chat.FirstName}\n" + $"Message: {message.Text}\n" + $"Data: {message.Date.ToLocalTime()}\n" + "------------------------------------------------------\n");
-            
+
             //Check for "/start":
             if (TextMessage == "/start")
             {
-                
+
                 database[userid].language = "non";
                 database[userid].gender = "non";
-                
-                
-                await botclient.SendTextMessageAsync(userid, text:"Let's start....", replyMarkup: new ReplyKeyboardRemove(), cancellationToken: token);
+
+
+                await botclient.SendTextMessageAsync(userid, text: "Let's start....", replyMarkup: new ReplyKeyboardRemove(), cancellationToken: token);
                 await botclient.SendTextMessageAsync(userid, botword["textchoicelanguage"], parseMode: ParseMode.Html, replyMarkup: inlinelanguagekeyboard, cancellationToken: token);
 
             }
@@ -172,7 +173,7 @@ namespace Program
 
 
                     await botclient.SendVideoAsync(userid, video: InputFile.FromStream(stream), replyMarkup: symptomkeyboard, thumbnail: InputFile.FromUri("https://raw.githubusercontent.com/TelegramBots/book/master/src/2/docs/thumb-clock.jpg"), supportsStreaming: true, cancellationToken: token);
-                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat2"], replyMarkup: inlineKeyboarden , parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
+                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat2"], replyMarkup: inlineKeyboard, parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
                     //await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat"], replyMarkup: inlineKeyboard, disableNotification: true, cancellationToken: token);
                     database[userid].inlinesymptomkey = true;
                     database[userid]!.inlinebuttpressed!.Clear();
@@ -203,119 +204,60 @@ namespace Program
                 {
                     bool wrongmessage = false;
                     string bufs = "";
-                    int countinputsymptoms = 1;
-                    int[] symptomsarray = new int[settings!.countsymptoms];
+                    long bufi = 0;
+                    int countinputsymptoms = 0;
+                    string symptomslist = "";
 
+                    TextMessage += " ";
                     for (int i = 0; i < TextMessage.Length; i++)
                     {
-                        if (!int.TryParse(TextMessage[i].ToString(), out _) && TextMessage[i] != ' ') wrongmessage = true;
-                        if (i != TextMessage.Length - 1)
+                        if (TextMessage[i] > 47 && TextMessage[i] < 58)
                         {
-                            if (TextMessage[i] == ' ' && TextMessage[i + 1] == ' ') wrongmessage = true;
+                            bufs += TextMessage[i];
+                            long.TryParse(bufs, out bufi);
+                            if (bufi > 110) bufs = "";
                             continue;
                         }
-                        if (TextMessage[i] == ' ' && TextMessage[i - 1] == ' ') wrongmessage = true;
-                    }
-                    if (wrongmessage)
-                    {
-                        await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["errorstik"]), cancellationToken: token);
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textwronginput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId, cancellationToken: token);
-                        return;
-                    }
-                    for (int i = 0, j = 0; i < TextMessage.Length; i++)
-                    {
-                        if (TextMessage[i] == ' ')
+                        if (bufs != "")
                         {
-                            symptomsarray[j] = int.Parse(bufs);
+                            symptomslist += bufs + " ";
                             bufs = "";
-                            j++;
                             countinputsymptoms++;
-                            continue;
                         }
-                        bufs += TextMessage[i];
                     }
-                    symptomsarray[countinputsymptoms - 1] = int.Parse(bufs);
-                    Array.Resize(ref symptomsarray, countinputsymptoms);
-                    Array.Sort(symptomsarray);
-                    if (symptomsarray[0] > settings.countsymptoms || symptomsarray[0] == 0) wrongmessage = true;
-                    for (int i = 1; i < countinputsymptoms; i++)
+
+                    await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["waitstik"]), cancellationToken: token);
+                    await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textcorrectinput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId, cancellationToken: token);
+                    using (FileStream fs = new FileStream(settings.pathinputuser, FileMode.Truncate))
                     {
-                        if (symptomsarray[i - 1] == symptomsarray[i])
-                        {
-                            wrongmessage = true;
-                            break;
-                        }
-                        if (i == countinputsymptoms - 1 && symptomsarray[i] > settings.countsymptoms)
-                        {
-                            wrongmessage = true;
-                            break;
-                        }
-                        if (symptomsarray[i - 1] > settings.countsymptoms)
-                        {
-                            wrongmessage = true;
-                            break;
-                        }
+                        byte[] inpiutfile = Encoding.ASCII.GetBytes(database[userid].gender[0] + " " + countinputsymptoms + " " + symptomslist);
+                        fs.Write(inpiutfile, 0, inpiutfile.Length);
+                        fs.Close();
                     }
-
-                    //Verifying the correctness of the input and sending the neural network and receiving data
-                    if (wrongmessage)
+                    using (Process process = new Process())
                     {
-                        await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["errorstik"]), cancellationToken: token);
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textwronginput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId, cancellationToken: token);
-
+                        process.StartInfo.FileName = @"..\..\..\..\WithOutLearning\ProcessTest.exe";
+                        process.StartInfo.WorkingDirectory = @"..\..\..\..\WithOutLearning";
+                        process.StartInfo.CreateNoWindow = true;
+                        process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                        process.Start();
+                        process.WaitForExit(2000);
                     }
-                    else
+                    try
                     {
-                        await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["waitstik"]), cancellationToken: token);
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textcorrectinput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId, cancellationToken: token);
-                        for (int i = 0; i < countinputsymptoms; i++)
-                        {
-                            Console.WriteLine(symptomsarray[i]);
-                        }
-
-                        //Recreating the input file and recording
-                        using (FileStream fs = new FileStream(settings.pathinputuser, FileMode.Truncate))
-                        {
-                            byte[] inpiutfile = Encoding.ASCII.GetBytes(database[userid].gender[0] + " " + countinputsymptoms + " " + String.Join(" ", symptomsarray));
-                            fs.Write(inpiutfile, 0, inpiutfile.Length);
-                            fs.Close();
-                        }
-
-                        //Launching a neural network to calculate tests
-
-                       using Process process = new Process();
-                        {
-                            process.StartInfo.FileName = @"..\..\..\..\WithOutLearning\ProcessTest.exe"; //путь к приложению, которое будем запускать
-                            process.StartInfo.WorkingDirectory = @"..\..\..\..\WithOutLearning\"; //путь к рабочей директории приложения
-                            process.Start();
-                            process.WaitForExit();
-                        };
-
-
-                        //Reading the output file and cleaning
-                        while (true)
-                        {
-                            try
-                            {
-                                FileStream fs = new FileStream(settings.pathoutputuser, FileMode.Open);
-                                byte[] buffer = new byte[fs.Length];
-                                fs.Read(buffer, 0, buffer.Length);
-                                string textFromFile = Encoding.Default.GetString(buffer);
-                                fs.Close();
-                                
-                                if (textFromFile != "")
-                                {
-                                    await botclient.SendTextMessageAsync(message.Chat.Id, "Вы болеете: " + botword["d" + textFromFile], parseMode: ParseMode.Html, cancellationToken: token);
-                                    System.IO.File.Create(settings.pathoutputuser).Close();
-                                    database[userid].mainmenu = true;
-                                    database[userid].symptommenu = false;
-                                    await botclient.SendTextMessageAsync(message.Chat.Id, database[userid].name + " " + botword["textwelcome2"], parseMode: ParseMode.Html, replyMarkup: welcomkeyboard, disableNotification: true, cancellationToken: token);
-                                    break;
-                                }
-                            }
-                            catch (Exception) { }
-                        }
+                        FileStream fs = new FileStream(settings.pathoutputuser, FileMode.Open);
+                        byte[] buffer = new byte[fs.Length];
+                        fs.Read(buffer, 0, buffer.Length);
+                        string textFromFile = Encoding.Default.GetString(buffer);
+                        fs.Close();
+                        if (textFromFile == "") textFromFile = "73";
+                        await botclient.SendTextMessageAsync(message.Chat.Id, "Вы болеете: " + botword["d" + textFromFile], parseMode: ParseMode.Html, cancellationToken: token);
+                        System.IO.File.Create(settings.pathoutputuser).Close();
+                        database[userid].mainmenu = true;
+                        database[userid].symptommenu = false;
+                        await botclient.SendTextMessageAsync(message.Chat.Id, database[userid].name + " " + botword["textwelcome2"], parseMode: ParseMode.Html, replyMarkup: welcomkeyboard, disableNotification: true, cancellationToken: token);
                     }
+                    catch (Exception) { }
                 }
             }
 

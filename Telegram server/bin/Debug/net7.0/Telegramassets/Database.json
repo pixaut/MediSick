@@ -1,13 +1,13 @@
 {
   "855228246": {
     "inlinebuttpressed": [],
-    "symptommenu": true,
-    "mainmenu": false,
+    "symptommenu": false,
+    "mainmenu": true,
     "inlinesymptomkey": false,
     "name": "DrgNBoNツ",
-    "lastmessage": "🌡️определить заболевание🧬",
+    "lastmessage": "43юь534э,ь%лд6ит84о4о4897щд0-ж57оь54",
     "gender": "man",
-    "language": "ru"
+    "language": "en"
   },
   "5892162910": {
     "inlinebuttpressed": [],
@@ -28,5 +28,27 @@
     "lastmessage": "/start",
     "gender": "non",
     "language": "non"
+  },
+  "1699534382": {
+    "inlinebuttpressed": [],
+    "symptommenu": false,
+    "mainmenu": true,
+    "inlinesymptomkey": false,
+    "name": "Андрей",
+    "lastmessage": "14 15 16",
+    "gender": "man",
+    "language": "ru"
+  },
+  "5805869477": {
+    "inlinebuttpressed": [
+      9
+    ],
+    "symptommenu": true,
+    "mainmenu": false,
+    "inlinesymptomkey": true,
+    "name": "Gyre",
+    "lastmessage": "🌡️определить заболевание🧬",
+    "gender": "woman",
+    "language": "ru"
   }
 }

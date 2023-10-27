@@ -202,7 +202,6 @@ namespace Program
                 //Processing input symptoms and sending the neural network with output:
                 if (!database[userid].mainmenu && !database[userid].inlinesymptomkey && database[userid].symptommenu)
                 {
-                    bool wrongmessage = false;
                     string bufs = "";
                     long bufi = 0;
                     int countinputsymptoms = 0;
@@ -228,6 +227,7 @@ namespace Program
 
                     await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["waitstik"]), cancellationToken: token);
                     await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textcorrectinput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId, cancellationToken: token);
+                    
                     using (FileStream fs = new FileStream(settings.pathinputuser, FileMode.Truncate))
                     {
                         byte[] inpiutfile = Encoding.ASCII.GetBytes(database[userid].gender[0] + " " + countinputsymptoms + " " + symptomslist);
@@ -245,17 +245,38 @@ namespace Program
                     }
                     try
                     {
+                        
+                        string diagnosis = botword["textdiseaseprognosis"];  
+                        List <int> disandperc = new List<int>();                   
+                        bufs = "";
                         FileStream fs = new FileStream(settings.pathoutputuser, FileMode.Open);
                         byte[] buffer = new byte[fs.Length];
                         fs.Read(buffer, 0, buffer.Length);
                         string textFromFile = Encoding.Default.GetString(buffer);
                         fs.Close();
-                        if (textFromFile == "") textFromFile = "73";
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "Вы болеете: " + botword["d" + textFromFile], parseMode: ParseMode.Html, cancellationToken: token);
-                        System.IO.File.Create(settings.pathoutputuser).Close();
-                        database[userid].mainmenu = true;
-                        database[userid].symptommenu = false;
-                        await botclient.SendTextMessageAsync(message.Chat.Id, database[userid].name + " " + botword["textwelcome2"], parseMode: ParseMode.Html, replyMarkup: welcomkeyboard, disableNotification: true, cancellationToken: token);
+                        
+                        for(int i = 0;i < textFromFile.Length;++i)
+                        {
+                            if(textFromFile[i] == ' ' || textFromFile[i] == '\n')
+                            {
+                                Console.WriteLine("cock");
+                                disandperc.Add(int.Parse(bufs));
+                                bufs = "";  
+                            }
+                            bufs += textFromFile[i];        
+                        }
+                        for(int i = 0;i < disandperc.Count;i+=2)
+                        {
+                            diagnosis+=botword["d"+disandperc[i]]+" ▼\n С вероятностью: ";      
+                            diagnosis+="│"+cantileverstrip(disandperc[i+1])+"│ "+disandperc[i+1]+" %\n\n";
+                        }
+                        diagnosis+=botword["textdiseasewarning"];
+                        Console.WriteLine(diagnosis);
+
+                        await botclient.SendTextMessageAsync(userid,diagnosis,parseMode:ParseMode.Html,cancellationToken:token);
+                        
+
+                        
                     }
                     catch (Exception) { }
                 }

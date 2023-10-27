@@ -59,26 +59,26 @@ int main(){
     nn.ForwardFeed();                                                       
     std::ofstream fout("..\\Telegram server\\bin\\Debug\\net7.0\\InOutUser\\output.txt");  
 
-    if(nn.Predict()+1 == 72){
-        fout << 73;
-    }else{
-        fout << nn.Predict()+1;// << '\n';
+    // if(nn.Predict()+1 == 72){
+    //     fout << 73;
+    // }else{
+    //     fout << nn.Predict()+1 << '\n';
+    // }
+    
+    
+    double* SF = nn.SoftMax();
+    std::pair<double,int> ans[size[layers-1]];
+
+    for(int i = 0;i < size[layers-1];i++){
+        ans[i] = {SF[i],i+1};
     }
     
-    
-    // double* SF = nn.SoftMax();
-    // std::pair<double,int> ans[size[layers-1]];
+    std::sort(ans,ans+size[layers-1]);
+    std::reverse(ans,ans+size[layers-1]);
 
-    // for(int i = 0;i < size[layers-1];i++){
-    //     ans[i] = {SF[i],i+1};
-    // }
-    
-    // std::sort(ans,ans+size[layers-1]);
-    // std::reverse(ans,ans+size[layers-1]);
-
-    // for(int i = 0;i < 10;i++){
-    //     fout << ans[i].second << " - " << ans[i].first << '\n';
-    // }
+    for(int i = 0;i < 5;i++){
+        fout << ans[i].second << " " << std::fixed << std::setprecision(0) <<  ans[i].first << '\n';
+     }
     
                                                      // do output
     fout.close();                                                           //

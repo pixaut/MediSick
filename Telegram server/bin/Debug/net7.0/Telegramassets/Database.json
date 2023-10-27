@@ -1,41 +1,41 @@
 {
   "855228246": {
     "inlinebuttpressed": [],
-    "symptommenu": false,
-    "mainmenu": true,
+    "symptommenu": true,
+    "mainmenu": false,
     "inlinesymptomkey": false,
     "name": "DrgNBoNツ",
-    "lastmessage": "43юь534э,ь%лд6ит84о4о4897щд0-ж57оь54",
+    "lastmessage": "oiuyqtdsi70tvf3467oo446572345d634d65",
     "gender": "man",
-    "language": "en"
+    "language": "ru"
   },
   "5892162910": {
     "inlinebuttpressed": [],
     "symptommenu": true,
     "mainmenu": false,
-    "inlinesymptomkey": true,
+    "inlinesymptomkey": false,
     "name": "Mason",
-    "lastmessage": "🌡️определить заболевание🧬",
+    "lastmessage": "27 93 97 109",
     "gender": "man",
     "language": "ru"
   },
   "2069754483": {
     "inlinebuttpressed": [],
     "symptommenu": false,
-    "mainmenu": false,
+    "mainmenu": true,
     "inlinesymptomkey": false,
     "name": "tortik122421",
-    "lastmessage": "/start",
-    "gender": "non",
-    "language": "non"
+    "lastmessage": "4 10 23",
+    "gender": "man",
+    "language": "ru"
   },
   "1699534382": {
     "inlinebuttpressed": [],
-    "symptommenu": false,
-    "mainmenu": true,
+    "symptommenu": true,
+    "mainmenu": false,
     "inlinesymptomkey": false,
     "name": "Андрей",
-    "lastmessage": "14 15 16",
+    "lastmessage": "14 15 7 10",
     "gender": "man",
     "language": "ru"
   },
@@ -49,6 +49,20 @@
     "name": "Gyre",
     "lastmessage": "🌡️определить заболевание🧬",
     "gender": "woman",
+    "language": "ru"
+  },
+  "1653616959": {
+    "inlinebuttpressed": [
+      6,
+      4,
+      2
+    ],
+    "symptommenu": true,
+    "mainmenu": false,
+    "inlinesymptomkey": true,
+    "name": "Пранович",
+    "lastmessage": "🌡️определить заболевание🧬",
+    "gender": "man",
     "language": "ru"
   }
 }

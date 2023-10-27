@@ -6,6 +6,19 @@ namespace Program
 {
     class Secondaryfunctions
     {
+        public static string cantileverstrip(int percent)
+        {
+            char[] stripfull = new char[] {'░','░','░','░','░','░','░','░','░'};
+            for(int i = 0;i < (int)percent/10;++i)
+            {
+                stripfull[i] = '█';
+
+            }
+            string strip = new string(stripfull);
+
+
+            return strip;
+        }
 
         public static Dictionary<string, string> BotwordDictpreparer(Dictionary<string, string> botword, string path)
         {

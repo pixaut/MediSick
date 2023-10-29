@@ -60,6 +60,7 @@ namespace Program
         public bool inlinesymptomkey { get; set; } = false;
         public string name { get; set; } = "no name";
         public List<int>? inlinebuttpressed = new List<int>();
+        public List<int>? listofrecentdiseases = new List<int>();
         public string lastmessage { get; set; } = "";
         public string gender { get; set; } = "non";
         public string language { get; set; } = "non";

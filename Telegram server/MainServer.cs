@@ -133,6 +133,24 @@ namespace Program
                 DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
                 return;
             }
+            if (update.Type == UpdateType.CallbackQuery && userid > 0 && database[userid].mainmenu == false && database[userid].symptommenu == true && database[userid].inlinesymptomkey == false && callback.Data.Substring(0, 11) == "description")
+            {
+                await botclient.AnswerCallbackQueryAsync(callback!.Id, callback.Data, cancellationToken: token);
+                await botclient.SendTextMessageAsync
+                (
+                    userid,
+                    text: botword
+                    [
+                        "d" + database[userid]!.listofrecentdiseases![int.Parse(callback.Data.Substring(11)) - 1]]!.Substring(3, botword["d" + database[userid]!.listofrecentdiseases![int.Parse(callback.Data.Substring(11)) - 1]]!.Length - 7)! +
+                        " - " + botword["textdescriptiondisease" +
+                        database![userid]!.listofrecentdiseases![int.Parse(callback.Data.Substring(11)) - 1]]!,
+                    parseMode: ParseMode.Html,
+                    cancellationToken: token
+                );
+                interfacelocalization(database[userid].language);
+                DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
+                return;
+            }
 
             //Some preparation:
             if (message == null || message.Type != MessageType.Text) return;
@@ -227,7 +245,7 @@ namespace Program
 
                     await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["waitstik"]), cancellationToken: token);
                     await botclient.SendTextMessageAsync(message.Chat.Id, "<b>" + botword["textcorrectinput"] + "</b>", parseMode: ParseMode.Html, replyToMessageId: message.MessageId, cancellationToken: token);
-                    
+
                     using (FileStream fs = new FileStream(settings.pathinputuser, FileMode.Truncate))
                     {
                         byte[] inpiutfile = Encoding.ASCII.GetBytes(database[userid].gender[0] + " " + countinputsymptoms + " " + symptomslist);
@@ -245,38 +263,43 @@ namespace Program
                     }
                     try
                     {
-                        
-                        string diagnosis = botword["textdiseaseprognosis"];  
-                        List <int> disandperc = new List<int>();                   
+
+                        string diagnosis = botword["textdiseaseprognosis"];
+                        List<int> disandperc = new List<int>();
                         bufs = "";
                         FileStream fs = new FileStream(settings.pathoutputuser, FileMode.Open);
                         byte[] buffer = new byte[fs.Length];
                         fs.Read(buffer, 0, buffer.Length);
                         string textFromFile = Encoding.Default.GetString(buffer);
                         fs.Close();
-                        
-                        for(int i = 0;i < textFromFile.Length;++i)
+
+                        for (int i = 0; i < textFromFile.Length; ++i)
                         {
-                            if(textFromFile[i] == ' ' || textFromFile[i] == '\n')
+                            if (textFromFile[i] == ' ' || textFromFile[i] == '\n')
                             {
-                                Console.WriteLine("cock");
                                 disandperc.Add(int.Parse(bufs));
-                                bufs = "";  
+                                bufs = "";
                             }
-                            bufs += textFromFile[i];        
+                            bufs += textFromFile[i];
                         }
-                        for(int i = 0;i < disandperc.Count;i+=2)
+                        database[userid]!.listofrecentdiseases!.Clear();
+                        for (int i = 0, j = 1; i < disandperc.Count; i += 2, j++)
                         {
-                            diagnosis+=botword["d"+disandperc[i]]+" ▼\n С вероятностью: ";      
-                            diagnosis+="│"+cantileverstrip(disandperc[i+1])+"│ "+disandperc[i+1]+" %\n\n";
+                            diagnosis += j + "." + botword["d" + disandperc[i]] + " ▼\n С вероятностью: ";
+                            diagnosis += "│" + cantileverstrip(disandperc[i + 1]) + "│ " + disandperc[i + 1] + " %\n\n";
+                            database[userid]!.listofrecentdiseases!.Add(disandperc[i]);
+
+
+
+
+
                         }
-                        diagnosis+=botword["textdiseasewarning"];
+                        diagnosis += botword["textdiseasewarning"];
                         Console.WriteLine(diagnosis);
+                        await botclient.SendTextMessageAsync(userid, diagnosis, replyMarkup: inlinepreparationdescriptiondiseases(), parseMode: ParseMode.Html, cancellationToken: token);
 
-                        await botclient.SendTextMessageAsync(userid,diagnosis,parseMode:ParseMode.Html,cancellationToken:token);
-                        
 
-                        
+
                     }
                     catch (Exception) { }
                 }

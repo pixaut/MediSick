@@ -1,16 +1,24 @@
 {
   "855228246": {
     "inlinebuttpressed": [],
+    "listofrecentdiseases": [
+      72,
+      57,
+      42,
+      56,
+      28
+    ],
     "symptommenu": true,
     "mainmenu": false,
     "inlinesymptomkey": false,
     "name": "DrgNBoNツ",
-    "lastmessage": "oiuyqtdsi70tvf3467oo446572345d634d65",
+    "lastmessage": "5 17 45 46 98 103",
     "gender": "man",
     "language": "ru"
   },
   "5892162910": {
     "inlinebuttpressed": [],
+    "listofrecentdiseases": [],
     "symptommenu": true,
     "mainmenu": false,
     "inlinesymptomkey": false,
@@ -21,6 +29,7 @@
   },
   "2069754483": {
     "inlinebuttpressed": [],
+    "listofrecentdiseases": [],
     "symptommenu": false,
     "mainmenu": true,
     "inlinesymptomkey": false,
@@ -31,18 +40,26 @@
   },
   "1699534382": {
     "inlinebuttpressed": [],
+    "listofrecentdiseases": [
+      72,
+      42,
+      57,
+      90,
+      21
+    ],
     "symptommenu": true,
     "mainmenu": false,
     "inlinesymptomkey": false,
     "name": "Андрей",
-    "lastmessage": "14 15 7 10",
-    "gender": "man",
+    "lastmessage": "17 45 46 98 103",
+    "gender": "woman",
     "language": "ru"
   },
   "5805869477": {
     "inlinebuttpressed": [
       9
     ],
+    "listofrecentdiseases": [],
     "symptommenu": true,
     "mainmenu": false,
     "inlinesymptomkey": true,
@@ -52,16 +69,19 @@
     "language": "ru"
   },
   "1653616959": {
-    "inlinebuttpressed": [
-      6,
-      4,
-      2
+    "inlinebuttpressed": [],
+    "listofrecentdiseases": [
+      72,
+      42,
+      57,
+      90,
+      21
     ],
     "symptommenu": true,
     "mainmenu": false,
-    "inlinesymptomkey": true,
+    "inlinesymptomkey": false,
     "name": "Пранович",
-    "lastmessage": "🌡️определить заболевание🧬",
+    "lastmessage": "17, 45, 46, 98, 103",
     "gender": "man",
     "language": "ru"
   }

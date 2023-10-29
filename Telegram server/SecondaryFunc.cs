@@ -1,15 +1,45 @@
 using Newtonsoft.Json;
 using static Program.TelegramBot;
 using static Program.Keyboard;
+using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Program
 {
     class Secondaryfunctions
     {
+        public static InlineKeyboardMarkup inlinepreparationdescriptiondiseases()
+        {
+
+            InlineKeyboardMarkup inlinedescriptiondiseaseen = new(new[]
+            {
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData(text: botword["descriptiondisease"]+botword["d"+database[userid].listofrecentdiseases[0]].Substring(3, botword["d"+database[userid].listofrecentdiseases[0]].Length - 7), callbackData: "description1"),
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData(text: botword["descriptiondisease"]+botword["d"+database[userid].listofrecentdiseases[1]].Substring(3, botword["d"+database[userid].listofrecentdiseases[1]].Length - 7), callbackData: "description2"),
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData(text: botword["descriptiondisease"]+botword["d"+database[userid].listofrecentdiseases[2]].Substring(3, botword["d"+database[userid].listofrecentdiseases[2]].Length - 7), callbackData: "description3"),
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData(text: botword["descriptiondisease"]+botword["d"+database[userid].listofrecentdiseases[3]].Substring(3, botword["d"+database[userid].listofrecentdiseases[3]].Length - 7), callbackData: "description4"),
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData(text: botword["descriptiondisease"]+botword["d"+database[userid].listofrecentdiseases[4]].Substring(3, botword["d"+database[userid].listofrecentdiseases[4]].Length - 7), callbackData: "description5"),
+                }
+            });
+            return inlinedescriptiondiseaseen;
+        }
+
         public static string cantileverstrip(int percent)
         {
-            char[] stripfull = new char[] {'░','░','░','░','░','░','░','░','░'};
-            for(int i = 0;i < (int)percent/10;++i)
+            char[] stripfull = new char[] { '░', '░', '░', '░', '░', '░', '░', '░', '░' };
+            for (int i = 0; i < (int)percent / 10; ++i)
             {
                 stripfull[i] = '█';
 
@@ -68,6 +98,7 @@ namespace Program
                 symptomkeyboard = symptomkeyboardru;
                 inlineKeyboard = inlineKeyboardru;
                 inlinegenderkeyboard = inlinegenderkeyboardru;
+
             }
             else
             {
@@ -76,6 +107,7 @@ namespace Program
                 symptomkeyboard = symptomkeyboarden;
                 inlineKeyboard = inlineKeyboarden;
                 inlinegenderkeyboard = inlinegenderkeyboarden;
+
             }
 
         }

@@ -31,8 +31,6 @@ int main(){
     fin.open("..\\Telegram server\\bin\\Debug\\net7.0\\InOutUser\\input.txt");                                                  
     
     fin >> gender;
-
-
     input[WomanIndex] = (double)(gender == 'w');
     input[ManIndex]   = (double)(gender == 'm');
 
@@ -40,7 +38,7 @@ int main(){
         if(rand()%2 == 0){
             input[WomanIndex] = 1.0;
         }else{
-                input[ManIndex] = 1.0;
+            input[ManIndex] = 1.0;
         }
     }
 
@@ -54,19 +52,11 @@ int main(){
     fin.close();                                                            //
     nn.SetInput(input);
 
-
-
     nn.ForwardFeed();                                                       
     std::ofstream fout("..\\Telegram server\\bin\\Debug\\net7.0\\InOutUser\\output.txt");  
 
-    // if(nn.Predict()+1 == 72){
-    //     fout << 73;
-    // }else{
-    //     fout << nn.Predict()+1 << '\n';
-    // }
-    
-    
     double* SF = nn.SoftMax();
+    double SFSum;
     std::pair<double,int> ans[size[layers-1]];
 
     for(int i = 0;i < size[layers-1];i++){
@@ -76,12 +66,15 @@ int main(){
     std::sort(ans,ans+size[layers-1]);
     std::reverse(ans,ans+size[layers-1]);
 
-    for(int i = 0;i < 10;i++){
-        fout << ans[i].second << " - " << ans[i].first << '\n';
-     }
+    for(int i = 0;i < 5;i++){
+        SFSum += ans[i].first;
+    }
+    for(int i = 0;i < 5;i++){
+        fout << ans[i].second << " " << std::fixed << std::setprecision(0) <<  (ans[i].first/SFSum*100.0) << '\n';
+    }
     
-                                                     // do output
-    fout.close();                                                           //
+
+    fout.close();                                                           
 
     return 0;
 }

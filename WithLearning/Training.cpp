@@ -29,8 +29,7 @@ int main(){
     int ManIndex = size[0]+1;
 
     size[0] += 2;
-    NeuronNetwork nn(layers,size);                          //
-    nn.SetRandom();                                         //
+    NeuronNetwork nn(layers,size);                          //                                   
     
     double *input = new double[size[0]];
     double *rightanswer = new double[size[layers-1]];
@@ -41,62 +40,46 @@ int main(){
     while(s < 98){
 
         s = 0.0,e = 0.0;
-
         fin.open("Button.txt");
         fin >> Svt;
         fin.close();
 
-        if(Svt){
-            nn.SaveNetwork(NetworkPath);
-        }
+        if(Svt) nn.SaveNetwork(NetworkPath);
 
         fin.open(PathToTests);
-        
-        //std::cout << bool(fin);
-
-        fin >> N;
-        
+        fin >> N; 
         for(int k = 0;k < N;k++){
             std::fill(input,input+size[0],0.0);
 
-            fin >> gender;
-            fin >> n;
+            fin >> gender >> n;
             for(int i = 0;i < n;i++){
                 fin >> c;
                 input[c-1] = 1.0;
             }
             fin >> c;
             rightanswer[c-1] = 1.0;
-            
             input[WomanIndex] = (double)(gender == 'w');
             input[ManIndex]   = (double)(gender == 'm');
 
             if(gender == 'n'){
-                if(rand()%2 == 0){
-                    input[WomanIndex] = 1.0;
-                }else{
-                    input[ManIndex] = 1.0;
-                }
+                if(rand()%2 == 0) input[WomanIndex] = 1.0;
+                else input[ManIndex] = 1.0;
+                
             }
 
             nn.SetInput(input);
             nn.ForwardFeed();
             nn.BackPropagation(rightanswer,SpeedOfLearning);
-
             e += nn.ErrorCouter(rightanswer);
 
             rightanswer[c-1] = 0.0;
-            if(nn.Predict() == c-1){
-                s += 1.0;
-            }
-
+            s += (nn.Predict() == c-1);
+            
         }
 
         fin.close();
 
-        s = s/N*100.0;
-        e /= N;
-
+        s = s/N*100.0,e /= N;
         std::cout << std::fixed << std::setprecision(8) << s << '\t' << e << '\n';
 
     }

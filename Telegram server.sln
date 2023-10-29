@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telegram server", "Telegram
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testingjson", "..\..\testingjson\testingjson.csproj", "{DF2336EE-CF2D-48C2-9CA3-EA7E23F41932}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{9443ED71-4F72-4731-9168-3536037EE2F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp2", "..\ConsoleApp2\ConsoleApp2.csproj", "{A662DB94-CC08-4B78-BB07-D22ED154E2DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{DF2336EE-CF2D-48C2-9CA3-EA7E23F41932}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF2336EE-CF2D-48C2-9CA3-EA7E23F41932}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF2336EE-CF2D-48C2-9CA3-EA7E23F41932}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9443ED71-4F72-4731-9168-3536037EE2F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9443ED71-4F72-4731-9168-3536037EE2F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9443ED71-4F72-4731-9168-3536037EE2F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9443ED71-4F72-4731-9168-3536037EE2F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A662DB94-CC08-4B78-BB07-D22ED154E2DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A662DB94-CC08-4B78-BB07-D22ED154E2DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A662DB94-CC08-4B78-BB07-D22ED154E2DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A662DB94-CC08-4B78-BB07-D22ED154E2DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -157,10 +157,5 @@ namespace Program
                 InlineKeyboardButton.WithCallbackData(text: "🇷🇺Русский🇧🇾", callbackData: "ru"),
             }
         });
-
-
-
-
-
     }
 }

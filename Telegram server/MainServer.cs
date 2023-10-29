@@ -123,6 +123,7 @@ namespace Program
                     await botclient.DeleteMessageAsync(userid, callback!.Message!.MessageId, cancellationToken: token);
                     database[userid]!.inlinebuttpressed!.Sort();
                     await botclient.SendTextMessageAsync(userid, symptomhandler(database[userid]!.inlinebuttpressed!), parseMode: ParseMode.Html, cancellationToken: token);
+                    await botclient.SendAnimationAsync(userid, animation: InputFile.FromUri("https://im2.ezgif.com/tmp/ezgif-2-255d3b1013.gif"), caption: "После того как вы получили список с симптомами и их номерами,отпраьте эти номера телеграм боту в виде сообщения:\nНапример: '12,87,10', '41 52 67 47', '86/19/73'", cancellationToken: token);
                     database[userid]!.inlinebuttpressed!.Clear();
                     database[userid].inlinesymptomkey = false;
                 }
@@ -185,12 +186,8 @@ namespace Program
             {
                 if (TextMessage == botword["textbuttondefinitionofdisease"].ToLower())
                 {
-                    await using Stream stream = System.IO.File.OpenRead($"Telegramassets\\videoinstruction2.mp4");
                     database[userid].mainmenu = false;
                     database[userid].symptommenu = true;
-
-
-                    await botclient.SendVideoAsync(userid, video: InputFile.FromStream(stream), replyMarkup: symptomkeyboard, thumbnail: InputFile.FromUri("https://raw.githubusercontent.com/TelegramBots/book/master/src/2/docs/thumb-clock.jpg"), supportsStreaming: true, cancellationToken: token);
                     await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat2"], replyMarkup: inlineKeyboard, parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
                     //await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat"], replyMarkup: inlineKeyboard, disableNotification: true, cancellationToken: token);
                     database[userid].inlinesymptomkey = true;

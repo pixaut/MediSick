@@ -7,7 +7,7 @@
 struct Bindings
 {
 	int SimInd;
-	std::string Gender;
+	char Gender;
 	std::vector<int> Sicks;
 
 	int size(){
@@ -34,21 +34,20 @@ std::string GetTest() {
 	s.clear();
 	ans.clear();
 
-	std::string gender;
+	char gender;
 	int i = rand() % v.size();
 
 	if(rand()%2 == 0){
-		gender = "man";
+		gender = 'm';
 	}else{
-		gender = "woman";
+		gender = 'w';
 	}
 
 	
 
-	if(v[i].Gender != "none"){
-		while(v[i].Gender != "none" && v[i].Gender != gender){
+	if(v[i].Gender != 'n'){
+		while(v[i].Gender != 'n' && v[i].Gender != gender){
 			i = rand() % v.size();
-			//std::cout << v[i].Gender << '\n';
 		}
 	}
 
@@ -59,7 +58,7 @@ std::string GetTest() {
 		s.insert(v[i][rand()%v[i].size()]);
 	}
 
-	ans += gender[0];
+	ans += gender;
 
 	ans += ' ' + std::to_string(k) + '\t';
 
@@ -78,10 +77,10 @@ int main() {
 
 	srand(time(NULL));
 
-	std::ifstream fin("DescriptionOfSimphtones.txt");
+	std::ifstream fin("..\\Sicks\\SicksList.txt");
 	std::ofstream fout("RandomTests.txt");
 
-	char gender[10];
+	char gender;
 
 	fin >> N;
 

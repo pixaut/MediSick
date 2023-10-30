@@ -60,6 +60,10 @@ int main(){
     std::pair<double,int> ans[size[layers-1]];
 
     for(int i = 0;i < size[layers-1];i++){
+        if(i == 71 && gender == 'w'){
+            ans[i] = {0,i+1};
+            continue;
+        }
         ans[i] = {SF[i],i+1};
     }
     

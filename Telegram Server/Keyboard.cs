@@ -10,14 +10,14 @@ namespace Program
         public static InlineKeyboardMarkup? inlinegenderkeyboard;
         public static ReplyKeyboardMarkup welcomkeyboarden = new(new[]
         {
-                new KeyboardButton[] {TelegramBot.botworden["textbuttondefinitionofdisease"],TelegramBot.botworden["textbuttonreference"]},
+            new KeyboardButton[] {TelegramBot.botworden["textbuttondefinitionofdisease"],TelegramBot.botworden["textbuttonreference"]},
         })
         {
             ResizeKeyboard = true
         };
         public static ReplyKeyboardMarkup welcomkeyboardru = new(new[]
         {
-                new KeyboardButton[] {TelegramBot.botwordru["textbuttondefinitionofdisease"],TelegramBot.botwordru["textbuttonreference"]},
+            new KeyboardButton[] {TelegramBot.botwordru["textbuttondefinitionofdisease"],TelegramBot.botwordru["textbuttonreference"]},
         })
         {
             ResizeKeyboard = true,
@@ -25,14 +25,16 @@ namespace Program
         };
         public static ReplyKeyboardMarkup symptomkeyboarden = new(new[]
         {
-                new KeyboardButton[] {TelegramBot.botworden["textbuttonbacktomainmenu"]},
+            new KeyboardButton[] {TelegramBot.botworden["textbuttonrepeatforecast"]},
+            new KeyboardButton[] {TelegramBot.botworden["textbuttonbacktomainmenu"]},
         })
         {
             ResizeKeyboard = true
         };
         public static ReplyKeyboardMarkup symptomkeyboardru = new(new[]
         {
-                new KeyboardButton[] {TelegramBot.botwordru["textbuttonbacktomainmenu"]},
+            new KeyboardButton[] {TelegramBot.botwordru["textbuttonrepeatforecast"]},
+            new KeyboardButton[] {TelegramBot.botwordru["textbuttonbacktomainmenu"]},
         })
         {
             ResizeKeyboard = true

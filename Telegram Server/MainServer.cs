@@ -40,6 +40,8 @@ namespace Program
 
         async static Task Update(ITelegramBotClient botclient, Update update, CancellationToken token)
         {
+            //return;
+
             //Declaring important variables:
             var message = update.Message;
             var callback = update.CallbackQuery;
@@ -145,7 +147,7 @@ namespace Program
                         "d" + database[userid]!.listofrecentdiseases![int.Parse(callback.Data.Substring(11)) - 1]]!.Substring(3, botword["d" + database[userid]!.listofrecentdiseases![int.Parse(callback.Data.Substring(11)) - 1]]!.Length - 7)! +
                         " - " + botword["textdescriptiondisease" +
                         database![userid]!.listofrecentdiseases![int.Parse(callback.Data.Substring(11)) - 1]]!,
-                    parseMode: ParseMode.Html,
+                    parseMode: ParseMode.Markdown,
                     cancellationToken: token
                 );
                 interfacelocalization(database[userid].language);
@@ -188,8 +190,9 @@ namespace Program
                 {
                     database[userid].mainmenu = false;
                     database[userid].symptommenu = true;
+                    await botclient.SendTextMessageAsync(message.Chat.Id, "Вы перешли в меню определения заболеваняи:", replyMarkup: symptomkeyboard, disableNotification: true, cancellationToken: token);
                     await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat2"], replyMarkup: inlineKeyboard, parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
-                    //await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat"], replyMarkup: inlineKeyboard, disableNotification: true, cancellationToken: token);
+
                     database[userid].inlinesymptomkey = true;
                     database[userid]!.inlinebuttpressed!.Clear();
                     TextMessage = "";
@@ -212,6 +215,17 @@ namespace Program
                     database[userid].mainmenu = true;
                     database[userid].symptommenu = false;
                     database[userid].inlinesymptomkey = false;
+                }
+                else if (TextMessage == botword["textbuttonrepeatforecast"].ToLower())
+                {
+                    database[userid].mainmenu = false;
+                    database[userid].symptommenu = true;
+                    database[userid].inlinesymptomkey = true;
+                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat2"], replyMarkup: inlineKeyboard, parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
+
+                    database[userid]!.inlinebuttpressed!.Clear();
+
+                    return;
                 }
 
                 //Processing input symptoms and sending the neural network with output:

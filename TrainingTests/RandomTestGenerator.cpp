@@ -82,7 +82,7 @@ int main() {
 
 	char gender;
 
-	fin >> N;
+	fin >> N >> c;
 
 	v.resize(N);
 

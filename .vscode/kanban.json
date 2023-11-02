@@ -1,0 +1,47 @@
+{
+    "title": "Kanban",
+    "cols": [
+        {
+            "title": "В плане",
+            "tasks": [
+                {
+                    "text": "Решение проблемы с полами",
+                    "id": "clogtyif9000k4066f134ay5g"
+                }
+            ],
+            "id": "clogtul3d000f4066p4cwav2u",
+            "color": "#9900ef"
+        },
+        {
+            "title": "В разработке",
+            "tasks": [
+                {
+                    "text": "Программа подстраивающая, создающая тесты, обучающая в автоматическом режиме нейросеть",
+                    "id": "clogtyysk000l40662l35bnk1"
+                }
+            ],
+            "id": "clogtun5t000g4066yuw96m4t",
+            "color": "#fcb900"
+        },
+        {
+            "title": "Тестируется",
+            "tasks": [],
+            "id": "clogtwval000h4066i8wtwp1u",
+            "color": "#8ed1fc"
+        },
+        {
+            "title": "Готово",
+            "tasks": [
+                {
+                    "text": "Автоподстройщик нейросети(из базы данных)",
+                    "id": "clogtxx5y000j406604nyhhfq"
+                }
+            ],
+            "id": "clogtx005000i4066xprenk8j",
+            "color": "#00d084"
+        }
+    ],
+    "autosave": true,
+    "saveToFile": true,
+    "timestamp": 1698909706139
+}

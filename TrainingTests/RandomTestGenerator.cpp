@@ -78,7 +78,7 @@ int main() {
 	srand(time(NULL));
 
 	std::ifstream fin("..\\Sicks\\SicksList.txt");
-	std::ofstream fout("RandomTests.txt");
+	std::ofstream fout("..\\TrainingTests\\RandomTests.txt");
 
 	char gender;
 

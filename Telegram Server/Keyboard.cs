@@ -4,20 +4,22 @@ namespace Program
 {
     public class Keyboard
     {
+        public static ReplyKeyboardMarkup? geolocationkeyboard;
         public static ReplyKeyboardMarkup? welcomkeyboard;
         public static ReplyKeyboardMarkup? symptomkeyboard;
         public static InlineKeyboardMarkup? inlineKeyboard;
         public static InlineKeyboardMarkup? inlinegenderkeyboard;
         public static ReplyKeyboardMarkup welcomkeyboarden = new(new[]
         {
-            new KeyboardButton[] {TelegramBot.botworden["textbuttondefinitionofdisease"],TelegramBot.botworden["textbuttonreference"]},
-        })
+            new[]{TelegramBot.botworden["textbuttondefinitionofdisease"],KeyboardButton.WithRequestLocation("🗺️Поиск по местности🌍")},
+            new KeyboardButton[] {TelegramBot.botworden["textbuttonreference"]},        })
         {
             ResizeKeyboard = true
         };
         public static ReplyKeyboardMarkup welcomkeyboardru = new(new[]
         {
-            new KeyboardButton[] {TelegramBot.botwordru["textbuttondefinitionofdisease"],TelegramBot.botwordru["textbuttonreference"]},
+            new[]{TelegramBot.botwordru["textbuttondefinitionofdisease"],KeyboardButton.WithRequestLocation("🗺️Поиск по местности🌍")},
+            new KeyboardButton[] {TelegramBot.botwordru["textbuttonreference"]},
         })
         {
             ResizeKeyboard = true,
@@ -35,6 +37,21 @@ namespace Program
         {
             new KeyboardButton[] {TelegramBot.botwordru["textbuttonrepeatforecast"]},
             new KeyboardButton[] {TelegramBot.botwordru["textbuttonbacktomainmenu"]},
+        })
+        {
+            ResizeKeyboard = true
+        };
+
+        public static ReplyKeyboardMarkup geolocationkeyboarden = new(new[]
+        {
+            new KeyboardButton[] {TelegramBot.botworden["textbuttonbacktomainmenu"],"Поиск аптек"},
+        })
+        {
+            ResizeKeyboard = true
+        };
+        public static ReplyKeyboardMarkup geolocationkeyboardru = new(new[]
+        {
+            new KeyboardButton[] {TelegramBot.botwordru["textbuttonbacktomainmenu"],"Поиск аптек"},
         })
         {
             ResizeKeyboard = true

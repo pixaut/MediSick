@@ -1,7 +1,13 @@
+using Microsoft.VisualBasic;
 using Telegram.Bot;
 
 namespace Program
 {
+    public class SearchResult
+    {
+        public string name { get; set; }
+
+    }
 
 
     public class SymptomsList
@@ -58,12 +64,14 @@ namespace Program
         public bool symptommenu { get; set; } = false;
         public bool mainmenu { get; set; } = true;
         public bool inlinesymptomkey { get; set; } = false;
+        public bool searchbyareamenu { get; set; } = false;
         public string name { get; set; } = "no name";
         public List<int>? inlinebuttpressed = new List<int>();
         public List<int>? listofrecentdiseases = new List<int>();
         public string lastmessage { get; set; } = "";
         public string gender { get; set; } = "non";
         public string language { get; set; } = "non";
+        public (double, double) geolocation;
 
 
         public User()
@@ -75,6 +83,8 @@ namespace Program
             lastmessage = lastmessage;
             gender = gender;
             language = language;
+            searchbyareamenu = searchbyareamenu;
+
         }
     }
 }

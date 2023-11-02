@@ -42,12 +42,15 @@ namespace Program
         {
             //return;
 
+
             //Declaring important variables:
             var message = update.Message;
             var callback = update.CallbackQuery;
             if (update.Type != UpdateType.Message && update.Type != UpdateType.CallbackQuery) return;
             if (update.Type == UpdateType.CallbackQuery) userid = callback!.Message!.Chat!.Id;
             if (update.Type == UpdateType.Message) userid = message.Chat.Id;
+
+
 
 
 
@@ -66,99 +69,119 @@ namespace Program
 
             interfacelocalization(database[userid].language);
 
+
+
+
+
             //Inline buttons processing:
-            if (update.Type == UpdateType.CallbackQuery && userid > 0 && database[userid].language == "non" && database[userid].lastmessage == "/start")
+            if (update.Type == UpdateType.CallbackQuery)
             {
-                await botclient.DeleteMessageAsync(userid, callback!.Message!.MessageId, cancellationToken: token);
-                await botclient.AnswerCallbackQueryAsync(callback!.Id, callback.Data, cancellationToken: token);
-                if (callback.Data == "en" && database[userid].language == "non")
-                {
-                    await botclient.SendTextMessageAsync(userid, "You pick english language.🇬🇧", parseMode: ParseMode.Html, cancellationToken: token);
-                    database[userid].language = "en";
-                }
-                else if (callback.Data == "ru" && database[userid].language == "non")
-                {
-                    await botclient.SendTextMessageAsync(userid, "Вы выбрали русский язык.🇷🇺", parseMode: ParseMode.Html, cancellationToken: token);
-                    database[userid].language = "ru";
-                }
-
-                interfacelocalization(database[userid].language);
-
-                database[userid].mainmenu = true;
-                database[userid].symptommenu = false;
-                database[userid].inlinesymptomkey = false;
-                await botclient.SendStickerAsync(userid, sticker: InputFile.FromUri(botword["hallostik"]), cancellationToken: token);
-                await botclient.SendTextMessageAsync(userid, database[userid].name + " " + botword["textwelcome"], parseMode: ParseMode.Html, cancellationToken: token);
-                await botclient.SendTextMessageAsync(userid, botword["textchoicegender"], parseMode: ParseMode.Html, replyMarkup: inlinegenderkeyboard, cancellationToken: token);
-                DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
-                return;
-            }
-
-            if (update.Type == UpdateType.CallbackQuery && userid > 0 && database[userid].gender == "non" && database[userid].lastmessage == "/start" && database[userid].language != "non")
-            {
-                await botclient.DeleteMessageAsync(userid, callback!.Message!.MessageId, cancellationToken: token);
-                await botclient.AnswerCallbackQueryAsync(callback!.Id, callback.Data, cancellationToken: token);
-                if (callback.Data == "man" && database[userid].gender == "non")
-                {
-                    await botclient.SendTextMessageAsync(userid, botword["textman"], replyMarkup: welcomkeyboard, parseMode: ParseMode.Html, cancellationToken: token);
-                    database[userid].gender = "man";
-                }
-                else if (callback.Data == "woman" && database[userid].gender == "non")
-                {
-                    await botclient.SendTextMessageAsync(userid, botword["textwoman"], replyMarkup: welcomkeyboard, parseMode: ParseMode.Html, cancellationToken: token);
-                    database[userid].gender = "woman";
-                }
-
-                DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
-                return;
-            }
-
-            if (update.Type == UpdateType.CallbackQuery && userid > 0 && database[userid].symptommenu && database[userid].inlinesymptomkey)
-            {
-                await botclient.AnswerCallbackQueryAsync(callback!.Id, $"picked {database[userid]!.inlinebuttpressed!.Count}", cancellationToken: token);
-                if (int.TryParse(callback.Data, out _) && !database[userid]!.inlinebuttpressed!.Contains(int.Parse(callback.Data)))
-                {
-                    database[userid]!.inlinebuttpressed!.Add(int.Parse(callback?.Data ?? ""));
-                }
-                else if (callback.Data == "send" && database[userid]!.inlinebuttpressed!.Count != 0)
+                if (database[userid].language == "non" && database[userid].lastmessage == "/start")
                 {
                     await botclient.DeleteMessageAsync(userid, callback!.Message!.MessageId, cancellationToken: token);
-                    database[userid]!.inlinebuttpressed!.Sort();
-                    await botclient.SendTextMessageAsync(userid, symptomhandler(database[userid]!.inlinebuttpressed!), parseMode: ParseMode.Html, cancellationToken: token);
-                    await botclient.SendAnimationAsync(userid, animation: InputFile.FromUri("https://im2.ezgif.com/tmp/ezgif-2-255d3b1013.gif"), caption: "После того как вы получили список с симптомами и их номерами,отпраьте эти номера телеграм боту в виде сообщения:\nНапример: '12,87,10', '41 52 67 47', '86/19/73'", cancellationToken: token);
-                    database[userid]!.inlinebuttpressed!.Clear();
+                    await botclient.AnswerCallbackQueryAsync(callback!.Id, callback.Data, cancellationToken: token);
+                    if (callback.Data == "en" && database[userid].language == "non")
+                    {
+                        await botclient.SendTextMessageAsync(userid, "You pick english language.🇬🇧", parseMode: ParseMode.Html, cancellationToken: token);
+                        database[userid].language = "en";
+                    }
+                    else if (callback.Data == "ru" && database[userid].language == "non")
+                    {
+                        await botclient.SendTextMessageAsync(userid, "Вы выбрали русский язык.🇷🇺", parseMode: ParseMode.Html, cancellationToken: token);
+                        database[userid].language = "ru";
+                    }
+
+                    interfacelocalization(database[userid].language);
+
+                    database[userid].mainmenu = true;
+                    database[userid].symptommenu = false;
                     database[userid].inlinesymptomkey = false;
+                    await botclient.SendStickerAsync(userid, sticker: InputFile.FromUri(botword["hallostik"]), cancellationToken: token);
+                    await botclient.SendTextMessageAsync(userid, database[userid].name + " " + botword["textwelcome"], parseMode: ParseMode.Html, cancellationToken: token);
+                    await botclient.SendTextMessageAsync(userid, botword["textchoicegender"], parseMode: ParseMode.Html, replyMarkup: inlinegenderkeyboard, cancellationToken: token);
+                    DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
+                    return;
                 }
-                else if (callback.Data == "cancel" && database[userid]!.inlinebuttpressed!.Count != 0)
+                if (database[userid].gender == "non" && database[userid].lastmessage == "/start" && database[userid].language != "non")
                 {
-                    database[userid]!.inlinebuttpressed!.Clear();
+                    await botclient.DeleteMessageAsync(userid, callback!.Message!.MessageId, cancellationToken: token);
+                    await botclient.AnswerCallbackQueryAsync(callback!.Id, callback.Data, cancellationToken: token);
+                    if (callback.Data == "man" && database[userid].gender == "non")
+                    {
+                        await botclient.SendTextMessageAsync(userid, botword["textman"], replyMarkup: welcomkeyboard, parseMode: ParseMode.Html, cancellationToken: token);
+                        database[userid].gender = "man";
+                    }
+                    else if (callback.Data == "woman" && database[userid].gender == "non")
+                    {
+                        await botclient.SendTextMessageAsync(userid, botword["textwoman"], replyMarkup: welcomkeyboard, parseMode: ParseMode.Html, cancellationToken: token);
+                        database[userid].gender = "woman";
+                    }
+
+                    DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
+                    return;
                 }
-                DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
-                return;
+
+                if (database[userid].symptommenu && database[userid].inlinesymptomkey)
+                {
+                    await botclient.AnswerCallbackQueryAsync(callback!.Id, $"picked {database[userid]!.inlinebuttpressed!.Count}", cancellationToken: token);
+                    if (int.TryParse(callback.Data, out _) && !database[userid]!.inlinebuttpressed!.Contains(int.Parse(callback.Data)))
+                    {
+                        database[userid]!.inlinebuttpressed!.Add(int.Parse(callback?.Data ?? ""));
+                    }
+                    else if (callback.Data == "send" && database[userid]!.inlinebuttpressed!.Count != 0)
+                    {
+                        await botclient.DeleteMessageAsync(userid, callback!.Message!.MessageId, cancellationToken: token);
+                        database[userid]!.inlinebuttpressed!.Sort();
+                        await botclient.SendTextMessageAsync(userid, symptomhandler(database[userid]!.inlinebuttpressed!), parseMode: ParseMode.Html, cancellationToken: token);
+                        await botclient.SendAnimationAsync(userid, animation: InputFile.FromUri("https://im2.ezgif.com/tmp/ezgif-2-255d3b1013.gif"), caption: "После того как вы получили список с симптомами и их номерами,отпраьте эти номера телеграм боту в виде сообщения:\nНапример: '12,87,10', '41 52 67 47', '86/19/73'", cancellationToken: token);
+                        database[userid]!.inlinebuttpressed!.Clear();
+                        database[userid].inlinesymptomkey = false;
+                    }
+                    else if (callback.Data == "cancel" && database[userid]!.inlinebuttpressed!.Count != 0)
+                    {
+                        database[userid]!.inlinebuttpressed!.Clear();
+                    }
+                    DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
+                    return;
+                }
+                if (database[userid].mainmenu == false && database[userid].symptommenu == true && database[userid].inlinesymptomkey == false && callback.Data.Substring(0, 11) == "description")
+                {
+                    await botclient.AnswerCallbackQueryAsync(callback!.Id, callback.Data, cancellationToken: token);
+                    await botclient.SendTextMessageAsync
+                    (
+                        userid,
+                        text: botword
+                        [
+                            "d" + database[userid]!.listofrecentdiseases![int.Parse(callback.Data.Substring(11)) - 1]]!.Substring(3, botword["d" + database[userid]!.listofrecentdiseases![int.Parse(callback.Data.Substring(11)) - 1]]!.Length - 7)! +
+                            " - " + botword["textdescriptiondisease" +
+                            database![userid]!.listofrecentdiseases![int.Parse(callback.Data.Substring(11)) - 1]]!,
+                        parseMode: ParseMode.Markdown,
+                        cancellationToken: token
+                    );
+                    interfacelocalization(database[userid].language);
+                    DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
+                    return;
+                }
+
             }
-            if (update.Type == UpdateType.CallbackQuery && userid > 0 && database[userid].mainmenu == false && database[userid].symptommenu == true && database[userid].inlinesymptomkey == false && callback.Data.Substring(0, 11) == "description")
+
+            interfacelocalization(database[userid].language);
+            //Geolocation processing
+            if (message != null && message.Type == MessageType.Location)
             {
-                await botclient.AnswerCallbackQueryAsync(callback!.Id, callback.Data, cancellationToken: token);
-                await botclient.SendTextMessageAsync
-                (
-                    userid,
-                    text: botword
-                    [
-                        "d" + database[userid]!.listofrecentdiseases![int.Parse(callback.Data.Substring(11)) - 1]]!.Substring(3, botword["d" + database[userid]!.listofrecentdiseases![int.Parse(callback.Data.Substring(11)) - 1]]!.Length - 7)! +
-                        " - " + botword["textdescriptiondisease" +
-                        database![userid]!.listofrecentdiseases![int.Parse(callback.Data.Substring(11)) - 1]]!,
-                    parseMode: ParseMode.Markdown,
-                    cancellationToken: token
-                );
-                interfacelocalization(database[userid].language);
+                database[userid].searchbyareamenu = true;
+                database[userid].mainmenu = false;
+                database[userid].geolocation = (update.Message.Location.Latitude, update.Message.Location.Longitude);
+                await botclient.SendTextMessageAsync(message.Chat.Id, "Вы перешли в поиск по местности:", replyMarkup: geolocationkeyboard, disableNotification: true, cancellationToken: token);
                 DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
-                return;
             }
+
 
             //Some preparation:
             if (message == null || message.Type != MessageType.Text) return;
             string TextMessage = message!.Text!.ToLower();
             database[userid].lastmessage = TextMessage;
+
 
             //Logging:
             if (settings!.enablelogging) Console.WriteLine("------------------------------------------------------\nNew Message⬇️\n" + $"Userid: {userid}\n" + $"Username: {message.Chat.FirstName}\n" + $"Message: {message.Text}\n" + $"Data: {message.Date.ToLocalTime()}\n" + "------------------------------------------------------\n");
@@ -203,6 +226,28 @@ namespace Program
                     await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["refstik"]), cancellationToken: token);
                 }
                 else return;
+            }
+
+
+            if (!database[userid].mainmenu && database[userid].searchbyareamenu)
+            {
+                if (TextMessage == botword["textbuttonbacktomainmenu"].ToLower())
+                {
+                    await botclient.SendTextMessageAsync(message.Chat.Id, database[userid].name + " " + botword["textwelcome2"], parseMode: ParseMode.Html, replyMarkup: welcomkeyboard, disableNotification: true, cancellationToken: token);
+                    database[userid].mainmenu = true;
+                    database[userid].searchbyareamenu = false;
+
+                }
+                if (TextMessage == "Поиск аптек".ToLower())
+                {
+                    //searchorganizations("аптека", database[userid].geolocation);
+                    Console.WriteLine("cock");
+                    await botclient.SendTextMessageAsync(userid, searchorganizations("поликлиника", database[userid].geolocation), cancellationToken: token);
+
+                    //await botclient.SendLocationAsync(userid, latitude: 33.747252f, longitude: -112.633853f, cancellationToken: token);
+
+                }
+
             }
 
             //Disease detection function:

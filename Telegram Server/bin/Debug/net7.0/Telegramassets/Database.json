@@ -1,27 +1,15 @@
 {
-  "855228246": {
-    "inlinebuttpressed": [],
-    "listofrecentdiseases": [
-      78,
-      91,
-      28,
-      47,
-      88
-    ],
-    "symptommenu": false,
-    "mainmenu": true,
-    "inlinesymptomkey": false,
-    "name": "DrgNBoNツ",
-    "lastmessage": "📋справка⁉️",
-    "gender": "woman",
-    "language": "ru"
-  },
   "5892162910": {
     "inlinebuttpressed": [],
     "listofrecentdiseases": [],
+    "geolocation": {
+      "Item1": 0.0,
+      "Item2": 0.0
+    },
     "symptommenu": true,
     "mainmenu": false,
     "inlinesymptomkey": false,
+    "searchbyareamenu": false,
     "name": "Mason",
     "lastmessage": "27 93 97 109",
     "gender": "man",
@@ -30,28 +18,38 @@
   "2069754483": {
     "inlinebuttpressed": [],
     "listofrecentdiseases": [],
+    "geolocation": {
+      "Item1": 53.194705,
+      "Item2": 29.22778
+    },
     "symptommenu": false,
     "mainmenu": true,
     "inlinesymptomkey": false,
+    "searchbyareamenu": false,
     "name": "tortik122421",
-    "lastmessage": "4 10 23",
+    "lastmessage": "/start",
     "gender": "man",
     "language": "ru"
   },
   "1699534382": {
     "inlinebuttpressed": [],
     "listofrecentdiseases": [
-      72,
-      42,
-      57,
-      90,
-      21
+      23,
+      84,
+      41,
+      81,
+      44
     ],
-    "symptommenu": true,
-    "mainmenu": false,
+    "geolocation": {
+      "Item1": 0.0,
+      "Item2": 0.0
+    },
+    "symptommenu": false,
+    "mainmenu": true,
     "inlinesymptomkey": false,
+    "searchbyareamenu": false,
     "name": "Андрей",
-    "lastmessage": "🌡️определить заболевание🧬",
+    "lastmessage": "/start",
     "gender": "man",
     "language": "ru"
   },
@@ -60,9 +58,14 @@
       9
     ],
     "listofrecentdiseases": [],
+    "geolocation": {
+      "Item1": 0.0,
+      "Item2": 0.0
+    },
     "symptommenu": true,
     "mainmenu": false,
     "inlinesymptomkey": true,
+    "searchbyareamenu": false,
     "name": "Gyre",
     "lastmessage": "🌡️определить заболевание🧬",
     "gender": "woman",
@@ -77,11 +80,38 @@
       90,
       21
     ],
+    "geolocation": {
+      "Item1": 0.0,
+      "Item2": 0.0
+    },
     "symptommenu": true,
     "mainmenu": false,
     "inlinesymptomkey": false,
+    "searchbyareamenu": false,
     "name": "Пранович",
     "lastmessage": "17, 45, 46, 98, 103",
+    "gender": "man",
+    "language": "ru"
+  },
+  "855228246": {
+    "inlinebuttpressed": [],
+    "listofrecentdiseases": [
+      40,
+      56,
+      39,
+      53,
+      63
+    ],
+    "geolocation": {
+      "Item1": 53.188646,
+      "Item2": 29.224333
+    },
+    "symptommenu": false,
+    "mainmenu": false,
+    "inlinesymptomkey": false,
+    "searchbyareamenu": true,
+    "name": "DrgNBoNツ",
+    "lastmessage": "/start",
     "gender": "man",
     "language": "ru"
   }

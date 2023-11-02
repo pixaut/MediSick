@@ -4,6 +4,7 @@ using static Program.Keyboard;
 using Telegram.Bot.Types.ReplyMarkups;
 using System.Net;
 using Newtonsoft.Json.Linq;
+using static Program.ResponseFromYandexMaps;
 
 namespace Program
 {
@@ -11,10 +12,11 @@ namespace Program
     {
         public static string searchorganizations(string organization, (double, double) coordinates)
         {
+            string buff = "";
             string yandexmapsapikey = "778319e2-da48-47b8-8f15-203b10cf2702";
             string language = "ru_RU";
             int searchnearby = 1;//0 its true
-            int results = 2;
+            int results = 5;
             double kilometerstolerance = 0.5;
             double bias = kilometerstolerance / 111.134861111;
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
@@ -27,22 +29,15 @@ namespace Program
             {
                 client.Encoding = System.Text.Encoding.UTF8;
                 string request = client.DownloadString(address);
-
-                JObject googleSearch = JObject.Parse(request);
-
-                IList<JToken> resultsa = googleSearch["responseData"]["results"].Children().ToList();
-
-                // serialize JSON results into .NET objects
-                IList<SearchResult> searchResults = new List<SearchResult>();
-                foreach (JToken result in resultsa)
+                Rootobject answer = JsonConvert.DeserializeObject<ResponseFromYandexMaps.Rootobject>(request);
+                foreach (var feature in answer.features)
                 {
-                    // JToken.ToObject is a helper method that uses JsonSerializer internally
-                    SearchResult searchResult = result.ToObject<SearchResult>();
-                    searchResults.Add(searchResult);
-                }
-                for (int i = 0; i < searchResults.Count; i++) Console.WriteLine(searchResults[i]);
+                    buff += feature.properties.name + " " + feature.properties.description + '\n';
 
-                return "vvv";
+                }
+
+
+                return buff;
             }
 
         }

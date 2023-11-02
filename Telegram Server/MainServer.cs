@@ -241,8 +241,7 @@ namespace Program
                 if (TextMessage == "Поиск аптек".ToLower())
                 {
                     //searchorganizations("аптека", database[userid].geolocation);
-                    Console.WriteLine("cock");
-                    await botclient.SendTextMessageAsync(userid, searchorganizations("поликлиника", database[userid].geolocation), cancellationToken: token);
+                    await botclient.SendTextMessageAsync(userid, searchorganizations("аптека", database[userid].geolocation), cancellationToken: token);
 
                     //await botclient.SendLocationAsync(userid, latitude: 33.747252f, longitude: -112.633853f, cancellationToken: token);
 

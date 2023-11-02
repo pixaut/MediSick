@@ -103,15 +103,15 @@
       63
     ],
     "geolocation": {
-      "Item1": 53.188646,
-      "Item2": 29.224333
+      "Item1": 53.188798,
+      "Item2": 29.224381
     },
     "symptommenu": false,
     "mainmenu": false,
     "inlinesymptomkey": false,
     "searchbyareamenu": true,
     "name": "DrgNBoNツ",
-    "lastmessage": "/start",
+    "lastmessage": "поиск аптек",
     "gender": "man",
     "language": "ru"
   }

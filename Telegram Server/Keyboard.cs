@@ -44,14 +44,20 @@ namespace Program
 
         public static ReplyKeyboardMarkup geolocationkeyboarden = new(new[]
         {
-            new KeyboardButton[] {TelegramBot.botworden["textbuttonbacktomainmenu"],"Поиск аптек"},
+            new KeyboardButton[] {"💉Аптеки рядом😷"},
+            new KeyboardButton[] {"🏥Поликлиники рядом💊"},
+            new KeyboardButton[] {"🏥Больницы рядом💉"},
+            new KeyboardButton[] {TelegramBot.botwordru["textbuttonbacktomainmenu"]},
         })
         {
             ResizeKeyboard = true
         };
         public static ReplyKeyboardMarkup geolocationkeyboardru = new(new[]
         {
-            new KeyboardButton[] {TelegramBot.botwordru["textbuttonbacktomainmenu"],"Поиск аптек"},
+            new KeyboardButton[] {"💉Аптеки рядом😷"},
+            new KeyboardButton[] {"🌡️Поликлиники рядом💊"},
+            new KeyboardButton[] {"🏥Больницы рядом💉"},
+            new KeyboardButton[] {TelegramBot.botwordru["textbuttonbacktomainmenu"]},
         })
         {
             ResizeKeyboard = true

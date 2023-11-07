@@ -9,6 +9,7 @@ using static Program.Keyboard;
 using Telegram.Bot.Types.ReplyMarkups;
 using System.Diagnostics;
 using System.Formats.Tar;
+using System.ComponentModel.DataAnnotations;
 namespace Program
 {
     class TelegramBot
@@ -163,6 +164,22 @@ namespace Program
                     return;
                 }
 
+                if (database[userid].mainmenu == false && database[userid].symptommenu == false && database[userid].searchbyareamenu == true && database[userid].inlinesymptomkey == false && callback.Data.Substring(0, 11) == "geolocation")
+                {
+                    await botclient.AnswerCallbackQueryAsync(callback!.Id, callback.Data, cancellationToken: token);
+                    await botclient.SendVenueAsync
+                    (
+                        chatId: userid,
+                        latitude: database[userid].listofrecentsearchedplaces[int.Parse(callback.Data.Substring(11))].Item1,
+                        longitude: database[userid].listofrecentsearchedplaces[int.Parse(callback.Data.Substring(11))].Item2,
+                        title: database[userid].listofrecentsearchedplaces[int.Parse(callback.Data.Substring(11))].Item3,
+                        address:database[userid].listofrecentsearchedplaces[int.Parse(callback.Data.Substring(11))].Item4,
+                        cancellationToken: token
+                    );
+                    DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
+                    return;
+                }
+
             }
 
             interfacelocalization(database[userid].language);
@@ -238,13 +255,17 @@ namespace Program
                     database[userid].searchbyareamenu = false;
 
                 }
-                if (TextMessage == "Поиск аптек".ToLower())
+                if (TextMessage == "💉Аптеки рядом😷".ToLower())
                 {
-                    //searchorganizations("аптека", database[userid].geolocation);
-                    await botclient.SendTextMessageAsync(userid, searchorganizations("аптека", database[userid].geolocation), cancellationToken: token);
-
-                    //await botclient.SendLocationAsync(userid, latitude: 33.747252f, longitude: -112.633853f, cancellationToken: token);
-
+                    await botclient.SendTextMessageAsync(userid, searchorganizations("Аптекa", database[userid].geolocation),replyMarkup:inlinepreparationroutebuttons(database[userid].listofrecentsearchedplaces), parseMode: ParseMode.Html,disableWebPagePreview:true, cancellationToken: token);
+                }
+                if (TextMessage == "🌡️Поликлиники рядом💊".ToLower())
+                {
+                    await botclient.SendTextMessageAsync(userid, searchorganizations("Поликлиника", database[userid].geolocation),replyMarkup:inlinepreparationroutebuttons(database[userid].listofrecentsearchedplaces), parseMode: ParseMode.Html,disableWebPagePreview:true, cancellationToken: token);
+                }
+                if (TextMessage == "🏥Больницы рядом💉".ToLower())
+                {
+                    await botclient.SendTextMessageAsync(userid, searchorganizations("Больница", database[userid].geolocation),replyMarkup:inlinepreparationroutebuttons(database[userid].listofrecentsearchedplaces), parseMode: ParseMode.Html,disableWebPagePreview:true, cancellationToken: token);
                 }
 
             }

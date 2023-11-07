@@ -1,5 +1,6 @@
 using Microsoft.VisualBasic;
 using Telegram.Bot;
+using Telegram.Bot.Requests;
 
 namespace Program
 {
@@ -68,10 +69,12 @@ namespace Program
         public string name { get; set; } = "no name";
         public List<int>? inlinebuttpressed = new List<int>();
         public List<int>? listofrecentdiseases = new List<int>();
+        public List<(float,float,string,string)>? listofrecentsearchedplaces = new List<(float,float,string,string)>();
         public string lastmessage { get; set; } = "";
         public string gender { get; set; } = "non";
         public string language { get; set; } = "non";
         public (double, double) geolocation;
+        
 
 
         public User()

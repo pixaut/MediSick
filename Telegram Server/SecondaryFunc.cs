@@ -27,19 +27,41 @@ namespace Program
 
             using (WebClient client = new WebClient())
             {
-                client.Encoding = System.Text.Encoding.UTF8;
-                string request = client.DownloadString(address);
-                Rootobject answer = JsonConvert.DeserializeObject<ResponseFromYandexMaps.Rootobject>(request);
-                foreach (var feature in answer.features)
+                try
                 {
-                    buff += feature.properties.name + " " + feature.properties.description + '\n';
-
+                    database[userid].listofrecentsearchedplaces.Clear();
+                    client.Encoding = System.Text.Encoding.UTF8;
+                    string request = client.DownloadString(address);
+                    Rootobject answer = JsonConvert.DeserializeObject<ResponseFromYandexMaps.Rootobject>(request);
+                    buff += "-------------------------------------\n";
+                    foreach (var feature in answer.features)
+                    {
+                        database[userid].listofrecentsearchedplaces.Add((feature.geometry.coordinates[1],feature.geometry.coordinates[0],feature.properties.CompanyMetaData.name,feature.properties.CompanyMetaData.address));
+                        if(feature.properties.CompanyMetaData.name != null)buff += $"➡️{organization}: <b>\"{feature.properties.CompanyMetaData.name}\"</b>\n";
+                        if(feature.properties.CompanyMetaData.address != null)buff += $"🗺️<b>Адрес:</b> <i>{feature.properties.CompanyMetaData.address}</i> \n📞<b>Номера телефонов:</b>\n";
+                        if(feature.properties.CompanyMetaData.Phones != null)foreach(var formatted in feature.properties.CompanyMetaData.Phones) buff+=$"          <i>{formatted.formatted}</i>\n";
+                        if(feature.properties.CompanyMetaData.Hours.text != null)buff += $"📅<b>График работы:</b> <i>{feature.properties.CompanyMetaData.Hours.text}</i>\n";
+                        if(feature.properties.CompanyMetaData.url != null)buff += $"🌐<b>Сайт</b>: {feature.properties.CompanyMetaData.url}\n";
+                        buff += "-------------------------------------\n";
+                    }
                 }
-
-
-                return buff;
+                catch {Exception ex;}
             }
+            return buff;
 
+        }
+        public static InlineKeyboardMarkup inlinepreparationroutebuttons(List<(float,float,string,string)>? listofrecentsearchedplaces)
+        {
+            
+            List<InlineKeyboardButton[]> list = new List<InlineKeyboardButton[]>(); 
+
+            for(int i =0;i<listofrecentsearchedplaces.Count();++i){ 
+                InlineKeyboardButton button = new InlineKeyboardButton(listofrecentsearchedplaces[i].Item3) {CallbackData = "geolocation"+i };
+                InlineKeyboardButton[] row = new InlineKeyboardButton[1] { button };
+                list.Add(row);
+            }
+            var inlinedescriptiondiseaseen = new InlineKeyboardMarkup(list);
+            return inlinedescriptiondiseaseen;
         }
         public static InlineKeyboardMarkup inlinepreparationdescriptiondiseases()
         {

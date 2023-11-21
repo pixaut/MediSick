@@ -64,8 +64,6 @@ namespace Program
         };
         public static InlineKeyboardMarkup inlineKeyboardru = new(new[]
         {
-            // first row
-            
             new []
             {
                 InlineKeyboardButton.WithCallbackData(text: TelegramBot.botwordru["textskinandhairinline1"], callbackData: "1"),
@@ -102,13 +100,10 @@ namespace Program
             {
                 InlineKeyboardButton.WithCallbackData(text: TelegramBot.botwordru["textgetsymptomsinline"], callbackData: "send"),
                 InlineKeyboardButton.WithCallbackData(text:TelegramBot.botwordru["textcancelinline"] , callbackData: $"cock{TelegramBot.userid}"),
-                //TelegramBot.botword["textcancelinline"]
             },
         });
         public static InlineKeyboardMarkup inlineKeyboarden = new(new[]
         {
-            // first row
-            
             new []
             {
                 InlineKeyboardButton.WithCallbackData(text: TelegramBot.botworden["textskinandhairinline1"], callbackData: "1"),
@@ -145,7 +140,6 @@ namespace Program
             {
                 InlineKeyboardButton.WithCallbackData(text: TelegramBot.botworden["textgetsymptomsinline"], callbackData: "send"),
                 InlineKeyboardButton.WithCallbackData(text:TelegramBot.botworden["textcancelinline"] , callbackData: $"cock{TelegramBot.userid}"),
-                //TelegramBot.botword["textcancelinline"]
             },
         });
         public static InlineKeyboardMarkup inlinelinkes = new(

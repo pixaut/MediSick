@@ -3,7 +3,6 @@ using static Program.TelegramBot;
 using static Program.Keyboard;
 using Telegram.Bot.Types.ReplyMarkups;
 using System.Net;
-using Newtonsoft.Json.Linq;
 using static Program.ResponseFromYandexMaps;
 
 namespace Program
@@ -13,14 +12,19 @@ namespace Program
         public static string searchorganizations(string organization, (double, double) coordinates)
         {
             string buff = "";
-            string yandexmapsapikey = "778319e2-da48-47b8-8f15-203b10cf2702";
-            string language = "ru_RU";
-            int searchnearby = 1;//0 its true
-            int results = 5;
-            double kilometerstolerance = 0.5;
-            double bias = kilometerstolerance / 111.134861111;
+            string language;
+            if (database[userid].language == "en")
+            {
+                language = "en_RU";
+            }
+            else if (database[userid].language == "ru")
+            {
+                language = "ru_RU";
+            }
+            else language = "en_RU";
+            double bias = settings!.kilometerstolerance! / 111.134861111;
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-            Uri address = new Uri($"https://search-maps.yandex.ru/v1/?text={organization}&bbox={coordinates.Item2},{coordinates.Item1}~{coordinates.Item2 + bias},{coordinates.Item1 + bias}&type=biz&lang={language}&results={results}&apikey={yandexmapsapikey}");
+            Uri address = new Uri($"https://search-maps.yandex.ru/v1/?text={organization}&bbox={coordinates.Item2},{coordinates.Item1}~{coordinates.Item2 + bias},{coordinates.Item1 + bias}&type=biz&lang={language}&results={settings!.searchresultsarea!}&apikey={settings!.yandexmaptoken!}");
             Console.WriteLine(address);
             ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -29,34 +33,37 @@ namespace Program
             {
                 try
                 {
-                    database[userid].listofrecentsearchedplaces.Clear();
+                    database[userid]!.listofrecentsearchedplaces!.Clear();
                     client.Encoding = System.Text.Encoding.UTF8;
                     string request = client.DownloadString(address);
                     Rootobject answer = JsonConvert.DeserializeObject<ResponseFromYandexMaps.Rootobject>(request);
                     buff += "-------------------------------------\n";
-                    foreach (var feature in answer.features)
+                    foreach (var feature in answer!.features)
                     {
-                        database[userid].listofrecentsearchedplaces.Add((feature.geometry.coordinates[1],feature.geometry.coordinates[0],feature.properties.CompanyMetaData.name,feature.properties.CompanyMetaData.address));
-                        if(feature.properties.CompanyMetaData.name != null)buff += $"➡️{organization}: <b>\"{feature.properties.CompanyMetaData.name}\"</b>\n";
-                        if(feature.properties.CompanyMetaData.address != null)buff += $"🗺️<b>Адрес:</b> <i>{feature.properties.CompanyMetaData.address}</i> \n📞<b>Номера телефонов:</b>\n";
-                        if(feature.properties.CompanyMetaData.Phones != null)foreach(var formatted in feature.properties.CompanyMetaData.Phones) buff+=$"          <i>{formatted.formatted}</i>\n";
-                        if(feature.properties.CompanyMetaData.Hours.text != null)buff += $"📅<b>График работы:</b> <i>{feature.properties.CompanyMetaData.Hours.text}</i>\n";
-                        if(feature.properties.CompanyMetaData.url != null)buff += $"🌐<b>Сайт</b>: {feature.properties.CompanyMetaData.url}\n";
+                        database[userid].listofrecentsearchedplaces.Add((feature.geometry.coordinates[1], feature.geometry.coordinates[0], feature.properties.CompanyMetaData.name, feature.properties.CompanyMetaData.address));
+                        if (feature.properties.CompanyMetaData.name != null) buff += $"➡️{organization}: <b>\"{feature.properties.CompanyMetaData.name}\"</b>\n";
+                        if (feature.properties.CompanyMetaData.address != null) buff += $"🗺️<b>{botword["addresstext"]}</b> <i>{feature.properties.CompanyMetaData.address}</i> \n📞<b>{botword["phonenumberstext"]}</b>\n";
+                        if (feature.properties.CompanyMetaData.Phones != null) foreach (var formatted in feature.properties.CompanyMetaData.Phones) buff += $"          <i>{formatted.formatted}</i>\n";
+                        if (feature.properties.CompanyMetaData.Hours.text != null) buff += $"📅<b>{botword["operatingscheduletext"]}</b> <i>{feature.properties.CompanyMetaData.Hours.text}</i>\n";
+                        if (feature.properties.CompanyMetaData.url != null) buff += $"🌐<b>Сайт</b>: {feature.properties.CompanyMetaData.url}\n";
                         buff += "-------------------------------------\n";
                     }
                 }
-                catch {Exception ex;}
+                catch
+                {
+                }
             }
             return buff;
 
         }
-        public static InlineKeyboardMarkup inlinepreparationroutebuttons(List<(float,float,string,string)>? listofrecentsearchedplaces)
+        public static InlineKeyboardMarkup inlinepreparationroutebuttons(List<(float, float, string, string)>? listofrecentsearchedplaces)
         {
-            
-            List<InlineKeyboardButton[]> list = new List<InlineKeyboardButton[]>(); 
 
-            for(int i =0;i<listofrecentsearchedplaces.Count();++i){ 
-                InlineKeyboardButton button = new InlineKeyboardButton(listofrecentsearchedplaces[i].Item3) {CallbackData = "geolocation"+i };
+            List<InlineKeyboardButton[]> list = new List<InlineKeyboardButton[]>();
+
+            for (int i = 0; i < listofrecentsearchedplaces!.Count()!; ++i)
+            {
+                InlineKeyboardButton button = new InlineKeyboardButton(listofrecentsearchedplaces![i].Item3) { CallbackData = "geolocation" + i };
                 InlineKeyboardButton[] row = new InlineKeyboardButton[1] { button };
                 list.Add(row);
             }
@@ -95,14 +102,11 @@ namespace Program
         public static string cantileverstrip(int percent)
         {
             char[] stripfull = new char[] { '░', '░', '░', '░', '░', '░', '░', '░', '░' };
-            for (int i = 0; i < (int)percent / 10; ++i)
+            for (int i = 0; i < percent / 10; ++i)
             {
                 stripfull[i] = '█';
-
             }
             string strip = new string(stripfull);
-
-
             return strip;
         }
 

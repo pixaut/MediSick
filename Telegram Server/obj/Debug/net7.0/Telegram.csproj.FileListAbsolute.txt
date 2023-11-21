@@ -70,3 +70,21 @@ D:\A.A.R.O.N\Telegram Server\obj\Debug\net7.0\refint\Telegram.dll
 D:\A.A.R.O.N\Telegram Server\obj\Debug\net7.0\Telegram.pdb
 D:\A.A.R.O.N\Telegram Server\obj\Debug\net7.0\Telegram.genruntimeconfig.cache
 D:\A.A.R.O.N\Telegram Server\obj\Debug\net7.0\ref\Telegram.dll
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\bin\Debug\net7.0\Telegram.exe
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\bin\Debug\net7.0\Telegram.deps.json
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\bin\Debug\net7.0\Telegram.runtimeconfig.json
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\bin\Debug\net7.0\Telegram.dll
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\bin\Debug\net7.0\Telegram.pdb
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\bin\Debug\net7.0\Newtonsoft.Json.dll
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\bin\Debug\net7.0\Telegram.Bot.dll
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\obj\Debug\net7.0\Telegram.csproj.AssemblyReference.cache
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\obj\Debug\net7.0\Telegram.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\obj\Debug\net7.0\Telegram.AssemblyInfoInputs.cache
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\obj\Debug\net7.0\Telegram.AssemblyInfo.cs
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\obj\Debug\net7.0\Telegram.csproj.CoreCompileInputs.cache
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\obj\Debug\net7.0\Telegram.csproj.CopyComplete
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\obj\Debug\net7.0\Telegram.dll
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\obj\Debug\net7.0\refint\Telegram.dll
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\obj\Debug\net7.0\Telegram.pdb
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\obj\Debug\net7.0\Telegram.genruntimeconfig.cache
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\obj\Debug\net7.0\ref\Telegram.dll

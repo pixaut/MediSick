@@ -585,6 +585,22 @@
             "Text": "Описание болезни: "
         },
         {
+            "TextName": "withprobability",
+            "Text": "С вероятностью: "
+        },
+        {
+            "TextName": "addresstext",
+            "Text": "Адрес:"
+        },
+        {
+            "TextName": "phonenumberstext",
+            "Text": "Номера телефонов:"
+        },
+        {
+            "TextName": "operatingscheduletext",
+            "Text": "График работы:"
+        },
+        {
             "TextName": "textchoicelanguage",
             "Text": "To start working with the bot, select the interface language / Для начала работы с ботом выберите язык интерфейса:"
         },

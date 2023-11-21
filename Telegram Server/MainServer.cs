@@ -1,13 +1,17 @@
-﻿using Telegram.Bot;
+﻿global using Telegram.Bot;
+global using static Program.TelegramBot;
+global using Telegram.Bot.Types.Enums;
+global using Telegram.Bot.Exceptions;
+global using Newtonsoft.Json;
+global using System.Text;
+global using static Program.Secondaryfunctions;
+global using static Program.Keyboard;
+global using Telegram.Bot.Types.ReplyMarkups;
+global using System.Diagnostics;   
+global using System.Net;
+global using static Program.ResponseFromYandexMaps;
 using Telegram.Bot.Types;
-using Telegram.Bot.Types.Enums;
-using Telegram.Bot.Exceptions;
-using Newtonsoft.Json;
-using System.Text;
-using static Program.Secondaryfunctions;
-using static Program.Keyboard;
-using Telegram.Bot.Types.ReplyMarkups;
-using System.Diagnostics;
+
 namespace Program
 {
     class TelegramBot
@@ -40,10 +44,13 @@ namespace Program
 
         async static Task Update(ITelegramBotClient botclient, Update update, CancellationToken token)
         {
+            //first start
+            if(!serveronline)
+            {
+                serveronline = true;
+                return;
+            }
             
-            
-
-
             //Declaring important variables:
             var message = update.Message;
             var callback = update.CallbackQuery;
@@ -73,7 +80,7 @@ namespace Program
                 //Language select and hello message processing:
                 if (database[userid].language == null && database[userid].lastmessage == "/start")
                 {
-                    await botclient.DeleteMessageAsync(userid, callback!.Message!.MessageId, cancellationToken: token);//need fix in future
+                    await botclient.DeleteMessageAsync(userid, callback!.Message!.MessageId, cancellationToken: token);
                     await botclient.AnswerCallbackQueryAsync(callback!.Id, callback!.Data, cancellationToken: token);
                     if (callback!.Data == "en")
                     {
@@ -128,7 +135,7 @@ namespace Program
                             await botclient.DeleteMessageAsync(userid, callback!.Message!.MessageId, cancellationToken: token);
                             database[userid]!.inlinebuttpressed!.Sort();
                             await botclient.SendTextMessageAsync(userid, symptomhandler(database[userid]!.inlinebuttpressed!), parseMode: ParseMode.Html, cancellationToken: token);
-                            await botclient.SendAnimationAsync(userid, animation: InputFile.FromUri("https://im2.ezgif.com/tmp/ezgif-2-255d3b1013.gif"), caption: "После того как вы получили список с симптомами и их номерами,отпраьте эти номера телеграм боту в виде сообщения:\nНапример: '12,87,10', '41 52 67 47', '86/19/73'", cancellationToken: token);
+                            await botclient.SendAnimationAsync(userid, animation: InputFile.FromUri(settings!.linkinstructionsforenteringsymptoms), caption: botword["sampleinputtext"], cancellationToken: token);
                             database[userid]!.inlinebuttpressed!.Clear();
                             database[userid].inlinesymptomkey = false;
                         }
@@ -186,7 +193,7 @@ namespace Program
                 database[userid].searchbyareamenu = true;
                 database[userid].mainmenu = false;
                 database[userid].geolocation = (update.Message!.Location!.Latitude, update.Message.Location.Longitude);
-                await botclient.SendTextMessageAsync(message.Chat.Id, "Вы перешли в поиск по местности:", replyMarkup: geolocationkeyboard, disableNotification: true, cancellationToken: token);
+                await botclient.SendTextMessageAsync(message.Chat.Id, botword["searchbyareastarttext"], replyMarkup: geolocationkeyboard, disableNotification: true, cancellationToken: token);
                 DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
             }
 
@@ -221,7 +228,7 @@ namespace Program
                 {
                     database[userid].mainmenu = false;
                     database[userid].symptommenu = true;
-                    await botclient.SendTextMessageAsync(message.Chat.Id, "Вы перешли в меню определения заболеваняи:", replyMarkup: symptomkeyboard, disableNotification: true, cancellationToken: token);
+                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["sympmtomstarttext"], replyMarkup: symptomkeyboard, disableNotification: true, cancellationToken: token);
                     await botclient.SendTextMessageAsync(message.Chat.Id, botword["textinputformat2"], replyMarkup: inlineKeyboard, parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
 
                     database[userid].inlinesymptomkey = true;
@@ -245,15 +252,15 @@ namespace Program
                     database[userid].mainmenu = true;
                     database[userid].searchbyareamenu = false;
                 }
-                if (TextMessage == "💉Аптеки рядом😷".ToLower())
+                if (TextMessage == botword["pharmaciesnearbytext"].ToLower())
                 {
                     await botclient.SendTextMessageAsync(userid, searchorganizations("Аптекa", database[userid].geolocation), replyMarkup: inlinepreparationroutebuttons(database[userid].listofrecentsearchedplaces), parseMode: ParseMode.Html, disableWebPagePreview: true, cancellationToken: token);
                 }
-                if (TextMessage == "🌡️Поликлиники рядом💊".ToLower())
+                if (TextMessage == botword["clinicsnearbytext"].ToLower())
                 {
                     await botclient.SendTextMessageAsync(userid, searchorganizations("Поликлиника", database[userid].geolocation), replyMarkup: inlinepreparationroutebuttons(database[userid].listofrecentsearchedplaces), parseMode: ParseMode.Html, disableWebPagePreview: true, cancellationToken: token);
                 }
-                if (TextMessage == "🏥Больницы рядом💉".ToLower())
+                if (TextMessage == botword["hospitalsnearbytext"].ToLower())
                 {
                     await botclient.SendTextMessageAsync(userid, searchorganizations("Больница", database[userid].geolocation), replyMarkup: inlinepreparationroutebuttons(database[userid].listofrecentsearchedplaces), parseMode: ParseMode.Html, disableWebPagePreview: true, cancellationToken: token);
                 }
@@ -317,8 +324,8 @@ namespace Program
                     }
                     using (Process process = new Process())
                     {
-                        process.StartInfo.FileName = @"..\..\..\..\WithOutLearning\ProcessTest.exe";
-                        process.StartInfo.WorkingDirectory = @"..\..\..\..\WithOutLearning";
+                        process.StartInfo.FileName = @settings.pathnetworkexe;
+                        process.StartInfo.WorkingDirectory = @settings.pathnetworkexeworkingdirectory;
                         process.StartInfo.CreateNoWindow = true;
                         process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                         process.Start();

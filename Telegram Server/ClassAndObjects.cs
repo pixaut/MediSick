@@ -33,23 +33,13 @@ namespace Program
         public string pathtextforbotjsonru { get; set; } = "";
         public string pathtextforbotjsonen { get; set; } = "";
         public string pathsymptomslistjson { get; set; } = "";
+        public string pathnetworkexe { get; set; } = "";
+        public string pathnetworkexeworkingdirectory { get; set; } = "";
+        public string linkinstructionsforenteringsymptoms { get; set; } = "";
         public string pathaiexe { get; set; } = "";
         public string pathinputuser { get; set; } = "";
         public string pathoutputuser { get; set; } = "";
         public bool enablelogging { get; set; } = false;
-        public Settings()
-        {
-            pathaiexe = pathaiexe;
-            pathinputuser = pathinputuser;
-            pathoutputuser = pathoutputuser;
-            countsymptoms = countsymptoms;
-            pathdatabasejson = pathdatabasejson;
-            pathtextforbotjsonen = pathtextforbotjsonen;
-            pathtextforbotjsonru = pathtextforbotjsonru;
-            pathsymptomslistjson = pathsymptomslistjson;
-            countsymptoms = countsymptoms;
-            enablelogging = enablelogging;
-        }
     }
 
 

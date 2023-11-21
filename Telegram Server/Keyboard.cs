@@ -1,5 +1,3 @@
-using Telegram.Bot.Types.ReplyMarkups;
-
 namespace Program
 {
     public class Keyboard
@@ -44,9 +42,9 @@ namespace Program
 
         public static ReplyKeyboardMarkup geolocationkeyboarden = new(new[]
         {
-            new KeyboardButton[] {"💉Аптеки рядом😷"},
-            new KeyboardButton[] {"🏥Поликлиники рядом💊"},
-            new KeyboardButton[] {"🏥Больницы рядом💉"},
+            new KeyboardButton[] {botword["pharmaciesnearbytext"]},
+            new KeyboardButton[] {botword["clinicsnearbytext"]},
+            new KeyboardButton[] {botword["hospitalsnearbytext"]},
             new KeyboardButton[] {TelegramBot.botwordru["textbuttonbacktomainmenu"]},
         })
         {
@@ -54,9 +52,9 @@ namespace Program
         };
         public static ReplyKeyboardMarkup geolocationkeyboardru = new(new[]
         {
-            new KeyboardButton[] {"💉Аптеки рядом😷"},
-            new KeyboardButton[] {"🌡️Поликлиники рядом💊"},
-            new KeyboardButton[] {"🏥Больницы рядом💉"},
+            new KeyboardButton[] {botword["pharmaciesnearbytext"]},
+            new KeyboardButton[] {botword["clinicsnearbytext"]},
+            new KeyboardButton[] {botword["hospitalsnearbytext"]},
             new KeyboardButton[] {TelegramBot.botwordru["textbuttonbacktomainmenu"]},
         })
         {

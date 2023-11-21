@@ -1,10 +1,3 @@
-using Newtonsoft.Json;
-using static Program.TelegramBot;
-using static Program.Keyboard;
-using Telegram.Bot.Types.ReplyMarkups;
-using System.Net;
-using static Program.ResponseFromYandexMaps;
-
 namespace Program
 {
     class Secondaryfunctions
@@ -12,6 +5,7 @@ namespace Program
         //Searchorganizations YandexMap function:
         public static string searchorganizations(string organization, (double, double) coordinates)
         {
+           
             string buff = "";
             
             double bias = settings!.kilometerstolerance! / 111.134861111;
@@ -43,7 +37,8 @@ namespace Program
                 }
                 catch{}
             }
-            if(buff == "")buff = "Sorry, we haven't information :(";
+            if(buff == "" || buff == null)buff = "Sorry, we haven't information :(";
+            Console.WriteLine("this is>>><<<");
             return buff;
         }
         

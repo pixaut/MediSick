@@ -12,7 +12,7 @@ int main(){
     char NetworkPath[] = "..\\Network\\Network.txt";
     char NetworkSizePath[] = "..\\Network\\NetworkSize.txt";
     char gender;
-    double s = 0.0,e = 0.0,SpeedOfLearning = 0.3;
+    double s = 0.0,e = 0.0,SpeedOfLearning = 0.6;
 
 
     fin.open(NetworkSizePath);
@@ -48,6 +48,7 @@ int main(){
 
         fin.open(PathToTests);
         fin >> N; 
+        
         for(int k = 0;k < N;k++){
             std::fill(input,input+size[0],0.0);
 
@@ -60,12 +61,6 @@ int main(){
             rightanswer[c-1] = 1.0;
             input[WomanIndex] = (double)(gender == 'w');
             input[ManIndex]   = (double)(gender == 'm');
-
-            if(gender == 'n'){
-                if(rand()%2 == 0) input[WomanIndex] = 1.0;
-                else input[ManIndex] = 1.0;
-                
-            }
 
             nn.SetInput(input);
             nn.ForwardFeed();

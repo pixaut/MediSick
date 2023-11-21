@@ -37,8 +37,7 @@ namespace Program
                 }
                 catch{}
             }
-            if(buff == "" || buff == null)buff = "Sorry, we haven't information :(";
-            Console.WriteLine("this is>>><<<");
+            if(buff == "" || buff == null)buff = botword["sorrynoinfotext"];
             return buff;
         }
         
@@ -117,7 +116,6 @@ namespace Program
                 symptomsselected += botword[select[i].ToString()];
                 symptomsselected += botword[select[i] + "categoryofdiseases"];
             }
-            Console.WriteLine(symptomsselected);
             return symptomsselected;
         }
 

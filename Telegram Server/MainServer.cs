@@ -62,7 +62,6 @@ namespace Program
 
             //Creating a user object and processing new users:
             User user = new User();
-            Console.WriteLine(userid);
             if (database.ContainsKey(userid) == false && update.Type == UpdateType.Message)
             {
                 Console.WriteLine("New user:   " + message!.Chat.FirstName);
@@ -360,7 +359,6 @@ namespace Program
                             database[userid]!.listofrecentdiseases!.Add(disandperc[i]);
                         }
                         diagnosis += botword["textdiseasewarning"];
-                        Console.WriteLine(diagnosis);
                         await botclient.SendTextMessageAsync(userid, diagnosis, replyMarkup: inlinepreparationdescriptiondiseases(), parseMode: ParseMode.Html, cancellationToken: token);
 
 

@@ -633,6 +633,10 @@
             "Text": "🏥Больницы рядом💉"
         },
         {
+            "TextName": "sorrynoinfotext",
+            "Text": "Извените,нам не удалось найти информацию :("
+        },
+        {
             "TextName": "textchoicelanguage",
             "Text": "To start working with the bot, select the interface language / Для начала работы с ботом выберите язык интерфейса:"
         },

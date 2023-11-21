@@ -169,11 +169,11 @@
   "855228246": {
     "inlinebuttpressed": [],
     "listofrecentdiseases": [
-      56,
-      35,
-      39,
-      65,
-      82
+      45,
+      63,
+      98,
+      91,
+      37
     ],
     "listofrecentsearchedplaces": [
       {
@@ -208,16 +208,16 @@
       }
     ],
     "geolocation": {
-      "Item1": 53.188906,
-      "Item2": 29.224059
+      "Item1": 53.188703,
+      "Item2": 29.224245
     },
     "symptommenu": false,
-    "mainmenu": false,
+    "mainmenu": true,
     "inlinesymptomkey": false,
-    "searchbyareamenu": true,
+    "searchbyareamenu": false,
     "name": "DrgNBoNツ",
-    "lastmessage": "💉аптеки рядом😷",
-    "gender": "man",
+    "lastmessage": "⬅️вернуться в главное меню🚪",
+    "gender": "woman",
     "language": "ru"
   },
   "5112536184": {

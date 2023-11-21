@@ -601,6 +601,14 @@
             "Text": "График работы:"
         },
         {
+            "TextName": "websitetext",
+            "Text": "Сайт:"
+        },
+        {
+            "TextName": "longlinetext",
+            "Text": "-------------------------------------\n"
+        },
+        {
             "TextName": "textchoicelanguage",
             "Text": "To start working with the bot, select the interface language / Для начала работы с ботом выберите язык интерфейса:"
         },

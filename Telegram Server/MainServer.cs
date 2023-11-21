@@ -19,6 +19,7 @@ namespace Program
         public static Dictionary<long, User> database = new Dictionary<long, User>();
         public static Settings? settings = JsonConvert.DeserializeObject<Settings>(System.IO.File.ReadAllText(@"Telegramassets/Botsettings.json"));
         public static long userid = 0;
+        public static bool serveronline = false;
 
         static void Main()
         {
@@ -39,7 +40,8 @@ namespace Program
 
         async static Task Update(ITelegramBotClient botclient, Update update, CancellationToken token)
         {
-            //return;
+            
+            
 
 
             //Declaring important variables:
@@ -287,7 +289,7 @@ namespace Program
                     string symptomslist = "";
 
                     TextMessage += " ";
-                    for (int i = 0; i < TextMessage.Length; i++)
+                    for (int i = 0; i < TextMessage.Length; ++i)
                     {
                         if (TextMessage[i] > 47 && TextMessage[i] < 58)
                         {
@@ -300,7 +302,7 @@ namespace Program
                         {
                             symptomslist += bufs + " ";
                             bufs = "";
-                            countinputsymptoms++;
+                            ++countinputsymptoms;
                         }
                     }
 
@@ -344,7 +346,7 @@ namespace Program
                             bufs += textFromFile[i];
                         }
                         database[userid]!.listofrecentdiseases!.Clear();
-                        for (int i = 0, j = 1; i < disandperc.Count; i += 2, j++)
+                        for (int i = 0, j = 1; i < disandperc.Count; i += 2, ++j)
                         {
                             diagnosis += j + "." + botword["d" + disandperc[i]] + $" ▼\n {botword["withprobability"]}";
                             diagnosis += "│" + cantileverstrip(disandperc[i + 1]) + "│ " + disandperc[i + 1] + " %\n\n";

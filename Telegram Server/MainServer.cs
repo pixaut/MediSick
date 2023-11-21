@@ -63,7 +63,7 @@ namespace Program
             }
 
             //Interfacelocalization:
-            interfacelocalization(database[userid].language);
+            interfacelocalization(database[userid].language!);
 
             //Inline buttons processing:
             if (messagetype == UpdateType.CallbackQuery)
@@ -83,7 +83,7 @@ namespace Program
                         await botclient.SendTextMessageAsync(userid, "Вы выбрали русский язык.🇷🇺", parseMode: ParseMode.Html, cancellationToken: token);
                         database[userid].language = "ru";
                     }
-                    interfacelocalization(database[userid].language);
+                    interfacelocalization(database[userid].language!);
                     database[userid].mainmenu = true;
                     database[userid].symptommenu = false;
                     database[userid].inlinesymptomkey = false;
@@ -163,10 +163,10 @@ namespace Program
                         await botclient.SendVenueAsync
                         (
                             chatId: userid,
-                            latitude: database[userid].listofrecentsearchedplaces[int.Parse(callback!.Data.Substring(11))].Item1,
-                            longitude: database[userid].listofrecentsearchedplaces[int.Parse(callback!.Data.Substring(11))].Item2,
-                            title: database[userid].listofrecentsearchedplaces[int.Parse(callback!.Data.Substring(11))].Item3,
-                            address: database[userid].listofrecentsearchedplaces[int.Parse(callback!.Data.Substring(11))].Item4,
+                            latitude: database[userid].listofrecentsearchedplaces![int.Parse(callback!.Data.Substring(11))].Item1,
+                            longitude: database[userid].listofrecentsearchedplaces![int.Parse(callback!.Data.Substring(11))].Item2,
+                            title: database[userid].listofrecentsearchedplaces![int.Parse(callback!.Data.Substring(11))].Item3,
+                            address: database[userid].listofrecentsearchedplaces![int.Parse(callback!.Data.Substring(11))].Item4,
                             cancellationToken: token
                         );
                         DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
@@ -176,14 +176,14 @@ namespace Program
             }
 
             //Interfacelocalization:
-            interfacelocalization(database[userid].language);
+            interfacelocalization(database[userid].language!);
 
             //Geolocation transition processing:
             if (message != null && message.Type == MessageType.Location)
             {
                 database[userid].searchbyareamenu = true;
                 database[userid].mainmenu = false;
-                database[userid].geolocation = (update.Message.Location.Latitude, update.Message.Location.Longitude);
+                database[userid].geolocation = (update.Message!.Location!.Latitude, update.Message.Location.Longitude);
                 await botclient.SendTextMessageAsync(message.Chat.Id, "Вы перешли в поиск по местности:", replyMarkup: geolocationkeyboard, disableNotification: true, cancellationToken: token);
                 DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
             }
@@ -309,7 +309,7 @@ namespace Program
 
                     using (FileStream fs = new FileStream(settings.pathinputuser, FileMode.Truncate))
                     {
-                        byte[] inpiutfile = Encoding.ASCII.GetBytes(database[userid].gender[0] + " " + countinputsymptoms + " " + symptomslist);
+                        byte[] inpiutfile = Encoding.ASCII.GetBytes(database[userid].gender![0] + " " + countinputsymptoms + " " + symptomslist);
                         fs.Write(inpiutfile, 0, inpiutfile.Length);
                         fs.Close();
                     }

@@ -36,11 +36,11 @@ namespace Program
                     database[userid]!.listofrecentsearchedplaces!.Clear();
                     client.Encoding = System.Text.Encoding.UTF8;
                     string request = client.DownloadString(address);
-                    Rootobject answer = JsonConvert.DeserializeObject<ResponseFromYandexMaps.Rootobject>(request);
+                    Rootobject answer = JsonConvert.DeserializeObject<ResponseFromYandexMaps.Rootobject>(request)!;
                     buff += "-------------------------------------\n";
                     foreach (var feature in answer!.features)
                     {
-                        database[userid].listofrecentsearchedplaces.Add((feature.geometry.coordinates[1], feature.geometry.coordinates[0], feature.properties.CompanyMetaData.name, feature.properties.CompanyMetaData.address));
+                        database[userid]!.listofrecentsearchedplaces!.Add((feature.geometry.coordinates[1], feature.geometry.coordinates[0], feature.properties.CompanyMetaData.name, feature.properties.CompanyMetaData.address)!);
                         if (feature.properties.CompanyMetaData.name != null) buff += $"➡️{organization}: <b>\"{feature.properties.CompanyMetaData.name}\"</b>\n";
                         if (feature.properties.CompanyMetaData.address != null) buff += $"🗺️<b>{botword["addresstext"]}</b> <i>{feature.properties.CompanyMetaData.address}</i> \n📞<b>{botword["phonenumberstext"]}</b>\n";
                         if (feature.properties.CompanyMetaData.Phones != null) foreach (var formatted in feature.properties.CompanyMetaData.Phones) buff += $"          <i>{formatted.formatted}</i>\n";
@@ -77,23 +77,23 @@ namespace Program
             {
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: botword["descriptiondisease"]+botword["d"+database[userid].listofrecentdiseases[0]].Substring(3, botword["d"+database[userid].listofrecentdiseases[0]].Length - 7), callbackData: "description1"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["descriptiondisease"]+botword["d"+database[userid].listofrecentdiseases![0]].Substring(3, botword["d"+database[userid].listofrecentdiseases![0]].Length - 7), callbackData: "description1"),
                 },
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: botword["descriptiondisease"]+botword["d"+database[userid].listofrecentdiseases[1]].Substring(3, botword["d"+database[userid].listofrecentdiseases[1]].Length - 7), callbackData: "description2"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["descriptiondisease"]+botword["d"+database[userid].listofrecentdiseases![1]].Substring(3, botword["d"+database[userid].listofrecentdiseases![1]].Length - 7), callbackData: "description2"),
                 },
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: botword["descriptiondisease"]+botword["d"+database[userid].listofrecentdiseases[2]].Substring(3, botword["d"+database[userid].listofrecentdiseases[2]].Length - 7), callbackData: "description3"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["descriptiondisease"]+botword["d"+database[userid].listofrecentdiseases![2]].Substring(3, botword["d"+database[userid].listofrecentdiseases![2]].Length - 7), callbackData: "description3"),
                 },
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: botword["descriptiondisease"]+botword["d"+database[userid].listofrecentdiseases[3]].Substring(3, botword["d"+database[userid].listofrecentdiseases[3]].Length - 7), callbackData: "description4"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["descriptiondisease"]+botword["d"+database[userid].listofrecentdiseases![3]].Substring(3, botword["d"+database[userid].listofrecentdiseases![3]].Length - 7), callbackData: "description4"),
                 },
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: botword["descriptiondisease"]+botword["d"+database[userid].listofrecentdiseases[4]].Substring(3, botword["d"+database[userid].listofrecentdiseases[4]].Length - 7), callbackData: "description5"),
+                    InlineKeyboardButton.WithCallbackData(text: botword["descriptiondisease"]+botword["d"+database[userid].listofrecentdiseases![4]].Substring(3, botword["d"+database[userid].listofrecentdiseases![4]].Length - 7), callbackData: "description5"),
                 }
             });
             return inlinedescriptiondiseaseen;

@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "CD7j4+sk0HUw0FM1Z+jdUmytEebncHkqDEr4SZLZ8U4lf9S/OwUaRvNNBRgeWjtCas8dLtPBZExnLV7Ip7py2Q==",
+  "dgSpecHash": "M8bDFFkbH+NC7mAb+fKst0SLD+OatGIt7Ihnae+Vel7xphBCRW1t2TlZD4NLw4bpTCPDRXTnyO+b0KY80q3hSA==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\GIT works\\TelegramMediSick\\A.A.R.O.N\\Telegram Server\\Telegram.csproj",
+  "projectFilePath": "D:\\A.A.R.O.N\\Telegram Server\\Telegram.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\evgen\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
-    "C:\\Users\\evgen\\.nuget\\packages\\telegram.bot\\19.0.0\\telegram.bot.19.0.0.nupkg.sha512"
+    "C:\\Users\\DrgNBoN\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\DrgNBoN\\.nuget\\packages\\telegram.bot\\19.0.0\\telegram.bot.19.0.0.nupkg.sha512"
   ],
   "logs": []
 }

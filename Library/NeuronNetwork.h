@@ -14,8 +14,8 @@ public:
 
     NeuronNetwork(int n, int* p) {
 
-        layers = n;
-        size = new int[n];
+        layers  = n;
+        size    = new int[n];
         neurons = new Neuron * [n];
         weights = new double** [n - 1];
 
@@ -25,14 +25,14 @@ public:
             size[i] = p[i];
             neurons[i] = new Neuron[p[i]+1];
 
-            neurons[i][p[i]].ActiveValue = 1.0;
+            neurons[i][p[i]].ActiveValue = 1.0; // Bias active value is only 1
 
-            if(i == n-1)break;
-            weights[i] = new double* [p[i]+1];
-            for (int j = 0; j <= p[i]; j++) {
-                weights[i][j] = new double[p[i + 1]];
+            if(i == n-1) break; // Because bias has n-1 layers 
+            weights[i] = new double* [p[i]+1];// +1 for bias weights
+            for (int j = 0; j <= p[i]; j++) { 
+                weights[i][j] = new double[p[i + 1]]; // i+1 because next layer
                 for(int k = 0;k < p[i+1];k++){
-                    weights[i][j][k] = (rand() % 100) * 0.01;
+                    weights[i][j][k] = (rand() % 100) * 0.01; // Set random value for weights
                 }
             }
 
@@ -105,7 +105,7 @@ public:
         }
     }
 
-    void SaveNetwork(char filename[]) {
+    void SaveNetwork(const char *filename) {
         std::ofstream fout(filename);
         for (int i = 0; i < layers - 1; i++) {
             for (int j = 0; j < size[i]; j++) {
@@ -123,7 +123,7 @@ public:
         }
         fout.close();
     }
-    void LoadNetwork(char filename[]) {
+    void LoadNetwork(const char *filename) {
         std::ifstream fin(filename);
         for (int i = 0; i < layers - 1; i++) {
             for (int j = 0; j < size[i]; j++) {

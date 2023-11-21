@@ -2,68 +2,70 @@
 #include <fstream>
 #include <utility>
 #include <algorithm>
-/*WARNING gender update*/
+
 int main(){
 
     std::ifstream fin;                         
-    int n,c,layers;                                                         // quantity of simphtones, c - number of symphtone
+    int n,c,layers;                                                  
     char gender;
+    const char *InOut = "..\\Telegram server\\bin\\Debug\\net7.0\\InOutUser\\";
+    const char *NetworkPath = "..\\Network\\";
 
 
-    fin.open("..\\Network\\NetworkSize.txt");                    
-    fin >> layers;                                                          //
-    int* size = new int[layers];                                            //
-    for(int i = 0;i < layers;i++){                                          //          Descript Network
-        fin >> size[i];                                                     //
-    }                                                                       //
-    fin.close();                                                            //
+    fin.open(NetworkPath + "NetworkSize.txt");                    
+    fin >> layers;                                                          
+    int* size = new int[layers];                                            
+    for(int i = 0;i < layers;i++){                                                  
+        fin >> size[i];                                                     
+    }                                                                       
+    fin.close();                                                            
+
+
 
     size[0] += 2;
 
     double input[size[0]];
-
-    int WomanIndex = size[0];
-    int ManIndex = size[0]+1;   
-
+    int WomanIndex = size[0] , ManIndex = size[0]+1, NeutralEl;
     NeuronNetwork nn(layers,size);                                                                                      
-    nn.LoadNetwork("..\\Network\\Network.txt");                  
-
-    fin.open("..\\Telegram server\\bin\\Debug\\net7.0\\InOutUser\\input.txt");                                                  
+    nn.LoadNetwork(NetworkPath + "Network.txt");                  
+    fin.open(InOut + "input.txt");                                                  
     
-    fin >> gender;
-    input[WomanIndex] = (double)(gender == 'w');
-    input[ManIndex]   = (double)(gender == 'm');
 
+
+    fin >> gender;
+    
     if(gender == 'n'){
-        if(rand()%2 == 0){
-            input[WomanIndex] = 1.0;
-        }else{
-            input[ManIndex] = 1.0;
-        }
+        if(rand()%2) gender = 'w';
+        else gender = 'm';
     }
 
-    std::fill(input,input+size[0],0.0);
+    if(gender == 'm') input[ManIndex] = 1.0;
+    else input[WomanIndex] = 1.0;
+    
 
-    fin >> n;                                                               //
-    for(int i = 0;i < n;i++){                                               //
-        fin >> c;                                                           //  Input simphtones
-        input[c-1] = 1.0;                                                   //
-    }                                                                       //
-    fin.close();                                                            //
+
+
+
+    std::fill(input,input+size[0],0.0);
+    fin >> n;                                                               
+    for(int i = 0;i < n;i++){                                               
+        fin >> c;                                                           
+        input[c-1] = 1.0;                                                   
+    }                                                                       
+    fin.close();                                                            
     nn.SetInput(input);
 
+
+
+
     nn.ForwardFeed();                                                       
-    std::ofstream fout("..\\Telegram server\\bin\\Debug\\net7.0\\InOutUser\\output.txt");  
+    std::ofstream fout(InOut + "output.txt");  
 
     double* SF = nn.SoftMax();
     double SFSum;
     std::pair<double,int> ans[size[layers-1]];
 
     for(int i = 0;i < size[layers-1];i++){
-        if(i == 71 && gender == 'w'){
-            ans[i] = {0,i+1};
-            continue;
-        }
         ans[i] = {SF[i],i+1};
     }
     

@@ -44,8 +44,8 @@ int main()
     {
         ss = std::stringstream(line);
 
-        getline(ss,field,',');//trash
-        getline(ss,name,',');//trash
+        getline(ss,field,',');
+        getline(ss,name,',');
         for(int i = 0;i < n;i++)
         {
             getline(ss,field,',');

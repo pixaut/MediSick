@@ -3,7 +3,6 @@
 #include <iostream>
 #include <unordered_set>
 #include <string>
-/*WARNING gender update*/
 struct Bindings
 {
 	int SimInd;
@@ -94,7 +93,7 @@ int main() {
 		v[i].Gender = gender;
 		for (int j = 0; j < n; j++) {
 			fin >> c;
-			v[i].push_back(c-1); //чтобы было от нуля
+			v[i].push_back(c-1);
 		}
 		fin >> c;
 	}

@@ -2,34 +2,35 @@
 #include <fstream>
 #include <iostream>
 #include <iomanip>
-/*WARNING gender update*/
+
 int main(){
 
     std::ifstream fin;
 
     int layers,N,n,c;
-    char PathToTests[] = "..\\TrainingTests\\RandomTests.txt";
-    char NetworkPath[] = "..\\Network\\Network.txt";
+    char PathToTests[]     = "..\\TrainingTests\\RandomTests.txt";
+    char NetworkPath[]     = "..\\Network\\Network.txt";
     char NetworkSizePath[] = "..\\Network\\NetworkSize.txt";
     char gender;
-    double s = 0.0,e = 0.0,SpeedOfLearning = 0.6;
+    double s = 0.0,e = 0.0,SpeedOfLearning = 0.01;
 
 
     fin.open(NetworkSizePath);
-    fin >> layers;                                          //
-    int* size = new int[layers];                         
-    for(int i = 0;i < layers;i++){                          //      
-        fin >> size[i];                                     //
-    }                                                       //  Descript Network
-    fin.close();                                            //
+    fin >> layers;                                          
+    int* size = new int[layers];                            
+    for(int i = 0;i < layers;i++){                              
+        fin >> size[i];                                     
+    }                                                       
+    fin.close();                                            
     
     
+
 
     int WomanIndex = size[0];
     int ManIndex = size[0]+1;
 
     size[0] += 2;
-    NeuronNetwork nn(layers,size);                          //                                   
+    NeuronNetwork nn(layers,size);                                                           
     
     double *input = new double[size[0]];
     double *rightanswer = new double[size[layers-1]];
@@ -37,7 +38,14 @@ int main(){
 
     bool Svt = false;
 
-    while(s < 98){
+    fin.open("ButtonNew.txt");
+    fin >> Svt;
+    fin.close();
+    if(Svt) nn.LoadNetwork(NetworkPath);
+
+    Svt = false;
+
+    while(s < 99.5){
 
         s = 0.0,e = 0.0;
         fin.open("Button.txt");

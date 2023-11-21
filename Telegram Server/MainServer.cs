@@ -275,6 +275,7 @@ namespace Program
                     database[userid].mainmenu = true;
                     database[userid].symptommenu = false;
                     database[userid].inlinesymptomkey = false;
+                    DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
                 }
                 else if (TextMessage == botword["textbuttonrepeatforecast"].ToLower())
                 {
@@ -328,7 +329,7 @@ namespace Program
                         process.StartInfo.CreateNoWindow = true;
                         process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                         process.Start();
-                        process.WaitForExit(2000);
+                        //process.WaitForExit(2000);
                     }
                     try
                     {

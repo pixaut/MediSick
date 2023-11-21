@@ -169,11 +169,11 @@
   "855228246": {
     "inlinebuttpressed": [],
     "listofrecentdiseases": [
-      84,
-      33,
-      32,
+      45,
+      63,
       98,
-      81
+      91,
+      37
     ],
     "listofrecentsearchedplaces": [
       {
@@ -187,12 +187,12 @@
       "Item1": 53.188758,
       "Item2": 29.22425
     },
-    "symptommenu": true,
-    "mainmenu": false,
+    "symptommenu": false,
+    "mainmenu": true,
     "inlinesymptomkey": false,
-    "searchbyareamenu": true,
+    "searchbyareamenu": false,
     "name": "DrgNBoNツ",
-    "lastmessage": "4 5",
+    "lastmessage": "📋справка⁉️",
     "gender": "man",
     "language": "ru"
   },

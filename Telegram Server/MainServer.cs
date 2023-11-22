@@ -12,6 +12,7 @@ global using System.Net;
 global using static Program.ResponseFromYandexMaps;
 using Telegram.Bot.Types;
 using static Program.DrugsParser;
+using static Program.YandexMapParser;
 
 namespace Program
 {

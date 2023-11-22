@@ -9,15 +9,18 @@ namespace Program
         public static InlineKeyboardMarkup? inlinegenderkeyboard;
         public static ReplyKeyboardMarkup welcomkeyboarden = new(new[]
         {
-            new[]{TelegramBot.botworden["textbuttondefinitionofdisease"],KeyboardButton.WithRequestLocation(botworden["searchbyareatext"]) },
-            new KeyboardButton[] {TelegramBot.botworden["textbuttonreference"]},        })
+            new[]{botworden["textbuttondefinitionofdisease"],KeyboardButton.WithRequestLocation(botworden["searchbyareatext"]) },
+            new[]{botwordru["drugssearchtext"], KeyboardButton.WithRequestLocation(botwordru["textbuttonreference"])},
+            //new KeyboardButton[] {TelegramBot.botworden["textbuttonreference"]},
+        })
         {
             ResizeKeyboard = true
         };
         public static ReplyKeyboardMarkup welcomkeyboardru = new(new[]
         {
-            new[]{TelegramBot.botwordru["textbuttondefinitionofdisease"],KeyboardButton.WithRequestLocation(botwordru["searchbyareatext"])},
-            new KeyboardButton[] {TelegramBot.botwordru["textbuttonreference"]},
+            new[]{botwordru["textbuttondefinitionofdisease"],KeyboardButton.WithRequestLocation(botwordru["searchbyareatext"])},
+            new[]{botwordru["drugssearchtext"], KeyboardButton.WithRequestLocation(botwordru["textbuttonreference"])},
+            //new KeyboardButton[] {TelegramBot.botwordru["textbuttonreference"]},
         })
         {
             ResizeKeyboard = true,

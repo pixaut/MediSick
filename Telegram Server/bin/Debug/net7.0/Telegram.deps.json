@@ -8,10 +8,19 @@
     ".NETCoreApp,Version=v7.0": {
       "Telegram/1.0.0": {
         "dependencies": {
+          "HtmlAgilityPack": "1.11.54",
           "Telegram.Bot": "19.0.0"
         },
         "runtime": {
           "Telegram.dll": {}
+        }
+      },
+      "HtmlAgilityPack/1.11.54": {
+        "runtime": {
+          "lib/netstandard2.0/HtmlAgilityPack.dll": {
+            "assemblyVersion": "1.11.54.0",
+            "fileVersion": "1.11.54.0"
+          }
         }
       },
       "Newtonsoft.Json/13.0.1": {
@@ -40,6 +49,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "HtmlAgilityPack/1.11.54": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bgB79N4urc4D7hrD4R+Qk6CjPiYOfs6vfXNsmw3nCcfQEQvBQGjfAcl5k/tB1ZP1hA0d7xXs0jK8xAXV36IVUg==",
+      "path": "htmlagilitypack/1.11.54",
+      "hashPath": "htmlagilitypack.1.11.54.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.1": {
       "type": "package",

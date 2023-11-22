@@ -177,6 +177,10 @@
             "Text": "🗺️Search by area🌍"
         },
         {
+            "TextName": "drugssearchtext",
+            "Text": "💊Search for drugs🗺️"
+        },
+        {
             "TextName": "pharmacytext",
             "Text": "Pharmacy"
         },

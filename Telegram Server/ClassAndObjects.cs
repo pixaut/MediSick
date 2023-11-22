@@ -164,4 +164,13 @@ namespace Program
             public required string name { get; set; }
         }
     }
+    public class DrugSpecs
+    {
+        public required string Drugname { get; set; } = "";
+        public required string Drugform { get; set; } = "";
+        public required string Drugproducer { get; set; } = "";
+        public required string Drugprice { get; set; } = "";
+        public required string Link { get; set; } = "";
+        public required int Numberofpharmacies { get; set; } = 0;
+    }
 }

@@ -11,6 +11,7 @@ global using System.Diagnostics;
 global using System.Net;
 global using static Program.ResponseFromYandexMaps;
 using Telegram.Bot.Types;
+using static Program.DrugsParser;
 
 namespace Program
 {
@@ -146,7 +147,7 @@ namespace Program
                         return;
                     }
                     //Description processing:
-                    if (database[userid].symptommenu && callback!.Data!.Substring(0, 11) == "description")
+                    if (database[userid].symptommenu && callback!.Data!.Length > 11 && callback!.Data!.Substring(0, 11) == "description")
                     {
                         await botclient.AnswerCallbackQueryAsync(callback!.Id, callback!.Data, cancellationToken: token);
                         await botclient.SendTextMessageAsync
@@ -238,6 +239,8 @@ namespace Program
                 {
                     await botclient.SendTextMessageAsync(message.Chat.Id, botword["textreference"], replyMarkup: inlinelinkes, disableNotification: true, cancellationToken: token);
                     await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["refstik"]), cancellationToken: token);
+                    List<DrugSpecs> drugslist = await parsedrugslist();
+                    Console.WriteLine(drugslist[4].Numberofpharmacies);
                 }
                 else return;
             }

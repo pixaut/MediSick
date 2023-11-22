@@ -27,48 +27,48 @@
     ],
     "listofrecentsearchedplaces": [
       {
-        "Item1": 53.189728,
-        "Item2": 29.224005,
-        "Item3": "ФармОстров",
-        "Item4": "Могилёвская область, Бобруйск, проспект Строителей, 35"
-      },
-      {
-        "Item1": 53.191853,
-        "Item2": 29.231888,
-        "Item3": "Новая",
-        "Item4": "Могилёвская область, Бобруйск, улица Генерала Батова, 32"
-      },
-      {
-        "Item1": 53.197857,
-        "Item2": 29.227552,
-        "Item3": "Доктор А",
-        "Item4": "Могилёвская область, Бобруйск, Приберезинский бульвар, 40"
-      },
-      {
         "Item1": 53.195053,
         "Item2": 29.223948,
-        "Item3": "Планета Здоровья",
-        "Item4": "Могилёвская область, Бобруйск, проспект Строителей, 58"
+        "Item3": "Planet of Health",
+        "Item4": "Mahilioŭskaja voblasć, Babrujsk, praspiekt Budaŭnikoŭ, 58"
+      },
+      {
+        "Item1": 53.189728,
+        "Item2": 29.224005,
+        "Item3": "FarmOstrov",
+        "Item4": "Mahilioŭskaja voblasć, Babrujsk, praspiekt Budaŭnikoŭ, 35"
       },
       {
         "Item1": 53.19254,
         "Item2": 29.22454,
         "Item3": "Добрыя лекi",
-        "Item4": "Могилёвская область, Бобруйск, проспект Строителей, 48"
+        "Item4": "Mahilioŭskaja voblasć, Babrujsk, praspiekt Budaŭnikoŭ, 48"
+      },
+      {
+        "Item1": 53.191853,
+        "Item2": 29.231888,
+        "Item3": "Новая",
+        "Item4": "Mahilioŭskaja voblasć, Babrujsk, vulica Hienierala Batava, 32"
+      },
+      {
+        "Item1": 53.197857,
+        "Item2": 29.227552,
+        "Item3": "Doctor A № 8",
+        "Item4": "Mahilioŭskaja voblasć, Babrujsk, Prybiarezinski buĺvar, 40"
       }
     ],
     "geolocation": {
-      "Item1": 53.194705,
-      "Item2": 29.22778
+      "Item1": 53.193748,
+      "Item2": 29.224581
     },
-    "symptommenu": true,
+    "symptommenu": false,
     "mainmenu": false,
     "inlinesymptomkey": false,
     "searchbyareamenu": true,
     "name": "tortik122421",
-    "lastmessage": "46 82 51",
+    "lastmessage": "💉 pharmacies nearby 😷",
     "gender": "man",
-    "language": "ru"
+    "language": "en"
   },
   "1699534382": {
     "inlinebuttpressed": [],
@@ -169,11 +169,11 @@
   "855228246": {
     "inlinebuttpressed": [],
     "listofrecentdiseases": [
-      56,
-      39,
-      40,
-      57,
-      58
+      62,
+      91,
+      98,
+      83,
+      45
     ],
     "listofrecentsearchedplaces": [
       {
@@ -188,13 +188,13 @@
       "Item2": 29.22778
     },
     "symptommenu": false,
-    "mainmenu": false,
+    "mainmenu": true,
     "inlinesymptomkey": false,
-    "searchbyareamenu": true,
+    "searchbyareamenu": false,
     "name": "DrgNBoNツ",
-    "lastmessage": "🏥 hospitals nearby 💉",
+    "lastmessage": "/start",
     "gender": "man",
-    "language": "en"
+    "language": "ru"
   },
   "5112536184": {
     "inlinebuttpressed": [],

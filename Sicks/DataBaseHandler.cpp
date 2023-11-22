@@ -7,19 +7,21 @@
 
 int main()
 {
+
+    /* Handling the tablet (file csv type) of sicks and symphtones */
+
     std::vector< std::vector<std::string> > array;
     std::ifstream fin("Sicks.csv");
     std::ofstream fout("SicksList.txt");
-    std::string line,field,s,name;
+    std::string line,field,s;
     std::stringstream ss;
     int n = 0,k = 0;
 
     getline(fin,line);
     ss = std::stringstream(line);
     while(getline(ss,s,',') ){
-        n = std::max(n,atoi(s.c_str()) );
+        n = std::max(n,atoi(s.c_str()) ); // finding number of sicks
     }
-    fout << n << ' ';
 
     array.resize(n);
 
@@ -27,29 +29,29 @@ int main()
     getline(fin,line);
 
     ss = std::stringstream(line);
-    k = 0;
 
     getline(ss,field,',');
     getline(ss,field,',');
 
-    for(k = 0;k < n;k++){
+    for(int i = 0;i < n;i++){
         getline(ss,field,',');
-        array[k].push_back(field);
+        array[i].push_back(field);
     }
 
 
     char gender[n];
-    k = 0;
     while ( getline(fin,line) )
     {
-        ss = std::stringstream(line);
+        ss = std::stringstream(line); // translate string to string stream type for getline function
 
         getline(ss,field,',');
-        getline(ss,name,',');
+        getline(ss,field,',');
         for(int i = 0;i < n;i++)
         {
             getline(ss,field,',');
             if(field == "1")array[i].push_back(std::to_string(k+1));
+
+            /* correlating field as gender */
             if(field == "н")gender[i] = 'n';
             if(field == "м")gender[i] = 'm';
             if(field == "ж")gender[i] = 'w';
@@ -58,7 +60,7 @@ int main()
         k++;
     }
 
-    fout << k-2 << '\n';
+    fout << n << ' '  << k-2 << '\n'; // writing number of sicks and symphtones (k-2 because gender and number of symptones not symphtones)
 
     for(int i = 0;i < n;i++){
 

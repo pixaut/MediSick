@@ -5,33 +5,37 @@
 
 int main(){
 
-    char *NetworkPath = "..\\Network\\NetworkSize.txt";
+    /* program that update input and output layers numbers */
 
-    std::ifstream fin("..\\Sicks\\SicksList.txt");
+    const char *NetworkPath = "..\\Network\\NetworkSize.txt";
+    const char *SicksPath = "..\\Sicks\\SicksList.txt";
+    std::ifstream fin;
     std::ofstream fout;
+    std::vector<int> v;
     int n,m,N,c;
-    fin >> n >> m;
+    
+
+    fin.open(SicksPath);
+    fin >> n >> m; // read size of output and input layers
     fin.close();
 
-    std::vector<int> v;
+    
     fin.open(NetworkPath);
-
-
-    fin >> N;
+    fin >> N; // read number of layers
     for(int i = 0;i < N;i++){
-        fin >> c;
+        fin >> c; // read layers
         v.push_back(c);
     }
     fin.close();
 
     
     fout.open(NetworkPath);
-    fout << N << '\n' << m << ' ';
+    fout << N << '\n' << m << ' '; // write number of layers and input layer
 
     for(int i = 1;i < N-1;i++){
-        fout << v[i] << ' ';
+        fout << v[i] << ' ';  // write old layers
     }
-    fout << n;
+    fout << n; //write output layer
 
     fout.close();
 }

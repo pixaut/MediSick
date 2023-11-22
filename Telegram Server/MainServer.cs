@@ -7,7 +7,7 @@ global using System.Text;
 global using static Program.Secondaryfunctions;
 global using static Program.Keyboard;
 global using Telegram.Bot.Types.ReplyMarkups;
-global using System.Diagnostics;   
+global using System.Diagnostics;
 global using System.Net;
 global using static Program.ResponseFromYandexMaps;
 using Telegram.Bot.Types;
@@ -45,12 +45,12 @@ namespace Program
         async static Task Update(ITelegramBotClient botclient, Update update, CancellationToken token)
         {
             //first start
-            if(!serveronline)
+            if (!serveronline)
             {
                 serveronline = true;
                 return;
             }
-            
+
             //Declaring important variables:
             var message = update.Message;
             var callback = update.CallbackQuery;
@@ -83,12 +83,12 @@ namespace Program
                     await botclient.AnswerCallbackQueryAsync(callback!.Id, callback!.Data, cancellationToken: token);
                     if (callback!.Data == "en")
                     {
-                        await botclient.SendTextMessageAsync(userid, "You pick english language.🇬🇧", parseMode: ParseMode.Html, cancellationToken: token);
+                        await botclient.SendTextMessageAsync(userid, "You pick english language. 🇬🇧", parseMode: ParseMode.Html, cancellationToken: token);
                         database[userid].language = "en";
                     }
                     else if (callback!.Data == "ru")
                     {
-                        await botclient.SendTextMessageAsync(userid, "Вы выбрали русский язык.🇷🇺", parseMode: ParseMode.Html, cancellationToken: token);
+                        await botclient.SendTextMessageAsync(userid, "Вы выбрали русский язык. 🇷🇺", parseMode: ParseMode.Html, cancellationToken: token);
                         database[userid].language = "ru";
                     }
                     interfacelocalization(database[userid].language!);
@@ -245,6 +245,7 @@ namespace Program
             //Processing geolocation buttons:
             if (database[userid].searchbyareamenu)
             {
+                interfacelocalization(database[userid].language!);
                 if (TextMessage == botword["textbuttonbacktomainmenu"].ToLower())
                 {
                     await botclient.SendTextMessageAsync(message.Chat.Id, database[userid].name + " " + botword["textwelcome2"], parseMode: ParseMode.Html, replyMarkup: welcomkeyboard, disableNotification: true, cancellationToken: token);
@@ -253,15 +254,15 @@ namespace Program
                 }
                 if (TextMessage == botword["pharmaciesnearbytext"].ToLower())
                 {
-                    await botclient.SendTextMessageAsync(userid, searchorganizations("Аптекa", database[userid].geolocation), replyMarkup: inlinepreparationroutebuttons(database[userid].listofrecentsearchedplaces), parseMode: ParseMode.Html, disableWebPagePreview: true, cancellationToken: token);
+                    await botclient.SendTextMessageAsync(userid, searchorganizations(botword["pharmacytext"], database[userid].geolocation), replyMarkup: inlinepreparationroutebuttons(database[userid].listofrecentsearchedplaces), parseMode: ParseMode.Html, disableWebPagePreview: true, cancellationToken: token);
                 }
                 if (TextMessage == botword["clinicsnearbytext"].ToLower())
                 {
-                    await botclient.SendTextMessageAsync(userid, searchorganizations("Поликлиника", database[userid].geolocation), replyMarkup: inlinepreparationroutebuttons(database[userid].listofrecentsearchedplaces), parseMode: ParseMode.Html, disableWebPagePreview: true, cancellationToken: token);
+                    await botclient.SendTextMessageAsync(userid, searchorganizations(botword["polyclinictext"], database[userid].geolocation), replyMarkup: inlinepreparationroutebuttons(database[userid].listofrecentsearchedplaces), parseMode: ParseMode.Html, disableWebPagePreview: true, cancellationToken: token);
                 }
                 if (TextMessage == botword["hospitalsnearbytext"].ToLower())
                 {
-                    await botclient.SendTextMessageAsync(userid, searchorganizations("Больница", database[userid].geolocation), replyMarkup: inlinepreparationroutebuttons(database[userid].listofrecentsearchedplaces), parseMode: ParseMode.Html, disableWebPagePreview: true, cancellationToken: token);
+                    await botclient.SendTextMessageAsync(userid, searchorganizations(botword["hospitaltext"], database[userid].geolocation), replyMarkup: inlinepreparationroutebuttons(database[userid].listofrecentsearchedplaces), parseMode: ParseMode.Html, disableWebPagePreview: true, cancellationToken: token);
                 }
             }
 

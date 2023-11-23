@@ -171,7 +171,7 @@ namespace Program
                         return;
                     }
                     //Geolocation processing:
-                    if (database[userid].searchbyareamenu && callback!.Data!.Substring(0, 11) == "geolocation")
+                    if (database[userid].searchbyareamenu && callback!.Data!.Length > 11 && callback!.Data!.Substring(0, 11) == "geolocation")
                     {
                         await botclient.AnswerCallbackQueryAsync(callback!.Id, callback!.Data, cancellationToken: token);
                         await botclient.SendVenueAsync
@@ -184,6 +184,28 @@ namespace Program
                             cancellationToken: token
                         );
                         DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
+                        return;
+                    }
+                    if (!database[userid].mainmenu && database[userid].searchbyareamenu && database[userid].searchdrugmenu && callback!.Data!.Substring(0, 4) == "drag")
+                    {
+                        string buffstring = "";
+                        await botclient.AnswerCallbackQueryAsync(callback!.Id, callback!.Data, cancellationToken: token);
+                        int index = 0;
+                        int.TryParse(string.Join("", callback!.Data!.Where(c => char.IsDigit(c))), out index);
+                        --index;
+                        await parsedrugsincity(database[userid].lastdrugslist[index].Link);
+                        for (int i = 0; i < database[userid].lastpharmlist.Count; ++i)
+                        {
+                            buffstring += $"Название аптеки {database[userid].lastpharmlist[i].Pharmname}\nАдрес {database[userid].lastpharmlist[i].Address}\nНомер {database[userid].lastpharmlist[i].PhoneNumber}\nЦена {database[userid].lastpharmlist[i].Cost}\n\n";
+                        }
+                        await botclient.SendTextMessageAsync
+                        (
+                            userid,
+                            text: buffstring,
+                            parseMode: ParseMode.Markdown,
+                            cancellationToken: token
+                        );
+
                         return;
                     }
                 }
@@ -284,6 +306,7 @@ namespace Program
                     {
                         await botclient.SendTextMessageAsync(message.Chat.Id, "Вы вернулись", parseMode: ParseMode.Html, replyMarkup: geolocationkeyboard, disableNotification: true, cancellationToken: token);
                         database[userid].searchorganizationmenu = false;
+                        return;
                     }
                     if (TextMessage == botword["pharmaciesnearbytext"].ToLower())
                     {
@@ -304,6 +327,7 @@ namespace Program
                     {
                         await botclient.SendTextMessageAsync(message.Chat.Id, "Вы вернулись", parseMode: ParseMode.Html, replyMarkup: geolocationkeyboard, disableNotification: true, cancellationToken: token);
                         database[userid].searchdrugmenu = false;
+                        return;
                     }
                     Console.WriteLine($"TextMessage {database[userid].lastmessage}");
                     string buffstring = "";
@@ -314,11 +338,12 @@ namespace Program
                         await parsedrugslist(TextMessage, await returnregionindex(database[userid].city));
 
 
+
                         for (int i = 0; i < 5; ++i)
                         {
                             buffstring += $"Наименование: {database[userid].lastdrugslist[i].Drugname} Форма: {database[userid].lastdrugslist[i].Drugform} Производитель: {database[userid].lastdrugslist[i].Drugproducer} Цена: {database[userid].lastdrugslist[i].Drugprice} В {database[userid].lastdrugslist[i].Numberofpharmacies} Аптеках \n\n";
                         }
-                        await botclient.SendTextMessageAsync(message.Chat.Id, buffstring, parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
+                        await botclient.SendTextMessageAsync(message.Chat.Id, buffstring, replyMarkup: inlinepreparationdraginsitybuttons(), parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
 
                     }
 

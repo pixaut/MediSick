@@ -16,6 +16,20 @@ namespace Program
             }
             return region;
         }
+        public static InlineKeyboardMarkup inlinepreparationdraginsitybuttons()
+        {
+
+            List<InlineKeyboardButton[]> list = new List<InlineKeyboardButton[]>();
+
+            for (int i = 1; i <= 5; ++i)
+            {
+                InlineKeyboardButton button = new InlineKeyboardButton(database[userid].lastdrugslist[i - 1].Drugname) { CallbackData = "drag" + i };
+                InlineKeyboardButton[] row = new InlineKeyboardButton[1] { button };
+                list.Add(row);
+            }
+            var draginsitykeyboard = new InlineKeyboardMarkup(list);
+            return draginsitykeyboard;
+        }
         //Dynamic keyboard for search organizations:
         public static InlineKeyboardMarkup inlinepreparationroutebuttons(List<(float, float, string, string)>? listofrecentsearchedplaces)
         {

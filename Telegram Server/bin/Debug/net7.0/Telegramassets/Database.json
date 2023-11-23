@@ -24,13 +24,20 @@
   "855228246": {
     "inlinebuttpressed": [],
     "listofrecentdiseases": [
-      56,
-      63,
-      48,
+      98,
       84,
-      23
+      45,
+      93,
+      50
     ],
-    "listofrecentsearchedplaces": [],
+    "listofrecentsearchedplaces": [
+      {
+        "Item1": 53.15052,
+        "Item2": 29.237478,
+        "Item3": "Rodilny Dom Bobruysky Uz",
+        "Item4": "Mahilioŭskaja voblasć, Babrujsk, Savieckaja vulica, 134"
+      }
+    ],
     "lastdrugslist": [
       {
         "Drugname": "Парацетамол",
@@ -106,19 +113,19 @@
       }
     ],
     "geolocation": {
-      "Item1": 53.188615,
-      "Item2": 29.224257
+      "Item1": 53.18867,
+      "Item2": 29.224261
     },
-    "symptommenu": true,
+    "symptommenu": false,
     "mainmenu": false,
     "inlinesymptomkey": false,
-    "searchbyareamenu": false,
+    "searchbyareamenu": true,
     "searchorganizationmenu": false,
-    "searchdrugmenu": false,
+    "searchdrugmenu": true,
     "name": "DrgNBoNツ",
     "city": "Бобруйск",
-    "lastmessage": "1 2 3 +2+57583+2:2718₽8593:474-5:5;5!6;6;6;6:3:2:3 щкщуиушкиушк3822",
+    "lastmessage": "парацетамол",
     "gender": "man",
-    "language": "ru"
+    "language": "en"
   }
 }

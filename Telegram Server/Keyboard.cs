@@ -17,7 +17,7 @@ namespace Program
         public static ReplyKeyboardMarkup welcomkeyboarden = new(new[]
         {
             new[]{botworden["textbuttondefinitionofdisease"],KeyboardButton.WithRequestLocation(botworden["searchbyareatext"])},
-            new KeyboardButton[] {botworden["textbuttonreference"]},
+            new KeyboardButton[] { botworden["textinstruction"],botworden["textbuttonreference"]},
         })
         {
             ResizeKeyboard = true
@@ -25,7 +25,7 @@ namespace Program
         public static ReplyKeyboardMarkup welcomkeyboardru = new(new[]
         {
             new[]{botwordru["textbuttondefinitionofdisease"],KeyboardButton.WithRequestLocation(botwordru["searchbyareatext"])},
-            new KeyboardButton[] {botwordru["textbuttonreference"]},
+            new KeyboardButton[] { botwordru["textinstruction"], botwordru["textbuttonreference"]},
         })
         {
             ResizeKeyboard = true,

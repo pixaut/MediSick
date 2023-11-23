@@ -276,6 +276,16 @@ namespace Program
                     database[userid]!.inlinebuttpressed!.Clear();
                     TextMessage = "";
                 }
+                else if (TextMessage == botword["textinstruction"].ToLower())
+                {
+                    await botclient.SendVideoAsync
+                    (
+                        chatId: userid,
+                        video: InputFile.FromUri("https://github.com/DrgNBoN/Video-files-from-MediSIck-Telegram-bot/raw/main/guide.mp4"),
+                        supportsStreaming: true,
+                        cancellationToken: token
+                    );
+                }
                 else if (TextMessage == botword["textbuttonreference"].ToLower())
                 {
                     await botclient.SendTextMessageAsync(message.Chat.Id, botword["textreference"], replyMarkup: inlinelinkes, disableNotification: true, cancellationToken: token);

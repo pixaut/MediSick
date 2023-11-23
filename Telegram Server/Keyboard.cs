@@ -231,17 +231,6 @@ namespace Program
                 InlineKeyboardButton.WithCallbackData(text: "🇷🇺Русский🇧🇾", callbackData: "ru"),
             }
         });
-        public static InlineKeyboardMarkup inlinedraginsitykeyboard = new(new[]
-        {
-            new []{InlineKeyboardButton.WithCallbackData(text: database[userid].lastdrugslist[0].Drugname, callbackData: "drag1")},
-            new []{InlineKeyboardButton.WithCallbackData(text: database[userid].lastdrugslist[1].Drugname, callbackData: "drag2")},
-            new []{InlineKeyboardButton.WithCallbackData(text: database[userid].lastdrugslist[2].Drugname, callbackData: "drag3")},
-            new []{InlineKeyboardButton.WithCallbackData(text: database[userid].lastdrugslist[3].Drugname, callbackData: "drag4")},
-            new []{InlineKeyboardButton.WithCallbackData(text: database[userid].lastdrugslist[4].Drugname, callbackData: "drag5")}
-
-
-
-        });
 
     }
 }

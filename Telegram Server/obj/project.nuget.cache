@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "zOGyLhJjrU9rVDHJFsGQukdYVaELPpfwnwiWt4l+CQkniop35v10n//8+eiDpxNtkxf4Ay4R67bYUyamYNsC2Q==",
+  "dgSpecHash": "DVB4RlpOr7sqBLoVZLystMWfMq0rilbgSwjmEDxMRsw7KL4CdyquNFCPAL4HFKhPhFmRzRTvivxoFG6sN0GlkQ==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\GIT works\\TelegramMediSick\\A.A.R.O.N\\Telegram Server\\Telegram.csproj",
+  "projectFilePath": "D:\\A.A.R.O.N\\Telegram Server\\Telegram.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\evgen\\.nuget\\packages\\htmlagilitypack\\1.11.54\\htmlagilitypack.1.11.54.nupkg.sha512",
-    "C:\\Users\\evgen\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
-    "C:\\Users\\evgen\\.nuget\\packages\\telegram.bot\\19.0.0\\telegram.bot.19.0.0.nupkg.sha512"
+    "C:\\Users\\DrgNBoN\\.nuget\\packages\\htmlagilitypack\\1.11.54\\htmlagilitypack.1.11.54.nupkg.sha512",
+    "C:\\Users\\DrgNBoN\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\DrgNBoN\\.nuget\\packages\\telegram.bot\\19.0.0\\telegram.bot.19.0.0.nupkg.sha512"
   ],
   "logs": []
 }

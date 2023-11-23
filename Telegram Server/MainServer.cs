@@ -9,6 +9,7 @@ global using static Program.Keyboard;
 global using Telegram.Bot.Types.ReplyMarkups;
 global using System.Diagnostics;
 global using System.Net;
+global using HtmlAgilityPack;
 global using static Program.ResponseFromYandexMaps;
 global using static Program.DetermineAdressYandexMaps;
 using Telegram.Bot.Types;
@@ -53,6 +54,7 @@ namespace Program
                 serveronline = true;
                 return;
             }
+
 
             //Declaring important variables:
             var message = update.Message;
@@ -336,14 +338,25 @@ namespace Program
                     if (database[userid].lastmessage != "")
                     {
                         await parsedrugslist(TextMessage, await returnregionindex(database[userid].city));
-
-
-
-                        for (int i = 0; i < 5; ++i)
+                        Console.WriteLine(database[userid].lastdrugslist.Count + "   sdfsdfdsfdsfsdf");
+                        if (database[userid].lastdrugslist.Count > 1)
                         {
-                            buffstring += $"Наименование: {database[userid].lastdrugslist[i].Drugname} Форма: {database[userid].lastdrugslist[i].Drugform} Производитель: {database[userid].lastdrugslist[i].Drugproducer} Цена: {database[userid].lastdrugslist[i].Drugprice} В {database[userid].lastdrugslist[i].Numberofpharmacies} Аптеках \n\n";
+                            for (int i = 0; i < database[userid].lastdrugslist.Count; ++i)
+                            {
+                                buffstring += $"Наименование: {database[userid].lastdrugslist[i].Drugname} Форма: {database[userid].lastdrugslist[i].Drugform} Производитель: {database[userid].lastdrugslist[i].Drugproducer} Цена: {database[userid].lastdrugslist[i].Drugprice} В {database[userid].lastdrugslist[i].Numberofpharmacies} Аптеках \n\n";
+                            }
+                            await botclient.SendTextMessageAsync(message.Chat.Id, buffstring, replyMarkup: inlinepreparationdraginsitybuttons(), parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
+
                         }
-                        await botclient.SendTextMessageAsync(message.Chat.Id, buffstring, replyMarkup: inlinepreparationdraginsitybuttons(), parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
+                        else
+                        {
+                            await botclient.SendTextMessageAsync(message.Chat.Id, "По вашему завпосу не найдено", parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
+
+                        }
+
+
+
+
 
                     }
 

@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Program
 {
     class Secondaryfunctions
@@ -16,12 +18,13 @@ namespace Program
             }
             return region;
         }
+
         public static InlineKeyboardMarkup inlinepreparationdraginsitybuttons()
         {
 
             List<InlineKeyboardButton[]> list = new List<InlineKeyboardButton[]>();
 
-            for (int i = 1; i <= 5; ++i)
+            for (int i = 1; i <= Math.Min(5, database[userid].lastdrugslist.Count); ++i)
             {
                 InlineKeyboardButton button = new InlineKeyboardButton(database[userid].lastdrugslist[i - 1].Drugname) { CallbackData = "drag" + i };
                 InlineKeyboardButton[] row = new InlineKeyboardButton[1] { button };

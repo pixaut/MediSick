@@ -8,11 +8,11 @@ int main(){
     std::ifstream fin;
 
     int layers,N,n,c,WomanIndex,ManIndex;
-    const *char PathToTests     = "..\\TrainingTests\\RandomTests.txt";
-    const *char NetworkPath     = "..\\Network\\Network.txt";
-    const *char NetworkSizePath = "..\\Network\\NetworkSize.txt";
+    const char *PathToTests     = "..\\TrainingTests\\RandomTests.txt";
+    const char *NetworkPath     = "..\\Network\\Network.txt";
+    const char *NetworkSizePath = "..\\Network\\NetworkSize.txt";
     char gender;
-    double s = 0.0,e = 0.0,SpeedOfLearning = 0.01;
+    double s = 0.0,e = 0.0,SpeedOfLearning = 0.6;
 
 
     /* reading network size*/
@@ -48,7 +48,7 @@ int main(){
 
     Svt = false;
 
-    while(s < 99.5){ // s - percent of correct that wouldn't be high
+    while(s < 98.5){ // s - percent of correct that wouldn't be high
 
         s = 0.0,e = 0.0;
         fin.open("Button.txt"); // button that save network forcibly

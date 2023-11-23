@@ -5,16 +5,8 @@
             "title": "Надо сделать",
             "tasks": [
                 {
-                    "text": "Обработать новую таблицу\n",
-                    "id": "clpb0utqr000a4066z6wzygdx"
-                },
-                {
-                    "text": "Сгенерировать тесты\n",
-                    "id": "clpb0v91r000b4066di4f1z1u"
-                },
-                {
-                    "text": "Обучить нейросеть ",
-                    "id": "clpb0vhef000c4066spu3kqxc"
+                    "text": "соеденить программы",
+                    "id": "clpbaufom000a4066mucef7ay"
                 },
                 {
                     "text": "проверить запуск (с женей)",
@@ -26,12 +18,25 @@
         },
         {
             "title": "Сделаное",
-            "tasks": [],
+            "tasks": [
+                {
+                    "text": "Обработать новую таблицу\n",
+                    "id": "clpb0utqr000a4066z6wzygdx"
+                },
+                {
+                    "text": "Сгенерировать тесты\n",
+                    "id": "clpb0v91r000b4066di4f1z1u"
+                },
+                {
+                    "text": "Обучить нейросеть ",
+                    "id": "clpb0vhef000c4066spu3kqxc"
+                }
+            ],
             "id": "clogtx005000i4066xprenk8j",
             "color": "#00d084"
         }
     ],
     "autosave": true,
     "saveToFile": true,
-    "timestamp": 1700733654245
+    "timestamp": 1700751877147
 }

@@ -45,7 +45,6 @@ namespace Program
 
     public class User
     {
-
         public bool symptommenu { get; set; } = false;
         public bool mainmenu { get; set; } = true;
         public bool inlinesymptomkey { get; set; } = false;
@@ -57,6 +56,8 @@ namespace Program
         public List<int>? inlinebuttpressed = new List<int>();
         public List<int>? listofrecentdiseases = new List<int>();
         public List<(float, float, string, string)>? listofrecentsearchedplaces = new List<(float, float, string, string)>();
+        public List<DrugSpecs> lastdrugslist = new List<DrugSpecs>();
+        public List<DrugInSityInfo> lastpharmlist = new List<DrugInSityInfo>();
         public string lastmessage { get; set; } = "";
         public string? gender { get; set; } = null;
         public string? language { get; set; } = null;
@@ -332,5 +333,12 @@ namespace Program
         public required string Drugprice { get; set; } = "";
         public required string Link { get; set; } = "";
         public required int Numberofpharmacies { get; set; } = 0;
+    }
+    public class DrugInSityInfo
+    {
+        public required string Pharmname { get; set; } = "";
+        public required string Address { get; set; } = "";
+        public required string PhoneNumber { get; set; } = "";
+        public required string Cost { get; set; } = "";
     }
 }

@@ -250,7 +250,6 @@ namespace Program
                 {
                     await botclient.SendTextMessageAsync(message.Chat.Id, botword["textreference"], replyMarkup: inlinelinkes, disableNotification: true, cancellationToken: token);
                     await botclient.SendStickerAsync(message.Chat.Id, sticker: InputFile.FromUri(botword["refstik"]), cancellationToken: token);
-
                 }
                 else return;
             }
@@ -276,6 +275,7 @@ namespace Program
                 {
                     database[userid].searchdrugmenu = true;
                     await botclient.SendTextMessageAsync(message.Chat.Id, "Вы перешли в лекарства", parseMode: ParseMode.Html, replyMarkup: drugkeyboard, disableNotification: true, cancellationToken: token);
+                    await botclient.SendTextMessageAsync(message.Chat.Id, "Введите название лекарства которое вам необходимо:", parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
                     database[userid].lastmessage = "";
                 }
                 if (database[userid].searchbyareamenu && database[userid].searchorganizationmenu)
@@ -311,17 +311,17 @@ namespace Program
 
                     if (database[userid].lastmessage != "")
                     {
-                        List<DrugSpecs> drugslist = await parsedrugslist(TextMessage);
-                        Console.WriteLine(drugslist[1].Drugprice);
+                        await parsedrugslist(TextMessage, await returnregionindex(database[userid].city));
+
+
                         for (int i = 0; i < 5; ++i)
                         {
-                            buffstring += $"Наименование: {drugslist[i].Drugname} Форма: {drugslist[i].Drugform} Производитель: {drugslist[i].Drugproducer} Цена: {drugslist[i].Drugprice} В {drugslist[i].Numberofpharmacies} Аптеках \n\n";
-
+                            buffstring += $"Наименование: {database[userid].lastdrugslist[i].Drugname} Форма: {database[userid].lastdrugslist[i].Drugform} Производитель: {database[userid].lastdrugslist[i].Drugproducer} Цена: {database[userid].lastdrugslist[i].Drugprice} В {database[userid].lastdrugslist[i].Numberofpharmacies} Аптеках \n\n";
                         }
                         await botclient.SendTextMessageAsync(message.Chat.Id, buffstring, parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
 
                     }
-                    await botclient.SendTextMessageAsync(message.Chat.Id, "Введите название лекарства которое вам необходимо:", parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
+
 
 
                 }

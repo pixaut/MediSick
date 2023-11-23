@@ -3,6 +3,8 @@
     "inlinebuttpressed": [],
     "listofrecentdiseases": [],
     "listofrecentsearchedplaces": [],
+    "lastdrugslist": [],
+    "lastpharmlist": [],
     "geolocation": {
       "Item1": 0.0,
       "Item2": 0.0
@@ -60,6 +62,8 @@
         "Item4": "Могилёвская область, Бобруйск, проспект Строителей, 48"
       }
     ],
+    "lastdrugslist": [],
+    "lastpharmlist": [],
     "geolocation": {
       "Item1": 53.194705,
       "Item2": 29.22778
@@ -93,6 +97,8 @@
         "Item4": "Могилёвская область, Бобруйск, улица 50 лет Октября, 15"
       }
     ],
+    "lastdrugslist": [],
+    "lastpharmlist": [],
     "geolocation": {
       "Item1": 53.194705,
       "Item2": 29.22778
@@ -115,6 +121,8 @@
     ],
     "listofrecentdiseases": [],
     "listofrecentsearchedplaces": [],
+    "lastdrugslist": [],
+    "lastpharmlist": [],
     "geolocation": {
       "Item1": 0.0,
       "Item2": 0.0
@@ -141,6 +149,8 @@
       21
     ],
     "listofrecentsearchedplaces": [],
+    "lastdrugslist": [],
+    "lastpharmlist": [],
     "geolocation": {
       "Item1": 0.0,
       "Item2": 0.0
@@ -167,6 +177,62 @@
       45
     ],
     "listofrecentsearchedplaces": [],
+    "lastdrugslist": [
+      {
+        "Drugname": "Ибупрофен ДИП",
+        "Drugform": "гель 30г N1",
+        "Drugproducer": "Фармтехнология",
+        "Drugprice": "6.80 ... 9.93 р.",
+        "Link": "/result?ls=18576&region=56",
+        "Numberofpharmacies": 74
+      },
+      {
+        "Drugname": "Ибупрофен МАХ",
+        "Drugform": "таблетки покрытые оболочкой 400мг N20",
+        "Drugproducer": "Борисовский ЗМП",
+        "Drugprice": "5.92 ... 6.77 р.",
+        "Link": "/result?ls=18722&region=56",
+        "Numberofpharmacies": 57
+      },
+      {
+        "Drugname": "Ибупрофен Д",
+        "Drugform": "суспензия для приема внутрь 100мг/5мл 100г N1",
+        "Drugproducer": "Фармтехнология",
+        "Drugprice": "7.00 ... 11.46 р.",
+        "Link": "/result?ls=18499&region=56",
+        "Numberofpharmacies": 55
+      },
+      {
+        "Drugname": "Ибупрофен Д",
+        "Drugform": "суспензия для приема внутрь 200мг/5мл 100г N1",
+        "Drugproducer": "Фармтехнология",
+        "Drugprice": "13.07 ... 15.29 р.",
+        "Link": "/result?ls=18491&region=56",
+        "Numberofpharmacies": 50
+      },
+      {
+        "Drugname": "Ибупрофен МАХ",
+        "Drugform": "таблетки покрытые оболочкой 400мг N10",
+        "Drugproducer": "Борисовский ЗМП",
+        "Drugprice": "3.32 ... 3.87 р.",
+        "Link": "/result?ls=19499&region=56",
+        "Numberofpharmacies": 38
+      }
+    ],
+    "lastpharmlist": [
+      {
+        "Pharmname": "Аптека Новая N1 ООО Пролайф",
+        "Address": "Бобруйск, ул. Пролетарская, 17",
+        "PhoneNumber": "(029) 6130830",
+        "Cost": "от   7.31 р."
+      },
+      {
+        "Pharmname": "Тишас ОДО Аптека N8",
+        "Address": "Бобруйск, ул. Минская, 17-9, на пересечении ул. Минская и ул. Социалистическая",
+        "PhoneNumber": "(0225) 734158",
+        "Cost": "7.32 р."
+      }
+    ],
     "geolocation": {
       "Item1": 53.194705,
       "Item2": 29.22778
@@ -176,10 +242,10 @@
     "inlinesymptomkey": false,
     "searchbyareamenu": true,
     "searchorganizationmenu": false,
-    "searchdrugmenu": false,
+    "searchdrugmenu": true,
     "name": "DrgNBoNツ",
     "city": "Бобруйск",
-    "lastmessage": "⬅️ вернуться в главное меню 🚪",
+    "lastmessage": "ибупрофен",
     "gender": "man",
     "language": "ru"
   },
@@ -193,6 +259,8 @@
       30
     ],
     "listofrecentsearchedplaces": [],
+    "lastdrugslist": [],
+    "lastpharmlist": [],
     "geolocation": {
       "Item1": 0.0,
       "Item2": 0.0
@@ -250,6 +318,8 @@
         "Item4": "Могилёвская область, Бобруйск, улица 50 лет ВЛКСМ, 13"
       }
     ],
+    "lastdrugslist": [],
+    "lastpharmlist": [],
     "geolocation": {
       "Item1": 53.194342,
       "Item2": 29.227771

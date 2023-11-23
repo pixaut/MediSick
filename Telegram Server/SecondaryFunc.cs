@@ -2,6 +2,20 @@ namespace Program
 {
     class Secondaryfunctions
     {
+        public static async Task<int> returnregionindex(string city)
+        {
+            int region = 0;//all regions
+            string path = "Telegramassets/regionindex.txt";
+            using (StreamReader reader = new StreamReader(path))
+            {
+                string? line;
+                while ((line = await reader.ReadLineAsync()) != null)
+                {
+                    if (line.Substring(0, line.IndexOf('-')) == city) region = int.Parse(line.Substring(line.IndexOf('-') + 1));
+                }
+            }
+            return region;
+        }
         //Dynamic keyboard for search organizations:
         public static InlineKeyboardMarkup inlinepreparationroutebuttons(List<(float, float, string, string)>? listofrecentsearchedplaces)
         {

@@ -202,10 +202,10 @@ namespace Program
                         int.TryParse(string.Join("", callback!.Data!.Where(c => char.IsDigit(c))), out int index);
                         --index;
                         await parsedrugsincity(database[userid].lastdrugslist[index].Link);
-                        outsting += $"Название товара: {database[userid].lastdrugslist[index].Drugname}\n{botword["longlinetext"]}";
+                        outsting += $"{botword["productnametext"]} {database[userid].lastdrugslist[index].Drugname}\n{botword["longlinetext"]}";
                         for (int i = 0; i < database[userid].lastpharmlist.Count; ++i)
                         {
-                            outsting += $"➡️Название аптеки: {database[userid].lastpharmlist[i].Pharmname}\n🗺️Адрес: {database[userid].lastpharmlist[i].Address}\n📞Номер: {database[userid].lastpharmlist[i].PhoneNumber}\n🏷️Цена: {database[userid].lastpharmlist[i].Cost}\n{botword["longlinetext"]}";
+                            outsting += $"{botword["pharmacynametext"]} {database[userid].lastpharmlist[i].Pharmname}\n{botword["adresstext"]} {database[userid].lastpharmlist[i].Address}\n{botword["numbertext"]} {database[userid].lastpharmlist[i].PhoneNumber}\n{botword["costtext"]} {database[userid].lastpharmlist[i].Cost}\n{botword["longlinetext"]}";
                         }
                         await botclient.SendTextMessageAsync
                         (
@@ -231,7 +231,7 @@ namespace Program
                 database[userid].searchorganizationmenu = false;
                 database[userid].searchdrugmenu = false;
                 database[userid].geolocation = (update.Message!.Location!.Latitude, update.Message.Location.Longitude);
-                await botclient.SendTextMessageAsync(message.Chat.Id, $"{botword["searchbyareastarttext"]}\n🗺️Ваше текущее местоположение🌍\nГород 📍{database[userid].city}📍", replyMarkup: geolocationkeyboard, disableNotification: true, cancellationToken: token);
+                await botclient.SendTextMessageAsync(message.Chat.Id, $"{botword["searchbyareastarttext"]}\n{botword["yourcurrentlocationtext"]}\n{botword["citytext"]} 📍{database[userid].city}📍", replyMarkup: geolocationkeyboard, disableNotification: true, cancellationToken: token);
                 DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
             }
 
@@ -287,6 +287,7 @@ namespace Program
             //Processing geolocation buttons:
             if (database[userid].searchbyareamenu && !database[userid].mainmenu)
             {
+                //Keyboard buttons procesing:
                 interfacelocalization(database[userid].language!);
                 if (TextMessage == botword["textbuttonbacktomainmenu"].ToLower())
                 {
@@ -299,20 +300,22 @@ namespace Program
                 if (TextMessage == botword["organizationsearchtext"].ToLower())
                 {
                     database[userid].searchorganizationmenu = true;
-                    await botclient.SendTextMessageAsync(message.Chat.Id, "Вы перешли в 🔍поиск🔍\n 🏨мед.учереждений💊 рядом с вами:", parseMode: ParseMode.Html, replyMarkup: organizationkeyboard, disableNotification: true, cancellationToken: token);
+                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["organizationsearchwelcometext"], parseMode: ParseMode.Html, replyMarkup: organizationkeyboard, disableNotification: true, cancellationToken: token);
                 }
                 if (TextMessage == botword["drugssearchtext"].ToLower())
                 {
                     database[userid].searchdrugmenu = true;
-                    await botclient.SendTextMessageAsync(message.Chat.Id, "Вы перешли в 🔍поиск🔍\n 💉медикаментов💊 в вашем городе:", parseMode: ParseMode.Html, replyMarkup: drugkeyboard, disableNotification: true, cancellationToken: token);
-                    await botclient.SendTextMessageAsync(message.Chat.Id, "✍️Введите название 💉медикамента💊 который вам необходим:", parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
+                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["searchdrugmenuwelcometext"], parseMode: ParseMode.Html, replyMarkup: drugkeyboard, disableNotification: true, cancellationToken: token);
+                    await botclient.SendTextMessageAsync(message.Chat.Id, botword["enternameofmedicationtext"], parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
                     database[userid].lastmessage = "";
                 }
+
+                //Search organizations processing:
                 if (database[userid].searchbyareamenu && database[userid].searchorganizationmenu)
                 {
                     if (TextMessage == botword["textbuttonback"].ToLower())
                     {
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "🔙Вы вернулись обратно🔙", parseMode: ParseMode.Html, replyMarkup: geolocationkeyboard, disableNotification: true, cancellationToken: token);
+                        await botclient.SendTextMessageAsync(message.Chat.Id, botword["youcomebacktext"], parseMode: ParseMode.Html, replyMarkup: geolocationkeyboard, disableNotification: true, cancellationToken: token);
                         database[userid].searchorganizationmenu = false;
                         return;
                     }
@@ -329,11 +332,13 @@ namespace Program
                         await botclient.SendTextMessageAsync(userid, searchorganizations(botword["hospitaltext"], database[userid].geolocation), replyMarkup: inlinepreparationroutebuttons(database[userid].listofrecentsearchedplaces), parseMode: ParseMode.Html, disableWebPagePreview: true, cancellationToken: token);
                     }
                 }
+
+                //Search drugs in city processing:
                 if (database[userid].searchbyareamenu && database[userid].searchdrugmenu)
                 {
                     if (TextMessage == botword["textbuttonback"].ToLower())
                     {
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "🔙Вы вернулись обратно🔙", parseMode: ParseMode.Html, replyMarkup: geolocationkeyboard, disableNotification: true, cancellationToken: token);
+                        await botclient.SendTextMessageAsync(message.Chat.Id, botword["youcomebacktext"], parseMode: ParseMode.Html, replyMarkup: geolocationkeyboard, disableNotification: true, cancellationToken: token);
                         database[userid].searchdrugmenu = false;
                         return;
                     }
@@ -346,27 +351,13 @@ namespace Program
                             buffstring += botword["longlinetext"];
                             for (int i = 0; i < database[userid].lastdrugslist.Count; ++i)
                             {
-                                buffstring += $"➡️Наименование: {database[userid].lastdrugslist[i].Drugname}\n\n📦Форма: {database[userid].lastdrugslist[i].Drugform}\n\n🏭Производитель: {database[userid].lastdrugslist[i].Drugproducer}\n\n🏷️Цена: {database[userid].lastdrugslist[i].Drugprice}\n\nВ {database[userid].lastdrugslist[i].Numberofpharmacies} 🌿Аптеках\n{botword["longlinetext"]}";
+                                buffstring += $"{botword["nametext"]} {database[userid].lastdrugslist[i].Drugname}\n\n{botword["formtext"]} {database[userid].lastdrugslist[i].Drugform}\n\n{botword["manufacturertext"]} {database[userid].lastdrugslist[i].Drugproducer}\n\n{botword["costtext"]} {database[userid].lastdrugslist[i].Drugprice}\n\n{botword["intext"]} {database[userid].lastdrugslist[i].Numberofpharmacies} {botword["pharmaciestext"]}\n{botword["longlinetext"]}";
                             }
                             await botclient.SendTextMessageAsync(message.Chat.Id, buffstring, replyMarkup: inlinepreparationdraginsitybuttons(), parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
-
                         }
-                        else
-                        {
-                            await botclient.SendTextMessageAsync(message.Chat.Id, "💤По вашему запросу ничего не найдено :(", parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
-
-                        }
-
-
-
-
-
+                        else await botclient.SendTextMessageAsync(message.Chat.Id, botword["notfoundtext"], parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
                     }
-
-
-
                 }
-
             }
 
             //Disease detection part:
@@ -433,7 +424,7 @@ namespace Program
                         process.StartInfo.CreateNoWindow = true;
                         process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                         process.Start();
-                        //process.WaitForExit(2000);
+                        process.WaitForExit(2000);
                     }
                     try
                     {

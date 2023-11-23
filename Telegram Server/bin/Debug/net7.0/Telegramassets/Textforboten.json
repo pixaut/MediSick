@@ -45,6 +45,10 @@
             "Text": "⬅️ Return to main menu 🚪"
         },
         {
+            "TextName": "textbuttonback",
+            "Text": "⬅️ Сome back 🚪"
+        },
+        {
             "TextName": "textbuttonrepeatforecast",
             "Text": "🔁 Make your prediction again 🔁"
         },
@@ -179,6 +183,10 @@
         {
             "TextName": "drugssearchtext",
             "Text": "💊Search for drugs🗺️"
+        },
+        {
+            "TextName": "organizationsearchtext",
+            "Text": "🌍Search for organization🗺️"
         },
         {
             "TextName": "pharmacytext",

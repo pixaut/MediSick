@@ -3,15 +3,16 @@ namespace Program
     public class Keyboard
     {
         public static ReplyKeyboardMarkup? geolocationkeyboard;
+        public static ReplyKeyboardMarkup? organizationkeyboard;
+        public static ReplyKeyboardMarkup? drugkeyboard;
         public static ReplyKeyboardMarkup? welcomkeyboard;
         public static ReplyKeyboardMarkup? symptomkeyboard;
         public static InlineKeyboardMarkup? inlineKeyboard;
         public static InlineKeyboardMarkup? inlinegenderkeyboard;
         public static ReplyKeyboardMarkup welcomkeyboarden = new(new[]
         {
-            new[]{botworden["textbuttondefinitionofdisease"],KeyboardButton.WithRequestLocation(botworden["searchbyareatext"]) },
-            new[]{botwordru["drugssearchtext"], KeyboardButton.WithRequestLocation(botwordru["textbuttonreference"])},
-            //new KeyboardButton[] {TelegramBot.botworden["textbuttonreference"]},
+            new[]{botworden["textbuttondefinitionofdisease"],KeyboardButton.WithRequestLocation(botworden["searchbyareatext"])},
+            new KeyboardButton[] {TelegramBot.botworden["textbuttonreference"]},
         })
         {
             ResizeKeyboard = true
@@ -19,8 +20,7 @@ namespace Program
         public static ReplyKeyboardMarkup welcomkeyboardru = new(new[]
         {
             new[]{botwordru["textbuttondefinitionofdisease"],KeyboardButton.WithRequestLocation(botwordru["searchbyareatext"])},
-            new[]{botwordru["drugssearchtext"], KeyboardButton.WithRequestLocation(botwordru["textbuttonreference"])},
-            //new KeyboardButton[] {TelegramBot.botwordru["textbuttonreference"]},
+            new KeyboardButton[] {TelegramBot.botwordru["textbuttonreference"]},
         })
         {
             ResizeKeyboard = true,
@@ -45,24 +45,78 @@ namespace Program
 
         public static ReplyKeyboardMarkup geolocationkeyboarden = new(new[]
         {
-            new KeyboardButton[] {botworden["pharmaciesnearbytext"]},
-            new KeyboardButton[] {botworden["clinicsnearbytext"]},
-            new KeyboardButton[] {botworden["hospitalsnearbytext"]},
-            new KeyboardButton[] {botworden["textbuttonbacktomainmenu"]},
+            new KeyboardButton[]
+            {
+                botworden["organizationsearchtext"],
+                botworden["drugssearchtext"],
+            },
+            new KeyboardButton[]
+            {
+                botworden["textbuttonbacktomainmenu"],
+
+            }
         })
         {
             ResizeKeyboard = true
         };
         public static ReplyKeyboardMarkup geolocationkeyboardru = new(new[]
         {
+            new KeyboardButton[]
+            {
+                botwordru["organizationsearchtext"],
+                botwordru["drugssearchtext"],
+            },
+            new KeyboardButton[]
+            {
+                botwordru["textbuttonbacktomainmenu"],
+            }
+        })
+        {
+            ResizeKeyboard = true
+        };
+
+
+        public static ReplyKeyboardMarkup organizationkeyboarden = new(new[]
+        {
+            new KeyboardButton[] {botworden["pharmaciesnearbytext"]},
+            new KeyboardButton[] {botworden["clinicsnearbytext"]},
+            new KeyboardButton[] {botworden["hospitalsnearbytext"]},
+            new KeyboardButton[] {botworden["textbuttonback"]},
+            new KeyboardButton[] {botworden["textbuttonbacktomainmenu"]},
+        })
+        {
+            ResizeKeyboard = true
+        };
+        public static ReplyKeyboardMarkup organizationkeyboardru = new(new[]
+        {
             new KeyboardButton[] {botwordru["pharmaciesnearbytext"]},
             new KeyboardButton[] {botwordru["clinicsnearbytext"]},
             new KeyboardButton[] {botwordru["hospitalsnearbytext"]},
+            new KeyboardButton[] {botwordru["textbuttonback"]},
             new KeyboardButton[] {botwordru["textbuttonbacktomainmenu"]},
         })
         {
             ResizeKeyboard = true
         };
+
+        public static ReplyKeyboardMarkup drugkeyboarden = new(new[]
+        {
+            new KeyboardButton[] {botworden["textbuttonback"]},
+            new KeyboardButton[] {botworden["textbuttonbacktomainmenu"]},
+        })
+        {
+            ResizeKeyboard = true
+        };
+        public static ReplyKeyboardMarkup drugkeyboardru = new(new[]
+        {
+            new KeyboardButton[] {botwordru["textbuttonback"]},
+            new KeyboardButton[] {botwordru["textbuttonbacktomainmenu"]},
+        })
+        {
+            ResizeKeyboard = true
+        };
+
+
         public static InlineKeyboardMarkup inlineKeyboardru = new(new[]
         {
             new []

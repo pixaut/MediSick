@@ -4,12 +4,13 @@ namespace Program
 {
     public class DrugsParser
     {
-        public static async Task<List<DrugSpecs>> parsedrugslist()
+        public static async Task<List<DrugSpecs>> parsedrugslist(string drugsearchname)
         {
+            if (drugsearchname == null) drugsearchname = "парацетамол";
             List<DrugSpecs> drugslist = new List<DrugSpecs>();
 
             HttpClient httpClient = new HttpClient();
-            using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "https://tabletka.by/search?request=ибупрофен&region=91");
+            using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, $"https://tabletka.by/search?request={drugsearchname}&region=91");
             using HttpResponseMessage response = await httpClient.SendAsync(request);
             string content = await response.Content.ReadAsStringAsync();
             var doc = new HtmlDocument();

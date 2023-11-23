@@ -89,3 +89,4 @@ D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\obj\Debug\net7.
 D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\obj\Debug\net7.0\Telegram.genruntimeconfig.cache
 D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\obj\Debug\net7.0\ref\Telegram.dll
 D:\A.A.R.O.N\Telegram Server\bin\Debug\net7.0\HtmlAgilityPack.dll
+D:\Projects\GIT works\TelegramMediSick\A.A.R.O.N\Telegram Server\bin\Debug\net7.0\HtmlAgilityPack.dll

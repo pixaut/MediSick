@@ -50,7 +50,10 @@ namespace Program
         public bool mainmenu { get; set; } = true;
         public bool inlinesymptomkey { get; set; } = false;
         public bool searchbyareamenu { get; set; } = false;
+        public bool searchorganizationmenu { get; set; } = false;
+        public bool searchdrugmenu { get; set; } = false;
         public string name { get; set; } = "no name";
+        public string? city { get; set; } = null;
         public List<int>? inlinebuttpressed = new List<int>();
         public List<int>? listofrecentdiseases = new List<int>();
         public List<(float, float, string, string)>? listofrecentsearchedplaces = new List<(float, float, string, string)>();
@@ -59,10 +62,167 @@ namespace Program
         public string? language { get; set; } = null;
         public (double, double) geolocation;
     }
+    public class DetermineAdressYandexMaps
+    {
+        public class Rootobject2
+        {
+            public Response response { get; set; }
+        }
+
+        public class Response
+        {
+            public Geoobjectcollection GeoObjectCollection { get; set; }
+        }
+
+        public class Geoobjectcollection
+        {
+            public Metadataproperty metaDataProperty { get; set; }
+            public Featuremember[] featureMember { get; set; }
+        }
+
+        public class Metadataproperty
+        {
+            public Geocoderresponsemetadata GeocoderResponseMetaData { get; set; }
+        }
+
+        public class Geocoderresponsemetadata
+        {
+            public Point Point { get; set; }
+            public string request { get; set; }
+            public string results { get; set; }
+            public string found { get; set; }
+        }
+
+        public class Point
+        {
+            public string pos { get; set; }
+        }
+
+        public class Featuremember
+        {
+            public Geoobject GeoObject { get; set; }
+        }
+
+        public class Geoobject
+        {
+            public Metadataproperty1 metaDataProperty { get; set; }
+            public string name { get; set; }
+            public string description { get; set; }
+            public Boundedby boundedBy { get; set; }
+            public string uri { get; set; }
+            public Point1 Point { get; set; }
+        }
+
+        public class Metadataproperty1
+        {
+            public Geocodermetadata GeocoderMetaData { get; set; }
+        }
+
+        public class Geocodermetadata
+        {
+            public string precision { get; set; }
+            public string text { get; set; }
+            public string kind { get; set; }
+            public Address Address { get; set; }
+            public Addressdetails AddressDetails { get; set; }
+        }
+
+        public class Address
+        {
+            public string country_code { get; set; }
+            public string formatted { get; set; }
+            public string postal_code { get; set; }
+            public Component[] Components { get; set; }
+        }
+
+        public class Component
+        {
+            public string kind { get; set; }
+            public string name { get; set; }
+        }
+
+        public class Addressdetails
+        {
+            public Country Country { get; set; }
+        }
+
+        public class Country
+        {
+            public string AddressLine { get; set; }
+            public string CountryNameCode { get; set; }
+            public string CountryName { get; set; }
+            public Administrativearea AdministrativeArea { get; set; }
+        }
+
+        public class Administrativearea
+        {
+            public string AdministrativeAreaName { get; set; }
+            public Locality Locality { get; set; }
+        }
+
+        public class Locality
+        {
+            public string LocalityName { get; set; }
+            public Thoroughfare Thoroughfare { get; set; }
+            public Premise1 Premise { get; set; }
+            public Dependentlocality DependentLocality { get; set; }
+        }
+
+        public class Thoroughfare
+        {
+            public string ThoroughfareName { get; set; }
+            public Premise Premise { get; set; }
+        }
+
+        public class Premise
+        {
+            public string PremiseNumber { get; set; }
+            public Postalcode PostalCode { get; set; }
+        }
+
+        public class Postalcode
+        {
+            public string PostalCodeNumber { get; set; }
+        }
+
+        public class Premise1
+        {
+            public string PremiseName { get; set; }
+        }
+
+        public class Dependentlocality
+        {
+            public string DependentLocalityName { get; set; }
+            public Dependentlocality1 DependentLocality { get; set; }
+        }
+
+        public class Dependentlocality1
+        {
+            public string DependentLocalityName { get; set; }
+        }
+
+        public class Boundedby
+        {
+            public Envelope Envelope { get; set; }
+        }
+
+        public class Envelope
+        {
+            public string lowerCorner { get; set; }
+            public string upperCorner { get; set; }
+        }
+
+        public class Point1
+        {
+            public string pos { get; set; }
+        }
+
+
+    }
     public class ResponseFromYandexMaps
     {
 
-        public class Rootobject
+        public class Rootobject1
         {
             public required string type { get; set; }
             public required Properties properties { get; set; }

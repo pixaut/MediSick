@@ -27,7 +27,7 @@ namespace Program
                     database[userid]!.listofrecentsearchedplaces!.Clear();
                     client.Encoding = System.Text.Encoding.UTF8;
                     string request = client.DownloadString(address);
-                    Rootobject answer = JsonConvert.DeserializeObject<Rootobject>(request)!;
+                    Rootobject1 answer = JsonConvert.DeserializeObject<Rootobject1>(request)!;
                     buff += botword["longlinetext"];
                     foreach (var feature in answer!.features)
                     {
@@ -44,6 +44,27 @@ namespace Program
             }
             if (buff == "" || buff == null) buff = botword["sorrynoinfotext"];
             return buff;
+        }
+
+        public static void determineaddress((double, double) coordinates)
+        {
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            Uri address = new Uri($"https://geocode-maps.yandex.ru/1.x/?apikey={"df137e56-4bc5-483d-b765-6b7373742442"}&geocode={coordinates.Item2},{coordinates.Item1}&format=json");
+            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            using (WebClient client = new WebClient())
+            {
+                try
+                {
+                    database[userid]!.listofrecentsearchedplaces!.Clear();
+                    client.Encoding = System.Text.Encoding.UTF8;
+                    string request = client.DownloadString(address);
+                    Rootobject2 answer = JsonConvert.DeserializeObject<Rootobject2>(request)!;
+                    database[userid].city = answer.response.GeoObjectCollection.featureMember[0].GeoObject.description.Substring(0, (answer.response.GeoObjectCollection.featureMember[0].GeoObject.description).IndexOf(','));
+                }
+                catch { }
+            }
+
         }
 
     }

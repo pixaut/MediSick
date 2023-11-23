@@ -91,7 +91,8 @@ namespace Program
                 inlineKeyboard = inlineKeyboardru;
                 inlinegenderkeyboard = inlinegenderkeyboardru;
                 geolocationkeyboard = geolocationkeyboardru;
-
+                organizationkeyboard = organizationkeyboardru;
+                drugkeyboard = drugkeyboardru;
             }
             else
             {
@@ -101,7 +102,8 @@ namespace Program
                 inlineKeyboard = inlineKeyboarden;
                 inlinegenderkeyboard = inlinegenderkeyboarden;
                 geolocationkeyboard = geolocationkeyboarden;
-
+                organizationkeyboard = organizationkeyboarden;
+                drugkeyboard = drugkeyboarden;
             }
 
         }

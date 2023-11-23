@@ -1,12 +1,12 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace Program
 {
+    //Secondary functions for use in other files:
     class Secondaryfunctions
     {
+        //This function return index city for parsing tabletka.by:
         public static async Task<int> returnregionindex(string city)
         {
-            int region = 0;//all regions
+            int region = 0;//default,all regions
             string path = "Telegramassets/regionindex.txt";
             using (StreamReader reader = new StreamReader(path))
             {
@@ -19,11 +19,10 @@ namespace Program
             return region;
         }
 
+        //Dynamic keyboard for search drugs in current city:
         public static InlineKeyboardMarkup inlinepreparationdraginsitybuttons()
         {
-
             List<InlineKeyboardButton[]> list = new List<InlineKeyboardButton[]>();
-
             for (int i = 1; i <= Math.Min(5, database[userid].lastdrugslist.Count); ++i)
             {
                 InlineKeyboardButton button = new InlineKeyboardButton(database[userid].lastdrugslist[i - 1].Drugname) { CallbackData = "drag" + i };
@@ -33,12 +32,11 @@ namespace Program
             var draginsitykeyboard = new InlineKeyboardMarkup(list);
             return draginsitykeyboard;
         }
+
         //Dynamic keyboard for search organizations:
         public static InlineKeyboardMarkup inlinepreparationroutebuttons(List<(float, float, string, string)>? listofrecentsearchedplaces)
         {
-
             List<InlineKeyboardButton[]> list = new List<InlineKeyboardButton[]>();
-
             for (int i = 0; i < listofrecentsearchedplaces!.Count()!; ++i)
             {
                 InlineKeyboardButton button = new InlineKeyboardButton(listofrecentsearchedplaces![i].Item3) { CallbackData = "geolocation" + i };
@@ -136,9 +134,6 @@ namespace Program
                 organizationkeyboard = organizationkeyboarden;
                 drugkeyboard = drugkeyboarden;
             }
-
         }
-
-
     }
 }

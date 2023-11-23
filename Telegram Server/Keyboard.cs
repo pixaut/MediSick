@@ -1,5 +1,6 @@
 namespace Program
 {
+    //Initialization keyboards for TeleBot:
     public class Keyboard
     {
         //Keyboards for localization function:

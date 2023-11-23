@@ -22,7 +22,10 @@
     "language": "ru"
   },
   "855228246": {
-    "inlinebuttpressed": [],
+    "inlinebuttpressed": [
+      3,
+      0
+    ],
     "listofrecentdiseases": [
       98,
       8,
@@ -109,16 +112,16 @@
       "Item1": 53.188748,
       "Item2": 29.224194
     },
-    "symptommenu": false,
+    "symptommenu": true,
     "mainmenu": false,
-    "inlinesymptomkey": false,
-    "searchbyareamenu": true,
+    "inlinesymptomkey": true,
+    "searchbyareamenu": false,
     "searchorganizationmenu": false,
-    "searchdrugmenu": true,
+    "searchdrugmenu": false,
     "name": "DrgNBoNツ",
     "city": "Бобруйск",
-    "lastmessage": "парацетамол",
-    "gender": "woman",
+    "lastmessage": "🔁 сделать прогноз еще раз 🔁",
+    "gender": "man",
     "language": "ru"
   },
   "1699534382": {

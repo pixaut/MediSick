@@ -2,6 +2,7 @@ namespace Program
 {
     public class Keyboard
     {
+        //Keyboards for localization function:
         public static ReplyKeyboardMarkup? geolocationkeyboard;
         public static ReplyKeyboardMarkup? organizationkeyboard;
         public static ReplyKeyboardMarkup? drugkeyboard;
@@ -9,10 +10,13 @@ namespace Program
         public static ReplyKeyboardMarkup? symptomkeyboard;
         public static InlineKeyboardMarkup? inlineKeyboard;
         public static InlineKeyboardMarkup? inlinegenderkeyboard;
+
+
+        //Main menu replymarkup keyboard on en|ru language:
         public static ReplyKeyboardMarkup welcomkeyboarden = new(new[]
         {
             new[]{botworden["textbuttondefinitionofdisease"],KeyboardButton.WithRequestLocation(botworden["searchbyareatext"])},
-            new KeyboardButton[] {TelegramBot.botworden["textbuttonreference"]},
+            new KeyboardButton[] {botworden["textbuttonreference"]},
         })
         {
             ResizeKeyboard = true
@@ -20,12 +24,13 @@ namespace Program
         public static ReplyKeyboardMarkup welcomkeyboardru = new(new[]
         {
             new[]{botwordru["textbuttondefinitionofdisease"],KeyboardButton.WithRequestLocation(botwordru["searchbyareatext"])},
-            new KeyboardButton[] {TelegramBot.botwordru["textbuttonreference"]},
+            new KeyboardButton[] {botwordru["textbuttonreference"]},
         })
         {
             ResizeKeyboard = true,
-
         };
+
+        //Diagnosis detect menu replymarkup keyboard on en|ru language:
         public static ReplyKeyboardMarkup symptomkeyboarden = new(new[]
         {
             new KeyboardButton[] {botworden["textbuttonrepeatforecast"]},
@@ -43,6 +48,7 @@ namespace Program
             ResizeKeyboard = true
         };
 
+        //Geolocation main menu replymarkup keyboard on en|ru language:
         public static ReplyKeyboardMarkup geolocationkeyboarden = new(new[]
         {
             new KeyboardButton[]
@@ -53,7 +59,6 @@ namespace Program
             new KeyboardButton[]
             {
                 botworden["textbuttonbacktomainmenu"],
-
             }
         })
         {
@@ -75,7 +80,7 @@ namespace Program
             ResizeKeyboard = true
         };
 
-
+        //Geolocation search organizations menu replymarkup keyboard on en|ru language:
         public static ReplyKeyboardMarkup organizationkeyboarden = new(new[]
         {
             new KeyboardButton[] {botworden["pharmaciesnearbytext"]},
@@ -99,6 +104,7 @@ namespace Program
             ResizeKeyboard = true
         };
 
+        //Geolocation drugs in current city menu replymarkup keyboard on en|ru language:
         public static ReplyKeyboardMarkup drugkeyboarden = new(new[]
         {
             new KeyboardButton[] {botworden["textbuttonback"]},
@@ -116,103 +122,104 @@ namespace Program
             ResizeKeyboard = true
         };
 
-
+        //Selecting subcategories inline keyboard on en|ru language:
         public static InlineKeyboardMarkup inlineKeyboardru = new(new[]
         {
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botwordru["textskinandhairinline1"], callbackData: "1"),
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botwordru["textrespiratorysysteminline5"], callbackData: "5"),
+                InlineKeyboardButton.WithCallbackData(text: botwordru["textskinandhairinline1"], callbackData: "1"),
+                InlineKeyboardButton.WithCallbackData(text: botwordru["textrespiratorysysteminline5"], callbackData: "5"),
             },
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botwordru["texteyesymptomsinline6"], callbackData: "6"),
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botwordru["textrespiratoryinline7"], callbackData: "7"),
+                InlineKeyboardButton.WithCallbackData(text: botwordru["texteyesymptomsinline6"], callbackData: "6"),
+                InlineKeyboardButton.WithCallbackData(text: botwordru["textrespiratoryinline7"], callbackData: "7"),
             },
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botwordru["textlimbsinline8"], callbackData: "8"),
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botwordru["textgeneralstateinline9"], callbackData: "9"),
+                InlineKeyboardButton.WithCallbackData(text: botwordru["textlimbsinline8"], callbackData: "8"),
+                InlineKeyboardButton.WithCallbackData(text: botwordru["textgeneralstateinline9"], callbackData: "9"),
             },
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botwordru["textcardiovascularsysteminline0"], callbackData: "0"),
+                InlineKeyboardButton.WithCallbackData(text: botwordru["textcardiovascularsysteminline0"], callbackData: "0"),
             },
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botwordru["textgastrointestinaltractinline2"], callbackData: "2"),
+                InlineKeyboardButton.WithCallbackData(text: botwordru["textgastrointestinaltractinline2"], callbackData: "2"),
             },
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botwordru["textreproductiveandurinarysysteminline3"], callbackData: "3"),
+                InlineKeyboardButton.WithCallbackData(text: botwordru["textreproductiveandurinarysysteminline3"], callbackData: "3"),
             },
 
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botwordru["textrneurologicalinline4"], callbackData: "4"),
+                InlineKeyboardButton.WithCallbackData(text: botwordru["textrneurologicalinline4"], callbackData: "4"),
             },
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botwordru["textgetsymptomsinline"], callbackData: "send"),
-                InlineKeyboardButton.WithCallbackData(text:TelegramBot.botwordru["textcancelinline"] , callbackData: $"cock{TelegramBot.userid}"),
+                InlineKeyboardButton.WithCallbackData(text: botwordru["textgetsymptomsinline"], callbackData: "send"),
+                InlineKeyboardButton.WithCallbackData(text: botwordru["textcancelinline"] , callbackData: $"cancel{userid}"),
             },
         });
         public static InlineKeyboardMarkup inlineKeyboarden = new(new[]
         {
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botworden["textskinandhairinline1"], callbackData: "1"),
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botworden["textrespiratorysysteminline5"], callbackData: "5"),
+                InlineKeyboardButton.WithCallbackData(text: botworden["textskinandhairinline1"], callbackData: "1"),
+                InlineKeyboardButton.WithCallbackData(text: botworden["textrespiratorysysteminline5"], callbackData: "5"),
             },
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botworden["texteyesymptomsinline6"], callbackData: "6"),
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botworden["textrespiratoryinline7"], callbackData: "7"),
+                InlineKeyboardButton.WithCallbackData(text: botworden["texteyesymptomsinline6"], callbackData: "6"),
+                InlineKeyboardButton.WithCallbackData(text: botworden["textrespiratoryinline7"], callbackData: "7"),
             },
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botworden["textlimbsinline8"], callbackData: "8"),
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botworden["textgeneralstateinline9"], callbackData: "9"),
+                InlineKeyboardButton.WithCallbackData(text: botworden["textlimbsinline8"], callbackData: "8"),
+                InlineKeyboardButton.WithCallbackData(text: botworden["textgeneralstateinline9"], callbackData: "9"),
             },
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botworden["textcardiovascularsysteminline0"], callbackData: "0"),
+                InlineKeyboardButton.WithCallbackData(text: botworden["textcardiovascularsysteminline0"], callbackData: "0"),
             },
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botworden["textgastrointestinaltractinline2"], callbackData: "2"),
+                InlineKeyboardButton.WithCallbackData(text: botworden["textgastrointestinaltractinline2"], callbackData: "2"),
             },
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botworden["textreproductiveandurinarysysteminline3"], callbackData: "3"),
+                InlineKeyboardButton.WithCallbackData(text: botworden["textreproductiveandurinarysysteminline3"], callbackData: "3"),
             },
 
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botworden["textrneurologicalinline4"], callbackData: "4"),
+                InlineKeyboardButton.WithCallbackData(text: botworden["textrneurologicalinline4"], callbackData: "4"),
             },
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botworden["textgetsymptomsinline"], callbackData: "send"),
-                InlineKeyboardButton.WithCallbackData(text:TelegramBot.botworden["textcancelinline"] , callbackData: $"cock{TelegramBot.userid}"),
+                InlineKeyboardButton.WithCallbackData(text: botworden["textgetsymptomsinline"], callbackData: "send"),
+                InlineKeyboardButton.WithCallbackData(text:botworden["textcancelinline"] , callbackData: $"cancel{userid}"),
             },
         });
-        public static InlineKeyboardMarkup inlinelinkes = new(
-            new[]
+
+        //Help links inline keyboard on en language:
+        public static InlineKeyboardMarkup inlinelinkes = new(new[]
         {
-            InlineKeyboardButton.WithUrl(text: "Creator",url: TelegramBot.botword["creatorlinklinline"]),
-            InlineKeyboardButton.WithUrl(text: "TeamLid",url: TelegramBot.botword["teamlidlinklinline"]),
-            InlineKeyboardButton.WithUrl(text: "Helper",url: TelegramBot.botword["helperlinklinline"]),
-            InlineKeyboardButton.WithUrl(text: "Helper2",url: TelegramBot.botword["helper2linklinline"]),
-            InlineKeyboardButton.WithUrl(text: "GitHub",url: TelegramBot.botword["githublinklinline"])
+            InlineKeyboardButton.WithUrl(text: "Creator",url: botword["creatorlinklinline"]),
+            InlineKeyboardButton.WithUrl(text: "TeamLid",url: botword["teamlidlinklinline"]),
+            InlineKeyboardButton.WithUrl(text: "Helper",url: botword["helperlinklinline"]),
+            InlineKeyboardButton.WithUrl(text: "GitHub",url: botword["githublinklinline"])
         });
 
+        //Gender select inline keyboard on en|ru language:
         public static InlineKeyboardMarkup inlinegenderkeyboardru = new(new[]
         {
             new []
             {
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botwordru["textmaninline"], callbackData: "man"),
-                InlineKeyboardButton.WithCallbackData(text: TelegramBot.botwordru["textwomaninline"], callbackData: "woman"),
+                InlineKeyboardButton.WithCallbackData(text: botwordru["textmaninline"], callbackData: "man"),
+                InlineKeyboardButton.WithCallbackData(text: botwordru["textwomaninline"], callbackData: "woman"),
             }
         });
         public static InlineKeyboardMarkup inlinegenderkeyboarden = new(new[]
@@ -223,6 +230,8 @@ namespace Program
                 InlineKeyboardButton.WithCallbackData(text: TelegramBot.botworden["textwomaninline"], callbackData: "woman"),
             }
         });
+
+        //Language select inline keyboard:
         public static InlineKeyboardMarkup inlinelanguagekeyboard = new(new[]
         {
             new []
@@ -231,6 +240,5 @@ namespace Program
                 InlineKeyboardButton.WithCallbackData(text: "🇷🇺Русский🇧🇾", callbackData: "ru"),
             }
         });
-
     }
 }

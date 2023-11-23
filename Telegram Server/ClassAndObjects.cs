@@ -1,5 +1,7 @@
 namespace Program
 {
+    //Classes for JSONs,Database,Settings and other things:
+
     public class SymptomsList
     {
         public required Symptoms[] Symptoms { get; set; }

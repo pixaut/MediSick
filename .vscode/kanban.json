@@ -2,46 +2,36 @@
     "title": "Kanban",
     "cols": [
         {
-            "title": "В плане",
+            "title": "Надо сделать",
             "tasks": [
                 {
-                    "text": "Решение проблемы с полами",
-                    "id": "clogtyif9000k4066f134ay5g"
+                    "text": "Обработать новую таблицу\n",
+                    "id": "clpb0utqr000a4066z6wzygdx"
+                },
+                {
+                    "text": "Сгенерировать тесты\n",
+                    "id": "clpb0v91r000b4066di4f1z1u"
+                },
+                {
+                    "text": "Обучить нейросеть ",
+                    "id": "clpb0vhef000c4066spu3kqxc"
+                },
+                {
+                    "text": "проверить запуск (с женей)",
+                    "id": "clpb0vqn7000d4066yd2zcpjn"
                 }
             ],
             "id": "clogtul3d000f4066p4cwav2u",
             "color": "#9900ef"
         },
         {
-            "title": "В разработке",
-            "tasks": [
-                {
-                    "text": "Программа подстраивающая, создающая тесты, обучающая в автоматическом режиме нейросеть",
-                    "id": "clogtyysk000l40662l35bnk1"
-                }
-            ],
-            "id": "clogtun5t000g4066yuw96m4t",
-            "color": "#fcb900"
-        },
-        {
-            "title": "Тестируется",
+            "title": "Сделаное",
             "tasks": [],
-            "id": "clogtwval000h4066i8wtwp1u",
-            "color": "#8ed1fc"
-        },
-        {
-            "title": "Готово",
-            "tasks": [
-                {
-                    "text": "Автоподстройщик нейросети(из базы данных)",
-                    "id": "clogtxx5y000j406604nyhhfq"
-                }
-            ],
             "id": "clogtx005000i4066xprenk8j",
             "color": "#00d084"
         }
     ],
     "autosave": true,
     "saveToFile": true,
-    "timestamp": 1700302084864
+    "timestamp": 1700733654245
 }

@@ -14,7 +14,6 @@ int main(){
     const char *InOut = "..\\Telegram server\\bin\\Debug\\net7.0\\InOutUser\\"; // path to folder that consist input and output files
     const char *NetworkPath = "..\\Network\\"; // path to network descrription
 
-
     // getting network 
 
     fin.open(NetworkPath + "NetworkSize.txt");                    

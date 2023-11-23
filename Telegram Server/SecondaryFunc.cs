@@ -75,7 +75,7 @@ namespace Program
         //Loading words from JSON:
         public static Dictionary<string, string> BotwordDictpreparer(Dictionary<string, string> botword, string path)
         {
-            Textbot? textbot = JsonConvert.DeserializeObject<Textbot>(File.ReadAllText(@path));
+            Textbot? textbot = JsonConvert.DeserializeObject<Textbot>(System.IO.File.ReadAllText(@path));
             for (int i = 0; i < textbot!.Textforbot!.Length; ++i)
             {
                 botword.TryAdd(textbot.Textforbot[i].TextName, textbot.Textforbot[i].Text);
@@ -86,7 +86,7 @@ namespace Program
         //Returning data from JSON:
         public static Dictionary<long, User> DatabaseDictFillFromJSON(string path)
         {
-            Dictionary<long, User>? data = JsonConvert.DeserializeObject<Dictionary<long, User>>(File.ReadAllText(@path));
+            Dictionary<long, User>? data = JsonConvert.DeserializeObject<Dictionary<long, User>>(System.IO.File.ReadAllText(@path));
 
             return data!;
         }
@@ -94,7 +94,7 @@ namespace Program
         //Saving data to JSON:
         public static void DatabaseDictSaverToJSON(Dictionary<long, User> database, string path)
         {
-            File.WriteAllText(@path, JsonConvert.SerializeObject(database, Formatting.Indented));
+            System.IO.File.WriteAllText(@path, JsonConvert.SerializeObject(database, Formatting.Indented));
         }
 
         //Return a list with selected symptoms:

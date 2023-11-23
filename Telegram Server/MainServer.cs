@@ -1,23 +1,28 @@
-﻿global using Telegram.Bot;
-global using static Program.TelegramBot;
-global using Telegram.Bot.Types.Enums;
-global using Telegram.Bot.Exceptions;
-global using Newtonsoft.Json;
-global using System.Text;
+﻿global using static Program.TelegramBot;
 global using static Program.Secondaryfunctions;
 global using static Program.Keyboard;
-global using Telegram.Bot.Types.ReplyMarkups;
-global using System.Diagnostics;
-global using System.Net;
-global using HtmlAgilityPack;
 global using static Program.ResponseFromYandexMaps;
 global using static Program.DetermineAdressYandexMaps;
-using Telegram.Bot.Types;
-using static Program.DrugsParser;
-using static Program.YandexMapParser;
+global using static Program.DrugsParser;
+global using static Program.YandexMapParser;
+
+global using Telegram.Bot;
+global using Telegram.Bot.Types.Enums;
+global using Telegram.Bot.Exceptions;
+global using Telegram.Bot.Types.ReplyMarkups;
+global using Telegram.Bot.Types;
+
+global using System.Net;
+global using System.Text;
+global using System.Diagnostics;
+
+global using HtmlAgilityPack;
+global using Newtonsoft.Json;
+
 
 namespace Program
 {
+    //Main server MediSick TeleBot:
     class TelegramBot
     {
         //Global variables:
@@ -29,6 +34,7 @@ namespace Program
         public static long userid = 0;
         public static bool serveronline = false;
 
+        //Launching a telegram bot:
         static void Main()
         {
             //Data collection from JSON:
@@ -45,22 +51,22 @@ namespace Program
         }
 
 
-
+        //Processing all incoming requests:
         async static Task Update(ITelegramBotClient botclient, Update update, CancellationToken token)
         {
-            //first start
+            //Precaution first start:
             if (!serveronline)
             {
                 serveronline = true;
                 return;
             }
 
-
             //Declaring important variables:
             var message = update.Message;
             var callback = update.CallbackQuery;
             var messagetype = update.Type;
 
+            //Validation of incoming values:
             if (update.Type != UpdateType.Message && update.Type != UpdateType.CallbackQuery) return;
             if (update.Type == UpdateType.CallbackQuery) userid = callback!.Message!.Chat!.Id;
             if (update.Type == UpdateType.Message) userid = message!.Chat!.Id!;
@@ -188,26 +194,24 @@ namespace Program
                         DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
                         return;
                     }
-                    if (!database[userid].mainmenu && database[userid].searchbyareamenu && database[userid].searchdrugmenu && callback!.Data!.Substring(0, 4) == "drag")
+                    //Search drugs in current city inline processing:
+                    if (database[userid].searchdrugmenu && callback!.Data!.Substring(0, 4) == "drag")
                     {
-                        string buffstring = "";
                         await botclient.AnswerCallbackQueryAsync(callback!.Id, callback!.Data, cancellationToken: token);
-                        int index = 0;
-                        int.TryParse(string.Join("", callback!.Data!.Where(c => char.IsDigit(c))), out index);
-                        --index;
-                        await parsedrugsincity(database[userid].lastdrugslist[index].Link);
+                        string outsting = "";
+                        int.TryParse(string.Join("", callback!.Data!.Where(c => char.IsDigit(c))), out int index);
+                        await parsedrugsincity(database[userid].lastdrugslist[--index].Link);
                         for (int i = 0; i < database[userid].lastpharmlist.Count; ++i)
                         {
-                            buffstring += $"Название аптеки {database[userid].lastpharmlist[i].Pharmname}\nАдрес {database[userid].lastpharmlist[i].Address}\nНомер {database[userid].lastpharmlist[i].PhoneNumber}\nЦена {database[userid].lastpharmlist[i].Cost}\n\n";
+                            outsting += $"Название аптеки {database[userid].lastpharmlist[i].Pharmname}\nАдрес {database[userid].lastpharmlist[i].Address}\nНомер {database[userid].lastpharmlist[i].PhoneNumber}\nЦена {database[userid].lastpharmlist[i].Cost}\n\n";
                         }
                         await botclient.SendTextMessageAsync
                         (
                             userid,
-                            text: buffstring,
+                            text: outsting,
                             parseMode: ParseMode.Markdown,
                             cancellationToken: token
                         );
-
                         return;
                     }
                 }
@@ -225,7 +229,7 @@ namespace Program
                 database[userid].searchorganizationmenu = false;
                 database[userid].searchdrugmenu = false;
                 database[userid].geolocation = (update.Message!.Location!.Latitude, update.Message.Location.Longitude);
-                await botclient.SendTextMessageAsync(message.Chat.Id, $"{botword["searchbyareastarttext"]}\nВаше местоположение город {database[userid].city}", replyMarkup: geolocationkeyboard, disableNotification: true, cancellationToken: token);
+                await botclient.SendTextMessageAsync(message.Chat.Id, $"{botword["searchbyareastarttext"]}\n🗺️Ваше текущее местоположение🌍\nГород 📍{database[userid].city}📍", replyMarkup: geolocationkeyboard, disableNotification: true, cancellationToken: token);
                 DatabaseDictSaverToJSON(database, settings!.pathdatabasejson);
             }
 
@@ -293,20 +297,20 @@ namespace Program
                 if (TextMessage == botword["organizationsearchtext"].ToLower())
                 {
                     database[userid].searchorganizationmenu = true;
-                    await botclient.SendTextMessageAsync(message.Chat.Id, "Вы перешли в организации", parseMode: ParseMode.Html, replyMarkup: organizationkeyboard, disableNotification: true, cancellationToken: token);
+                    await botclient.SendTextMessageAsync(message.Chat.Id, "Вы перешли в 🔍поиск🔍\n 🏨мед.учереждений💊 рядом с вами:", parseMode: ParseMode.Html, replyMarkup: organizationkeyboard, disableNotification: true, cancellationToken: token);
                 }
                 if (TextMessage == botword["drugssearchtext"].ToLower())
                 {
                     database[userid].searchdrugmenu = true;
-                    await botclient.SendTextMessageAsync(message.Chat.Id, "Вы перешли в лекарства", parseMode: ParseMode.Html, replyMarkup: drugkeyboard, disableNotification: true, cancellationToken: token);
-                    await botclient.SendTextMessageAsync(message.Chat.Id, "Введите название лекарства которое вам необходимо:", parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
+                    await botclient.SendTextMessageAsync(message.Chat.Id, "Вы перешли в 🔍поиск🔍\n 💉медикаментов💊 в вашем городе:", parseMode: ParseMode.Html, replyMarkup: drugkeyboard, disableNotification: true, cancellationToken: token);
+                    await botclient.SendTextMessageAsync(message.Chat.Id, "✍️Введите название 💉медикамента💊 который вам необходим:", parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
                     database[userid].lastmessage = "";
                 }
                 if (database[userid].searchbyareamenu && database[userid].searchorganizationmenu)
                 {
                     if (TextMessage == botword["textbuttonback"].ToLower())
                     {
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "Вы вернулись", parseMode: ParseMode.Html, replyMarkup: geolocationkeyboard, disableNotification: true, cancellationToken: token);
+                        await botclient.SendTextMessageAsync(message.Chat.Id, "🔙Вы вернулись обратно🔙", parseMode: ParseMode.Html, replyMarkup: geolocationkeyboard, disableNotification: true, cancellationToken: token);
                         database[userid].searchorganizationmenu = false;
                         return;
                     }
@@ -327,30 +331,27 @@ namespace Program
                 {
                     if (TextMessage == botword["textbuttonback"].ToLower())
                     {
-                        await botclient.SendTextMessageAsync(message.Chat.Id, "Вы вернулись", parseMode: ParseMode.Html, replyMarkup: geolocationkeyboard, disableNotification: true, cancellationToken: token);
+                        await botclient.SendTextMessageAsync(message.Chat.Id, "🔙Вы вернулись обратно🔙", parseMode: ParseMode.Html, replyMarkup: geolocationkeyboard, disableNotification: true, cancellationToken: token);
                         database[userid].searchdrugmenu = false;
                         return;
                     }
-                    Console.WriteLine($"TextMessage {database[userid].lastmessage}");
                     string buffstring = "";
-
-
                     if (database[userid].lastmessage != "")
                     {
                         await parsedrugslist(TextMessage, await returnregionindex(database[userid].city));
-                        Console.WriteLine(database[userid].lastdrugslist.Count + "   sdfsdfdsfdsfsdf");
                         if (database[userid].lastdrugslist.Count > 1)
                         {
+                            buffstring += botword["longlinetext"];
                             for (int i = 0; i < database[userid].lastdrugslist.Count; ++i)
                             {
-                                buffstring += $"Наименование: {database[userid].lastdrugslist[i].Drugname} Форма: {database[userid].lastdrugslist[i].Drugform} Производитель: {database[userid].lastdrugslist[i].Drugproducer} Цена: {database[userid].lastdrugslist[i].Drugprice} В {database[userid].lastdrugslist[i].Numberofpharmacies} Аптеках \n\n";
+                                buffstring += $"➡️Наименование: {database[userid].lastdrugslist[i].Drugname}\n\n📦Форма: {database[userid].lastdrugslist[i].Drugform}\n\n🏭Производитель: {database[userid].lastdrugslist[i].Drugproducer}\n\n🏷️Цена: {database[userid].lastdrugslist[i].Drugprice}\n\nВ {database[userid].lastdrugslist[i].Numberofpharmacies} 🌿Аптеках\n{botword["longlinetext"]}";
                             }
                             await botclient.SendTextMessageAsync(message.Chat.Id, buffstring, replyMarkup: inlinepreparationdraginsitybuttons(), parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
 
                         }
                         else
                         {
-                            await botclient.SendTextMessageAsync(message.Chat.Id, "По вашему завпосу не найдено", parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
+                            await botclient.SendTextMessageAsync(message.Chat.Id, "💤По вашему запросу ничего не найдено :(", parseMode: ParseMode.Html, disableNotification: true, cancellationToken: token);
 
                         }
 

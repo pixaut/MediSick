@@ -200,10 +200,12 @@ namespace Program
                         await botclient.AnswerCallbackQueryAsync(callback!.Id, callback!.Data, cancellationToken: token);
                         string outsting = "";
                         int.TryParse(string.Join("", callback!.Data!.Where(c => char.IsDigit(c))), out int index);
-                        await parsedrugsincity(database[userid].lastdrugslist[--index].Link);
+                        --index;
+                        await parsedrugsincity(database[userid].lastdrugslist[index].Link);
+                        outsting += $"Название товара: {database[userid].lastdrugslist[index].Drugname}\n{botword["longlinetext"]}";
                         for (int i = 0; i < database[userid].lastpharmlist.Count; ++i)
                         {
-                            outsting += $"Название аптеки {database[userid].lastpharmlist[i].Pharmname}\nАдрес {database[userid].lastpharmlist[i].Address}\nНомер {database[userid].lastpharmlist[i].PhoneNumber}\nЦена {database[userid].lastpharmlist[i].Cost}\n\n";
+                            outsting += $"➡️Название аптеки: {database[userid].lastpharmlist[i].Pharmname}\n🗺️Адрес: {database[userid].lastpharmlist[i].Address}\n📞Номер: {database[userid].lastpharmlist[i].PhoneNumber}\n🏷️Цена: {database[userid].lastpharmlist[i].Cost}\n{botword["longlinetext"]}";
                         }
                         await botclient.SendTextMessageAsync
                         (

@@ -1,0 +1,1320 @@
+{
+    "Textforbot": [
+        {
+            "TextName": "textwelcome2",
+            "Text": "<b>Choose what you need:</b>"
+        },
+        {
+            "TextName": "textwelcome",
+            "Text": "<b>- Welcome! 👋</b>\n\n<b>MediSick</b>  <i>- your personal assistant in the world of medicine \n I'm here to help you understand your symptoms and suggest possible diagnoses </i>📋\n \n<b><ins>‼️ Remember, I'm not a substitute for a visit to the doctor ‼️</ins></b>"
+        },
+        {
+            "TextName": "textreference",
+            "Text": "MediSick is your personal assistant in the world of medicine, available to you at any time.\n Disease identification: The bot has a database containing information about various diseases and their associated symptoms. It analyzes the symptoms you enter to suggest possible diagnoses. \n Medication search: The bot allows users to search for information about specific medications. Users can enter the name of the drug, and the bot will provide information about it.\n Area search: The bot determines your location and allows you to find pharmacies nearby, clinics nearby, and hospitals near you.\n \n For inquiries: https://github.com/DrgNBoN"
+        },
+        {
+            "TextName": "textinputformat",
+            "Text": "Symptom input:"
+        },
+        {
+            "TextName": "textinputformat2",
+            "Text": "To get a list to choose symptoms, select the relevant subcategories below and press \n✅Get list✅"
+        },
+        {
+            "TextName": "sampleinputtext",
+            "Text": "After you have received a list with symptoms and their numbers, send these numbers to the bot as a message:\nFor example: '12,87,10', '41 52 67 47', '86/19/73'"
+        },
+        {
+            "TextName": "textwronginput",
+            "Text": "🚫 Incorrect data format! 🤚"
+        },
+        {
+            "TextName": "textcorrectinput",
+            "Text": "📋Predicting disease💉..."
+        },
+        {
+            "TextName": "textbuttondefinitionofdisease",
+            "Text": "🌡️ Define disease 🧬"
+        },
+        {
+            "TextName": "textinstruction",
+            "Text": "🔧 Instruction 📜"
+        },
+        {
+            "TextName": "textbuttonreference",
+            "Text": "📋 Reference ⁉️"
+        },
+        {
+            "TextName": "textbuttonbacktomainmenu",
+            "Text": "⬅️ Back to the main menu 🚪"
+        },
+        {
+            "TextName": "textbuttonback",
+            "Text": "⬅️ Go back 🚪"
+        },
+        {
+            "TextName": "textbuttonrepeatforecast",
+            "Text": "🔁 Make a forecast again 🔁"
+        },
+        {
+            "TextName": "textcardiovascularsysteminline0",
+            "Text": "🫀 Cardiovascular system 🩸"
+        },
+        {
+            "TextName": "textgastrointestinaltractinline2",
+            "Text": "🍞 Gastrointestinal tract 🍞"
+        },
+        {
+            "TextName": "textreproductiveandurinarysysteminline3",
+            "Text": "💧 Reproductive and urinary system 💧"
+        },
+        {
+            "TextName": "textrneurologicalinline4",
+            "Text": "🧠 Neurological symptoms 🧠"
+        },
+        {
+            "TextName": "textskinandhairinline1",
+            "Text": "👨 Skin and hair 👩"
+        },
+        {
+            "TextName": "textrespiratorysysteminline5",
+            "Text": "🫁 Respiratory 💨"
+        },
+        {
+            "TextName": "texteyesymptomsinline6",
+            "Text": "👀 Eye symptoms 👁️"
+        },
+        {
+            "TextName": "textrespiratoryinline7",
+            "Text": "🌡️ Respiratory 🤒"
+        },
+        {
+            "TextName": "textlimbsinline8",
+            "Text": "🦴 Limbs 💪"
+        },
+        {
+            "TextName": "textgeneralstateinline9",
+            "Text": "💉 Psychological 🏥"
+        },
+        {
+            "TextName": "textgetsymptomsinline",
+            "Text": "✅ Get list ✅"
+        },
+        {
+            "TextName": "textcancelinline",
+            "Text": "🚫 Cancel input 🤚"
+        },
+        {
+            "TextName": "creatorlinklinline",
+            "Text": "https://github.com/DrgNBoN"
+        },
+        {
+            "TextName": "teamlidlinklinline",
+            "Text": "https://github.com/pixaut"
+        },
+        {
+            "TextName": "helperlinklinline",
+            "Text": "https://github.com/epkorq"
+        },
+        {
+            "TextName": "githublinklinline",
+            "Text": "https://github.com/pixaut/A.A.R.O.N"
+        },
+        {
+            "TextName": "helper2linklinline",
+            "Text": "https: //t.me/Mason_tl"
+        },
+        {
+            "TextName": "hallostik",
+            "Text": "https://cdn.tlgrm.app/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/4.webp"
+        },
+        {
+            "TextName": "errorstik",
+            "Text": "https://tlgrm.ru/_/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/34.webp"
+        },
+        {
+            "TextName": "waitstik",
+            "Text": "https://tlgrm.ru/_/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/38.webp"
+        },
+        {
+            "TextName": "refstik",
+            "Text": "https://tlgrm.ru/_/stickers/348/e30/348e3088-126b-4939-b317-e9036499c515/192/40.webp"
+        },
+        {
+            "TextName": "0",
+            "Text": "<b><ins>🫀 Cardiovascular system: ⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "1",
+            "Text": "<b><ins>👨 Skin and hair: ⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "2",
+            "Text": "<b><ins>🍞 Gastrointestinal tract: ⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "3",
+            "Text": "<b><ins>💧 Reproductive and urinary system: ⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "4",
+            "Text": "<b><ins>🧠 Neurological symptoms: ⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "5",
+            "Text": "<b><ins>🫁 Respiratory system: ⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "6",
+            "Text": "<b><ins>👀 Vision problems: ⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "7",
+            "Text": "<b><ins>🤒 Respiratory symptoms: ⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "8",
+            "Text": "<b><ins>🦴 Limb symptoms: ⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "9",
+            "Text": "<b><ins>💉 Psychological symptoms 🏥: ⬇️</ins></b>\n"
+        },
+        {
+            "TextName": "searchbyareatext",
+            "Text": "🗺️Search by area🌍"
+        },
+        {
+            "TextName": "drugssearchtext",
+            "Text": "💊Drug search🗺️"
+        },
+        {
+            "TextName": "organizationsearchtext",
+            "Text": "🌍Organization search🗺️"
+        },
+        {
+            "TextName": "pharmacytext",
+            "Text": "Pharmacy"
+        },
+        {
+            "TextName": "polyclinictext",
+            "Text": "Polyclinic"
+        },
+        {
+            "TextName": "hospitaltext",
+            "Text": "Hospital"
+        },
+        {
+            "TextName": "productnametext",
+            "Text": "➡️Product name:"
+        },
+        {
+            "TextName": "pharmacynametext",
+            "Text": "➡️Pharmacy name:"
+        },
+        {
+            "TextName": "adresstext",
+            "Text": "🗺️Address:"
+        },
+        {
+            "TextName": "numbertext",
+            "Text": "📞Number:"
+        },
+        {
+            "TextName": "costtext",
+            "Text": "🏷️Price:"
+        },
+        {
+            "TextName": "yourcurrentlocationtext",
+            "Text": "🗺️Your current location🌍"
+        },
+        {
+            "TextName": "citytext",
+            "Text": "City"
+        },
+        {
+            "TextName": "organizationsearchwelcometext",
+            "Text": "You have entered 🔍search🔍\n 🏨for medical institutions💊 near you:"
+        },
+        {
+            "TextName": "searchdrugmenuwelcometext",
+            "Text": "You have entered 🔍search🔍\n 💉for medications💊 in your city:"
+        },
+        {
+            "TextName": "enternameofmedicationtext",
+            "Text": "✍️Enter the name of the 💉medication💊 you need:"
+        },
+        {
+            "TextName": "youcomebacktext",
+            "Text": "🔙You have returned🔙"
+        },
+        {
+            "TextName": "nametext",
+            "Text": "➡️Name:"
+        },
+        {
+            "TextName": "formtext",
+            "Text": "📦Form:"
+        },
+        {
+            "TextName": "manufacturertext",
+            "Text": "🏭Manufacturer:"
+        },
+        {
+            "TextName": "intext",
+            "Text": "In"
+        },
+        {
+            "TextName": "pharmaciestext",
+            "Text": "🌿Pharmacies"
+        },
+        {
+            "TextName": "notfoundtext",
+            "Text": "💤Nothing found for your request :("
+        },
+        {
+            "TextName": "d1",
+            "Text": "<b>Adenovirus infection</b>"
+        },
+        {
+            "TextName": "d2",
+            "Text": "<b>Allergic rhinitis</b>"
+        },
+        {
+            "TextName": "d3",
+            "Text": "<b>Angina</b>"
+        },
+        {
+            "TextName": "d4",
+            "Text": "<b>Angioedema</b>"
+        },
+        {
+            "TextName": "d5",
+            "Text": "<b>Arrhythmia</b>"
+        },
+        {
+            "TextName": "d6",
+            "Text": "<b>Arterial hypertension</b>"
+        },
+        {
+            "TextName": "d7",
+            "Text": "<b>Asthma</b>"
+        },
+        {
+            "TextName": "d8",
+            "Text": "<b>Bipolar affective disorder</b>"
+        },
+        {
+            "TextName": "d9",
+            "Text": "<b>Joint diseases</b>"
+        },
+        {
+            "TextName": "d10",
+            "Text": "<b>Varicose veins</b>"
+        },
+        {
+            "TextName": "d11",
+            "Text": "<b>Chickenpox</b>"
+        },
+        {
+            "TextName": "d12",
+            "Text": "<b>Viral conjunctivitis</b>"
+        },
+        {
+            "TextName": "d13",
+            "Text": "<b>Gastritis</b>"
+        },
+        {
+            "TextName": "d14",
+            "Text": "<b>Gastroenteritis</b>"
+        },
+        {
+            "TextName": "d15",
+            "Text": "<b>Hemorrhagic stroke</b>"
+        },
+        {
+            "TextName": "d16",
+            "Text": "<b>Hemorrhoids</b>"
+        },
+        {
+            "TextName": "d17",
+            "Text": "<b>Hepatitis</b>"
+        },
+        {
+            "TextName": "d18",
+            "Text": "<b>Hepatocellular carcinoma</b>"
+        },
+        {
+            "TextName": "d19",
+            "Text": "<b>Herpes</b>"
+        },
+        {
+            "TextName": "d20",
+            "Text": "<b>Hyperthyroidism</b>"
+        },
+        {
+            "TextName": "d21",
+            "Text": "<b>Hypertensive disease</b>"
+        },
+        {
+            "TextName": "d22",
+            "Text": "<b>Hypothyroidism</b>"
+        },
+        {
+            "TextName": "d23",
+            "Text": "<b>Glaucoma</b>"
+        },
+        {
+            "TextName": "d24",
+            "Text": "<b>Fungal skin infections</b>"
+        },
+        {
+            "TextName": "d25",
+            "Text": "<b>Fungal urinary tract infections</b>"
+        },
+        {
+            "TextName": "d26",
+            "Text": "<b>Fungus</b>"
+        },
+        {
+            "TextName": "d27",
+            "Text": "<b>Flu</b>"
+        },
+        {
+            "TextName": "d28",
+            "Text": "<b>Depression</b>"
+        },
+        {
+            "TextName": "d29",
+            "Text": "<b>Dermatitis</b>"
+        },
+        {
+            "TextName": "d30",
+            "Text": "<b>Diabetes</b>"
+        },
+        {
+            "TextName": "d31",
+            "Text": "<b>Diarrhea</b>"
+        },
+        {
+            "TextName": "d32",
+            "Text": "<b>Dysbacteriosis</b>"
+        },
+        {
+            "TextName": "d33",
+            "Text": "<b>Diphtheria</b>"
+        },
+        {
+            "TextName": "d34",
+            "Text": "<b>Thyroid gland diseases</b>"
+        },
+        {
+            "TextName": "d35",
+            "Text": "<b>Insomnia</b>"
+        },
+        {
+            "TextName": "d36",
+            "Text": "<b>Stroke</b>"
+        },
+        {
+            "TextName": "d37",
+            "Text": "<b>Myocardial infarction</b>"
+        },
+        {
+            "TextName": "d38",
+            "Text": "<b>Urinary tract infection</b>"
+        },
+        {
+            "TextName": "d39",
+            "Text": "<b>Ischemic heart disease</b>"
+        },
+        {
+            "TextName": "d40",
+            "Text": "<b>Kidney stones</b>"
+        },
+        {
+            "TextName": "d41",
+            "Text": "<b>Cataract</b>"
+        },
+        {
+            "TextName": "d42",
+            "Text": "<b>Whooping cough</b>"
+        },
+        {
+            "TextName": "d43",
+            "Text": "<b>Colitis</b>"
+        },
+        {
+            "TextName": "d44",
+            "Text": "<b>Conjunctivitis</b>"
+        },
+        {
+            "TextName": "d45",
+            "Text": "<b>Coronary insufficiency</b>"
+        },
+        {
+            "TextName": "d46",
+            "Text": "<b>Measles</b>"
+        },
+        {
+            "TextName": "d47",
+            "Text": "<b>Rubella</b>"
+        },
+        {
+            "TextName": "d48",
+            "Text": "<b>Leukemia</b>"
+        },
+        {
+            "TextName": "d49",
+            "Text": "<b>Leptospirosis</b>"
+        },
+        {
+            "TextName": "d50",
+            "Text": "<b>Lymphoma</b>"
+        },
+        {
+            "TextName": "d51",
+            "Text": "<b>Dengue fever</b>"
+        },
+        {
+            "TextName": "d52",
+            "Text": "<b>Malaria</b>"
+        },
+        {
+            "TextName": "d53",
+            "Text": "<b>Mastopathy</b>"
+        },
+        {
+            "TextName": "d54",
+            "Text": "<b>Migraine</b>"
+        },
+        {
+            "TextName": "d55",
+            "Text": "<b>Mycosis</b>"
+        },
+        {
+            "TextName": "d56",
+            "Text": "<b>Neuritis</b>"
+        },
+        {
+            "TextName": "d57",
+            "Text": "<b>Nephritis</b>"
+        },
+        {
+            "TextName": "d58",
+            "Text": "<b>Nephropathy</b>"
+        },
+        {
+            "TextName": "d59",
+            "Text": "<b>Obesity</b>"
+        },
+        {
+            "TextName": "d60",
+            "Text": "<b>ARVI</b>"
+        },
+        {
+            "TextName": "d61",
+            "Text": "<b>Osteoarthritis</b>"
+        },
+        {
+            "TextName": "d62",
+            "Text": "<b>Osteomyelitis</b>"
+        },
+        {
+            "TextName": "d63",
+            "Text": "<b>Osteoporosis</b>"
+        },
+        {
+            "TextName": "d64",
+            "Text": "<b>Osteochondrosis</b>"
+        },
+        {
+            "TextName": "d65",
+            "Text": "<b>Otitis</b>"
+        },
+        {
+            "TextName": "d66",
+            "Text": "<b>Pancreatitis</b>"
+        },
+        {
+            "TextName": "d67",
+            "Text": "<b>Parotitis</b>"
+        },
+        {
+            "TextName": "d68",
+            "Text": "<b>Liver failure</b>"
+        },
+        {
+            "TextName": "d69",
+            "Text": "<b>Pyelonephritis</b>"
+        },
+        {
+            "TextName": "d70",
+            "Text": "<b>Pneumonia</b>"
+        },
+        {
+            "TextName": "d71",
+            "Text": "<b>Polio</b>"
+        },
+        {
+            "TextName": "d72",
+            "Text": "<b>Pleurisy</b>"
+        },
+        {
+            "TextName": "d73",
+            "Text": "<b>Cold</b>"
+        },
+        {
+            "TextName": "d74",
+            "Text": "<b>Psoriasis</b>"
+        },
+        {
+            "TextName": "d75",
+            "Text": "<b>Cancer</b>"
+        },
+        {
+            "TextName": "d76",
+            "Text": "<b>Rheumatism</b>"
+        },
+        {
+            "TextName": "d77",
+            "Text": "<b>Rheumatoid arthritis</b>"
+        },
+        {
+            "TextName": "d78",
+            "Text": "<b>Coronary heart disease</b>"
+        },
+        {
+            "TextName": "d79",
+            "Text": "<b>Sepsis</b>"
+        },
+        {
+            "TextName": "d80",
+            "Text": "<b>Heart failure</b>"
+        },
+        {
+            "TextName": "d81",
+            "Text": "<b>Sinusitis</b>"
+        },
+        {
+            "TextName": "d82",
+            "Text": "<b>Scarlet fever</b>"
+        },
+        {
+            "TextName": "d83",
+            "Text": "<b>Typhoid</b>"
+        },
+        {
+            "TextName": "d84",
+            "Text": "<b>Toxoplasmosis</b>"
+        },
+        {
+            "TextName": "d85",
+            "Text": "<b>Tuberculosis</b>"
+        },
+        {
+            "TextName": "d86",
+            "Text": "<b>Urethritis</b>"
+        },
+        {
+            "TextName": "d87",
+            "Text": "<b>Cholera</b>"
+        },
+        {
+            "TextName": "d88",
+            "Text": "<b>Cerebrovascular disease</b>"
+        },
+        {
+            "TextName": "d89",
+            "Text": "<b>Liver cirrhosis</b>"
+        },
+        {
+            "TextName": "d90",
+            "Text": "<b>Cystitis</b>"
+        },
+        {
+            "TextName": "d91",
+            "Text": "<b>Schizophrenia</b>"
+        },
+        {
+            "TextName": "d92",
+            "Text": "<b>Eczema</b>"
+        },
+        {
+            "TextName": "d93",
+            "Text": "<b>Endometriosis</b>"
+        },
+        {
+            "TextName": "d94",
+            "Text": "<b>Encephalitis</b>"
+        },
+        {
+            "TextName": "d95",
+            "Text": "<b>Epilepsy</b>"
+        },
+        {
+            "TextName": "d96",
+            "Text": "<b>Echinococcosis</b>"
+        },
+        {
+            "TextName": "d97",
+            "Text": "<b>Peptic ulcer and duodenal ulcer</b>"
+        },
+        {
+            "TextName": "d98",
+            "Text": "<b>Ulcerative colitis</b>"
+        },
+        {
+            "TextName": "d99",
+            "Text": "<b>Abbreviation</b>"
+        },
+        {
+            "TextName": "d100",
+            "Text": "<b>Entomoses</b>"
+        },
+        {
+            "TextName": "d101",
+            "Text": "<b>Heart block</b>"
+        },
+        {
+            "TextName": "d102",
+            "Text": "<b>Agranulocytosis</b>"
+        },
+        {
+            "TextName": "d103",
+            "Text": "<b>Kyphosis</b>"
+        },
+        {
+            "TextName": "d104",
+            "Text": "<b>Gorham's disease</b>"
+        },
+        {
+            "TextName": "d105",
+            "Text": "<b>Cardialgia</b>"
+        },
+        {
+            "TextName": "d106",
+            "Text": "<b>Anisakidosis</b>"
+        },
+        {
+            "TextName": "d107",
+            "Text": "<b>Adenoids</b>"
+        },
+        {
+            "TextName": "d108",
+            "Text": "<b>Ascites</b>"
+        },
+        {
+            "TextName": "d109",
+            "Text": "<b>Bulbitis</b>"
+        },
+        {
+            "TextName": "d110",
+            "Text": "<b>Anhidrosis</b>"
+        },
+        {
+            "TextName": "d111",
+            "Text": "<b>Blepharitis</b>"
+        },
+        {
+            "TextName": "d112",
+            "Text": "<b>Hypovitaminosis</b>"
+        },
+        {
+            "TextName": "d113",
+            "Text": "<b>Dolichocolon</b>"
+        },
+        {
+            "TextName": "d114",
+            "Text": "<b>Aortitis</b>"
+        },
+        {
+            "TextName": "d115",
+            "Text": "<b>Hemarthrosis</b>"
+        },
+        {
+            "TextName": "textchoicegender",
+            "Text": "To continue with disease prediction, please specify your gender (♂️/♀️):"
+        },
+        {
+            "TextName": "textwoman",
+            "Text": "You have chosen the female (♀️) gender."
+        },
+        {
+            "TextName": "textman",
+            "Text": "You have chosen the male (♂️) gender."
+        },
+        {
+            "TextName": "textmaninline",
+            "Text": "♂️ Male ♂️"
+        },
+        {
+            "TextName": "textwomaninline",
+            "Text": "♀️ Female ♀️"
+        },
+        {
+            "TextName": "descriptiondisease",
+            "Text": "Disease Description:"
+        },
+        {
+            "TextName": "withprobability",
+            "Text": "With Probability"
+        },
+        {
+            "TextName": "addresstext",
+            "Text": "Address:"
+        },
+        {
+            "TextName": "phonenumberstext",
+            "Text": "Phone Numbers:"
+        },
+        {
+            "TextName": "operatingscheduletext",
+            "Text": "Operating Schedule:"
+        },
+        {
+            "TextName": "websitetext",
+            "Text": "Website:"
+        },
+        {
+            "TextName": "longlinetext",
+            "Text": "-------------------------------------\n"
+        },
+        {
+            "TextName": "searchbyareastarttext",
+            "Text": "You have switched to location-based search:"
+        },
+        {
+            "TextName": "sympmtomstarttext",
+            "Text": "You have entered the disease identification menu:"
+        },
+        {
+            "TextName": "pharmaciesnearbytext",
+            "Text": "💉 Nearby Pharmacies 😷"
+        },
+        {
+            "TextName": "clinicsnearbytext",
+            "Text": "🌡️ Nearby Clinics 💊"
+        },
+        {
+            "TextName": "hospitalsnearbytext",
+            "Text": "🏥 Nearby Hospitals 💉"
+        },
+        {
+            "TextName": "sorrynoinfotext",
+            "Text": "Sorry, we couldn't find information :("
+        },
+        {
+            "TextName": "textchoicelanguage",
+            "Text": "To start working with the bot, select the interface language / Для начала работы с ботом выберите язык интерфейса:"
+        },
+        {
+            "TextName": "0categoryofdiseases",
+            "Text": "       <i>18 - Rapid or irregular heartbeat\n       19 - Visible veins on the legs\n       30 - Burning and itching in the vein area\n       73 - High blood pressure\n       79 - Low blood pressure\n       80 - Bluish lips and earlobes\n       105 - Rapid heartbeat</i>\n\n"
+        },
+        {
+            "TextName": "1categoryofdiseases",
+            "Text": "       <i>21 - Skin inflammation\n       29 - Jaundice (yellowing of the skin)\n       35 - Itching on the skin\n       41 - Skin rashes\n       42 - Red rashes with watery blisters\n       43 - Bleeding from formations on the skin\n       54 - Non-healing sores\n       57 - New pigmented spots or moles\n       62 - Skin swelling\n       68 - Skin peeling\n       69 - Foci of fungal infection\n       76 - Skin redness\n       77 - Facial redness\n       84 - Hair loss\n       102 - Skin hardening</i>\n\n"
+        },
+        {
+            "TextName": "2categoryofdiseases",
+            "Text": "       <i>7 - Lower abdominal pain\n       10 - Middle abdominal pain\n       13 - Pain and burning in the upper abdominal area\n       14 - Pain and itching in the anus\n       15 - Pain when swallowing\n       16 - Pain when chewing\n       22 - Gas and bloating\n       28 - Chewing pain\n       31 - Constipation\n       37 - Heartburn\n       44 - Bleeding after defecation\n       51 - Digestive disorders\n       67 - Belching\n       81 - Constant thirst\n       82 - Loss of appetite\n       83 - Weight loss\n       91 - Vomiting\n       99 - Nausea\n       100 - Abdominal enlargement\n       106 - Frequent liquid defecation</i>\n\n"
+        },
+        {
+            "TextName": "3categoryofdiseases",
+            "Text": "       <i>4 - Pain during menstruation\n       8 - Pain in the kidneys\n       17 - Pain during urination\n       45 - Blood in urine\n       48 - Menstrual irregularities\n       49 - Renal colic\n       98 - Dark urine\n       107 - Frequent urination</i>\n\n"
+        },
+        {
+            "TextName": "4categoryofdiseases",
+            "Text": "       <i>2 - Restlessness and anxiety\n       23 - Headache\n       24 - Dizziness\n       25 - Pressure in the ears\n       32 - Sleep difficulties\n       38 - Mood changes\n       47 - Manic episodes\n       53 - Inattention\n       56 - Inability to perform algorithms\n       71 - Paralysis\n       86 - Loss of consciousness\n       87 - Problems with movements\n       89 - Confusion and memory loss\n       92 - Speech disorders\n       96 - Reflex reduction\n       110 - Epileptic seizures or convulsions</i>\n\n"
+        },
+        {
+            "TextName": "5categoryofdiseases",
+            "Text": "       <i>33 - Difficulty breathing\n       39 - Cough\n       40 - Cough with sputum\n       52 - Runny nose\n       59 - Shortness of breath\n       108 - Sneezing</i>\n\n"
+        },
+        {
+            "TextName": "6categoryofdiseases",
+            "Text": "       <i>1 - Astigmatism\n       3 - Sparkle in the eyes\n       20 - Eye inflammation\n       63 - Eye swelling\n       74 - Eye redness\n       78 - Clouding of the lens\n       75 - Eye redness and tearing\n       104 - Worsening of vision</i>\n\n"
+        },
+        {
+            "TextName": "7categoryofdiseases",
+            "Text": "       <i>5 - Throat pain\n       12 - Ear pain\n       34 - Throat and nose itching\n       46 - Fever\n       60 - Chills\n       61 - Laryngeal swelling\n       64 - Throat swelling\n       66 - Mucous membrane swelling\n       72 - Elevated temperature\n       94 - Weakness\n       95 - Weakness on one side of the body\n       101 - Enlarged lymph nodes\n       103 - Fatigue</i>\n\n"
+        },
+        {
+            "TextName": "8categoryofdiseases",
+            "Text": "       <i>6 - Chest pain\n       9 - Lower back pain\n       11 - Joint pain\n       26 - Pressure or discomfort in the chest\n       50 - Muscle pain\n       55 - Abnormal crunching and squeaking in the joints\n       58 - Limited mobility\n       65 - Swelling and pain in the legs\n       70 - Feeling of heaviness and fatigue in the legs\n       90 - Delamination of the nail plate</i>\n\n"
+        },
+        {
+            "TextName": "9categoryofdiseases",
+            "Text": "       <i>27 - Attention deficit\n       36 - Excess weight\n       85 - Loss of interest in life\n       88 - Hearing problems\n       93 - Chest tightness\n       97 - Social isolation\n       109 - Episodes of depression</i>\n\n"
+        },
+        {
+            "TextName": "textdiseaseprognosis",
+            "Text": "Based on the provided symptoms, the bot suggests you may have:\n\n"
+        },
+        {
+            "TextName": "textdiseasewarning",
+            "Text": "<b>❗️Attention❗️</b>\nThe bot's prediction <ins>does not replace a visit to the doctor.</ins>"
+        },
+        {
+            "TextName": "textdescriptiondisease1",
+            "Text": "Viral infection that can cause respiratory problems, conjunctivitis, and other symptoms.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Adenovirus_infection)"
+        },
+        {
+            "TextName": "textdescriptiondisease2",
+            "Text": "Inflammation of the nasal mucosa caused by an allergic reaction to various allergens.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Allergic_rhinitis)"
+        },
+        {
+            "TextName": "textdescriptiondisease3",
+            "Text": "Disease characterized by inflammation of the tonsils and throat, usually caused by a bacterial infection.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Angina_(sore_throat))"
+        },
+        {
+            "TextName": "textdescriptiondisease4",
+            "Text": "Swelling of the skin, mucous membranes, or subcutaneous tissue, usually caused by an allergic reaction.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Angioedema)"
+        },
+        {
+            "TextName": "textdescriptiondisease5",
+            "Text": "Disturbance of the heart's rhythm.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Arrhythmia)"
+        },
+        {
+            "TextName": "textdescriptiondisease6",
+            "Text": "High blood pressure.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Arterial_hypertension)"
+        },
+        {
+            "TextName": "textdescriptiondisease7",
+            "Text": "Chronic inflammatory disease of the airways that can cause episodes of breathlessness and wheezing.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Asthma)"
+        },
+        {
+            "TextName": "textdescriptiondisease8",
+            "Text": "Mental disorder characterized by periods of euphoria and depression.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Bipolar_disorder)"
+        },
+        {
+            "TextName": "textdescriptiondisease9",
+            "Text": "Group of diseases that affect the joints and surrounding tissues.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Joint_disease)"
+        },
+        {
+            "TextName": "textdescriptiondisease10",
+            "Text": "Dilation and venous insufficiency, most commonly in the lower extremities.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Varicose_veins)"
+        },
+        {
+            "TextName": "textdescriptiondisease11",
+            "Text": "Slow-acting viral disease characterized by outbreaks of blisters on the skin accompanied by itching.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Herpes_zoster)"
+        },
+        {
+            "TextName": "textdescriptiondisease12",
+            "Text": "Inflammation of the eye's conjunctiva caused by a viral infection.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Viral_conjunctivitis)"
+        },
+        {
+            "TextName": "textdescriptiondisease13",
+            "Text": "Inflammation of the gastric mucosa.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Gastritis)"
+        },
+        {
+            "TextName": "textdescriptiondisease14",
+            "Text": "Inflammation of the mucous membrane of the stomach and intestines, usually caused by a virus or bacteria.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Gastroenteritis)"
+        },
+        {
+            "TextName": "textdescriptiondisease15",
+            "Text": "A type of stroke that occurs when bleeding in the brain leads to a disruption of its functions.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Hemorrhagic_stroke)"
+        },
+        {
+            "TextName": "textdescriptiondisease16",
+            "Text": "Inflammation and enlargement of veins in the rectum and anus.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Hemorrhoid)"
+        },
+        {
+            "TextName": "textdescriptiondisease17",
+            "Text": "Inflammation of the liver, usually caused by a virus.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Hepatitis)"
+        },
+        {
+            "TextName": "textdescriptiondisease18",
+            "Text": "Liver cancer that develops from liver tissue cells.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Hepatocellular_carcinoma)"
+        },
+        {
+            "TextName": "textdescriptiondisease19",
+            "Text": "A viral disease characterized by the appearance of blistering rashes on the skin or mucous membranes.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Herpes)"
+        },
+        {
+            "TextName": "textdescriptiondisease20",
+            "Text": "A condition in which the thyroid gland produces too many hormones.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Hyperthyroidism)"
+        },
+        {
+            "TextName": "textdescriptiondisease21",
+            "Text": "Chronic elevation of arterial blood pressure.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Hypertension)"
+        },
+        {
+            "TextName": "textdescriptiondisease22",
+            "Text": "A condition in which the thyroid gland does not produce enough hormones.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Hypothyroidism)"
+        },
+        {
+            "TextName": "textdescriptiondisease23",
+            "Text": "A group of eye diseases that lead to increased intraocular pressure and damage to the optic nerve.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Glaucoma)"
+        },
+        {
+            "TextName": "textdescriptiondisease24",
+            "Text": "Infections caused by fungi that affect the skin.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Fungal_skin_infection)"
+        },
+        {
+            "TextName": "textdescriptiondisease25",
+            "Text": "Urinary tract infections caused by fungi.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Fungal_urinary_tract_infection)"
+        },
+        {
+            "TextName": "textdescriptiondisease26",
+            "Text": "A disease caused by fungi that can affect various parts of the body.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Fungus)"
+        },
+        {
+            "TextName": "textdescriptiondisease27",
+            "Text": "A mental disorder characterized by a prolonged period of low mood and loss of interest in life.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Major_depressive_disorder)"
+        },
+        {
+            "TextName": "textdescriptiondisease28",
+            "Text": "Inflammation of the skin that can cause itching, redness, and irritation.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Dermatitis)"
+        },
+        {
+            "TextName": "textdescriptiondisease29",
+            "Text": "Chronic disease in which the blood sugar level is elevated.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Diabetes)"
+        },
+        {
+            "TextName": "textdescriptiondisease30",
+            "Text": "A condition where the frequency and fluidity of stools are increased.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Diarrhea)"
+        },
+        {
+            "TextName": "textdescriptiondisease31",
+            "Text": "Imbalance of microorganisms in the intestine, which can lead to digestion problems.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Dysbiosis)"
+        },
+        {
+            "TextName": "textdescriptiondisease32",
+            "Text": "Infectious disease that affects the mucous membranes of the throat and nose, causing difficulty breathing.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Dysentery)"
+        },
+        {
+            "TextName": "textdescriptiondisease33",
+            "Text": "A group of diseases that affect the thyroid gland and its functions.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Dysthyroidism)"
+        },
+        {
+            "TextName": "textdescriptiondisease34",
+            "Text": "Sleep disorder characterized by difficulties falling asleep or staying asleep.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Insomnia)"
+        },
+        {
+            "TextName": "textdescriptiondisease35",
+            "Text": "Sudden disruption of blood circulation in the brain that can lead to loss of function.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Ischemic_stroke)"
+        },
+        {
+            "TextName": "textdescriptiondisease36",
+            "Text": "Necrosis (death) of part of the heart muscle due to a disruption of blood supply.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Myocardial_infarction)"
+        },
+        {
+            "TextName": "textdescriptiondisease37",
+            "Text": "Disease in which the urinary tract is affected by bacterial or viral infection.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Urinary_tract_infection)"
+        },
+        {
+            "TextName": "textdescriptiondisease38",
+            "Text": "A condition where the arteries of the heart are narrowed or blocked, leading to a disruption of blood supply to the heart muscle.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Coronary_artery_disease)"
+        },
+        {
+            "TextName": "textdescriptiondisease39",
+            "Text": "Formation of hard deposits in the kidneys that can cause pain and problems with urination.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Kidney_stone_disease)"
+        },
+        {
+            "TextName": "textdescriptiondisease40",
+            "Text": "Eye disease where the lens becomes cloudy, causing vision impairment.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Cataract)"
+        },
+        {
+            "TextName": "textdescriptiondisease41",
+            "Text": "Highly infectious respiratory disease that causes bouts of coughing.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Pertussis)"
+        },
+        {
+            "TextName": "textdescriptiondisease42",
+            "Text": "Inflammation of the colon.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Colitis)"
+        },
+        {
+            "TextName": "textdescriptiondisease43",
+            "Text": "Inflammation of the conjunctiva of the eye, usually caused by infection or allergic reaction.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Conjunctivitis)"
+        },
+        {
+            "TextName": "textdescriptiondisease44",
+            "Text": "Insufficient blood supply to the heart muscle due to the narrowing or blocking of arteries.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Coronary_artery_disease)"
+        },
+        {
+            "TextName": "textdescriptiondisease45",
+            "Text": "Highly infectious viral disease characterized by skin rashes and respiratory infection symptoms.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Measles)"
+        },
+        {
+            "TextName": "textdescriptiondisease46",
+            "Text": "Viral disease that can cause skin rashes and complications in pregnant women.\n [Wikipedia Article](https://en.wikipedia.org/wiki/Rubella)"
+        },
+        {
+            "TextName": "textdescriptiondisease47",
+            "Text": "Cancer of the hematopoietic system that affects the blood and bone marrow.\n [Wikipedia article](https://en.wikipedia.org/wiki/Hematopoietic_and_lymphoid_tissue)"
+        },
+        {
+            "TextName": "textdescriptiondisease48",
+            "Text": "A disease caused by the Leptospira bacterium, which spreads through contact with infected animals.\n [Wikipedia article](https://en.wikipedia.org/wiki/Leptospirosis)"
+        },
+        {
+            "TextName": "textdescriptiondisease49",
+            "Text": "Cancer of the lymphatic system that affects lymph nodes and other parts of the body.\n [Wikipedia article](https://en.wikipedia.org/wiki/Lymphoma)"
+        },
+        {
+            "TextName": "textdescriptiondisease50",
+            "Text": "Cancer of the lymphatic system that affects lymph nodes and other parts of the body.\n [Wikipedia article](https://en.wikipedia.org/wiki/Lymphoma)"
+        },
+        {
+            "TextName": "textdescriptiondisease51",
+            "Text": "A viral disease transmitted by mosquitoes that can cause high fever and other symptoms.\n [Wikipedia article](https://en.wikipedia.org/wiki/Dengue_fever)"
+        },
+        {
+            "TextName": "textdescriptiondisease52",
+            "Text": "A parasitic disease transmitted by mosquitoes, causing fever and other symptoms.\n [Wikipedia article](https://en.wikipedia.org/wiki/Malaria)"
+        },
+        {
+            "TextName": "textdescriptiondisease53",
+            "Text": "Disease of the mammary glands that can lead to the formation of tumors or cysts.\n [Wikipedia article](https://en.wikipedia.org/wiki/Mastopathy)"
+        },
+        {
+            "TextName": "textdescriptiondisease54",
+            "Text": "Severe headache, often accompanied by nausea, vomiting, and sensitivity to light and sound.\n [Wikipedia article](https://en.wikipedia.org/wiki/Migraine)"
+        },
+        {
+            "TextName": "textdescriptiondisease55",
+            "Text": "Diseases caused by fungi that affect the skin, nails, and other parts of the body.\n [Wikipedia article](https://en.wikipedia.org/wiki/Mycosis)"
+        },
+        {
+            "TextName": "textdescriptiondisease56",
+            "Text": "Inflammation of the nerves that can lead to pain, numbness, and muscle weakness.\n [Wikipedia article](https://en.wikipedia.org/wiki/Neuritis)"
+        },
+        {
+            "TextName": "textdescriptiondisease57",
+            "Text": "Inflammation of the kidneys that can lead to problems with kidney function.\n [Wikipedia article](https://en.wikipedia.org/wiki/Nephritis)"
+        },
+        {
+            "TextName": "textdescriptiondisease58",
+            "Text": "Kidney damage that can be caused by various factors, including diseases and toxins.\n [Wikipedia article](https://en.wikipedia.org/wiki/Nephropathy)"
+        },
+        {
+            "TextName": "textdescriptiondisease59",
+            "Text": "A medical condition characterized by an excess accumulation of fat in the body.\n [Wikipedia article](https://en.wikipedia.org/wiki/Obesity)"
+        },
+        {
+            "TextName": "textdescriptiondisease60",
+            "Text": "Acute respiratory viral infections, such as the common cold and flu.\n [Wikipedia article](https://en.wikipedia.org/wiki/Acute_respiratory_infection)"
+        },
+        {
+            "TextName": "textdescriptiondisease61",
+            "Text": "Joint disease characterized by cartilage damage and inflammation.\n [Wikipedia article](https://en.wikipedia.org/wiki/Osteoarthritis)"
+        },
+        {
+            "TextName": "textdescriptiondisease62",
+            "Text": "Inflammation of the bone and bone marrow, usually caused by bacterial infection.\n [Wikipedia article](https://en.wikipedia.org/wiki/Osteomyelitis)"
+        },
+        {
+            "TextName": "textdescriptiondisease63",
+            "Text": "Disease characterized by reduced bone density and increased risk of fractures.\n [Wikipedia article](https://en.wikipedia.org/wiki/Osteoporosis)"
+        },
+        {
+            "TextName": "textdescriptiondisease64",
+            "Text": "Degenerative spinal disease that can lead to pain and impaired function.\n [Wikipedia article](https://en.wikipedia.org/wiki/Osteochondrosis)"
+        },
+        {
+            "TextName": "textdescriptiondisease65",
+            "Text": "Inflammation of the pancreas that can cause abdominal pain and digestive disturbances.\n [Wikipedia article](https://en.wikipedia.org/wiki/Pancreatitis)"
+        },
+        {
+            "TextName": "textdescriptiondisease66",
+            "Text": "Inflammatory ear disease that can be caused by various factors, manifesting as pain, discomfort, and hearing loss.\n [Wikipedia article](https://en.wikipedia.org/wiki/Otitis)"
+        },
+        {
+            "TextName": "textdescriptiondisease67",
+            "Text": "Inflammation of the parotid gland that can lead to swelling and tenderness of the submandibular glands.\n [Wikipedia article](https://en.wikipedia.org/wiki/Parotitis)"
+        },
+        {
+            "TextName": "textdescriptiondisease68",
+            "Text": "A condition in which liver function is reduced or absent.\n [Wikipedia article](https://en.wikipedia.org/wiki/Hepatic_failure)"
+        },
+        {
+            "TextName": "textdescriptiondisease69",
+            "Text": "Inflammation of the kidneys and urinary tract, usually caused by bacterial infection.\n [Wikipedia article](https://en.wikipedia.org/wiki/Pyelonephritis)"
+        },
+        {
+            "TextName": "textdescriptiondisease70",
+            "Text": "Inflammation of the lungs, usually caused by infection.\n [Wikipedia article](https://en.wikipedia.org/wiki/Pneumonia)"
+        },
+        {
+            "TextName": "textdescriptiondisease71",
+            "Text": "Viral disease that affects the spinal cord and can lead to paralysis.\n [Wikipedia article](https://en.wikipedia.org/wiki/Polio)"
+        },
+        {
+            "TextName": "textdescriptiondisease72",
+            "Text": "Inflammation of the pleural sheets, with the deposition of fibrin on their surface (dry pleurisy) or the accumulation of exudate of various kinds in the pleural cavity (exudative pleurisy).\n [Wikipedia article](https://en.wikipedia.org/wiki/Pleurisy)"
+        },
+        {
+            "TextName": "textdescriptiondisease73",
+            "Text": "Respiratory disease characterized by nasal congestion, stuffy nose, and sore throat.\n [Wikipedia article](https://en.wikipedia.org/wiki/Common_cold)"
+        },
+        {
+            "TextName": "textdescriptiondisease74",
+            "Text": "Chronic inflammatory skin disease characterized by redness, scales, and itching.\n [Wikipedia article](https://en.wikipedia.org/wiki/Psoriasis)"
+        },
+        {
+            "TextName": "textdescriptiondisease75",
+            "Text": "Malignant neoplasm that affects various organs and tissues.\n [Wikipedia article](https://en.wikipedia.org/wiki/Cancer)"
+        },
+        {
+            "TextName": "textdescriptiondisease76",
+            "Text": "Inflammatory disease of connective tissue and joints.\n [Wikipedia article](https://en.wikipedia.org/wiki/Rheumatism)"
+        },
+        {
+            "TextName": "textdescriptiondisease77",
+            "Text": "Chronic inflammatory disease affecting joints and other organs.\n [Wikipedia article](https://en.wikipedia.org/wiki/Rheumatoid_arthritis)"
+        },
+        {
+            "TextName": "textdescriptiondisease78",
+            "Text": "Attention deficit hyperactivity disorder, a disorder of attention and behavior.\n [Wikipedia article](https://en.wikipedia.org/wiki/Attention_deficit_hyperactivity_disorder)"
+        },
+        {
+            "TextName": "textdescriptiondisease79",
+            "Text": "Severe infectious disease in which infection spreads throughout the body through the blood.\n [Wikipedia article](https://en.wikipedia.org/wiki/Sepsis)"
+        },
+        {
+            "TextName": "textdescriptiondisease80",
+            "Text": "A condition where the heart cannot effectively contract and pump blood.\n [Wikipedia article](https://en.wikipedia.org/wiki/Heart_failure)"
+        },
+        {
+            "TextName": "textdescriptiondisease81",
+            "Text": "Inflammation of the sinuses that can cause nasal congestion, pain, and pressure in the facial area.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%A1%D0%B8%D0%BD%D1%83%D1%81%D0%B8%D1%82)"
+        },
+        {
+            "TextName": "textdescriptiondisease82",
+            "Text": "Infectious disease caused by the Streptococcus bacterium, characterized by skin rashes and throat inflammation.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%A1%D0%BA%D0%B0%D1%80%D0%BB%D0%B0%D1%82%D0%B8%D0%BD%D0%B0)"
+        },
+        {
+            "TextName": "textdescriptiondisease83",
+            "Text": "Infectious disease caused by the Salmonella bacterium, characterized by high fever and other symptoms.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%A2%D0%B8%D1%84)"
+        },
+        {
+            "TextName": "textdescriptiondisease84",
+            "Text": "Parasitic disease caused by the Toxoplasma parasite, which can affect various organs.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%A2%D0%BE%D0%BA%D1%81%D0%BE%D0%BF%D0%BB%D0%B0%D0%B7%D0%BC%D0%BE%D0%B7)"
+        },
+        {
+            "TextName": "textdescriptiondisease85",
+            "Text": "Infectious disease caused by the Mycobacterium tuberculosis bacterium, affecting the lungs and other organs.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%A2%D1%83%D0%B1%D0%B5%D1%80%D0%BA%D1%83%D0%BB%D0%B5%D0%B7)"
+        },
+        {
+            "TextName": "textdescriptiondisease86",
+            "Text": "Inflammation of the urethra, causing painful urination and other symptoms.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%A3%D1%80%D0%B5%D1%82%D1%80%D0%B8%D1%82)"
+        },
+        {
+            "TextName": "textdescriptiondisease87",
+            "Text": "Acute infectious disease caused by the Vibrio cholerae bacterium, characterized by watery stools and dehydration.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%A5%D0%BE%D0%BB%D0%B5%D1%80%D0%B0)"
+        },
+        {
+            "TextName": "textdescriptiondisease88",
+            "Text": "Disease of the blood vessels of the brain, leading to stroke and other disruptions of cerebral circulation.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%A6%D0%B5%D1%80%D0%B5%D0%B1%D1%80%D0%BE%D0%B2%D0%B0%D1%81%D0%BA%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D0%B0%D1%8F_%D0%B1%D0%BE%D0%BB%D0%B5%D0%B7%D0%BD%D1%8C)"
+        },
+        {
+            "TextName": "textdescriptiondisease89",
+            "Text": "Chronic liver disease characterized by the replacement of healthy liver tissue with scar tissue.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%A6%D0%B8%D1%80%D1%80%D0%BE%D0%B7_%D0%BF%D0%B5%D1%87%D0%B5%D0%BD%D0%B8)"
+        },
+        {
+            "TextName": "textdescriptiondisease90",
+            "Text": "Inflammation of the bladder, causing painful and frequent urination.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%A6%D0%B8%D1%81%D1%82%D0%B8%D1%82)"
+        },
+        {
+            "TextName": "textdescriptiondisease91",
+            "Text": "Psychiatric disorder affecting thinking, perception, and behavior.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%A8%D0%B8%D0%B7%D0%BE%D1%84%D1%80%D0%B5%D0%BD%D0%B8%D1%8F)"
+        },
+        {
+            "TextName": "textdescriptiondisease92",
+            "Text": "Inflammatory skin disease characterized by itching, redness, and rashes.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%AD%D0%BA%D0%B7%D0%B5%D0%BC%D0%B0)"
+        },
+        {
+            "TextName": "textdescriptiondisease93",
+            "Text": "Condition in which tissue similar to the inner lining of the uterus grows outside the uterus, causing painful periods and pelvic pain.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%AD%D0%BD%D0%B4%D0%BE%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D0%BE%D0%B7)"
+        },
+        {
+            "TextName": "textdescriptiondisease94",
+            "Text": "Inflammation of the brain, leading to headaches, fever, and nervous system disorders.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%AD%D0%BD%D1%86%D0%B5%D1%84%D0%B0%D0%BB%D0%B8%D1%82)"
+        },
+        {
+            "TextName": "textdescriptiondisease95",
+            "Text": "Neurological disorder causing recurrent epileptic seizures.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%AD%D0%BF%D0%B8%D0%BB%D0%B5%D0%BF%D1%81%D0%B8%D1%8F)"
+        },
+        {
+            "TextName": "textdescriptiondisease96",
+            "Text": "Parasitic disease caused by tapeworms, which can affect the liver and other organs.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%AD%D1%85%D0%B8%D0%BD%D0%BE%D0%BA%D0%BE%D0%BA%D0%BA%D0%BE%D0%B7)"
+        },
+        {
+            "TextName": "textdescriptiondisease97",
+            "Text": "Destruction of the stomach or duodenal mucosa, causing pain and discomfort in the gastrointestinal tract.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%AF%D0%B7%D0%B2%D0%B0_%D0%B6%D0%B5%D0%BB%D1%83%D0%B4%D0%BA%D0%B0_%D0%B8_%D0%B4%D0%B2%D0%B5%D0%BD%D0%B0%D0%B4%D1%86%D0%B0%D1%82%D0%B8%D0%BF%D0%B5%D1%80%D1%81%D1%82%D0%BD%D0%BE%D0%B9_%D0%BA%D0%B8%D1%88%D0%BA%D0%B8)"
+        },
+        {
+            "TextName": "textdescriptiondisease98",
+            "Text": "Chronic inflammatory bowel disease characterized by ulcers and ulcerative bleeding in the colon lining.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%AF%D0%B7%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9_%D0%BA%D0%BE%D0%BB%D0%B8%D1%82)"
+        },
+        {
+            "TextName": "textdescriptiondisease99",
+            "Text": "Helminthiasis from the group of nematodoses caused by Abbreviata caucasica.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%90%D0%B1%D0%B1%D1%80%D0%B5%D0%B2%D0%B8%D0%B0%D1%82%D0%BE%D0%B7)"
+        },
+        {
+            "TextName": "textdescriptiondisease100",
+            "Text": "Group of diseases affecting humans and animals, caused by insects.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%AD%D0%BD%D1%82%D0%BE%D0%BC%D0%BE%D0%B7%D1%8B)"
+        },
+        {
+            "TextName": "textdescriptiondisease101",
+            "Text": "Disruption of the conduction of an electrical impulse through the heart's conduction system.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%91%D0%BB%D0%BE%D0%BA%D0%B0%D0%B4%D0%B0_%D1%81%D0%B5%D1%80%D0%B4%D1%86%D0%B0)"
+        },
+        {
+            "TextName": "textdescriptiondisease102",
+            "Text": "Agranulocytosis is a pathological condition characterized by a decrease in the level of leukocytes.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%90%D0%B3%D1%80%D0%B0%D0%BD%D1%83%D0%BB%D0%BE%D1%86%D0%B8%D1%82%D0%BE%D0%B7)"
+        },
+        {
+            "TextName": "textdescriptiondisease103",
+            "Text": "In general, it is a curvature of the spine in the sagittal plane.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%9A%D0%B8%D1%84%D0%BE%D0%B7)"
+        },
+        {
+            "TextName": "textdescriptiondisease104",
+            "Text": "Rare congenital disease manifested by massive growth of blood vessels (vascular malformations) with replacement and destruction of bone tissue.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%91%D0%BE%D0%BB%D0%B5%D0%B7%D0%BD%D1%8C_%D0%93%D0%BE%D1%80%D1%85%D0%B5%D0%BC%D0%B0)"
+        },
+        {
+            "TextName": "textdescriptiondisease105",
+            "Text": "One of the main manifestations of vegetative dysfunction, the so-called 'heart pains,' feeling of pressure, compression, paresthesia, etc.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%9A%D0%B0%D1%80%D0%B4%D0%B8%D0%B0%D0%BB%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9_%D1%81%D0%B8%D0%BD%D0%B4%D1%80%D0%BE%D0%BC)"
+        },
+        {
+            "TextName": "textdescriptiondisease106",
+            "Text": "Zoonotic nematode infestation from the group of nematodoses, characterized by damage to the gastrointestinal tract.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%90%D0%BD%D0%B8%D0%B7%D0%B0%D0%BA%D0%B8%D0%B4%D0%BE%D0%B7)"
+        },
+        {
+            "TextName": "textdescriptiondisease107",
+            "Text": "Inflammation of pathologically hypertrophied (hyperplastic, hypertrophic) palatine (nasopharyngeal) tonsil (adenoids).\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%90%D0%B4%D0%B5%D0%BD%D0%BE%D0%B8%D0%B4%D1%8B)"
+        },
+        {
+            "TextName": "textdescriptiondisease108",
+            "Text": "Ascites is the accumulation of free fluid in the abdominal cavity.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%90%D1%81%D1%86%D0%B8%D1%82)"
+        },
+        {
+            "TextName": "textdescriptiondisease109",
+            "Text": "Inflammation of the bulb of the duodenum.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%91%D1%83%D0%BB%D1%8C%D0%B1%D0%B8%D1%82)"
+        },
+        {
+            "TextName": "textdescriptiondisease110",
+            "Text": "Skin aging.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%90%D0%BD%D0%B3%D0%B8%D0%B4%D1%80%D0%BE%D0%B7)"
+        },
+        {
+            "TextName": "textdescriptiondisease111",
+            "Text": "A large group of various eye diseases accompanied by chronic inflammation of the eyelid margins and difficult treatment.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%91%D0%BB%D0%B5%D1%84%D0%B0%D1%80%D0%B8%D1%82)"
+        },
+        {
+            "TextName": "textdescriptiondisease112",
+            "Text": "Painful condition that occurs with insufficient intake of vitamins into the body compared to their expenditure.\n[Wikipedia article](https://ru.wikipedia.org/wiki/%D0%93%D0%B8%D0%BF%D0%BE%D0%B2%D0%B8%D1%82%D0%B0%D0%BC%D0%B8%D0%BD%D0%BE%D0%B7)"
+        },
+        {
+            "TextName": "textdescriptiondisease113",
+            "Text": "Developmental anomaly characterized by the elongation of the entire colon or one of its sections (often the sigmoid colon) without thickening. \n[Wikipedia article](https://en.wikipedia.org/wiki/Dolichocolon)"
+        },
+        {
+            "TextName": "textdescriptiondisease114",
+            "Text": "Inflammation of the aortic wall of infectious or allergic (autoimmune) nature. \n[Wikipedia article](https://en.wikipedia.org/wiki/Aortitis)"
+        },
+        {
+            "TextName": "textdescriptiondisease115",
+            "Text": "Blood fills the joint cavity and its convolutions, causing pain, increased joint volume, limited and painful movements, swelling, and swelling at the site of injury. \n[Wikipedia article](https://en.wikipedia.org/wiki/Hemarthrosis)"
+        }
+    ]
+}

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\programming\\NNetwork\\A.A.R.O.N\\Telegram server\\Telegram server.csproj": {}
+    "D:\\MediSick\\Telegram server\\Telegram server.csproj": {}
   },
   "projects": {
-    "D:\\programming\\NNetwork\\A.A.R.O.N\\Telegram server\\Telegram server.csproj": {
+    "D:\\MediSick\\Telegram server\\Telegram server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\programming\\NNetwork\\A.A.R.O.N\\Telegram server\\Telegram server.csproj",
+        "projectUniqueName": "D:\\MediSick\\Telegram server\\Telegram server.csproj",
         "projectName": "Telegram server",
-        "projectPath": "D:\\programming\\NNetwork\\A.A.R.O.N\\Telegram server\\Telegram server.csproj",
-        "packagesPath": "C:\\Users\\Andrey\\.nuget\\packages\\",
-        "outputPath": "D:\\programming\\NNetwork\\A.A.R.O.N\\Telegram server\\obj\\",
+        "projectPath": "D:\\MediSick\\Telegram server\\Telegram server.csproj",
+        "packagesPath": "C:\\Users\\DrgNBoN\\.nuget\\packages\\",
+        "outputPath": "D:\\MediSick\\Telegram server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Andrey\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DrgNBoN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -44,27 +44,17 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
+            "HtmlAgilityPack": {
               "target": "Package",
-              "version": "[7.0.11, )"
+              "version": "[1.11.54, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
             },
-            "Npgsql.EntityFrameworkCore.PostgreSQL": {
-              "target": "Package",
-              "version": "[7.0.11, )"
-            },
             "Telegram.Bot": {
               "target": "Package",
               "version": "[19.0.0, )"
-            },
-            "Telegram.Bot.Extensions": {
-              "target": "Package",
-              "version": "[1.0.0, )"
             }
           },
           "imports": [
@@ -83,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

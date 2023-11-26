@@ -1,0 +1,57 @@
+D:\MediSick\Telegram server\obj\Debug\net7.0\Telegram server.csproj.AssemblyReference.cache
+D:\MediSick\Telegram server\obj\Debug\net7.0\Telegram server.GeneratedMSBuildEditorConfig.editorconfig
+D:\MediSick\Telegram server\obj\Debug\net7.0\Telegram server.AssemblyInfoInputs.cache
+D:\MediSick\Telegram server\obj\Debug\net7.0\Telegram server.AssemblyInfo.cs
+D:\MediSick\Telegram server\obj\Debug\net7.0\Telegram server.csproj.CoreCompileInputs.cache
+D:\MediSick\Telegram server\bin\Debug\net7.0\Telegram server.exe
+D:\MediSick\Telegram server\bin\Debug\net7.0\Telegram server.deps.json
+D:\MediSick\Telegram server\bin\Debug\net7.0\Telegram server.runtimeconfig.json
+D:\MediSick\Telegram server\bin\Debug\net7.0\Telegram server.dll
+D:\MediSick\Telegram server\bin\Debug\net7.0\Telegram server.pdb
+D:\MediSick\Telegram server\bin\Debug\net7.0\HtmlAgilityPack.dll
+D:\MediSick\Telegram server\bin\Debug\net7.0\Newtonsoft.Json.dll
+D:\MediSick\Telegram server\bin\Debug\net7.0\Telegram.Bot.dll
+D:\MediSick\Telegram server\obj\Debug\net7.0\Telegram server.csproj.CopyComplete
+D:\MediSick\Telegram server\obj\Debug\net7.0\Telegram server.dll
+D:\MediSick\Telegram server\obj\Debug\net7.0\refint\Telegram server.dll
+D:\MediSick\Telegram server\obj\Debug\net7.0\Telegram server.pdb
+D:\MediSick\Telegram server\obj\Debug\net7.0\Telegram server.genruntimeconfig.cache
+D:\MediSick\Telegram server\obj\Debug\net7.0\ref\Telegram server.dll
+D:\Projects\GIT works\MediSick\Telegram server\bin\Debug\net7.0\Telegram server.exe
+D:\Projects\GIT works\MediSick\Telegram server\bin\Debug\net7.0\Telegram server.deps.json
+D:\Projects\GIT works\MediSick\Telegram server\bin\Debug\net7.0\Telegram server.runtimeconfig.json
+D:\Projects\GIT works\MediSick\Telegram server\bin\Debug\net7.0\Telegram server.dll
+D:\Projects\GIT works\MediSick\Telegram server\bin\Debug\net7.0\Telegram server.pdb
+D:\Projects\GIT works\MediSick\Telegram server\bin\Debug\net7.0\HtmlAgilityPack.dll
+D:\Projects\GIT works\MediSick\Telegram server\bin\Debug\net7.0\Newtonsoft.Json.dll
+D:\Projects\GIT works\MediSick\Telegram server\bin\Debug\net7.0\Telegram.Bot.dll
+D:\Projects\GIT works\MediSick\Telegram server\obj\Debug\net7.0\Telegram server.csproj.AssemblyReference.cache
+D:\Projects\GIT works\MediSick\Telegram server\obj\Debug\net7.0\Telegram server.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\GIT works\MediSick\Telegram server\obj\Debug\net7.0\Telegram server.AssemblyInfoInputs.cache
+D:\Projects\GIT works\MediSick\Telegram server\obj\Debug\net7.0\Telegram server.AssemblyInfo.cs
+D:\Projects\GIT works\MediSick\Telegram server\obj\Debug\net7.0\Telegram server.csproj.CoreCompileInputs.cache
+D:\Projects\GIT works\MediSick\Telegram server\obj\Debug\net7.0\Telegram server.csproj.CopyComplete
+D:\Projects\GIT works\MediSick\Telegram server\obj\Debug\net7.0\Telegram server.dll
+D:\Projects\GIT works\MediSick\Telegram server\obj\Debug\net7.0\refint\Telegram server.dll
+D:\Projects\GIT works\MediSick\Telegram server\obj\Debug\net7.0\Telegram server.pdb
+D:\Projects\GIT works\MediSick\Telegram server\obj\Debug\net7.0\Telegram server.genruntimeconfig.cache
+D:\Projects\GIT works\MediSick\Telegram server\obj\Debug\net7.0\ref\Telegram server.dll
+D:\Projects\GIT works\MediSick\TelegramServer\bin\Debug\net7.0\Telegram Server.exe
+D:\Projects\GIT works\MediSick\TelegramServer\bin\Debug\net7.0\Telegram Server.deps.json
+D:\Projects\GIT works\MediSick\TelegramServer\bin\Debug\net7.0\Telegram Server.runtimeconfig.json
+D:\Projects\GIT works\MediSick\TelegramServer\bin\Debug\net7.0\Telegram Server.dll
+D:\Projects\GIT works\MediSick\TelegramServer\bin\Debug\net7.0\Telegram Server.pdb
+D:\Projects\GIT works\MediSick\TelegramServer\bin\Debug\net7.0\HtmlAgilityPack.dll
+D:\Projects\GIT works\MediSick\TelegramServer\bin\Debug\net7.0\Newtonsoft.Json.dll
+D:\Projects\GIT works\MediSick\TelegramServer\bin\Debug\net7.0\Telegram.Bot.dll
+D:\Projects\GIT works\MediSick\TelegramServer\obj\Debug\net7.0\Telegram Server.csproj.AssemblyReference.cache
+D:\Projects\GIT works\MediSick\TelegramServer\obj\Debug\net7.0\Telegram Server.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\GIT works\MediSick\TelegramServer\obj\Debug\net7.0\Telegram Server.AssemblyInfoInputs.cache
+D:\Projects\GIT works\MediSick\TelegramServer\obj\Debug\net7.0\Telegram Server.AssemblyInfo.cs
+D:\Projects\GIT works\MediSick\TelegramServer\obj\Debug\net7.0\Telegram Server.csproj.CoreCompileInputs.cache
+D:\Projects\GIT works\MediSick\TelegramServer\obj\Debug\net7.0\Telegram Server.csproj.CopyComplete
+D:\Projects\GIT works\MediSick\TelegramServer\obj\Debug\net7.0\Telegram Server.dll
+D:\Projects\GIT works\MediSick\TelegramServer\obj\Debug\net7.0\refint\Telegram Server.dll
+D:\Projects\GIT works\MediSick\TelegramServer\obj\Debug\net7.0\Telegram Server.pdb
+D:\Projects\GIT works\MediSick\TelegramServer\obj\Debug\net7.0\Telegram Server.genruntimeconfig.cache
+D:\Projects\GIT works\MediSick\TelegramServer\obj\Debug\net7.0\ref\Telegram Server.dll

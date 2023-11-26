@@ -1,0 +1,24 @@
+{
+  "6822142935": {
+    "inlinebuttpressed": [],
+    "listofrecentdiseases": [],
+    "listofrecentsearchedplaces": [],
+    "lastdrugslist": [],
+    "lastpharmlist": [],
+    "geolocation": {
+      "Item1": 0.0,
+      "Item2": 0.0
+    },
+    "symptommenu": true,
+    "mainmenu": false,
+    "inlinesymptomkey": false,
+    "searchbyareamenu": false,
+    "searchorganizationmenu": false,
+    "searchdrugmenu": false,
+    "name": "Unknown",
+    "city": null,
+    "lastmessage": "",
+    "gender": "null",
+    "language": "null"
+  }
+}

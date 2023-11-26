@@ -1,0 +1,20 @@
+{
+    "countsymptoms": 110,
+    "searchresultsarea": 5,
+    "pathdatabasejson": "Telegramassets/Database.json",
+    "pathtextforbotjsonru": "Telegramassets/Textforbotru.json",
+    "pathtextforbotjsonen": "Telegramassets/Textforboten.json",
+    "pathsymptomslistjson": "Telegramassets/SymptomsList.json",
+    "pathregionindex": "Telegramassets/regionindex.txt",
+    "pathnetworkexe": "..\\..\\..\\..\\WithOutLearning\\ProcessTest.exe",
+    "pathnetworkexeworkingdirectory": "..\\..\\..\\..\\WithOutLearning",
+    "linkinstructionsforenteringsymptoms": "https://im2.ezgif.com/tmp/ezgif-2-255d3b1013.gif",
+    "linkinstructionsforbot": "https://github.com/DrgNBoN/Video-files-from-MediSIck-Telegram-bot/raw/main/guide.mp4",
+    "token": "6525101854:AAFlyWBSUlLEAr_bL0ni4chPMyYwlz4nQF8",
+    "yandexmaptoken": "778319e2-da48-47b8-8f15-203b10cf2702",
+    "yandexmaptoken2": "df137e56-4bc5-483d-b765-6b7373742442",
+    "enablelogging": true,
+    "pathaiexe": "",
+    "pathoutputuser": "InOutUser/output.txt",
+    "pathinputuser": "InOutUser/input.txt"
+}
